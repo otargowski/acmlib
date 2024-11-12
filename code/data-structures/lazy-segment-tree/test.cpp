@@ -4,7 +4,7 @@
 void test() {
 	int n = rd(1, 17);
 	Tree tree(n);
-	V<ll> brute(n);
+	vll brute(n);
 	int op_cnt = rd(1, 100);
 	while(op_cnt --> 0) {
 		if(rd(0, 1)) {

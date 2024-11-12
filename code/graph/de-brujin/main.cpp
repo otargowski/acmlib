@@ -3,9 +3,9 @@
  * Jeżeli \texttt{is\_path} to zwraca ciąg, wpp. zwraca cykl.
  */
 #include "../eulerian-path/main.cpp"
-V<int> de_brujin(int k, int n, bool is_path) {
+vi de_brujin(int k, int n, bool is_path) {
 	if (n == 1) {
-		V<int> v(k);
+		vi v(k);
 		iota(all(v), 0);
 		return v;
 	}
@@ -18,7 +18,7 @@ V<int> de_brujin(int k, int n, bool is_path) {
 	REP(i, N)
 		REP(j, k)
 			edges.eb(i, i * k % N + j);
-	V<int> path = get<2>(eulerian_path(N, edges, true));
+	vi path = get<2>(eulerian_path(N, edges, true));
 	path.pop_back();
 	for(auto& e : path)
 		e = e % k;

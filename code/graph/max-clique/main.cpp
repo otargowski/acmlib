@@ -4,11 +4,11 @@
  * Zwraca listę wierzchołków w jakiejś max klice. Pętelki niedozwolone.
  */
 constexpr int max_n = 500;
-V<int> get_max_clique(V<bitset<max_n>> e) {
+vi get_max_clique(V<bitset<max_n>> e) {
 	double limit = 0.025, pk = 0;
 	V<pii> V;
-	V<V<int>> C(ssize(e) + 1);
-	V<int> qmax, q, S(ssize(C)), old(S);
+	V<vi> C(ssize(e) + 1);
+	vi qmax, q, S(ssize(C)), old(S);
 	REP(i, ssize(e)) V.eb(0, i);
 	auto init = [&](V<pii>& r) {
 		for (auto& v : r) for (auto j : r) v.fi += e[v.se][j.se];

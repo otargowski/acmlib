@@ -5,8 +5,8 @@
  */
 struct TwoSat {
 	int n;
-	V<V<int>> gr;
-	V<int> values;
+	V<vi> gr;
+	vi values;
 	TwoSat(int _n = 0) : n(_n), gr(2 * n) {}
 	void either(int f, int j) {
 		f = max(2 * f, -1 - 2 * f);
@@ -21,7 +21,7 @@ struct TwoSat {
 		gr.eb();
 		return n++;
 	}
-	void at_most_one(V<int>& li) {
+	void at_most_one(vi& li) {
 		if(ssize(li) <= 1) return;
 		int cur = ~li[0];
 		FOR(i, 2, ssize(li) - 1) {
@@ -33,7 +33,7 @@ struct TwoSat {
 		}
 		either(cur, ~li[1]);
 	}
-	V<int> val, comp, z;
+	vi val, comp, z;
 	int t = 0;
 	int dfs(int i) {
 		int low = val[i] = ++t, x;

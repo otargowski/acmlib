@@ -4,7 +4,7 @@
 void test() {
 	int n = rd(1, 10);
 	int alph = rd(1, 26);
-	V<int> s(n);
+	vi s(n);
 	for(int &si : s)
 		si = rd(0, alph - 1);
 	debug(s);
@@ -19,7 +19,7 @@ void test() {
 	for(bool only_even_lens : {false, true}) {
 		V<Dp> dp = palindromic_split_dp(s, only_even_lens);
 
-		V<int> dp_min(n, n + 1);
+		vi dp_min(n, n + 1);
 		REP(r, n)
 			FOR(l, 0, r)
 				if(is_palindrome(l, r) and (not only_even_lens or (r - l + 1) % 2 == 0))
@@ -30,7 +30,7 @@ void test() {
 			assert(dp[i].mn == dp_min[i]);
 		}
 
-		V<int> dp_count(n);
+		vi dp_count(n);
 		REP(r, n)
 			FOR(l, 0, r)
 				if(is_palindrome(l, r) and (not only_even_lens or (r - l + 1) % 2 == 0))
@@ -49,7 +49,7 @@ void test() {
 			continue;
 		}
 		debug(pairs);
-		V<int> covered(n);
+		vi covered(n);
 		for(auto [l, r] : pairs)
 			FOR(i, l, r)
 				++covered[i];

@@ -23,13 +23,13 @@
  *   nie musiał zawierać multikrawędzi.
  */
 pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
-	V<V<int>> line_graph(line_n);
+	V<vi> line_graph(line_n);
 	for(auto &[v, u] : line_edges) {
 		line_graph[v].eb(u);
 		line_graph[u].eb(v);
 	}
-	map<V<int>, int> line_neighbors_repeated;
-	V<int> line_vertex_reduced_to(line_n, -1);
+	map<vi, int> line_neighbors_repeated;
+	vi line_vertex_reduced_to(line_n, -1);
 	REP(v, line_n) {
 		auto neigh_with_v = line_graph[v];
 		neigh_with_v.eb(v);
@@ -57,9 +57,9 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 	};
 	REP(component_v, line_n)
 		if(not visited[component_v]) {
-			V<V<int>> que_i_to_visited_neighbors;
+			V<vi> que_i_to_visited_neighbors;
 			int og_n = 0;
-			V<int> que = {component_v};
+			vi que = {component_v};
 			visited[component_v] = true;
 			auto save_current_graph = [&](int until_i) {
 				og_cnt_fixed_v += og_n;

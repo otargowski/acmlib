@@ -7,7 +7,7 @@
  *   na CF dla $n = 1e8$ działa w 1.2s.
  */
 V<bool> comp;
-V<int> primes, prime_div;
+vi primes, prime_div;
 void sieve(int n) {
 	primes.clear();
 	comp.resize(n + 1);

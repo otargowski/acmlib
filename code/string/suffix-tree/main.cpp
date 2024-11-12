@@ -10,10 +10,10 @@
  */
 struct SuffixTree {
 	C int n;
-	C V<int> &_in;
+	C vi &_in;
 	V<map<int, int>> sons;
 	V<pii> up_edge_range;
-	V<int> parent, slink;
+	vi parent, slink;
 	int tv = 0, tp = 0, ts = 2, la = 0;
 	void ukkadd(int c) {
 		auto &lr = up_edge_range;
@@ -45,7 +45,7 @@ suff:
 		}
 	}
 	// Remember to append string with a hash.
-	SuffixTree(C V<int> &in, int alpha)
+	SuffixTree(C vi &in, int alpha)
 		: n(ssize(in)), _in(in), sons(2 * n + 1),
 		up_edge_range(2 * n + 1, pair(0, n - 1)), parent(2 * n + 1), slink(2 * n + 1) {
 		up_edge_range[0] = up_edge_range[1] = {-1, -1};

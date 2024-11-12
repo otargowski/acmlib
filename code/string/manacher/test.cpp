@@ -3,17 +3,17 @@
 
 void test() {
 	int n = rd(1, 10);
-	V<int> in(n);
+	vi in(n);
 	for(int &x : in)
 		x = rd(0, 1);
 
-	array<V<int>, 2> radius = {V<int>(n - 1), V<int>(n)};
+	array<vi, 2> radius = {vi(n - 1), vi(n)};
 	REP(l, n)
 		FOR(r, l, n - 1) {
-			V<int> s;
+			vi s;
 			FOR(i, l, r)
 				s.eb(in[i]);
-			V<int> cp = s;
+			vi cp = s;
 			reverse(all(cp));
 			if(cp != s)
 				continue;

@@ -5,8 +5,8 @@ void test() {
 	int n = rd(1, 100);
 	int z = rd(1, int(1e6));
 	assert((ll)n * n * z * z <= ll(1e18));
-	V<int> t(n);
-	V<ll> sum(n);
+	vi t(n);
+	vll sum(n);
 	REP (i, n)
 		t[i] = rd(1, z);
 	sum[0] = t[0];
@@ -21,7 +21,7 @@ void test() {
 		return sm(l, r) * sm(l, r) + penalty;
 	};
 	auto [score, cuts] = dp_1d1d(n, cost);
-	V<ll> dp(n);
+	vll dp(n);
 	REP (i, n) {
 		dp[i] = cost(0, i);
 		REP (j, i)

@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-V<pii> ranges_of_values(V<int> in) {
+V<pii> ranges_of_values(vi in) {
 	if(in.empty())
 		return {};
 	V<pii> ret = {{in[0], in[0]}};
@@ -13,13 +13,13 @@ V<pii> ranges_of_values(V<int> in) {
 	return ret;
 }
 
-V<tuple<int, int, int>> brute_squares(V<int> str) {
+V<tuple<int, int, int>> brute_squares(vi str) {
 	int n = ssize(str);
 	V<tuple<int, int, int>> ret;
 	FOR(len, 1, n / 2) {
-		V<int> good_starts;
+		vi good_starts;
 		REP(start, n - 2 * len + 1) {
-			V<int> substr;
+			vi substr;
 			REP(i, 2 * len)
 				substr.eb(str[i + start]);
 			bool valid = true;
@@ -38,7 +38,7 @@ V<tuple<int, int, int>> brute_squares(V<int> str) {
 void test() {
 	static bool was_maxtest = false;
 	int n = was_maxtest ? rd(1, 10) : int(1e5);
-	V<int> s;
+	vi s;
 	REP(i, n)
 		s.eb(rd(0, 2));
 	debug(n, s);

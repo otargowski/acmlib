@@ -6,7 +6,7 @@
  * \texttt{min\_suffix("abacab") == "ab"},
  * \texttt{min\_cyclic\_shift("abacaba") == "aabacab"}.
  */
-V<pii> duval(V<int> s) {
+V<pii> duval(vi s) {
 	int n = ssize(s), i = 0;
 	V<pii> ret;
 	while(i < n) {
@@ -22,10 +22,10 @@ V<pii> duval(V<int> s) {
 	}
 	return ret;
 }
-V<int> min_suffix(V<int> s) {
+vi min_suffix(vi s) {
 	return {s.begin() + duval(s).back().fi, s.end()};
 }
-V<int> min_cyclic_shift(V<int> s) {
+vi min_cyclic_shift(vi s) {
 	int n = ssize(s);
 	REP(i, n)
 		s.eb(s[i]);

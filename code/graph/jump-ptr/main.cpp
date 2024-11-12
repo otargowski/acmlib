@@ -7,8 +7,8 @@
 // BEGIN HASH
 struct SimpleJumpPtr {
 	int bits;
-	V<V<int>> graph, jmp;
-	V<int> par, dep;
+	V<vi> graph, jmp;
+	vi par, dep;
 	void par_dfs(int v) {
 		for(int u : graph[v])
 			if(u != par[v]) {
@@ -17,14 +17,14 @@ struct SimpleJumpPtr {
 				par_dfs(u);
 			}
 	}
-	SimpleJumpPtr(V<V<int>> g = {}, int root = 0) : graph(g) {
+	SimpleJumpPtr(V<vi> g = {}, int root = 0) : graph(g) {
 		int n = ssize(graph);
 		bits = __lg(max(1, n)) + 1;
 		dep.resize(n);
 		par.resize(n, -1);
 		if(n > 0)
 			par_dfs(root);
-		jmp.resize(bits, V<int>(n, -1));
+		jmp.resize(bits, vi(n, -1));
 		jmp[0] = par;
 		FOR(b, 1, bits - 1)
 			REP(v, n)
@@ -63,7 +63,7 @@ struct OperationJumpPtr {
 	OperationJumpPtr(V<V<pii>> g, int root = 0) {
 		debug(g, root);
 		int n = ssize(g);
-		V<V<int>> unweighted_g(n);
+		V<vi> unweighted_g(n);
 		REP(v, n)
 			for(auto [u, w] : g[v]) {
 				(void) w;

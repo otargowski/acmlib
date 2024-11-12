@@ -5,11 +5,11 @@
  * Tablice są nieposortowane. Wspiera multikrawędzie i wiele spójnych, ale nie pętle.
  */
 struct Low {
-	V<V<int>> graph;
-	V<int> low, pre;
+	V<vi> graph;
+	vi low, pre;
 	V<pii> edges;
-	V<V<int>> bicon;
-	V<int> bicon_stack, arti_points, bridges;
+	V<vi> bicon;
+	vi bicon_stack, arti_points, bridges;
 	int gtime = 0;
 	void dfs(int v, int p) {
 		low[v] = pre[v] = gtime++;

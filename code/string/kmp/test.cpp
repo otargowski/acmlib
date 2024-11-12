@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-bool is_border(V<int> s, int len) {
+bool is_border(vi s, int len) {
 	if(len >= ssize(s))
 		return false;
 	if(len == 0)
@@ -11,7 +11,7 @@ bool is_border(V<int> s, int len) {
 
 void test() {
 	int n = rd(1, 20);
-	V<int> s;
+	vi s;
 	REP(i, n)
 		s.eb(rd(0, 2));
 
@@ -25,7 +25,7 @@ void test() {
 			}
 		assert(kmp[i] == found_len);
 	}
-	V<int> borders;
+	vi borders;
 	FOR(len, 1, n)
 		if(len == n or is_border(s, len))
 			borders.eb(len);

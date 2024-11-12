@@ -11,7 +11,7 @@
 V<pii> angle180_intervals(V<P> in) {
 	// in must be sorted by angle
 	int n = ssize(in);
-	V<int> nxt(n);
+	vi nxt(n);
 	iota(all(nxt), 1);
 	int r = nxt[n - 1] = 0;
 	V<pii> ret(n);

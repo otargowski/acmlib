@@ -50,7 +50,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 		if(not que.empty())
 			add(que.front(), query_i - 1, e);
 	V<bool> ret(ssize(queries));
-	V<int> lead(n), leadsz(n, 1);
+	vi lead(n), leadsz(n, 1);
 	iota(all(lead), 0);
 	function<int (int)> find = [&](int i) {
 		return i == lead[i] ? i : find(lead[i]);

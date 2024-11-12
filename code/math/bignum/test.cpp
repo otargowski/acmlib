@@ -6,7 +6,7 @@ ostream& operator<<(ostream& o, __int128_t x) {
 		x = -x;
 		o << "-";
 	}
-	V<int> v;
+	vi v;
 	if (x == 0) v.eb(0);
 	while (x > 0) {
 		v.eb(x % 10);

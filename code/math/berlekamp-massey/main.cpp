@@ -6,8 +6,8 @@
 #include "../simple-modulo/main.cpp"
 struct BerlekampMassey {
 	int n;
-	V<int> x, C;
-	BerlekampMassey(C V<int> &_x) : x(_x) {
+	vi x, C;
+	BerlekampMassey(C vi &_x) : x(_x) {
 		auto B = C = {1};
 		int b = 1, m = 0;
 		REP(i, ssize(x)) {
@@ -26,8 +26,8 @@ struct BerlekampMassey {
 		for(int &t : C) t = sub(0, t);
 		n = ssize(C);
 	}
-	V<int> combine(V<int> a, V<int> b) {
-		V<int> ret(n * 2 + 1);
+	vi combine(vi a, vi b) {
+		vi ret(n * 2 + 1);
 		REP(i, n + 1) REP(j, n + 1)
 			ret[i + j] = add(ret[i + j], mul(a[i], b[j]));
 		for(int i = 2 * n; i > n; i--) REP(j, n)
@@ -36,7 +36,7 @@ struct BerlekampMassey {
 	}
 	int get(ll k) {
 		if (!n) return 0;
-		V<int> r(n + 1), pw(n + 1);
+		vi r(n + 1), pw(n + 1);
 		r[0] = pw[1] = 1;
 		for(k++; k; k /= 2) {
 			if(k % 2) r = combine(r, pw);

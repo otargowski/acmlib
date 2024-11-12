@@ -4,10 +4,10 @@
  *   Żeby wyznaczyć krawędzie na cyklu, wystarczy wybierać najtańszą krawędź między wierzchołkami.
  */
 template</*integral*/class I>
-pair<bool, V<int>> negative_cycle(V<V<pair<int, I>>> graph) {
+pair<bool, vi> negative_cycle(V<V<pair<int, I>>> graph) {
 	int n = ssize(graph);
 	V<I> dist(n);
-	V<int> from(n, -1);
+	vi from(n, -1);
 	int v_on_cycle = -1;
 	REP(iter, n) {
 		v_on_cycle = -1;
@@ -23,7 +23,7 @@ pair<bool, V<int>> negative_cycle(V<V<pair<int, I>>> graph) {
 		return {false, {}};
 	REP(iter, n)
 		v_on_cycle = from[v_on_cycle];
-	V<int> cycle = {v_on_cycle};
+	vi cycle = {v_on_cycle};
 	for(int v = from[v_on_cycle]; v != v_on_cycle; v = from[v])
 		cycle.eb(v);
 	reverse(all(cycle));

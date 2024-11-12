@@ -11,7 +11,7 @@
 pair<int, V<T>> gauss(V<V<T>> a) {
 	int n = ssize(a); // liczba wierszy
 	int m = ssize(a[0]) - 1; // liczba zmiennych
-	V<int> where(m, -1); // w ktorym wierszu jest zdefiniowana i-ta zmienna
+	vi where(m, -1); // w ktorym wierszu jest zdefiniowana i-ta zmienna
 	for(int col = 0, row = 0; col < m and row < n; ++col) {
 		int sel = row;
 		for(int y = row; y < n; ++y)

@@ -6,7 +6,7 @@
  */
 #include "../pref/main.cpp"
 
-V<tuple<int, int, int>> squares(C V<int> &s) {
+V<tuple<int, int, int>> squares(C vi &s) {
 	V<tuple<int, int, int>> ans;
 	V pos(ssize(s) + 2, -1);
 	FOR(mid, 1, ssize(s) - 1) {

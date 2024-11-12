@@ -5,7 +5,7 @@
 void test() {
 	int n0 = rd(1, 10);
 	int n1 = rd(1, 10);
-	V<V<int>> graph(n0 + n1);
+	V<vi> graph(n0 + n1);
 	int m = rd(1, 100);
 	while(m --> 0) {
 		int v = rd(0, n0 - 1);

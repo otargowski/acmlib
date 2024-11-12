@@ -9,7 +9,7 @@ void test() {
 	int k = rd(1, max_k);
 	auto path = de_brujin(k, n, is_path);
 	debug(n, k, is_path, path);
-	map<V<int>, int> m;
+	map<vi, int> m;
 	int N = 1;
 	REP(i, n)
 		N *= k;
@@ -17,7 +17,7 @@ void test() {
 		C int length = k > 1 ? N + n - 1 : n;
 		assert(ssize(path) == length);
 		REP(i, N) {
-			V<int> v(path.begin() + i, path.begin() + i + n);
+			vi v(path.begin() + i, path.begin() + i + n);
 			++m[v];
 		}
 	}
@@ -25,7 +25,7 @@ void test() {
 		C int length = k > 1 ? N : n;
 		assert(ssize(path) == length);
 		REP(i, N) {
-			V<int> v(path.begin(), path.begin() + n);
+			vi v(path.begin(), path.begin() + n);
 			++m[v];
 			rotate(path.begin(), path.begin() + 1, path.end());
 		}

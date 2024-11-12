@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-bool covers(V<int> s, V<int> base) {
+bool covers(vi s, vi base) {
 	set<int> ss(all(s));
 	REP(mask, 1 << ssize(base)) {
 		int ksor = 0;
@@ -15,10 +15,10 @@ bool covers(V<int> s, V<int> base) {
 	return ss.empty();
 }
 
-int get_base_size(V<int> s) {
+int get_base_size(vi s) {
 	int ans = ssize(s);
 	REP(mask, 1 << ssize(s)) {
-		V<int> base;
+		vi base;
 		REP(i, ssize(s))
 			if((mask >> i) & 1)
 				base.eb(s[i]);
@@ -31,11 +31,11 @@ int get_base_size(V<int> s) {
 void test() {
 	int n = rd(1, 9);
 	int gen_bits = rd(1, 4);
-	V<int> s(n);
+	vi s(n);
 	for(int &si : s)
 		si = rd(0, (1 << gen_bits) - 1);
 
-	V<int> base = xor_base(s);
+	vi base = xor_base(s);
 	assert(ssize(base) == get_base_size(s));
 	assert(covers(s, base));
 }

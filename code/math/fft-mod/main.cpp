@@ -3,9 +3,9 @@
  *   \texttt{conv\_mod(a, b)} zwraca iloczyn wielomianów modulo, ma większą dokładność niż zwykłe fft.
  */
 #include "../fft/main.cpp"
-V<int> conv_mod(V<int> a, V<int> b, int M) {
+vi conv_mod(vi a, vi b, int M) {
 	if(a.empty() or b.empty()) return {};
-	V<int> res(ssize(a) + ssize(b) - 1);
+	vi res(ssize(a) + ssize(b) - 1);
 	C int CUTOFF = 125;
 	if (min(ssize(a), ssize(b)) <= CUTOFF) {
 		if (ssize(a) > ssize(b))

@@ -6,7 +6,7 @@ void test() {
 	n = rd(1, n);
 	int m = rd(n, n * n / 4 + 1);
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	while(m --> 0)
 		graph[rd(0, n - 1)].eb(rd(0, n - 1));
 

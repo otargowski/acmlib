@@ -3,7 +3,7 @@
 
 void test() {
 	int m = rd(1, 10);
-	V cost(m, V<ll>(m));
+	V cost(m, vll(m));
 	REP(i, m)
 		FOR(j, i, m - 1)
 			cost[i][j] = rd(-10, 10);

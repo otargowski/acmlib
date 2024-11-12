@@ -21,7 +21,7 @@ int get_max_matching(int n, V<pii> edges) {
 	return answer;
 }
 
-bool is_valid_matching(int n, V<pii> edges, V<int> match) {
+bool is_valid_matching(int n, V<pii> edges, vi match) {
 	REP(v, n)
 		if(match[v] != -1) {
 			bool found = false;
@@ -49,7 +49,7 @@ void test() {
 		}
 	}
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].eb(u);
 		graph[u].eb(v);

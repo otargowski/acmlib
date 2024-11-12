@@ -9,7 +9,7 @@ void test() {
 	if(n0 > n1)
 		swap(n0, n1);
 	int max_weight = (rd(0, 1) ? 10 : int(1e9));
-	V<V<int>> weight(n0, V<int>(n1));
+	V<vi> weight(n0, vi(n1));
 	REP(i, n0)
 		REP(j, n1)
 			weight[i][j] = rd(-max_weight, max_weight);
@@ -27,10 +27,10 @@ void test() {
 
 	if(test_type == 0) {
 		ll ans_brute = ll(1e18);
-		V<int> perm(n1);
+		vi perm(n1);
 		iota(all(perm), 0);
 		do {
-			V<int> brute_match = perm;
+			vi brute_match = perm;
 			brute_match.resize(n0);
 			ll ans_local = 0;
 			REP(i, n0)

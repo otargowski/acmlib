@@ -7,7 +7,7 @@
 struct Num {
 	static constexpr int digits_per_elem = 9, base = int(1e9);
 	int sign = 0;
-	V<int> x;
+	vi x;
 	Num& shorten() {
 		while(ssize(x) and x.back() == 0)
 			x.pop_back();

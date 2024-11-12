@@ -17,7 +17,7 @@ void test() {
 	};
 
 	auto brute_primes = [&](int x) {
-		V <int> ans;
+		vi ans;
 		FOR(i,2,x)
 			if (not is_composite(i))
 				ans.eb(i);
@@ -34,7 +34,7 @@ void test() {
 	assert(comp == brute_comp(n));
 
 	auto brute_prime_div = [&](int x) {
-		V<int> ans(x + 1);
+		vi ans(x + 1);
 		for (int i = x; i >= 2; --i) {
 			if (is_composite(i))
 				continue;

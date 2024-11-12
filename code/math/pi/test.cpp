@@ -4,7 +4,7 @@
 
 void test() {
 	static C int mn = 1e5;
-	static V<int> pref;
+	static vi pref;
 	if (pref.empty()) {
 		sieve(mn);
 		pref.resize(mn + 1);

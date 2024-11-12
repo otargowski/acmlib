@@ -62,14 +62,14 @@ DpOneEnd two_to_one(DpTwoEnds two) {
 
 void test() {
 	int n = rd(1, 12);
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	FOR(v, 1, n - 1) {
 		int u = rd(0, v - 1);
 		graph[v].eb(u);
 		graph[u].eb(v);
 	}
 
-	V<int> color(n);
+	vi color(n);
 	REP(i, n)
 		color[i] = rd(0, 1);
 
@@ -91,7 +91,7 @@ void test() {
 					}
 				if(accumulate(all(vis), 0) != __builtin_popcount(mask))
 					continue;
-				V<int> colors;
+				vi colors;
 				REP(v, n)
 					if(vis[v])
 						colors.eb(color[v]);

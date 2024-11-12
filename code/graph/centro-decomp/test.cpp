@@ -4,7 +4,7 @@
 void test() {
 	C int INF = 1e9;
 	int n = rd(1, 100);
-	V graph(n, V<int>());
+	V graph(n, vi());
 	V per(n, 0);
 	iota(all(per), 0);
 	REP (i, n) {
@@ -16,7 +16,7 @@ void test() {
 		graph[per[u]].eb(per[v]);
 	}
 	CentroDecomp CD(n, graph);
-	V sons(n, V<int>());
+	V sons(n, vi());
 	int root = -1;
 	REP (v, n) {
 		if (CD.par[v] == -1) {
@@ -27,7 +27,7 @@ void test() {
 			sons[CD.par[v]].eb(v);
 	}
 	assert(root != -1);
-	V<int> odw(n), gle(n);
+	vi odw(n), gle(n);
 	int licz = 1;
 
 	int zli;

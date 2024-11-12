@@ -1,9 +1,9 @@
 /*
  * Opis: O(n), zwraca tablicę prefixo prefixową $[0, pref[i]) = [i, i + pref[i])$.
  */
-V<int> pref(V<int> str) {
+vi pref(vi str) {
 	int n = ssize(str);
-	V<int> ret(n);
+	vi ret(n);
 	ret[0] = n;
 	int i = 1, m = 0;
 	while(i < n) {

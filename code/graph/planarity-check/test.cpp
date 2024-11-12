@@ -3,7 +3,7 @@
 
 bool is_planar_brute(int n, V<pii> edges) {
 	REP(mask, 1 << ssize(edges)) {
-		V<int> lead(n);
+		vi lead(n);
 		iota(all(lead), 0);
 		function<int (int)> find = [&](int v) {
 			return v == lead[v] ? v : lead[v] = find(lead[v]);
@@ -12,7 +12,7 @@ bool is_planar_brute(int n, V<pii> edges) {
 			if((mask >> i) & 1)
 				lead[find(edges[i].fi)] = find(edges[i].se);
 
-		V<int> leads;
+		vi leads;
 		REP(v, n)
 			if(lead[v] == v)
 				leads.eb(v);
@@ -27,14 +27,14 @@ bool is_planar_brute(int n, V<pii> edges) {
 		debug(leads);
 		debug(new_edges);
 
-		V<V<int>> graph(n);
+		V<vi> graph(n);
 		for(auto [v, u] : new_edges) {
 			graph[v].eb(u);
 			graph[u].eb(v);
 		}
 
 		V<bool> vis(n);
-		V<int> component;
+		vi component;
 		function<void (int)> dfs = [&](int v) {
 			component.eb(v);
 			vis[v] = true;
@@ -95,7 +95,7 @@ void test() {
 	}
 	debug(edges_set);
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for(auto [v, u] : edges_set) {
 		graph[v].eb(u);
 		graph[u].eb(v);

@@ -21,7 +21,7 @@ struct Brute {
 		vatmostone.eb(v);
 	}
 
-	bool does_satisfy(V<int> v) {
+	bool does_satisfy(vi v) {
 		for (auto [a, b] : vsetvalue)
 			if (v[a] != b)
 				return false;
@@ -80,7 +80,7 @@ void test() {
 		}
 		else if (type == 2) {
 			int k = rd(0, n);
-			V<int> vts(k);
+			vi vts(k);
 			V<pair<int,bool>> vbr(k);
 			REP(i,k) {
 				auto [a, b, c] = var();

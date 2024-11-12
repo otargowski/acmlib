@@ -8,7 +8,7 @@ struct Simplex {
 	using T = double;
 	C T eps = 1e-9, inf = 1/.0;
 	int n, m;
-	V<int> N, B;
+	vi N, B;
 	V<V<T>> A;
 	V<T> b, c;
 	T res = 0;

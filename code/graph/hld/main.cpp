@@ -8,8 +8,8 @@
  */
 struct HLD {
 // BEGIN HASH
-	V<V<int>> &adj;
-	V<int> sz, pre, pos, nxt, par;
+	V<vi> &adj;
+	vi sz, pre, pos, nxt, par;
 	int t = 0;
 	void init(int v, int p = -1) {
 		par[v] = p;
@@ -31,7 +31,7 @@ struct HLD {
 		}
 		pos[v] = t;
 	}
-	HLD(int n, V<V<int>> &_adj)
+	HLD(int n, V<vi> &_adj)
 		: adj(_adj), sz(n), pre(n), pos(n), nxt(n), par(n) {
 		init(0), set_paths(0);
 	} // END HASH

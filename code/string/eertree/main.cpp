@@ -16,7 +16,7 @@ constexpr int alpha = 26;
 struct Eertree {
 	V<array<int, alpha>> edge;
 	array<int, alpha> empty;
-	V<int> str = {-1}, link = {1, 0}, len = {0, -1};
+	vi str = {-1}, link = {1, 0}, len = {0, -1};
 	int last = 0;
 	Eertree() {
 		empty.fill(0);
@@ -45,10 +45,10 @@ struct Dp { int mn, mn_i, cnt; };
 Dp operator+(Dp l, Dp r) {
 	return {min(l.mn, r.mn), l.mn < r.mn ? l.mn_i : r.mn_i, add(l.cnt, r.cnt)};
 }
-V<Dp> palindromic_split_dp(V<int> str, bool only_even_lens = false) {
+V<Dp> palindromic_split_dp(vi str, bool only_even_lens = false) {
 	int n = ssize(str);
 	Eertree t;
-	V<int> big_link(2), diff(2);
+	vi big_link(2), diff(2);
 	V<Dp> series_ans(2), ans(n, {n + 1, -1, 0});
 	REP(i, n) {
 		int last = t.add_letter(str[i]);

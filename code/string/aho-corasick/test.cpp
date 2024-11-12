@@ -23,9 +23,9 @@ void test() {
 		return is_lit;
 	};
 
-	V<V<int>> patterns;
+	V<vi> patterns;
 	while(str_cnt --> 0) {
-		V<int> pattern(rd(1, max_len_str));
+		vi pattern(rd(1, max_len_str));
 		for(int &c : pattern)
 			c = rd(0, alpha - 1);
 		patterns.eb(pattern);
@@ -34,9 +34,9 @@ void test() {
 	debug(patterns);
 	aho.convert();
 
-	auto is_suffix_equal_to_pattern = [&](V<int> text) {
+	auto is_suffix_equal_to_pattern = [&](vi text) {
 		REP(i, ssize(text)) {
-			V<int> suffix(text.begin() + i, text.end());
+			vi suffix(text.begin() + i, text.end());
 			for(auto &pattern : patterns)
 				if(suffix == pattern)
 					return true;
@@ -51,13 +51,13 @@ void test() {
 	debug(is_suffix_end);
 
 	while(queries --> 0) {
-		V<int> text(rd(1, max_len_str));
+		vi text(rd(1, max_len_str));
 		for(int &c : text)
 			c = rd(0, alpha - 1);
 
 		int v = 0;
 		REP(i, ssize(text)) {
-			V<int> text_sub(text.begin(), text.begin() + i + 1);
+			vi text_sub(text.begin(), text.begin() + i + 1);
 			v = aho.go(v, text[i]);
 			debug(i, text_sub, is_suffix_equal_to_pattern(text_sub), v);
 			assert(is_suffix_end[v] == is_suffix_equal_to_pattern(text_sub));

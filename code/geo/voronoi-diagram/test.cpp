@@ -64,7 +64,7 @@ void test() {
 		}
 		debug(x, y);
 
-		V<int> matching_areas;
+		vi matching_areas;
 		REP(id, ssize(ret)) {
 			auto poly = ret[id];
 			int inter_cnt = 0;
@@ -89,7 +89,7 @@ void test() {
 		D closest_d = 3e9;
 		REP(i, n)
 			closest_d = min(closest_d, dist(P(x, y), P(in[i].fi, in[i].se)));
-		V<int> closest_v;
+		vi closest_v;
 		REP(i, n)
 			if(equal(closest_d, dist(P(x, y), P(in[i].fi, in[i].se))))
 				closest_v.eb(i);

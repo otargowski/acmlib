@@ -8,13 +8,13 @@ ostream& operator<<(ostream &o, Edge e) {
 	return o << '(' << e.a << ", " << e.b << ", " << e.w << ')';
 }
 
-bool is_correct_tree(V<int> lit, int n, V<Edge> edges, int root) {
+bool is_correct_tree(vi lit, int n, V<Edge> edges, int root) {
 	if(ssize(lit) != n - 1)
 		return false;
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for(int i : lit)
 		graph[edges[i].a].eb(edges[i].b);
-	V<int> vis(n);
+	vi vis(n);
 	function<void (int)> dfs = [&](int v) {
 		vis[v] = true;
 		for(int u : graph[v])
@@ -41,10 +41,10 @@ void test() {
 	}
 	int root = rd(0, n - 1);
 
-	pair<ll, V<int>> ans = {ll(1e18), {}};
+	pair<ll, vi> ans = {ll(1e18), {}};
 
 	REP(mask, 1 << m) {
-		V<int> lit;
+		vi lit;
 		REP(i, m)
 			if((mask >> i) & 1)
 				lit.eb(i);
@@ -79,7 +79,7 @@ void test() {
 				sum += smallest_w;
 			}
 		assert(sum == main_ans);
-		V<int> lit(ssize(found_subset));
+		vi lit(ssize(found_subset));
 		iota(all(lit), 0);
 
 		assert(is_correct_tree(lit, n, found_subset, root));

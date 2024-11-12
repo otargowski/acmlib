@@ -5,9 +5,9 @@
  * \texttt{vertices} zawiera listę wierzchołków na tej ścieżce.
  * Dla cyklu, \texttt{vertices[0] == vertices[m]}.
  */
-tuple<bool, V<int>, V<int>> eulerian_path(int n, C V<pii> &edges, bool directed) {
-	V<int> in(n);
-	V<V<int>> adj(n);
+tuple<bool, vi, vi> eulerian_path(int n, C V<pii> &edges, bool directed) {
+	vi in(n);
+	V<vi> adj(n);
 	int start = 0;
 	REP(i, ssize(edges)) {
 		auto [a, b] = edges[i];
@@ -30,7 +30,7 @@ tuple<bool, V<int>, V<int>> eulerian_path(int n, C V<pii> &edges, bool directed)
 		else if (ssize(adj[i]) % 2)
 			start = i, ++cnt_in;
 	}
-	V<int> ids, vertices;
+	vi ids, vertices;
 	V<bool> used(ssize(edges));
 	function<void (int)> dfs = [&](int v) {
 		while (ssize(adj[v])) {

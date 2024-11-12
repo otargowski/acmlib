@@ -19,7 +19,7 @@ ll rho_pollard(ll n) {
 		if(p != n) return p;
 	}
 }
-V<ll> factor(ll n) {
+vll factor(ll n) {
 	if(n == 1) return {};
 	if(miller_rabin(n)) return {n};
 	ll x = rho_pollard(n);
@@ -40,9 +40,9 @@ V<pair<ll, int>> get_pairs(ll n) {
 	}
 	return ret;
 }
-V<ll> all_factors(ll n) {
+vll all_factors(ll n) {
 	auto v = get_pairs(n);
-	V<ll> ret;
+	vll ret;
 	function<void(ll,int)> gen = [&](ll val, int p) {
 		if (p == ssize(v)) {
 			ret.eb(val);

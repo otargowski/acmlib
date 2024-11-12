@@ -2,11 +2,11 @@
 #include "main.cpp"
 
 struct Test {
-	V<V<int>> graph;
-	V<ll> sums;
+	V<vi> graph;
+	vll sums;
 	HLD hld;
 
-	Test(int n, V<V<int>> _graph) : graph(_graph), sums(n), hld(n, graph) {}
+	Test(int n, V<vi> _graph) : graph(_graph), sums(n), hld(n, graph) {}
 
 	void add(int v, int u, ll val) {
 		auto path = hld.get_path(v, u);
@@ -30,8 +30,8 @@ struct Test {
 };
 
 struct Brute {
-	V<V<int>> graph;
-	V<ll> sums;
+	V<vi> graph;
+	vll sums;
 
 	bool found;
 	ll dfs(int v, int u, ll val, int p = -1) {
@@ -61,7 +61,7 @@ struct Brute {
 		return dfs(v, u, 0);
 	}
 
-	Brute(int n, V<V<int>> _graph) : graph(_graph), sums(n) {}
+	Brute(int n, V<vi> _graph) : graph(_graph), sums(n) {}
 };
 
 void test() {
@@ -69,7 +69,7 @@ void test() {
 	int n = rd(1, N);
 	int q = rd(1, N);
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	REP(i, n - 1) {
 		int v = i + 1;
 		int p = rd(0, v - 1);

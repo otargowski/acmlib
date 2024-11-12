@@ -43,7 +43,7 @@ void test() {
 			add_vertex();
 	}
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for (auto [a, b] : all_edges)
 		graph[a].eb(b);
 	debug(graph);

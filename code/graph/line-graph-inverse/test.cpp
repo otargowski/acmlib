@@ -1,8 +1,8 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-V<V<int>> construct_graph(V<pii> ans) {
-	V<V<int>> graph;
+V<vi> construct_graph(V<pii> ans) {
+	V<vi> graph;
 	for(auto [v, u] : ans) {
 		int mx = max(v, u);
 		if(ssize(graph) <= mx)
@@ -27,12 +27,12 @@ void test() {
 	}
 	debug(line_edges);
 
-	set<V<V<int>>> matching_original_graphs;
+	set<V<vi>> matching_original_graphs;
 	for(int og_n = 0; (matching_original_graphs.empty() and og_n <= 2 * line_n) or og_n <= 5; ++og_n) {
 		V<pii> ans(line_n, pair(-1, -1));
 		function<void (int)> backtrack = [&](int i) {
 			if(i == line_n) {
-				V<int> deg(og_n);
+				vi deg(og_n);
 				for(auto [v, u] : ans)
 					for(int x : {v, u})
 						++deg[x];
@@ -68,7 +68,7 @@ void test() {
 	debug(line_edges);
 	debug(matching_original_graphs);
 
-	V<V<V<int>>> matching_big_og_graphs;
+	V<V<vi>> matching_big_og_graphs;
 	for(auto &graph : matching_original_graphs) {
 		int og_n = ssize(graph);
 
@@ -103,10 +103,10 @@ void test() {
 		assert(ssize(graph1) == og_n);
 
 		auto is_matching_perm = [&] {
-			V<int> perm(og_n);
+			vi perm(og_n);
 			iota(all(perm), 0);
 			do {
-				V<V<int>> transmuted1(og_n);
+				V<vi> transmuted1(og_n);
 				REP(v, og_n)
 					for(int u : graph1[v])
 						transmuted1[perm[v]].eb(perm[u]);

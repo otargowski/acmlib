@@ -3,7 +3,7 @@
 
 void test() {
 	int n = rd(1, 100);
-	V<int> s;
+	vi s;
 	REP(i, n)
 		s.eb(V{0, 13, 25}[rd(0, 2)]);
 	Hashing hashing(s, 31);

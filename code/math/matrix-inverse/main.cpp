@@ -5,7 +5,7 @@
 #include "../matrix-header/main.cpp"
 int inverse(V<V<T>>& a) {
 	int n = ssize(a);
-	V<int> col(n);
+	vi col(n);
 	V h(n, V<T>(n));
 	REP(i, n)
 		h[i][i] = 1, col[i] = i;

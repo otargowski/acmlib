@@ -3,14 +3,14 @@
  * \texttt{openssl prime -generate -bits 60} generuje losową liczbę pierwszą o $60$ bitach ($\le 1.15 \cdot 10^{18} $).
  */
 struct Hashing {
-	V<ll> ha, pw;
+	vll ha, pw;
 	static constexpr ll mod = (1ll << 61) - 1;
 	ll reduce(ll x) { return x >= mod ? x - mod : x; }
 	ll mul(ll a, ll b) {
 		C auto c = __int128(a) * b;
 		return reduce(ll(c & mod) + ll(c >> 61));
 	}
-	Hashing(C V<int> &str, C int base = 37) {
+	Hashing(C vi &str, C int base = 37) {
 		int len = ssize(str);
 		ha.resize(len + 1);
 		pw.resize(len + 1, 1);

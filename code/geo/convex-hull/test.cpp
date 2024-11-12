@@ -9,9 +9,9 @@ void test() {
 		p = P(rd(-10, 10), rd(-10, 10));
 	debug(in);
 
-	V<int> best_hull(n + 1);
+	vi best_hull(n + 1);
 
-	auto is_good_order = [&](V<int> order) {
+	auto is_good_order = [&](vi order) {
 		if(ssize(order) <= 1)
 			return ssize(order) == n;
 		for(int i : order)
@@ -33,7 +33,7 @@ void test() {
 	};
 
 	V<bool> taken(n);
-	V<int> curr_order;
+	vi curr_order;
 	function<void ()> backtrack = [&] {
 		if(is_good_order(curr_order) and ssize(curr_order) < ssize(best_hull))
 			best_hull = curr_order;

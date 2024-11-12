@@ -21,7 +21,7 @@ int get_max_matching(int n, V<pii> edges) {
 	return answer;
 }
 
-bool is_valid_matching(int n, V<pii> edges, V<int> match) {
+bool is_valid_matching(int n, V<pii> edges, vi match) {
 	REP(v, n)
 		if(match[v] != -1) {
 			bool found = false;
@@ -39,11 +39,11 @@ bool is_valid_matching(int n, V<pii> edges, V<int> match) {
 void test() {
 	int n0 = rd(0, 7), n1 = rd(0, 7);
 	int n = n0 + n1;
-	V<int> which_group(n0 + n1);
+	vi which_group(n0 + n1);
 	REP(i, n1)
 		which_group[i] = 1;
 	shuffle(all(which_group), rng);
-	array<V<int>, 2> in_group;
+	array<vi, 2> in_group;
 	REP(v, n)
 		in_group[which_group[v]].eb(v);
 
@@ -56,7 +56,7 @@ void test() {
 			swap(v, u);
 	}
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].eb(u);
 		graph[u].eb(v);

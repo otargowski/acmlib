@@ -3,9 +3,9 @@
  *   każda krawędź leży na co najwyżej jednym cyklu prostym (silniejsze założenie, niż o wierzchołkach).
  *   \texttt{cactus\_cycles(graph)} zwraca taką listę cykli, że istnieje krawędź między $i$-tym, a $(i+1) \text{mod} \text{ssize(cycle)}$-tym wierzchołkiem.
  */
-V<V<int>> cactus_cycles(V<V<int>> graph) {
-	V<int> state(ssize(graph), 0), stack;
-	V<V<int>> ret;
+V<vi> cactus_cycles(V<vi> graph) {
+	vi state(ssize(graph), 0), stack;
+	V<vi> ret;
 	function<void (int, int)> dfs = [&](int v, int p) {
 		if(state[v] == 2) {
 			ret.eb(stack.rbegin(), find(rall(stack), v) + 1);

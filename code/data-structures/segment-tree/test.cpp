@@ -6,7 +6,7 @@ void test() {
 	int op_cnt = rd(1, 100);
 	if(rd(0, 1)) {
 		Tree_Get_Max tree(n);
-		V<int> brute(n);
+		vi brute(n);
 		while(op_cnt --> 0) {
 			int l = rd(0, n - 1), r = rd(0, n - 1);
 			if(l > r)
@@ -26,7 +26,7 @@ void test() {
 	}
 	else {
 		Tree_Update_Max_On_Interval tree(n);
-		V<int> brute(n);
+		vi brute(n);
 		while(op_cnt --> 0) {
 			int l = rd(0, n - 1), r = rd(0, n - 1);
 			if(l > r)

@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 int components_cnt(int n, V<pii> edges, bool ignore_alone = false) {
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].eb(u);
 		graph[u].eb(v);
@@ -26,7 +26,7 @@ int components_cnt(int n, V<pii> edges, bool ignore_alone = false) {
 bool is_cycle(int n, V<pii> edges) {
 	if(components_cnt(n, edges, true) != 1)
 		return false;
-	V<int> deg(n);
+	vi deg(n);
 	for(auto [v, u] : edges) {
 		++deg[v];
 		++deg[u];
@@ -43,7 +43,7 @@ bool is_bicon(int n, V<pii> edges) {
 	V both_through_cycle(ssize(edges), V<bool>(ssize(edges)));
 	REP(subset_cycle, 1 << ssize(edges)) {
 		V<pii> cycle;
-		V<int> idx;
+		vi idx;
 		REP(i, ssize(edges))
 			if((subset_cycle >> i) & 1) {
 				cycle.eb(edges[i]);
@@ -64,10 +64,10 @@ bool is_bicon(int n, V<pii> edges) {
 	return valid or ssize(edges) == 1;
 }
 
-V<V<int>> bicons(int n, V<pii> edges) {
-	V<int> remaining_edges_id(ssize(edges));
+V<vi> bicons(int n, V<pii> edges) {
+	vi remaining_edges_id(ssize(edges));
 	iota(all(remaining_edges_id), 0);
-	V<V<int>> ret;
+	V<vi> ret;
 
 	while(not remaining_edges_id.empty()) {
 		pii biggest_bicon = {-1, -1};
@@ -81,7 +81,7 @@ V<V<int>> bicons(int n, V<pii> edges) {
 		}
 		assert(biggest_bicon.fi > 0);
 		ret.eb();
-		V<int> remaining;
+		vi remaining;
 		REP(i, ssize(remaining_edges_id))
 			if((biggest_bicon.se >> i) & 1)
 				ret.back().eb(remaining_edges_id[i]);
@@ -92,9 +92,9 @@ V<V<int>> bicons(int n, V<pii> edges) {
 	return ret;
 }
 
-V<int> arti_points(int n, V<pii> edges) {
+vi arti_points(int n, V<pii> edges) {
 	int init_cnt = components_cnt(n, edges);
-	V<int> ret;
+	vi ret;
 	REP(deleted, n) {
 		V<pii> sub_edges;
 		int cnt_edges_deleted = 0;
@@ -114,9 +114,9 @@ V<int> arti_points(int n, V<pii> edges) {
 	return ret;
 }
 
-V<int> bridges(int n, V<pii> edges) {
+vi bridges(int n, V<pii> edges) {
 	int init_cnt = components_cnt(n, edges);
-	V<int> ret;
+	vi ret;
 	REP(deleted, ssize(edges)) {
 		auto sub_edges = edges;
 		sub_edges.erase(sub_edges.begin() + deleted);

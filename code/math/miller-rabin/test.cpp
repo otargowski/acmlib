@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	V <ll> v = {
+	vll v = {
 		2047ll,
 		1373653ll,
 		25326001ll,

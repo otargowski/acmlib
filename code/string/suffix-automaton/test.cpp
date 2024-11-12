@@ -3,7 +3,7 @@
 
 void test() {
 	auto random_vec = [](int n, int r) {
-		V<int> s(rd(1, n));
+		vi s(rd(1, n));
 		for (auto& x : s)
 			x = rd(0, r - 1);
 		return s;
@@ -17,7 +17,7 @@ void test() {
 	for (auto x : s)
 		sa.add_letter(x);
 
-	set<V<int>> ss;
+	set<vi> ss;
 	REP(i,n)
 		FOR(j,1,n-i)
 			ss.emplace(V(s.begin() + i, s.begin() + i + j));

@@ -25,10 +25,10 @@ V<bool> intersectMatroids(T& A, U& B, int n) {
 	//End of speedup
 
 	while (ok) {
-		V<V<int>> G(n);
+		V<vi> G(n);
 		V<bool> good(n);
 		queue<int> que;
-		V<int> prev(n, -1);
+		vi prev(n, -1);
 		A.init(ans); B.init(ans); ok = 0;
 		REP(i, n) if (!ans[i]) {
 			if (A.canAdd(i)) que.emplace(i), prev[i]=-2;
@@ -66,9 +66,9 @@ V<bool> intersectMatroids(T& A, U& B, int n) {
 // and set is independent iff for each color c
 // #{elements of color c} <= maxAllowed[c].
 struct LimOracle {
-	V<int> color; // color[i] = color of i-th element
-	V<int> maxAllowed; // Limits for colors
-	V<int> tmp;
+	vi color; // color[i] = color of i-th element
+	vi maxAllowed; // Limits for colors
+	vi tmp;
 	// Init oracle for independent set S; O(n)
 	void init(V<bool>& S) {
 		tmp = maxAllowed;
@@ -82,7 +82,7 @@ struct LimOracle {
 struct GraphOracle {
 	V<pii> elems; // Ground set: graph edges
 	int n; // Number of vertices, indexed [0;n-1]
-	V<int> par;
+	vi par;
 	int find(int i) {
 		return par[i] == -1 ? i : par[i] = find(par[i]);
 	}
@@ -104,8 +104,8 @@ struct GraphOracle {
 struct CographOracle {
 	V<pii> elems; // Ground set: graph edges
 	int n; // Number of vertices, indexed [0;n-1]
-	V<V<int>> G;
-	V<int> pre, low;
+	V<vi> G;
+	vi pre, low;
 	int cnt;
 
 	int dfs(int v, int p) {
@@ -135,8 +135,8 @@ struct CographOracle {
 };
 // Matroid equivalent to linear space with XOR
 struct XorOracle {
-	V<ll> elems; // Ground set: numbers
-	V<ll> base;
+	vll elems; // Ground set: numbers
+	vll base;
 	// Init for independent set S; O(n+r^2)
 	void init(V<bool>& S) {
 		base.assign(63, 0);

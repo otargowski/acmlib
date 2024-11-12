@@ -1,19 +1,19 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-V<int> get_random_a(int n = -1) {
+vi get_random_a(int n = -1) {
 	if(n == -1)
 		n = 1 << rd(0, 4);
-	V<int> a(n);
+	vi a(n);
 	for(int &ai : a)
 		ai = rd(-5, 5);
 	return a;
 }
 
 void test_fwht_or() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	int n = ssize(a);
-	V<int> should_be(n);
+	vi should_be(n);
 	REP(i, n)
 		REP(j, n)
 			if((j | i) == i)
@@ -22,15 +22,15 @@ void test_fwht_or() {
 }
 
 void test_ifwht_or() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	assert(ifwht_or(fwht_or(a)) == a);
 }
 
 void test_convolution_or() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	int n = ssize(a);
-	V<int> b = get_random_a(n);
-	V<int> should_be(n);
+	vi b = get_random_a(n);
+	vi should_be(n);
 	REP(i, n)
 		REP(j, n)
 			REP(k, n)
@@ -40,9 +40,9 @@ void test_convolution_or() {
 }
 
 void test_fwht_and() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	int n = ssize(a);
-	V<int> should_be(n);
+	vi should_be(n);
 	REP(i, n)
 		REP(j, n)
 			if((j & i) == i)
@@ -51,15 +51,15 @@ void test_fwht_and() {
 }
 
 void test_ifwht_and() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	assert(ifwht_and(fwht_and(a)) == a);
 }
 
 void test_convolution_and() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	int n = ssize(a);
-	V<int> b = get_random_a(n);
-	V<int> should_be(n);
+	vi b = get_random_a(n);
+	vi should_be(n);
 	REP(i, n)
 		REP(j, n)
 			REP(k, n)
@@ -69,9 +69,9 @@ void test_convolution_and() {
 }
 
 void test_fwht_xor() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	int n = ssize(a);
-	V<int> should_be(n);
+	vi should_be(n);
 	REP(i, n)
 		REP(j, n)
 			if(__builtin_popcount(i & j) % 2 == 0)
@@ -82,15 +82,15 @@ void test_fwht_xor() {
 }
 
 void test_ifwht_xor() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	assert(ifwht_xor(fwht_xor(a)) == a);
 }
 
 void test_convolution_xor() {
-	V<int> a = get_random_a();
+	vi a = get_random_a();
 	int n = ssize(a);
-	V<int> b = get_random_a(n);
-	V<int> should_be(n);
+	vi b = get_random_a(n);
+	vi should_be(n);
 	REP(i, n)
 		REP(j, n)
 			REP(k, n)

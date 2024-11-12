@@ -4,12 +4,12 @@
  *   Funkcja zwraca match'a, tzn \texttt{match[v] == -1} albo z kim jest sparowany $v$.
  *   Rozmiar matchingu to $\frac{1}{2}\sum_v \texttt{int(match[v] != -1)}$.
  */
-V<int> blossom(V<V<int>> graph) {
+vi blossom(V<vi> graph) {
 	int n = ssize(graph), timer = -1;
 	REP(v, n)
 		for(int u : graph[v])
 			assert(v != u);
-	V<int> match(n, -1), label(n), parent(n), orig(n), aux(n, -1), q;
+	vi match(n, -1), label(n), parent(n), orig(n), aux(n, -1), q;
 	auto lca = [&](int x, int y) {
 		for(++timer; ; swap(x, y)) {
 			if(x == -1)

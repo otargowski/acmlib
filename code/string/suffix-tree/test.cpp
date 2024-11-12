@@ -3,7 +3,7 @@
 
 void test() {
 	auto random_vec = [](int n, int r) {
-		V<int> s(rd(1, n));
+		vi s(rd(1, n));
 		for (auto& x : s)
 			x = rd(0, r - 1);
 		return s;
@@ -14,7 +14,7 @@ void test() {
 	debug(r, s);
 	int n = ssize(s);
 
-	V<V<int>> trie = {V(r, -1)};
+	V<vi> trie = {V(r, -1)};
 	REP(i, n) {
 		int v = 0;
 		FOR(j, i, n - 1) {
@@ -39,7 +39,7 @@ void test() {
 			assert(bool(trie[vtrie][c] == -1) == bool(tree.sons[vsuff].find(c) == tree.sons[vsuff].end()));
 		REP(c, r)
 			if(trie[vtrie][c] != -1) {
-				V<int> substr_trie = {c};
+				vi substr_trie = {c};
 				int u = trie[vtrie][c];
 				while(true) {
 					int cnt_minusone = 0;
@@ -61,7 +61,7 @@ void test() {
 						break;
 				}
 
-				V<int> substr_tree;
+				vi substr_tree;
 				int usuff = tree.sons[vsuff][c];
 				assert(tree.up_edge_range[usuff].fi <= tree.up_edge_range[usuff].se);
 				FOR(i, tree.up_edge_range[usuff].fi, tree.up_edge_range[usuff].se)

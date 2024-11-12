@@ -99,8 +99,8 @@ stringstream brute(stringstream in) {
 
 	int n, q;
 	in >> n >> q;
-	V<V<int>> graph(n);
-	V<int> node_value(n);
+	V<vi> graph(n);
+	vi node_value(n);
 
 	auto is_in_same_tree = [&](int v, int u) -> bool {
 		debug(v, u);
@@ -117,7 +117,7 @@ stringstream brute(stringstream in) {
 	};
 
 	auto get_path = [&](int s, int t) {
-		V<int> path;
+		vi path;
 		function<bool (int, int)> dfs = [&](int v, int p) {
 			path.eb(v);
 			if(v == t)
@@ -135,14 +135,14 @@ stringstream brute(stringstream in) {
 	};
 
 	auto get_in_subtree = [&](int s, int outside) {
-		V<int> in_subtree;
+		vi in_subtree;
 		function<void (int, int)> dfs = [&](int x, int p) {
 			in_subtree.eb(x);
 			for(int y : graph[x])
 				if(y != p)
 					dfs(y, x);
 		};
-		V<int> good_vertices = {s};
+		vi good_vertices = {s};
 		for(int u : graph[s]) {
 			dfs(u, s);
 			bool is_outside = false;
@@ -234,7 +234,7 @@ stringstream brute(stringstream in) {
 			if(not is_in_same_tree(v, u) or not is_in_same_tree(v, root))
 				out << "0\n";
 			else {
-				V<int> parent(n, -1), depth(n, 0);
+				vi parent(n, -1), depth(n, 0);
 				function<void (int, int)> dfs = [&](int x, int p) {
 					parent[x] = p;
 					for(int y : graph[x])

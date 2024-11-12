@@ -14,7 +14,7 @@ struct E{
 int n, m;
 E G[MAXN][MAXN];
 int lab[MAXN], match[MAXN], slack[MAXN], st[MAXN], pa[MAXN], flo_from[MAXN][MAXN], S[MAXN], vis[MAXN];
-V<int> flo[MAXN];
+vi flo[MAXN];
 queue<int> Q;
 
 void init(int _n) {

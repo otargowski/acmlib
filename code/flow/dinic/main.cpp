@@ -9,7 +9,7 @@ struct Dinic {
 		T flow, cap;
 	};
 	int n;
-	V<V<int>> graph;
+	V<vi> graph;
 	V<Edge> edges;
 	Dinic(int N) : n(N), graph(n) {}
 	void add_edge(int v, int u, T cap) {
@@ -20,7 +20,7 @@ struct Dinic {
 		edges.eb(v, u, 0, cap);
 		edges.eb(u, v, 0, 0);
 	}
-	V<int> dist;
+	vi dist;
 	bool bfs(int source, int sink) {
 		dist.assign(n, 0);
 		dist[source] = 1;
@@ -36,7 +36,7 @@ struct Dinic {
 		}
 		return dist[sink] != 0;
 	}
-	V<int> ended_at;
+	vi ended_at;
 	T dfs(int v, int sink, T flow = numeric_limits<T>::max()) {
 		if(flow == 0 or v == sink)
 			return flow;

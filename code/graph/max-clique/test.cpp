@@ -19,7 +19,7 @@ void test() {
 
 	auto max_clique = get_max_clique(graph);
 
-	auto is_ok = [&](V<int> v) {
+	auto is_ok = [&](vi v) {
 		REP(i, ssize(v))
 			REP(j, i)
 				if(not graph[v[i]][v[j]])
@@ -29,7 +29,7 @@ void test() {
 
 	int best_brute = 0;
 	REP(mask, 1 << n) {
-		V<int> v;
+		vi v;
 		REP(i, n)
 			if((mask >> i) & 1)
 				v.eb(i);

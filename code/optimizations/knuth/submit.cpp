@@ -8,13 +8,13 @@ int main() {
 	while(cin >> n) {
 		int m;
 		cin >> m;
-		V<int> idx(m);
+		vi idx(m);
 		for(int &i : idx)
 			cin >> i;
 		idx.eb(n);
 		++m;
 
-		V<V<ll>> cost(m, V<ll>(m));
+		V<vll> cost(m, vll(m));
 		REP(l, m)
 			FOR(r, l + 1, m - 1) {
 				cost[l][r] = idx[r] - (l == 0 ? 0 : idx[l - 1]);

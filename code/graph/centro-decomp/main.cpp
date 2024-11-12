@@ -12,8 +12,8 @@
  * 	\texttt{root} to korzeń drzewa CD.
  */
 struct CentroDecomp {
-	C V<V<int>> &graph; // tu
-	V<int> par, podsz, odwi;
+	C V<vi> &graph; // tu
+	vi par, podsz, odwi;
 	int odwi_cnt = 1;
 	C int INF = int(1e9);
 	int root;
@@ -59,7 +59,7 @@ struct CentroDecomp {
 				decomp(u);
 			}
 	}
-	CentroDecomp(int n, V<V<int>> &grph) // tu
+	CentroDecomp(int n, V<vi> &grph) // tu
 	   	: graph(grph), par(n, -1), podsz(n), odwi(n) {
 		root = centro(0);
 		odwi[root] = INF;

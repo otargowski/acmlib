@@ -2,15 +2,15 @@
  * Opis: O(szybko) ale istnieją przykłady O(n^2), przyjmuje graf nieskierowany bez pętelek i multikrawędzi.
  */
 
-bool is_planar(V<V<int>> graph) {
+bool is_planar(V<vi> graph) {
 	int n = ssize(graph), m = 0;
 	REP(v, n)
 		m += ssize(graph[v]);
 	m /= 2;
 	if(n <= 3) return true;
 	if(m > 3 * n - 6) return false;
-	V<V<int>> up(n), dn(n);
-	V<int> low(n, -1), pre(n);
+	V<vi> up(n), dn(n);
+	vi low(n, -1), pre(n);
 	REP(start, n)
 		if(low[start] == -1) {
 			V<pii> e_up;
@@ -46,14 +46,14 @@ bool is_planar(V<V<int>> graph) {
 				dsu[v] = {u, vb ^ ub ^ flip};
 				return true;
 			};
-			auto interlace = [&](C V<int> &ids, int lo) {
-				V<int> ans;
+			auto interlace = [&](C vi &ids, int lo) {
+				vi ans;
 				for(int e : ids)
 					if(pre[e_up[e].se] > lo)
 						ans.eb(e);
 				return ans;
 			};
-			auto add_fu = [&](C V<int> &a, C V<int> &b) {
+			auto add_fu = [&](C vi &a, C vi &b) {
 				FOR(k, 1, ssize(a) - 1)
 					if(not onion(a[k - 1], a[k], 0))
 						return false;

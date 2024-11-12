@@ -3,7 +3,7 @@
 #include "main.cpp"
 #undef rng
 
-V<bool> brute(V<int> text, V<int> pattern) {
+V<bool> brute(vi text, vi pattern) {
 	C int n = ssize(text);
 	C int m = ssize(pattern);
 	assert(m <= n);
@@ -24,7 +24,7 @@ V<bool> brute(V<int> text, V<int> pattern) {
 void test() {
 	int n = rd(1, 30);
 	int m = rd(1, n);
-	V<int> text(n), pattern(m);
+	vi text(n), pattern(m);
 	C int alpha = rd(0, 1) ? 3 : 20;
 	for (int& e : text) e = rd(-1, alpha - 1);
 	for (int& e : pattern) e = rd(-1, alpha - 1);

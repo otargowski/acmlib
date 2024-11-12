@@ -2,14 +2,14 @@
  * Opis: O(m \sqrt{n}) Hopcroft-Karp do liczenia matchingu. Przydaje się głównie w aproksymacji, ponieważ po $k$ iteracjach gwarantuje matching o rozmiarze przynajmniej $k/(k+1) \cdot$ best matching.
  *   Wierzchołki grafu muszą być podzielone na warstwy $[0, n0)$ oraz $[n0, n0+n1)$. Zwraca rozmiar matchingu oraz przypisanie (lub -1, gdy nie jest zmatchowane).
  */
-pair<int, V<int>> hopcroft_karp(V<V<int>> graph, int n0, int n1) {
+pair<int, vi> hopcroft_karp(V<vi> graph, int n0, int n1) {
 	assert(n0 + n1 == ssize(graph));
 	REP(v, n0 + n1)
 		for(int u : graph[v])
 			assert((v < n0) != (u < n0));
-	V<int> matched_with(n0 + n1, -1), dist(n0 + 1);
+	vi matched_with(n0 + n1, -1), dist(n0 + 1);
 	constexpr int inf = int(1e9);
-	V<int> manual_que(n0 + 1);
+	vi manual_que(n0 + 1);
 	auto bfs = [&] {
 		int head = 0, tail = -1;
 		fill(all(dist), inf);

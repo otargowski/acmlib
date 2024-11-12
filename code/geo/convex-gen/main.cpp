@@ -8,15 +8,15 @@
 #include "../point/main.cpp"
 #include "../angle-sort/main.cpp"
 #include "../../headers/gen.cpp"
-V<int> num_split(int value, int n) {
-	V<int> v(n, value);
+vi num_split(int value, int n) {
+	vi v(n, value);
 	REP(i, n - 1)
 		v[i] = rd(0, value);
 	sort(all(v));
 	adjacent_difference(all(v), v.begin());
 	return v;
 }
-V<int> capped_zero_split(int cap, int n) {
+vi capped_zero_split(int cap, int n) {
 	int m = rd(1, n - 1);
 	auto lf = num_split(cap, m);
 	auto rg = num_split(cap, n - m);

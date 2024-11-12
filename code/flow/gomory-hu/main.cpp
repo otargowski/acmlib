@@ -20,7 +20,7 @@ V<V<Dinic::T>> get_gomory_hu(int n, V<tuple<int, int, Dinic::T>> edges) {
 	}
 	using T = Dinic::T;
 	V<V<pair<int, T>>> tree(n);
-	V<int> par(n, 0);
+	vi par(n, 0);
 	FOR(v, 1, n - 1) {
 		auto [flow, cut] = get_min_cut(dinic, v, par[v]);
 		FOR(u, v + 1, n - 1)

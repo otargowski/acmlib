@@ -5,9 +5,9 @@
  *   \texttt{get\_borders(\{0,1,0,0,1,0,1,0,0,1\}) == \{2,5,10\}}.
  */
 // BEGIN HASH
-V<int> get_kmp(V<int> str) {
+vi get_kmp(vi str) {
 	int len = ssize(str);
-	V<int> ret(len);
+	vi ret(len);
 	for(int i = 1; i < len; i++) {
 		int pos = ret[i - 1];
 		while(pos and str[i] != str[pos])
@@ -16,12 +16,12 @@ V<int> get_kmp(V<int> str) {
 	}
 	return ret;
 } // END HASH
-V<int> get_borders(V<int> str) {
-	V<int> kmp = get_kmp(str), ret;
+vi get_borders(vi str) {
+	vi kmp = get_kmp(str), ret;
 	int len = ssize(str);
 	while(len) {
 		ret.eb(len);
 		len = kmp[len - 1];
 	}
-	return V<int>(rall(ret));
+	return vi(rall(ret));
 }

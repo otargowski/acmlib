@@ -32,7 +32,7 @@ int inv(int x) {
 	return powi(x, mod - 2);
 } // END HASH
 struct BinomCoeff {
-	V<int> fac, rev;
+	vi fac, rev;
 	BinomCoeff(int n) {
 		fac = rev = V(n + 1, 1);
 		FOR(i, 1, n) fac[i] = mul(fac[i - 1], i);

@@ -7,8 +7,8 @@ int primitive_root() {
 	if(mod == 2)
 		return 1;
 	int q = mod - 1;
-	V<ll> v = factor(q);
-	V<int> fact;
+	vll v = factor(q);
+	vi fact;
 	REP(i, ssize(v))
 		if(!i or v[i] != v[i - 1])
 			fact.eb(v[i]);

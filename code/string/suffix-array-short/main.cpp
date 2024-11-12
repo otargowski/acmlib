@@ -4,14 +4,14 @@
  * $lcp[i]$ to $lcp$ suffixu $sa[i - 1]$ i $sa[i]$,
  * Dla \texttt{s = aabaaab}, \texttt{sa=\{7,3,4,0,5,1,6,2\},lcp=\{0,0,2,3,1,2,0,1\}}
  */
-pair<V<int>, V<int>> suffix_array(V<int> s, int alpha = 26) {
+pair<vi, vi> suffix_array(vi s, int alpha = 26) {
 	++alpha;
 	for(int &c : s) ++c;
 	s.eb(0);
 	int n = ssize(s), k = 0, a, b;
-	V<int> x(all(s));
-	V<int> y(n), ws(max(n, alpha)), rank(n);
-	V<int> sa = y, lcp = y;
+	vi x(all(s));
+	vi y(n), ws(max(n, alpha)), rank(n);
+	vi sa = y, lcp = y;
 	iota(all(sa), 0);
 	for(int j = 0, p = 0; p < n; j = max(1, j * 2), alpha = p) {
 		p = j;

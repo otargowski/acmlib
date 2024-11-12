@@ -4,7 +4,7 @@
 void test() {
 	{ // factor test
 		auto f = [&](ll n) {
-			V<ll> v;
+			vll v;
 			for (ll d = 2; d * d <= n; ++d) {
 				while (n % d == 0) {
 					n /= d;
@@ -46,7 +46,7 @@ void test() {
 	}
 	{ // all_factors test
 		auto f = [&](ll n) {
-			V<ll> v;
+			vll v;
 			for (ll d = 1; d * d <= n; ++d) {
 				if (n % d == 0) {
 					v.eb(d);

@@ -3,7 +3,7 @@
 
 void test() {
 	int n = rd(1, 20);
-	V<int> a(n);
+	vi a(n);
 	REP(i,n) a[i] = rd(1, 20);
 	RMQ rmq(a);
 	REP(i,n) {

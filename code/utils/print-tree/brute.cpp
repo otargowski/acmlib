@@ -20,7 +20,7 @@ int main() {
 
 	int n;
 	cin >> n;
-	V<V<int>> adj(n);
+	V<vi> adj(n);
 	REP(i,n-1) {
 		int a, b;
 		cin >> a >> b;

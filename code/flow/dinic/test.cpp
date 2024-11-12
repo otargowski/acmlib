@@ -31,7 +31,7 @@ void test() {
 	debug(graph);
 	debug(flow, flowing);
 
-	V<int> sum(n);
+	vi sum(n);
 	for (auto [edge, c] : flowing) {
 		auto [a, b] = edge;
 		sum[a] += c;

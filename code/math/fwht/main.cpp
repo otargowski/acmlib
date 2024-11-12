@@ -12,7 +12,7 @@
  *   \texttt{convolution\_xor(a, b)[i] = suma(j \^ k == i) a[j] * b[k]}.
  */
 // BEGIN HASH
-V<int> fwht_or(V<int> a) {
+vi fwht_or(vi a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = 1; 2 * s <= n; s *= 2)
@@ -21,7 +21,7 @@ V<int> fwht_or(V<int> a) {
 				a[i + s] += a[i];
 	return a;
 }
-V<int> ifwht_or(V<int> a) {
+vi ifwht_or(vi a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = n / 2; s >= 1; s /= 2)
@@ -30,7 +30,7 @@ V<int> ifwht_or(V<int> a) {
 				a[i + s] -= a[i];
 	return a;
 }
-V<int> convolution_or(V<int> a, V<int> b) {
+vi convolution_or(vi a, vi b) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0 and ssize(b) == n);
 	a = fwht_or(a);
@@ -40,7 +40,7 @@ V<int> convolution_or(V<int> a, V<int> b) {
 	return ifwht_or(a);
 } // END HASH
 // BEGIN HASH
-V<int> fwht_and(V<int> a) {
+vi fwht_and(vi a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = 1; 2 * s <= n; s *= 2)
@@ -49,7 +49,7 @@ V<int> fwht_and(V<int> a) {
 				a[i] += a[i + s];
 	return a;
 }
-V<int> ifwht_and(V<int> a) {
+vi ifwht_and(vi a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = n / 2; s >= 1; s /= 2)
@@ -58,7 +58,7 @@ V<int> ifwht_and(V<int> a) {
 				a[i] -= a[i + s];
 	return a;
 }
-V<int> convolution_and(V<int> a, V<int> b) {
+vi convolution_and(vi a, vi b) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0 and ssize(b) == n);
 	a = fwht_and(a);
@@ -68,7 +68,7 @@ V<int> convolution_and(V<int> a, V<int> b) {
 	return ifwht_and(a);
 } // END HASH
 // BEGIN HASH
-V<int> fwht_xor(V<int> a) {
+vi fwht_xor(vi a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = 1; 2 * s <= n; s *= 2)
@@ -80,7 +80,7 @@ V<int> fwht_xor(V<int> a) {
 			}
 	return a;
 }
-V<int> ifwht_xor(V<int> a) {
+vi ifwht_xor(vi a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = n / 2; s >= 1; s /= 2)
@@ -92,7 +92,7 @@ V<int> ifwht_xor(V<int> a) {
 			}
 	return a;
 }
-V<int> convolution_xor(V<int> a, V<int> b) {
+vi convolution_xor(vi a, vi b) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0 and ssize(b) == n);
 	a = fwht_xor(a);

@@ -2,11 +2,11 @@
 #include "main.cpp"
 
 struct Matrix {
-	V<V<int>> m;
+	V<vi> m;
 	Matrix() {
 		m = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 	}
-	Matrix(V<V<int>> _m) : m(_m) {}
+	Matrix(V<vi> _m) : m(_m) {}
 	Matrix operator*(C Matrix& other) {
 		auto res = V (3, V (3, 0));
 		REP(i,3) {

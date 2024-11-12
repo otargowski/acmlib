@@ -4,8 +4,8 @@
  *   Na przykład \texttt{auto [match\_size, match] = Matching(graph)();}
  */
 struct Matching {
-	V<V<int>> &adj;
-	V<int> mat, vis;
+	V<vi> &adj;
+	vi mat, vis;
 	int t = 0, ans = 0;
 	bool mat_dfs(int v) {
 		vis[v] = t;
@@ -23,10 +23,10 @@ struct Matching {
 			}
 		return false;
 	}
-	Matching(V<V<int>> &_adj) : adj(_adj) {
-		mat = vis = V<int>(ssize(adj), -1);
+	Matching(V<vi> &_adj) : adj(_adj) {
+		mat = vis = vi(ssize(adj), -1);
 	}
-	pair<int, V<int>> operator()() {
+	pair<int, vi> operator()() {
 		int d = -1;
 		while(d != 0) {
 			d = 0, ++t;

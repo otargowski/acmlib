@@ -4,7 +4,7 @@
  *   lub $[-1, -1]$ jeżeli nie ma takiego $i$.
  */
 #include "../suffix-array-short/main.cpp"
-pii get_substring_sa_range(C V<int> &s, C V<int> &sa, C V<int> &t) {
+pii get_substring_sa_range(C vi &s, C vi &sa, C vi &t) {
 	auto get_lcp = [&](int i) -> int {
 		REP(k, ssize(t))
 			if(i + k >= ssize(s) or s[i + k] != t[k])

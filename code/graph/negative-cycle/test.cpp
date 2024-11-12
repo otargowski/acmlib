@@ -14,7 +14,7 @@ void test() {
 
 	auto is_cycle_floyd_warshall = [&] {
 		constexpr int inf = int(1e9);
-		V dist(n, V<int>(n, inf));
+		V dist(n, vi(n, inf));
 		REP(v, n)
 			dist[v][v] = 0;
 		REP(v, n)

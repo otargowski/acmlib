@@ -6,7 +6,7 @@
  */
 #include "../fenwick-tree/main.cpp"
 struct Fenwick2d {
-	V<V<int>> ys;
+	V<vi> ys;
 	V<Fenwick> ft;
 	Fenwick2d(int limx) : ys(limx) {}
 	void preprocess(int x, int y) {

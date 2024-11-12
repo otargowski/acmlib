@@ -7,7 +7,7 @@ int main() {
 
 	string str;
 	cin >> str;
-	V<int> s(all(str));
+	vi s(all(str));
 	for(int &c : s)
 		c -= 'a';
 	SuffixArray q(s);

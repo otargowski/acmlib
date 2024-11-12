@@ -2,13 +2,13 @@
 #include "main.cpp"
 
 void test() {
-	function<int(V<V<int>>)> brute = [&](V<V<int>> a) {
+	function<int(V<vi>)> brute = [&](V<vi> a) {
 		C int n = ssize(a);
 		if (n == 1)
 			return a[0][0];
 		int ret = 0;
 		REP(i, n) {
-			V<V<int>> b;
+			V<vi> b;
 			REP(j, n)
 				if (j != i)
 					b.eb(a[j].begin() + 1, a[j].end());

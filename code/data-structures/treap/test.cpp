@@ -4,14 +4,14 @@
 using namespace Treap;
 
 struct Item {
-	V<int> t;
+	vi t;
 	pNode root;
 	Item() {
 		root = new Node();
 		t.eb(root->prio);
 	}
 	void check_integrity() {
-		V<int> v;
+		vi v;
 		function<void(pNode)> dfs = [&](pNode p) {
 			if (!p)
 				return;

@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	assert(dominator_tree(V<V<int>>{{1,2},{3},{4},{4},{5},{}},0) == (V<V<int>>{{1,4,2},{3},{},{},{5},{}}));
+	assert(dominator_tree(V<vi>{{1,2},{3},{4},{4},{5},{}},0) == (V<vi>{{1,4,2},{3},{},{},{5},{}}));
 	int n = rd(1, 20);
 	int m = rd(n - 1, n * (n - 1) / 2);
 	set<pii> edges;
@@ -16,7 +16,7 @@ void test() {
 	}
 	debug(edges);
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].eb(u);
 		graph[u].eb(v);
@@ -24,7 +24,7 @@ void test() {
 	int root = rd(0, n - 1);
 	REP(v, n)
 		shuffle(all(graph[v]), rng);
-	V<int> order(n, -1);
+	vi order(n, -1);
 	function<void (int)> dag_dfs = [&](int v) {
 		static int gtime = 0;
 		order[v] = gtime++;
@@ -33,16 +33,16 @@ void test() {
 				dag_dfs(u);
 	};
 	dag_dfs(root);
-	V<V<int>> dag(n);
+	V<vi> dag(n);
 	REP(v, n)
 		for(int u : graph[v])
 			if(order[v] < order[u])
 				dag[v].eb(u);
 	debug(root, dag);
 
-	V<V<int>> sons = dominator_tree(dag, root);
+	V<vi> sons = dominator_tree(dag, root);
 	debug(sons);
-	V<int> parent(n, -1), depth(n);
+	vi parent(n, -1), depth(n);
 	function<void (int)> dfs_sons = [&](int v) {
 		for(int u : sons[v]) {
 			parent[u] = v;

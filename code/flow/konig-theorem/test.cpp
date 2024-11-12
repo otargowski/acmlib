@@ -7,7 +7,7 @@ bool contains(C V<T>& v, T x) {
 }
 
 bool is_edge_coverable(int n, C V<pii>& edges) {
-	V<int> vis(n, 1);
+	vi vis(n, 1);
 	for (auto [a, b] : edges)
 		vis[a] = vis[b] = 0;
 	return n == 0 or *max_element(all(vis)) == 0;
@@ -21,7 +21,7 @@ bool is_edge_cover(int n, C V<pii>& edges, C V<pii>& edge_cover) {
 		if (not contains(doubled_edges, e))
 			return false;
 
-	V<int> vis(n, 1);
+	vi vis(n, 1);
 	for (auto [a, b] : edge_cover)
 		vis[a] = vis[b] = 0;
 	return n == 0 or *max_element(all(vis)) == 0;
@@ -40,7 +40,7 @@ int brute_edge_cover(int n, C V<pii>& edges) {
 	return ans;
 }
 
-bool is_independent_set(int n, C V<pii>& edges, C V<int> independent_set) {
+bool is_independent_set(int n, C V<pii>& edges, C vi independent_set) {
 	assert(independent_set.empty() or *min_element(all(independent_set)) >= 0);
 	assert(independent_set.empty() or *max_element(all(independent_set)) < n);
 	for (auto [a, b] : edges)
@@ -52,7 +52,7 @@ bool is_independent_set(int n, C V<pii>& edges, C V<int> independent_set) {
 int brute_independent_set(int n, C V<pii>& edges) {
 	int ans = 0;
 	REP(mask, 1 << n) {
-		V<int> independent_set;
+		vi independent_set;
 		REP(i, n)
 			if ((mask >> i) & 1)
 				independent_set.eb(i);
@@ -62,7 +62,7 @@ int brute_independent_set(int n, C V<pii>& edges) {
 	return ans;
 }
 
-bool is_vertex_cover(int n, C V<pii>& edges, C V<int> vertex_cover) {
+bool is_vertex_cover(int n, C V<pii>& edges, C vi vertex_cover) {
 	assert(vertex_cover.empty() or *min_element(all(vertex_cover)) >= 0);
 	assert(vertex_cover.empty() or *max_element(all(vertex_cover)) < n);
 	for (auto [a, b] : edges)
@@ -74,7 +74,7 @@ bool is_vertex_cover(int n, C V<pii>& edges, C V<int> vertex_cover) {
 int brute_vertex_cover(int n, C V<pii>& edges) {
 	int ans = ssize(edges);
 	REP(mask, 1 << n) {
-		V<int> vertex_cover;
+		vi vertex_cover;
 		REP(i, n)
 			if ((mask >> i) & 1)
 				vertex_cover.eb(i);
@@ -90,11 +90,11 @@ void test() {
 
 	int n0 = rd(0, max_side), n1 = rd(0, max_side);
 	int n = n0 + n1;
-	V<int> which_group(n0 + n1);
+	vi which_group(n0 + n1);
 	REP(i, n1)
 		which_group[i] = 1;
 	shuffle(all(which_group), rng);
-	array<V<int>, 2> in_group;
+	array<vi, 2> in_group;
 	REP(v, n)
 		in_group[which_group[v]].eb(v);
 
@@ -108,7 +108,7 @@ void test() {
 	}
 	debug(n, edges);
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].eb(u);
 		graph[u].eb(v);

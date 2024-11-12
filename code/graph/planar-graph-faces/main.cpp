@@ -24,13 +24,13 @@ ostream& operator<<(ostream &o, Face f) {
 V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 	int n = ssize(coord);
 	int E = ssize(edges);
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	REP(e, E) {
 		auto [v, u] = edges[e];
 		graph[v].eb(e);
 		graph[u].eb(e);
 	}
-	V<int> lead(2 * E);
+	vi lead(2 * E);
 	iota(all(lead), 0);
 	function<int (int)> find = [&](int v) {
 		return lead[v] == v ? v : lead[v] = find(lead[v]);
@@ -62,7 +62,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 			lead[find(side_e0)] = find(side_e1);
 		}
 	}
-	V<V<int>> comps(2 * E);
+	V<vi> comps(2 * E);
 	REP(i, 2 * E)
 		comps[find(i)].eb(i);
 	V<Face> polygons;

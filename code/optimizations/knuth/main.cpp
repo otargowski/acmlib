@@ -3,10 +3,10 @@
  *   Działa tylko wtedy, gdy $opt(i,j-1)\le opt(i,j)\le opt(i+1,j)$,
  *   a jest to zawsze spełnione, gdy $cost(b,c)\le cost(a,d)$ oraz $cost(a,c) + cost(b,d)\le cost(a,d) + cost(b,c)$ dla $a\le b\le c\le d$.
  */
-ll knuth_optimization(V<V<ll>> cost) {
+ll knuth_optimization(V<vll> cost) {
 	int n = ssize(cost);
-	V dp(n, V<ll>(n, numeric_limits<ll>::max()));
-	V opt(n, V<int>(n));
+	V dp(n, vll(n, numeric_limits<ll>::max()));
+	V opt(n, vi(n));
 	REP(i, n) {
 		opt[i][i] = i;
 		dp[i][i] = cost[i][i];

@@ -5,10 +5,10 @@
  *   że już nie ma ścieżki od korzenia do v).
  * \texttt{dominator\_tree(\{\{1,2\},\{3\},\{4\},\{4\},\{5\}\},0) == \{\{1,4,2\},\{3\},\{\},\{\},\{5\},\{\}\}\}}
  */
-V<V<int>> dominator_tree(V<V<int>> dag, int root) {
+V<vi> dominator_tree(V<vi> dag, int root) {
 	int n = ssize(dag);
-	V<V<int>> t(n), rg(n), bucket(n);
-	V<int> id(n, -1), sdom = id, par = id, idom = id, dsu = id, label = id, rev = id;
+	V<vi> t(n), rg(n), bucket(n);
+	vi id(n, -1), sdom = id, par = id, idom = id, dsu = id, label = id, rev = id;
 	function<int (int, int)> find = [&](int v, int x) {
 		if(v == dsu[v]) return x ? -1 : v;
 		int u = find(dsu[v], x + 1);

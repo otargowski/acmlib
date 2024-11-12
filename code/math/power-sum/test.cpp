@@ -10,7 +10,7 @@ void test() {
 	int k = rd(0, mk);
 
 	int limit = max(n, k);
-	V<int> fact(limit + 1, 1), rev(limit + 1, 1);
+	vi fact(limit + 1, 1), rev(limit + 1, 1);
 	FOR(i, 1, limit)
 		fact[i] = mul(fact[i - 1], i);
 	rev[limit] = inv(fact[limit]);

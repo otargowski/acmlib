@@ -52,7 +52,7 @@ void test() {
 	C auto points = gen_noncollinear_points(n);
 	debug(points);
 
-	V<V<int>> graph(n);
+	V<vi> graph(n);
 	set<pii> edges;
 	REP(i, m) {
 		while (true) {

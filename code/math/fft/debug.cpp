@@ -4,7 +4,7 @@
 V</*ll*/double> get_poly() {
 	/*
 	int n = rd(1, 1e3);
-	V<ll> A(n);
+	vll A(n);
 	REP(i, n) A[i] = rd(0, 1e9);
 	return A;
 	*/
@@ -16,8 +16,8 @@ V</*ll*/double> get_poly() {
 }
 
 int mod = 1e9 + 7;
-V<ll> mul(V<ll> A, V<ll> B) {
-	V<ll> res(ssize(A) + ssize(B) - 1);
+vll mul(vll A, vll B) {
+	vll res(ssize(A) + ssize(B) - 1);
 	REP(i, ssize(A)) REP(j, ssize(B))
 		res[i + j] = (res[i + j] + A[i] * B[j]) % mod;
 	return res;
@@ -25,7 +25,7 @@ V<ll> mul(V<ll> A, V<ll> B) {
 
 void test() {
 	/*
-	V<ll> A = get_poly(), B = get_poly();
+	vll A = get_poly(), B = get_poly();
 	debug(A, B);
 	debug(mul(A, B));
 	debug(conv_mod(A, B, mod));

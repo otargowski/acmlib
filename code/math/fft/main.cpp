@@ -13,7 +13,7 @@ void fft(V<Complex> &a) {
 		FOR(i, k, 2 * k - 1)
 			rt[i] = R[i] = i & 1 ? R[i / 2] * x : R[i / 2];
 	}
-	V<int> rev(n);
+	vi rev(n);
 	REP(i, n) rev[i] = (rev[i / 2] | (i & 1) << L) / 2;
 	REP(i, n) if(i < rev[i]) swap(a[i], a[rev[i]]);
 	for(int k = 1; k < n; k *= 2) {
