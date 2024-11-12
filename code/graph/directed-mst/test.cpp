@@ -53,7 +53,7 @@ void test() {
 		ll local_ans = 0;
 		for(auto i : lit)
 			local_ans += edges[i].w;
-		ans = min(ans, pair(local_ans, lit));
+		chmin(ans, pair(local_ans, lit));
 	}
 	if(ans.fi == ll(1e18))
 		ans.fi = -1;
@@ -73,7 +73,7 @@ void test() {
 				ll smallest_w = ll(1e18) + 1;
 				for(auto [u, w] : rev_graph[v])
 					if(u == main_solve[v])
-						smallest_w = min(smallest_w, w);
+						chmin(smallest_w, w);
 				assert(smallest_w != ll(1e18) + 1);
 				found_subset.eb(main_solve[v], v, smallest_w);
 				sum += smallest_w;

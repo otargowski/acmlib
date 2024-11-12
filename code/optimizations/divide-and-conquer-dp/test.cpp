@@ -30,7 +30,7 @@ void test() {
 	FOR(i, 1, n) {
 		REP(j, m) {
 			REP(k, j + 1) {
-				dp[i][j] = min(dp[i][j], (k ? dp[i - 1][k - 1] : 0) + cost[k][j]);
+				chmin(dp[i][j], (k ? dp[i - 1][k - 1] : 0) + cost[k][j]);
 			}
 		}
 	}

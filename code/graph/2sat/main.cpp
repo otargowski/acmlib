@@ -39,7 +39,7 @@ struct TwoSat {
 		int low = val[i] = ++t, x;
 		z.eb(i);
 		for(auto &e : gr[i]) if(!comp[e])
-			low = min(low, val[e] ?: dfs(e));
+			chmin(low, val[e] ?: dfs(e));
 		if(low == val[i]) do {
 			x = z.back(); z.pop_back();
 			comp[x] = low;

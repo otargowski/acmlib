@@ -170,11 +170,11 @@ bool matching() {
 		}
 		int d = INF;
 		for(int b = n + 1; b <= m; ++b)
-			if(st[b] == b && S[b] == 1) d = min(d, lab[b] / 2);
+			if(st[b] == b && S[b] == 1) chmin(d, lab[b] / 2);
 		for(int x = 1; x <= m; ++x)
 			if(st[x] == x && slack[x]) {
-				if(S[x] == -1) d = min(d, e_delta(G[slack[x]][x]));
-				else if(S[x] == 0) d = min(d, e_delta(G[slack[x]][x]) / 2);
+				if(S[x] == -1) chmin(d, e_delta(G[slack[x]][x]));
+				else if(S[x] == 0) chmin(d, e_delta(G[slack[x]][x]) / 2);
 			}
 		for(int x = 1; x <= n; ++x) {
 			if(S[st[x]] == 0) {

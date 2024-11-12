@@ -111,7 +111,7 @@ struct CographOracle {
 	int dfs(int v, int p) {
 		pre[v] = low[v] = ++cnt;
 		for(auto e: G[v]) if (e != p)
-			low[v] = min(low[v], pre[e] ?: dfs(e,v));
+			chmin(low[v], pre[e] ?: dfs(e,v));
 		return low[v];
 	}
 	// Init oracle for independent set S; O(n)

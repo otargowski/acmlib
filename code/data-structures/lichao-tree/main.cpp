@@ -27,7 +27,7 @@ struct LiChaoTree {
 		int v = x + size;
 		ll ans = inf;
 		while(v) {
-			ans = min(ans, tree[v](x));
+			chmin(ans, tree[v](x));
 			v >>= 1;
 		}
 		return ans;

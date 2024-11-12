@@ -31,7 +31,7 @@ void test() {
 		REP(l, n - len + 1) {
 			int r = l + len - 1;
 			FOR(k, l, r - 1)
-				dp[l][r] = min(dp[l][r], dp[l][k] + dp[k + 1][r] + int(cost[l][r]));
+				chmin(dp[l][r], dp[l][k] + dp[k + 1][r] + int(cost[l][r]));
 		}
 	debug(dp);
 

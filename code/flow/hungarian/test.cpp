@@ -35,7 +35,7 @@ void test() {
 			ll ans_local = 0;
 			REP(i, n0)
 				ans_local += weight[i][brute_match[i]];
-			ans_brute = min(ans_brute, ans_local);
+			chmin(ans_brute, ans_local);
 		} while(next_permutation(all(perm)));
 		assert(ans == ans_brute);
 	}

@@ -14,6 +14,6 @@ void test() {
 	int x = rd(0, m - 1);
 	ll min_val = ll(1e18);
 	for(Function &f : functions)
-		min_val = min(min_val, f(x));
+		chmin(min_val, f(x));
 	assert(min_val == tree.get_min(x));
 }

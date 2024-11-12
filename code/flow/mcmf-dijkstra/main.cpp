@@ -74,7 +74,7 @@ struct MCMF {
 			return {0, 0};
 		int flow = inf_int, e = from[sink];
 		while(e != -1) {
-			flow = min(flow, edges[e].cap - edges[e].flow);
+			chmin(flow, edges[e].cap - edges[e].flow);
 			e = from[edges[e].v];
 		}
 		e = from[sink];

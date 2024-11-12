@@ -14,7 +14,7 @@ vi get_max_clique(V<bitset<max_n>> e) {
 		for (auto& v : r) for (auto j : r) v.fi += e[v.se][j.se];
 		sort(rall(r));
 		int mxD = r[0].fi;
-		REP(i, ssize(r)) r[i].fi = min(i, mxD) + 1;
+		REP(i, ssize(r)) r[i].fchmin(i, mxD) + 1;
 	};
 	function<void (V<pii>&, int)> expand = [&](V<pii>& R, int lev) {
 		S[lev] += S[lev - 1] - old[lev];

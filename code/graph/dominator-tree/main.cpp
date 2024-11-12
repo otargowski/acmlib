@@ -29,7 +29,7 @@ V<vi> dominator_tree(V<vi> dag, int root) {
 	};
 	dfs(root);
 	for(int i = n - 1; i >= 0; i--) {
-		for(int u : rg[i]) sdom[i] = min(sdom[i], sdom[find(u, 0)]);
+		for(int u : rg[i]) chmin(sdom[i], sdom[find(u, 0)]);
 		if(i > 0) bucket[sdom[i]].pb(i);
 		for(int w : bucket[i]) {
 			int v = find(w, 0);

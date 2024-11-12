@@ -23,7 +23,7 @@ struct Low {
 			else if(pre[u] == -1) {
 				bicon_stack.eb(e);
 				dfs(u, v);
-				low[v] = min(low[v], low[u]);
+				chmin(low[v], low[u]);
 				if(low[u] >= pre[v]) {
 					bicon.eb();
 					do {
@@ -38,7 +38,7 @@ struct Low {
 					bridges.eb(e);
 			}
 			else if(pre[v] > pre[u]) {
-				low[v] = min(low[v], pre[u]);
+				chmin(low[v], pre[u]);
 				bicon_stack.eb(e);
 			}
 		}

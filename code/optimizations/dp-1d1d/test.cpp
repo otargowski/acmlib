@@ -25,7 +25,7 @@ void test() {
 	REP (i, n) {
 		dp[i] = cost(0, i);
 		REP (j, i)
-			dp[i] = min(dp[i], dp[j] + cost(j + 1, i));
+			chmin(dp[i], dp[j] + cost(j + 1, i));
 	}
 	assert(dp[n - 1] == score);
 	assert(ssize(cuts));

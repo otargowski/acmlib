@@ -23,7 +23,7 @@ void test() {
 		REP(r, n)
 			FOR(l, 0, r)
 				if(is_palindrome(l, r) and (not only_even_lens or (r - l + 1) % 2 == 0))
-					dp_min[r] = min(dp_min[r], (l == 0 ? 0 : dp_min[l - 1]) + 1);
+					chmin(dp_min[r], (l == 0 ? 0 : dp_min[l - 1]) + 1);
 		REP(i, n) {
 			if(only_even_lens and i % 2 == 0)
 				assert(dp[i].mn == n + 1);

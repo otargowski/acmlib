@@ -15,7 +15,7 @@ void test() {
 	D brute = 1e9;
 	REP(i, n)
 		REP(j, i)
-			brute = min(brute, dist(in[i], in[j]));
+			chmin(brute, dist(in[i], in[j]));
 	debug(wzorc, brute);
 
 	assert(abs(wzorc - brute) < eps);

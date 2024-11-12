@@ -21,12 +21,12 @@ bool is_planar(V<vi> graph) {
 					if(u != p and low[u] == -1) {
 						dn[v].eb(u);
 						dfs_low(u, v);
-						low[v] = min(low[v], low[u]);
+						chmin(low[v], low[u]);
 					}
 					else if(u != p and pre[u] < pre[v]) {
 						up[v].eb(ssize(e_up));
 						e_up.eb(v, u);
-						low[v] = min(low[v], pre[u]);
+						chmin(low[v], pre[u]);
 					}
 			};
 			dfs_low(start, -1);

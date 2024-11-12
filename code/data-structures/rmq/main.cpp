@@ -11,7 +11,7 @@ struct RMQ {
 		FOR(i, 1, lg) REP(j, n) {
 			st[i][j] = st[i - 1][j];
 			int q = j + (1 << (i - 1));
-			if(q < n) st[i][j] = min(st[i][j], st[i - 1][q]);
+			if(q < n) chmin(st[i][j], st[i - 1][q]);
 		}
 	}
 	int query(int l, int r) {

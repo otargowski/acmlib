@@ -19,11 +19,11 @@ void test() {
 			dist[v][v] = 0;
 		REP(v, n)
 			for(auto [u, w] : graph[v])
-				dist[v][u] = min(dist[v][u], w);
+				chmin(dist[v][u], w);
 		REP(k, n)
 			REP(i, n)
 				REP(j, n) {
-					dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+					chmin(dist[i][j], dist[i][k] + dist[k][j]);
 					dist[i][j] = max(dist[i][j], -inf);
 				}
 		REP(v, n)
@@ -48,7 +48,7 @@ void test() {
 					found = true;
 				}
 				else
-					found_w = min(found_w, w);
+					chmin(found_w, w);
 			}
 		assert(found);
 		sum_on_cycle += found_w;

@@ -17,7 +17,7 @@ vi coloring(C V<vi>& graph, C int limit = 5) {
 			int cnt = 0;
 			for (int e : graph[i])
 				cnt += active[e];
-			best = min(best, {cnt, i});
+			chmin(best, {cnt, i});
 		}
 		C int id = best.se;
 		auto cp = active;

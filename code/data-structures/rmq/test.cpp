@@ -11,7 +11,7 @@ void test() {
 			auto ans = rmq.query(j, i);
 			int brute = 1 << 30;
 			FOR(k,j,i)
-				brute = min(brute, a[k]);
+				chmin(brute, a[k]);
 			assert(ans == brute);
 		}
 	}

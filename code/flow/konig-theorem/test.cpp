@@ -35,7 +35,7 @@ int brute_edge_cover(int n, C V<pii>& edges) {
 			if ((mask >> i) & 1)
 				edge_cover.eb(edges[i]);
 		if (is_edge_cover(n, edges, edge_cover))
-			ans = min(ans, __builtin_popcount(mask));
+			chmin(ans, __builtin_popcount(mask));
 	}
 	return ans;
 }
@@ -79,7 +79,7 @@ int brute_vertex_cover(int n, C V<pii>& edges) {
 			if ((mask >> i) & 1)
 				vertex_cover.eb(i);
 		if (is_vertex_cover(n, edges, vertex_cover))
-			ans = min(ans, __builtin_popcount(mask));
+			chmin(ans, __builtin_popcount(mask));
 	}
 	return ans;
 }

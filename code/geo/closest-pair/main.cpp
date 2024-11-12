@@ -13,7 +13,7 @@ pair<P, P> closest_pair(V<P> in) {
 		while (in[j].y() <= p.y() - d.x()) s.erase(in[j++]);
 		auto lo = s.lower_bound(p - d), hi = s.upper_bound(p + d);
 		for (; lo != hi; ++lo)
-			ret = min(ret, {pow(dist(*lo, p), 2), {*lo, p}});
+			chmin(ret, {pow(dist(*lo, p), 2), {*lo, p}});
 		s.insert(p);
 	}
 	return ret.se;

@@ -23,7 +23,7 @@ int get_base_size(vi s) {
 			if((mask >> i) & 1)
 				base.eb(s[i]);
 		if(covers(s, base))
-			ans = min(ans, ssize(base));
+			chmin(ans, ssize(base));
 	}
 	return ans;
 }

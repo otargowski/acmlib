@@ -88,7 +88,7 @@ void test() {
 
 		D closest_d = 3e9;
 		REP(i, n)
-			closest_d = min(closest_d, dist(P(x, y), P(in[i].fi, in[i].se)));
+			chmin(closest_d, dist(P(x, y), P(in[i].fi, in[i].se)));
 		vi closest_v;
 		REP(i, n)
 			if(equal(closest_d, dist(P(x, y), P(in[i].fi, in[i].se))))

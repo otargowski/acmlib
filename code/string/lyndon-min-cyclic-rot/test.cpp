@@ -25,7 +25,7 @@ vi brute_min_cyclic_shift(vi s) {
 		vi nw;
 		REP(j, n)
 			nw.eb(s[(i + j) % n]);
-		mn = min(mn, nw);
+		chmin(mn, nw);
 	}
 	return mn;
 }
@@ -34,7 +34,7 @@ vi brute_min_suffix(vi s) {
 	int n = ssize(s);
 	vi mn = s;
 	REP(i, n)
-		mn = min(mn, V(s.begin() + i, s.end()));
+		chmin(mn, V(s.begin() + i, s.end()));
 	return mn;
 }
 
