@@ -104,7 +104,7 @@ def processwithcomments(caption, instream, outstream, listingslang):
         if 'include-line' in line:
             line = line.replace('// ', '', 1)
         had_comment = "///" in line
-        keep_include = 'keep-include' in line
+        keep_include = 'keep-include' in line or "<bits/stdc++.h>" in line
         # Remove /// comments
         line = line.split("///")[0].rstrip()
         # Remove '#pragma once' lines
