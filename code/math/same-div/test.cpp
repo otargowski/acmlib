@@ -26,7 +26,7 @@ void test() {
 		return v;
 	};
 
-	const int max_n = rd(0, 1) ? 1e2 : 1e5;
+	C int max_n = rd(0, 1) ? 1e2 : 1e5;
 	{ // test same_floor
 		int n = rd(1, max_n);
 		auto v = same_floor(n);

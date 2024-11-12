@@ -27,7 +27,7 @@ V<int> capped_zero_split(int cap, int n) {
 V<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
 	assert(n > 2);
 	V<P> t;
-	const double PROC = 0.9;
+	C double PROC = 0.9;
 	do {
 		t.clear();
 		auto dx = capped_zero_split(range, n);

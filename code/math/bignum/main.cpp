@@ -30,18 +30,18 @@ struct Num {
 	Num(ll s) : Num(to_string(s)) {}
 }; // END HASH
 // BEGIN HASH
-string to_string(const Num& n) {
+string to_string(C Num& n) {
 	stringstream s;
 	s << (n.sign == -1 ? "-" : "") << (ssize(n.x) ? n.x.back() : 0);
 	for(int i = ssize(n.x) - 2; i >= 0; --i)
 		s << setfill('0') << setw(n.digits_per_elem) << n.x[i];
 	return s.str();
 }
-ostream& operator<<(ostream &o, const Num& n) {
+ostream& operator<<(ostream &o, C Num& n) {
 	return o << to_string(n).c_str();
 } // END HASH
 // BEGIN HASH
-auto operator<=>(const Num& a, const Num& b) {
+auto operator<=>(C Num& a, C Num& b) {
 	if(a.sign != b.sign or ssize(a.x) != ssize(b.x))
 		return ssize(a.x) * a.sign <=> ssize(b.x) * b.sign;
 	for(int i = ssize(a.x) - 1; i >= 0; --i)
@@ -49,7 +49,7 @@ auto operator<=>(const Num& a, const Num& b) {
 			return a.x[i] * a.sign <=> b.x[i] * b.sign;
 	return strong_ordering::equal;
 }
-bool operator==(const Num& a, const Num& b) {
+bool operator==(C Num& a, C Num& b) {
 	return a.x == b.x and a.sign == b.sign;
 } // END HASH
 // BEGIN HASH
@@ -83,7 +83,7 @@ Num operator*(Num a, int b) {
 	return a.shorten();
 } // END HASH
 // BEGIN HASH
-Num operator*(const Num& a, const Num& b) {
+Num operator*(C Num& a, C Num& b) {
 	Num c;
 	c.x.resize(ssize(a.x) + ssize(b.x));
 	REP(i, ssize(a.x))
@@ -139,6 +139,6 @@ Num operator/(Num a, Num b) {
 } // END HASH
 // BEGIN HASH
 template<typename T>
-Num operator%(const Num& a, const T& b) { return a - ((a / b) * b); }
-Num nwd(const Num& a, const Num& b) { return b == Num() ? a : nwd(b, a % b); }
+Num operator%(C Num& a, C T& b) { return a - ((a / b) * b); }
+Num nwd(C Num& a, C Num& b) { return b == Num() ? a : nwd(b, a % b); }
 // END HASH

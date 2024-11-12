@@ -11,7 +11,7 @@ bool is_prime(int x) {
 }
 
 void test() {
-	const int limit = rd(0, 1) ? 1e3 : 1e5;
+	C int limit = rd(0, 1) ? 1e3 : 1e5;
 
 	int p;
 	do {

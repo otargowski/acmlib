@@ -46,8 +46,8 @@ void test() {
 		return ret;
 	};
 
-	const int mn = 20;
-	const int mk = 20;
+	C int mn = 20;
+	C int mk = 20;
 
 	{ // powi_slow
 		auto a = get_vec(0, mn);
@@ -120,7 +120,7 @@ void test() {
 	}
 
 	{ // eval
-		const int L = rd(0, 100) ? mn : 1000;
+		C int L = rd(0, 100) ? mn : 1000;
 		auto a = get_vec(0, L);
 		auto x = get_vec(0, L);
 		auto y = eval(a, x);
@@ -130,8 +130,8 @@ void test() {
 	}
 
 	{ // inter
-		const int L = rd(0, 100) ? mn : 1000;
-		const int n = rd(0, L);
+		C int L = rd(0, 100) ? mn : 1000;
+		C int n = rd(0, L);
 		auto x = get_vec_diff(n);
 		auto y = get_vec_given_length(n);
 		auto a = inter(x, y);

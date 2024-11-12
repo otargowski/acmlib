@@ -7,7 +7,7 @@
 struct BerlekampMassey {
 	int n;
 	V<int> x, C;
-	BerlekampMassey(const V<int> &_x) : x(_x) {
+	BerlekampMassey(C V<int> &_x) : x(_x) {
 		auto B = C = {1};
 		int b = 1, m = 0;
 		REP(i, ssize(x)) {

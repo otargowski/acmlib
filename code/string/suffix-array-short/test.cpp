@@ -18,7 +18,7 @@ void test() {
 	REP(i,n+1)
 		assert(sa[i] == v[i].se);
 
-	auto common = [&](const V<int>& a, const V<int>& b) {
+	auto common = [&](C V<int>& a, C V<int>& b) {
 		int d = min(ssize(a), ssize(b));
 		REP(i,d)
 			if (a[i] != b[i])

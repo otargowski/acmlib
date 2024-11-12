@@ -32,7 +32,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 			r /= 2;
 		}
 	};
-	for(const auto &[v, u, t] : events) {
+	for(C auto &[v, u, t] : events) {
 		auto &que = edge_longevity[pair(v, u)];
 		if(t == Add)
 			que.eb(query_i);
@@ -46,7 +46,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 		else
 			++query_i;
 	}
-	for(const auto &[e, que] : edge_longevity)
+	for(C auto &[e, que] : edge_longevity)
 		if(not que.empty())
 			add(que.front(), query_i - 1, e);
 	V<bool> ret(ssize(queries));

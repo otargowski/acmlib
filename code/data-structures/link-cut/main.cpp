@@ -73,7 +73,7 @@ struct Splay {
 		AdditionalInfo info;
 	};
 	V<Node> t;
-	const int nil;
+	C int nil;
 	Splay(int n)
 	: t(n + 1), nil(n) {
 		t[nil].subsize_splay = 0;

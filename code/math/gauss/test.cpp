@@ -5,13 +5,13 @@
 void test() {
 	static V<int> mods = {2, 3, 5, 7, 11, 13, 17, int(1e9) + 7};
 	mod = mods[rd(0, ssize(mods) - 1)];
-	const int max_number_of_variables = 10;
-	const int max_number_of_equations = 10;
-	const int number_of_variables = rd(0, max_number_of_variables);
-	const int number_of_equations = rd(1, max_number_of_equations);
+	C int max_number_of_variables = 10;
+	C int max_number_of_equations = 10;
+	C int number_of_variables = rd(0, max_number_of_variables);
+	C int number_of_equations = rd(1, max_number_of_equations);
 	debug(mod, number_of_variables, number_of_equations);
 	V equations(number_of_equations, V (number_of_variables + 1, 0));
-	auto eval = [&](int id, const V<int>& assignment) {
+	auto eval = [&](int id, C V<int>& assignment) {
 		int sum = 0;
 		REP(j, number_of_variables)
 			sum = add(sum, mul(equations[id][j], assignment[j]));

@@ -100,7 +100,7 @@ V<P> brute_halfplane(V<HalfplanePInt> h) {
 }
 
 void test() {
-	const int n = rd(0, 10);
+	C int n = rd(0, 10);
 	V<Halfplane> in;
 	V<HalfplanePInt> inPInt;
 	for(int i = 0; i < 4; ++i) {
@@ -110,8 +110,8 @@ void test() {
 		in.eb(box[i], box[(i + 1) % 4]);
 		inPInt.eb(boxPInt[i], sub_PInt(boxPInt[(i + 1) % 4], boxPInt[i]));
 	}
-	const int lg = rd(0, 30);
-	const int mx = 1 << lg;
+	C int lg = rd(0, 30);
+	C int mx = 1 << lg;
 	auto get_random_p = [&] {
 		return PInt(rd(-mx, mx), rd(-mx, mx));
 	};

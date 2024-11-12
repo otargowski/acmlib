@@ -13,8 +13,8 @@ struct MCMF {
 		}
 	};
 	int n;
-	const ll inf_LL = 1e18;
-	const int inf_int = 1e9;
+	C ll inf_LL = 1e18;
+	C int inf_int = 1e9;
 	V<V<int>> graph;
 	V<Edge> edges;
 	V<ll> init_dist;

@@ -4,7 +4,7 @@
 struct Tree_Get_Max {
 	using T = int;
 	T f(T a, T b) { return max(a, b); }
-	const T zero = 0;
+	C T zero = 0;
 	V<T> tree;
 	int sz = 1;
 	Tree_Get_Max(int n) {

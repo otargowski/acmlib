@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	const int mx = 1e3;
+	C int mx = 1e3;
 	int n = rd(0, mx);
 
 	auto brute_mobius = [&](int x) {

@@ -1,17 +1,17 @@
 /*
  * Opis: Struktura do działań modulo
- * Ustaw modulo w ostatniej linii. Jeśli modulo nie jest const, usuń pierwszy wiersz i zadeklaruj mod.
+ * Ustaw modulo w ostatniej linii. Jeśli modulo nie jest C, usuń pierwszy wiersz i zadeklaruj mod.
  */
 template<int mod>
 struct modular {
 	int val;
 	modular() { val = 0; }
-	modular(const ll& v) {
+	modular(C ll& v) {
 		val = int((-mod <= v && v < mod) ? (int) v : v % mod);
 		if(val < 0) val += mod;
 	}
 	int to_int() { return val; }
-	friend ostream& operator<<(ostream &os, const modular &a) {
+	friend ostream& operator<<(ostream &os, C modular &a) {
 #ifdef DEBUG
 		constexpr int mx = 1024;
 		for(int y = 1; y <= mx; ++y)
@@ -25,28 +25,28 @@ struct modular {
 	friend istream& operator>>(istream &is, modular &a) {
 		return is >> a.val;
 	}
-	friend bool operator==(const modular &a, const modular &b) {
+	friend bool operator==(C modular &a, C modular &b) {
 		return a.val == b.val;
 	}
-	friend bool operator!=(const modular &a, const modular &b) {
+	friend bool operator!=(C modular &a, C modular &b) {
 		return !(a == b);
 	}
-	friend bool operator<(const modular &a, const modular &b) {
+	friend bool operator<(C modular &a, C modular &b) {
 		return a.val < b.val;
 	}
-	friend bool operator<=(const modular &a, const modular &b) {
+	friend bool operator<=(C modular &a, C modular &b) {
 		return a.val <= b.val;
 	}
-	modular operator-() const { return modular(-val); }
-	modular& operator+=(const modular &m) {
+	modular operator-() C { return modular(-val); }
+	modular& operator+=(C modular &m) {
 		if((val += m.val) >= mod) val -= mod;
 		return *this;
 	}
-	modular& operator-=(const modular &m) {
+	modular& operator-=(C modular &m) {
 		if((val -= m.val) < 0) val += mod;
 		return *this;
 	}
-	modular& operator*=(const modular &m) {
+	modular& operator*=(C modular &m) {
 		val = int((ll) val * m.val % mod);
 		return *this;
 	}
@@ -55,10 +55,10 @@ struct modular {
 		if(n % 2 == 1) return qpow(a, n - 1) * a;
 		return qpow(a * a, n / 2);
 	}
-	friend modular inv(const modular &a) {
+	friend modular inv(C modular &a) {
 		assert(a != 0); return qpow(a, mod - 2);
 	}
-	modular& operator/=(const modular &m) {
+	modular& operator/=(C modular &m) {
 		return (*this) *= inv(m);
 	}
 	modular operator++(int) {
@@ -66,10 +66,10 @@ struct modular {
 		(*this) += 1;
 		return res;
 	}
-	friend modular operator+(modular a, const modular &b) { return a += b; }
-	friend modular operator-(modular a, const modular &b) { return a -= b; }
-	friend modular operator*(modular a, const modular &b) { return a *= b; }
-	friend modular operator/(modular a, const modular &b) { return a /= b; }
+	friend modular operator+(modular a, C modular &b) { return a += b; }
+	friend modular operator-(modular a, C modular &b) { return a -= b; }
+	friend modular operator*(modular a, C modular &b) { return a *= b; }
+	friend modular operator/(modular a, C modular &b) { return a /= b; }
 };
 using mint = modular<int(1e9 + 7)>;
 // using mint = modular<998244353>;

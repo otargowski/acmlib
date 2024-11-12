@@ -5,12 +5,12 @@
 #include "main.cpp"
 
 void test() {
-	const int max_n = 10;
-	const int max_m = 20;
-	const int max_cap = 20;
-	const int max_cost = 100;
-	const int n = rd(2, max_n);
-	const int m = rd(0, max_m);
+	C int max_n = 10;
+	C int max_m = 20;
+	C int max_cap = 20;
+	C int max_cost = 100;
+	C int n = rd(2, max_n);
+	C int m = rd(0, max_m);
 	V<tuple<int, int, int, int>> edges;
 	while (ssize(edges) < m) {
 		int a = rd(0, n - 1);

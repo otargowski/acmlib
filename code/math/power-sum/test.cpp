@@ -2,9 +2,9 @@
 #include "main.cpp"
 
 void test() {
-	const int mn = 50;
-	const int mk = 50;
-	const int ma = 100;
+	C int mn = 50;
+	C int mk = 50;
+	C int ma = 100;
 
 	int n = rd(0, mn);
 	int k = rd(0, mk);

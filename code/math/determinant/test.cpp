@@ -3,7 +3,7 @@
 
 void test() {
 	function<int(V<V<int>>)> brute = [&](V<V<int>> a) {
-		const int n = ssize(a);
+		C int n = ssize(a);
 		if (n == 1)
 			return a[0][0];
 		int ret = 0;
@@ -21,10 +21,10 @@ void test() {
 		debug(a, ret);
 		return ret;
 	};
-	const int mn = 8;
+	C int mn = 8;
 	int n = rd(1, mn);
 	V a(n, V(n, 0));
-	const int limit = rd(0, 1) ? 3 : mod - 1;
+	C int limit = rd(0, 1) ? 3 : mod - 1;
 	REP(i, n)
 		REP(j, n)
 			a[i][j] = rd(0, limit);

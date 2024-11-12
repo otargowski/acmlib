@@ -46,14 +46,14 @@ bool is_planar(V<V<int>> graph) {
 				dsu[v] = {u, vb ^ ub ^ flip};
 				return true;
 			};
-			auto interlace = [&](const V<int> &ids, int lo) {
+			auto interlace = [&](C V<int> &ids, int lo) {
 				V<int> ans;
 				for(int e : ids)
 					if(pre[e_up[e].se] > lo)
 						ans.eb(e);
 				return ans;
 			};
-			auto add_fu = [&](const V<int> &a, const V<int> &b) {
+			auto add_fu = [&](C V<int> &a, C V<int> &b) {
 				FOR(k, 1, ssize(a) - 1)
 					if(not onion(a[k - 1], a[k], 0))
 						return false;

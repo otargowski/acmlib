@@ -7,7 +7,7 @@ struct Matrix {
 		m = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 	}
 	Matrix(V<V<int>> _m) : m(_m) {}
-	Matrix operator*(const Matrix& other) {
+	Matrix operator*(C Matrix& other) {
 		auto res = V (3, V (3, 0));
 		REP(i,3) {
 			REP(j,3) {
@@ -18,7 +18,7 @@ struct Matrix {
 		}
 		return Matrix(res);
 	}
-	bool operator==(const Matrix& other) const {
+	bool operator==(C Matrix& other) C {
 		REP(i,3) {
 			REP(j,3) {
 				if (this->m[i][j] != other.m[i][j]) {
@@ -29,7 +29,7 @@ struct Matrix {
 		return true;
 	}
 };
-ostream& operator<<(ostream&o, const Matrix& matrix) {
+ostream& operator<<(ostream&o, C Matrix& matrix) {
 	return o << matrix.m;
 }
 

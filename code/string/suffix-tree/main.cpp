@@ -9,8 +9,8 @@
  * 	Zachodzi \texttt{up\_edge\_range[0]=(-1,-1), parent[0]=0, slink[0]=1}.
  */
 struct SuffixTree {
-	const int n;
-	const V<int> &_in;
+	C int n;
+	C V<int> &_in;
 	V<map<int, int>> sons;
 	V<pii> up_edge_range;
 	V<int> parent, slink;
@@ -45,7 +45,7 @@ suff:
 		}
 	}
 	// Remember to append string with a hash.
-	SuffixTree(const V<int> &in, int alpha)
+	SuffixTree(C V<int> &in, int alpha)
 		: n(ssize(in)), _in(in), sons(2 * n + 1),
 		up_edge_range(2 * n + 1, pair(0, n - 1)), parent(2 * n + 1), slink(2 * n + 1) {
 		up_edge_range[0] = up_edge_range[1] = {-1, -1};

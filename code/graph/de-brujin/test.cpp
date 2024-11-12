@@ -3,8 +3,8 @@
 
 void test() {
 	bool is_path = rd(0, 1);
-	const int max_n = 5;
-	const int max_k = 6;
+	C int max_n = 5;
+	C int max_k = 6;
 	int n = rd(1, max_n);
 	int k = rd(1, max_k);
 	auto path = de_brujin(k, n, is_path);
@@ -14,7 +14,7 @@ void test() {
 	REP(i, n)
 		N *= k;
 	if (is_path) {
-		const int length = k > 1 ? N + n - 1 : n;
+		C int length = k > 1 ? N + n - 1 : n;
 		assert(ssize(path) == length);
 		REP(i, N) {
 			V<int> v(path.begin() + i, path.begin() + i + n);
@@ -22,7 +22,7 @@ void test() {
 		}
 	}
 	else {
-		const int length = k > 1 ? N : n;
+		C int length = k > 1 ? N : n;
 		assert(ssize(path) == length);
 		REP(i, N) {
 			V<int> v(path.begin(), path.begin() + n);

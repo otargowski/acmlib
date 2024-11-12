@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	const int mx = 1e4;
+	C int mx = 1e4;
 	int n = rd(0, mx);
 
 	sieve(n);

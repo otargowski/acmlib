@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	const int INF = 1e9;
+	C int INF = 1e9;
 	int n = rd(1, 100);
 	V graph(n, V<int>());
 	V per(n, 0);

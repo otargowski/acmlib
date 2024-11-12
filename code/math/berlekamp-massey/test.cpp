@@ -4,7 +4,7 @@
 void test() {
 	int test_type = rd(0, 1);
 	int limit = test_type ? 3 : mod - 1;
-	const int mn = 20;
+	C int mn = 20;
 	int n = rd(0, mn);
 	int len = 3 * n + 5;
 	V<int> v(len), r(n);

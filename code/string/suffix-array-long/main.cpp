@@ -5,8 +5,8 @@
  * Dla \texttt{s = aabaaab}, \texttt{sa=\{7,3,4,0,5,1,6,2\},lcp=\{0,2,3,1,2,0,1\}}
  */
 // BEGIN HASH
-void induced_sort(const V<int> &vec, int alpha, V<int> &sa,
-		const V<bool> &sl, const V<int> &lms_idx) {
+void induced_sort(C V<int> &vec, int alpha, V<int> &sa,
+		C V<bool> &sl, C V<int> &lms_idx) {
 	V<int> l(alpha), r(alpha);
 	for (int c : vec) {
 		if (c + 1 < alpha)
@@ -29,8 +29,8 @@ void induced_sort(const V<int> &vec, int alpha, V<int> &sa,
 		if (i >= 1 and not sl[i - 1])
 			sa[--r[vec[i - 1]]] = i - 1;
 }
-V<int> sa_is(const V<int> &vec, int alpha) {
-	const int n = ssize(vec);
+V<int> sa_is(C V<int> &vec, int alpha) {
+	C int n = ssize(vec);
 	V<int> sa(n), lms_idx;
 	V<bool> sl(n);
 	for (int i = n - 2; i >= 0; --i) {
@@ -74,14 +74,14 @@ V<int> sa_is(const V<int> &vec, int alpha) {
 	induced_sort(vec, alpha, sa, sl, new_lms_idx);
 	return sa;
 }
-V<int> suffix_array(const V<int> &s, int alpha) {
+V<int> suffix_array(C V<int> &s, int alpha) {
 	V<int> vec(ssize(s) + 1);
 	REP(i, ssize(s))
 		vec[i] = s[i] + 1;
 	V<int> ret = sa_is(vec, alpha + 2);
 	return ret;
 } // END HASH
-V<int> get_lcp(const V<int> &s, const V<int> &sa) {
+V<int> get_lcp(C V<int> &s, C V<int> &sa) {
 	int n = ssize(s), k = 0;
 	V<int> lcp(n), rank(n);
 	REP (i, n)

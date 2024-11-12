@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	const int mn = 5e2, ml = 5e5;
+	C int mn = 5e2, ml = 5e5;
 	int n = rd(1, mn);
 	int l = rd(1, ml);
 	debug(n, l);
@@ -20,7 +20,7 @@ void test() {
 	sort(all(v));
 	FOR(x, 2, l) {
 		auto it = lower_bound(all(v), pair<ll, ll>(x, -1));
-		const ll y = ll(sqrtl((x * ll(x) - 1) / n));
+		C ll y = ll(sqrtl((x * ll(x) - 1) / n));
 		if (x * __int128(x) - n * __int128(y) * y == 1) {
 			assert(x >= min_x);
 			assert(it != v.end() and *it == pair(ll(x), y));

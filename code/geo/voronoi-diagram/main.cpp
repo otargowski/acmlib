@@ -31,7 +31,7 @@ pair<Frac, Frac> calc_mid(PI a, PI b, PI c) {
 		+ c.fi * ll(a.se - b.se));
 	return {create_frac(ux, d), create_frac(uy, d)};
 }
-V<V<P>> voronoi_faces(V<PI> in, const int max_xy = int(3e8)) {
+V<V<P>> voronoi_faces(V<PI> in, C int max_xy = int(3e8)) {
 	int n = ssize(in);
 	map<PI, int> id_of_in;
 	REP(i, n)

@@ -7,7 +7,7 @@
 #undef rd
 
 void test() {
-	const double PROC = 0.9;
+	C double PROC = 0.9;
 	int N = rd(3, 1'000);
 	int z = int(1e5);
 	// cerr << N;
@@ -19,7 +19,7 @@ void test() {
 	REP (i, n)
 		assert(abs(loose[i].x()) <= z && abs(loose[i].y()) <= z);
 
-	const int reps = 100;
+	C int reps = 100;
 	REP (rep, reps) {
 		int mid = rd(0, n - 1);
 		auto middle = loose[mid];

@@ -5,13 +5,13 @@
  */
 struct Line {
 	mutable ll a, b, p;
-	ll eval(ll x) const { return a * x + b; }
-	bool operator<(const Line & o) const { return a < o.a; }
-	bool operator<(ll x) const { return p < x; }
+	ll eval(ll x) C { return a * x + b; }
+	bool operator<(C Line & o) C { return a < o.a; }
+	bool operator<(ll x) C { return p < x; }
 };
 struct LineContainer : multiset<Line, less<>> {
 	// jak double to inf = 1 / .0, div(a, b) = a / b
-	const ll inf = LLONG_MAX;
+	C ll inf = LLONG_MAX;
 	ll div(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }
 	bool intersect(iterator x, iterator y) {
 		if(y == end()) { x->p = inf; return false; }

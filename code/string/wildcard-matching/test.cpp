@@ -4,8 +4,8 @@
 #undef rng
 
 V<bool> brute(V<int> text, V<int> pattern) {
-	const int n = ssize(text);
-	const int m = ssize(pattern);
+	C int n = ssize(text);
+	C int m = ssize(pattern);
 	assert(m <= n);
 	V<bool> ret(n - m + 1);
 	REP(i, n - m + 1) {
@@ -25,10 +25,10 @@ void test() {
 	int n = rd(1, 30);
 	int m = rd(1, n);
 	V<int> text(n), pattern(m);
-	const int alpha = rd(0, 1) ? 3 : 20;
+	C int alpha = rd(0, 1) ? 3 : 20;
 	for (int& e : text) e = rd(-1, alpha - 1);
 	for (int& e : pattern) e = rd(-1, alpha - 1);
-	const auto brute_ret = brute(text, pattern);
+	C auto brute_ret = brute(text, pattern);
 	debug(text, pattern, brute_ret);
 	assert(brute_ret == wildcard_matching(text, pattern));
 	assert(brute_ret == safer_wildcard_matching(text, pattern, alpha));

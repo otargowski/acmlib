@@ -21,7 +21,7 @@ struct AhoCorasick {
 	V<Node> node;
 	bool converted = false;
 	AhoCorasick() : node(1) {}
-	void add(const V<int> &s) {
+	void add(C V<int> &s) {
 		assert(!converted);
 		int v = 0;
 		for (int c : s) {

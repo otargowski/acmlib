@@ -2,10 +2,10 @@
 #include "main.cpp"
 
 void test() {
-	const int max_n = 20;
-	const int max_cap = 20;
-	const int n = rd(2, max_n);
-	const int iters = rd(0, 50);
+	C int max_n = 20;
+	C int max_cap = 20;
+	C int n = rd(2, max_n);
+	C int iters = rd(0, 50);
 
 	V graph(n, V (n, 0));
 	Dinic dinic(n);

@@ -2,10 +2,10 @@
 #include "main.cpp"
 
 void test() {
-	const int mn = 10;
+	C int mn = 10;
 	int n = rd(1, mn);
 	V a(n, V(n, T(0)));
-	const int limit = rd(0, 1) ? 3 : mod - 1;
+	C int limit = rd(0, 1) ? 3 : mod - 1;
 	REP(i, n)
 		REP(j, n)
 			a[i][j] = rd(0, limit);

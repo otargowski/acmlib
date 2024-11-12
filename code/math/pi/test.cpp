@@ -3,7 +3,7 @@
 #include "main.cpp"
 
 void test() {
-	static const int mn = 1e5;
+	static C int mn = 1e5;
 	static V<int> pref;
 	if (pref.empty()) {
 		sieve(mn);

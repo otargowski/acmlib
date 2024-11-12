@@ -3,9 +3,9 @@
 
 void test() {
 	constexpr int N = 10, M = 12;
-	const int n = rd(1, N);
-	const int m = rd(0, M);
-	const bool directed = rd(0, 1);
+	C int n = rd(1, N);
+	C int m = rd(0, M);
+	C bool directed = rd(0, 1);
 	V<pii> edges;
 	REP(i, m)
 		edges.eb(rd(0, n - 1), rd(0, n - 1));
@@ -43,7 +43,7 @@ void test() {
 
 	if (exists) {
 		int v = ep_vertices.empty() ? 0 : ep_vertices.front();
-		const auto ids = ep_ids;
+		C auto ids = ep_ids;
 		assert(v >= 0 and v < n);
 		assert(ssize(ids) == m);
 		for (int id : ids)
@@ -61,7 +61,7 @@ void test() {
 				v ^= a ^ b;
 			}
 		}
-		const auto vertices = ep_vertices;
+		C auto vertices = ep_vertices;
 		assert((m == 0 and ep_vertices.empty()) or (m > 0 and ssize(vertices) == m + 1));
 		for (int x : vertices)
 			assert(x >= 0 and x < n);

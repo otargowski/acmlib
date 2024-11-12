@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	auto eval = [&](const V<int>& a, int x) {
+	auto eval = [&](C V<int>& a, int x) {
 		int ret = 0, p = 1;
 		REP(i, ssize(a)) {
 			ret = add(ret, mul(a[i], p));
@@ -10,9 +10,9 @@ void test() {
 		}
 		return ret;
 	};
-	const int z = rd(0, 1) ? 5 : mod - 1;
-	const int n = rd(0, 30);
-	const int x = rd(0, 2 * n);
+	C int z = rd(0, 1) ? 5 : mod - 1;
+	C int n = rd(0, 30);
+	C int x = rd(0, 2 * n);
 	V<int> a(n);
 	REP(i, n)
 		a[i] = rd(0, z);

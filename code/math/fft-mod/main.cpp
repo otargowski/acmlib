@@ -6,7 +6,7 @@
 V<int> conv_mod(V<int> a, V<int> b, int M) {
 	if(a.empty() or b.empty()) return {};
 	V<int> res(ssize(a) + ssize(b) - 1);
-	const int CUTOFF = 125;
+	C int CUTOFF = 125;
 	if (min(ssize(a), ssize(b)) <= CUTOFF) {
 		if (ssize(a) > ssize(b))
 			swap(a, b);

@@ -16,8 +16,8 @@ void test() {
 		done = true;
 	}
 
-	const int mn = 100;
-	const int mq = 100;
+	C int mn = 100;
+	C int mq = 100;
 	int n = rd(1, mn);
 	int q = rd(1, mq);
 

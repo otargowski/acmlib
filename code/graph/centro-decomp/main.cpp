@@ -12,10 +12,10 @@
  * 	\texttt{root} to korzeń drzewa CD.
  */
 struct CentroDecomp {
-	const V<V<int>> &graph; // tu
+	C V<V<int>> &graph; // tu
 	V<int> par, podsz, odwi;
 	int odwi_cnt = 1;
-	const int INF = int(1e9);
+	C int INF = int(1e9);
 	int root;
 	void refresh() { ++odwi_cnt; }
 	void visit(int v) { odwi[v] = max(odwi[v], odwi_cnt); }

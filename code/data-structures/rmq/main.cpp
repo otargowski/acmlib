@@ -4,7 +4,7 @@
  */
 struct RMQ {
 	V<V<int>> st;
-	RMQ(const V<int> &a) {
+	RMQ(C V<int> &a) {
 		int n = ssize(a), lg = 0;
 		while((1 << lg) < n) lg++;
 		st.resize(lg + 1, a);

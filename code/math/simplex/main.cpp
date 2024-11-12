@@ -6,7 +6,7 @@
 #define FIND(n, expr) [&] { REP(i, n) if(expr) return i; return -1; }()
 struct Simplex {
 	using T = double;
-	const T eps = 1e-9, inf = 1/.0;
+	C T eps = 1e-9, inf = 1/.0;
 	int n, m;
 	V<int> N, B;
 	V<V<T>> A;

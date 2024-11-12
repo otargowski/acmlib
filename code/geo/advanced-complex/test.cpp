@@ -51,7 +51,7 @@ void test() {
 	assert(rel_equal_P(project(p, a, b), intersection(a, b, p, r)));
 
 	auto t = p;
-	const int st = rd(1, 10);
+	C int st = rd(1, 10);
 	REP(i, st) {
 		t = rotate(t, a, 2.0L * pi / st);
 		assert((i != st - 1) ^ rel_equal_P(t, p));

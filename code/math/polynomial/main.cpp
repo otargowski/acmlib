@@ -16,10 +16,10 @@
  */
 #include "../ntt/main.cpp"
 // BEGIN HASH
-vi mod_xn(const vi& a, int n) { // KONIECZNE
+vi mod_xn(C vi& a, int n) { // KONIECZNE
 	return vi(a.begin(), a.begin() + min(n, ssize(a)));
 }
-void sub(vi& a, const vi& b) { // KONIECZNE
+void sub(vi& a, C vi& b) { // KONIECZNE
 	a.resize(max(ssize(a), ssize(b)));
 	REP(i, ssize(b)) a[i] = sub(a[i], b[i]);
 } // END HASH
@@ -40,7 +40,7 @@ vi integr(vi a) {
 	return a;
 } // END HASH
 // BEGIN HASH
-vi powi_deg(const vi& a, int k, int n) {
+vi powi_deg(C vi& a, int k, int n) {
 	assert(ssize(a) and a[0] != 0);
 	vi v(n), f(n, 1);
 	v[0] = powi(a[0], k);
@@ -56,7 +56,7 @@ vi powi_deg(const vi& a, int k, int n) {
 	return v;
 } // END HASH
 // BEGIN HASH
-vi powi_slow(const vi &a, int k, int n) {
+vi powi_slow(C vi &a, int k, int n) {
 	vi v{1}, b = mod_xn(a, n);
 	int x = 1; while(x < n) x *= 2;
 	while(k) {
@@ -75,10 +75,10 @@ vi powi_slow(const vi &a, int k, int n) {
 	return mod_xn(v, n);
 } // END HASH
 // BEGIN HASH
-vi sqrt(const vi& a, int n) {
+vi sqrt(C vi& a, int n) {
 	auto at = [&](int i) { if(i < ssize(a)) return a[i]; else return 0; };
 	assert(ssize(a) and a[0] == 1);
-	const int inv2 = inv(2);
+	C int inv2 = inv(2);
 	vi v{1}, f{1}, g{1};
 	for(int x = 1; x < n; x *= 2) {
 		vi z = v;
@@ -105,7 +105,7 @@ vi sqrt(const vi& a, int n) {
 	return mod_xn(v, n);
 } // END HASH
 // BEGIN HASH
-vi inv(const vi& a, int n) {
+vi inv(C vi& a, int n) {
 	assert(ssize(a) and a[0] != 0);
 	vi v{inv(a[0])};
 	for(int x = 1; x < n; x *= 2) {
@@ -122,12 +122,12 @@ vi inv(const vi& a, int n) {
 	return mod_xn(v, n);
 } // END HASH
 // BEGIN HASH
-vi log(const vi& a, int n) { // WYMAGA deriv, integr, inv
+vi log(C vi& a, int n) { // WYMAGA deriv, integr, inv
 	assert(ssize(a) and a[0] == 1);
 	return integr(mod_xn(conv(deriv(mod_xn(a, n)), inv(a, n)), n - 1));
 } // END HASH
 // BEGIN HASH
-vi exp(const vi& a, int n) { // WYMAGA deriv, integr
+vi exp(C vi& a, int n) { // WYMAGA deriv, integr
 	assert(a.empty() or a[0] == 0);
 	vi v{1}, f{1}, g, h{0}, s;
 	for(int x = 1; x < n; x *= 2) {
@@ -166,7 +166,7 @@ vi exp(const vi& a, int n) { // WYMAGA deriv, integr
 	return mod_xn(v, n);
 } // END HASH
 // BEGIN HASH
-vi powi(const vi& a, int k, int n) { // WYMAGA log, exp
+vi powi(C vi& a, int k, int n) { // WYMAGA log, exp
 	vi v = mod_xn(a, n);
 	int cnt = 0;
 	while(cnt < ssize(v) and !v[cnt])
@@ -188,7 +188,7 @@ vi powi(const vi& a, int k, int n) { // WYMAGA log, exp
 	return v;
 } // END HASH
 // BEGIN HASH
-pair<vi, vi> div_slow(vi a, const vi& b) {
+pair<vi, vi> div_slow(vi a, C vi& b) {
 	vi x;
 	while(ssize(a) >= ssize(b)) {
 		x.eb(mul(a.back(), inv(b.back())));
@@ -200,8 +200,8 @@ pair<vi, vi> div_slow(vi a, const vi& b) {
 	reverse(all(x));
 	return {x, a};
 }
-pair<vi, vi> div(vi a, const vi& b) { // WYMAGA inv, div_slow
-	const int d = ssize(a) - ssize(b) + 1;
+pair<vi, vi> div(vi a, C vi& b) { // WYMAGA inv, div_slow
+	C int d = ssize(a) - ssize(b) + 1;
 	if (d <= 0)
 		return {{}, a};
 	if (min(d, ssize(b)) < 250)
@@ -221,7 +221,7 @@ vi build(V<vi> &tree, int v, auto l, auto r) {
 	}
 } // END HASH
 // BEGIN HASH
-int eval_single(const vi& a, int x) {
+int eval_single(C vi& a, int x) {
 	int y = 0;
 	for (int i = ssize(a) - 1; i >= 0; --i) {
 		y = mul(y, x);
@@ -229,7 +229,7 @@ int eval_single(const vi& a, int x) {
 	}
 	return y;
 }
-vi eval_helper(const vi& a, V<vi>& tree, int v, auto l, auto r) {
+vi eval_helper(C vi& a, V<vi>& tree, int v, auto l, auto r) {
 	if (r - l == 1) {
 		return {eval_single(a, *l)};
 	} else {
@@ -240,7 +240,7 @@ vi eval_helper(const vi& a, V<vi>& tree, int v, auto l, auto r) {
 		return A;
 	}
 }
-vi eval(const vi& a, const vi& x) { // WYMAGA div, eval_single, build, eval_helper
+vi eval(C vi& a, C vi& x) { // WYMAGA div, eval_single, build, eval_helper
 	if (x.empty())
 		return {};
 	V<vi> tree(4 * ssize(x));
@@ -248,7 +248,7 @@ vi eval(const vi& a, const vi& x) { // WYMAGA div, eval_single, build, eval_help
 	return eval_helper(a, tree, 1, begin(x), end(x));
 } // END HASH
 // BEGIN HASH
-vi inter_helper(const vi& a, V<vi>& tree, int v, auto l, auto r, auto ly, auto ry) {
+vi inter_helper(C vi& a, V<vi>& tree, int v, auto l, auto r, auto ly, auto ry) {
 	if (r - l == 1) {
 		return {mul(*ly, inv(a[0]))};
 	}
@@ -264,7 +264,7 @@ vi inter_helper(const vi& a, V<vi>& tree, int v, auto l, auto r, auto ly, auto r
 		return L;
 	}
 }
-vi inter(const vi& x, const vi& y) { // WYMAGA deriv, div, build, inter_helper
+vi inter(C vi& x, C vi& y) { // WYMAGA deriv, div, build, inter_helper
 	assert(ssize(x) == ssize(y));
 	if (x.empty())
 		return {};

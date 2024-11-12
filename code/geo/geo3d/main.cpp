@@ -2,23 +2,23 @@
  * Opis: Geo3d od Warsaw Eagles.
  */
 using LD = long double;
-const LD kEps = 1e-9;
-const LD kPi = acosl(-1);
+C LD kEps = 1e-9;
+C LD kPi = acosl(-1);
 LD Sq(LD x) { return x * x; }
 struct Point {
 	LD x, y;
 	Point() {}
 	Point(LD a, LD b) : x(a), y(b) {}
-	Point(const Point& a) : Point(a.x, a.y) {}
-	void operator=(const Point &a) { x = a.x; y = a.y; }
-	Point operator+(const Point &a) const { Point p(x + a.x, y + a.y); return p; }
-	Point operator-(const Point &a) const { Point p(x - a.x, y - a.y); return p; }
-	Point operator*(LD a) const { Point p(x * a, y * a); return p; }
-	Point operator/(LD a) const { assert(abs(a) > kEps); Point p(x / a, y / a); return p; }
-	Point &operator+=(const Point &a) { x += a.x; y += a.y; return *this; }
-	Point &operator-=(const Point &a) { x -= a.x; y -= a.y; return *this; }
-	LD CrossProd(const Point &a) const { return x * a.y - y * a.x; }
-	LD CrossProd(Point a, Point b) const { a -= *this; b -= *this; return a.CrossProd(b); }
+	Point(C Point& a) : Point(a.x, a.y) {}
+	void operator=(C Point &a) { x = a.x; y = a.y; }
+	Point operator+(C Point &a) C { Point p(x + a.x, y + a.y); return p; }
+	Point operator-(C Point &a) C { Point p(x - a.x, y - a.y); return p; }
+	Point operator*(LD a) C { Point p(x * a, y * a); return p; }
+	Point operator/(LD a) C { assert(abs(a) > kEps); Point p(x / a, y / a); return p; }
+	Point &operator+=(C Point &a) { x += a.x; y += a.y; return *this; }
+	Point &operator-=(C Point &a) { x -= a.x; y -= a.y; return *this; }
+	LD CrossProd(C Point &a) C { return x * a.y - y * a.x; }
+	LD CrossProd(Point a, Point b) C { a -= *this; b -= *this; return a.CrossProd(b); }
 };
 struct Line {
 	Point p[2];
@@ -66,7 +66,7 @@ struct P3 {
 		return {q[1] * p[2] - q[2] * p[1], q[2] * p[0] - q[0] * p[2],
 						q[0] * p[1] - q[1] * p[0]};
 	}
-	bool LexCmp(P3 &a, const P3 &b) {
+	bool LexCmp(P3 &a, C P3 &b) {
 		if (abs(a.x - b.x) > kEps) return a.x < b.x;
 		if (abs(a.y - b.y) > kEps) return a.y < b.y;
 		return a.z < b.z;
@@ -254,7 +254,7 @@ LD DistS(P3 a, P3 b) { return atan2l(b.CrossProd(a).Norm(), a.DotProd(b)); }
 struct CircleS {
 	P3 o; // center of circle on sphere
 	LD r; // arc len
-	LD area() const { return 2 * kPi * (1 - cos(r)); }
+	LD area() C { return 2 * kPi * (1 - cos(r)); }
 };
 CircleS From3(P3 a, P3 b, P3 c) { // any three different points
 	int tmp = 1;

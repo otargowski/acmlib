@@ -72,7 +72,7 @@ Q connect(Q a, Q b) {
 	splice(q->r(), b);
 	return q;
 }
-pair<Q, Q> rec(const V<PI>& s) {
+pair<Q, Q> rec(C V<PI>& s) {
 	if (ssize(s) <= 3) {
 		Q a = makeEdge(s[0], s[1]);
 		Q b = makeEdge(s[1], s.back());

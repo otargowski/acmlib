@@ -25,7 +25,7 @@ void test() {
 	for (auto x : ss)
 		assert(sa.is_inside(x));
 
-	const int opcnt = 1e3;
+	C int opcnt = 1e3;
 	REP(ii,opcnt) {
 		auto x = random_vec(n + 1, r);
 		assert(sa.is_inside(x) == (ss.find(x) != ss.end()));

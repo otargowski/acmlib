@@ -8,7 +8,7 @@ void test() {
 	Fenwick2d tree(limx);
 
 	V<pii> points;
-	const int sz = rd(0, 10);
+	C int sz = rd(0, 10);
 	REP(i, sz) {
 		points.eb(rd(0, limx - 1), rd(0, limy - 1));
 	}

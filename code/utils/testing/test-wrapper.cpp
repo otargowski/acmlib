@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 		try {
 			test();
 		}
-		catch(const exception &e) {
+		catch(C exception &e) {
 			cout << "WA\n";
 			return 1;
 		}

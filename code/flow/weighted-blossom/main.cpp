@@ -6,8 +6,8 @@
  */
 #define pii pii
 namespace weighted_matching{
-const int INF = (int)1e9 + 7;
-const int MAXN = 1050; //double of possible N
+C int INF = (int)1e9 + 7;
+C int MAXN = 1050; //double of possible N
 struct E{
 	int x, y, w;
 };

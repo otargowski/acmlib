@@ -3,8 +3,8 @@
 #include "../../geo/intersect-lines/main.cpp"
 #include "main.cpp"
 
-const int max_z = 1000;
-const int INF = 10 * max_z;
+C int max_z = 1000;
+C int INF = 10 * max_z;
 int rd_coord() {
 	return rd(-max_z, max_z);
 };
@@ -44,12 +44,12 @@ void test() {
 		return 3 * n - 6;
 	};
 
-	const int max_n = 20;
-	const int n = rd(0, max_n);
-	const int limit = n < 12 and rd(0, 1) ? 4 : 5;
-	const int m = rd(0, max_number_of_edges(n));
+	C int max_n = 20;
+	C int n = rd(0, max_n);
+	C int limit = n < 12 and rd(0, 1) ? 4 : 5;
+	C int m = rd(0, max_number_of_edges(n));
 
-	const auto points = gen_noncollinear_points(n);
+	C auto points = gen_noncollinear_points(n);
 	debug(points);
 
 	V<V<int>> graph(n);
@@ -84,7 +84,7 @@ void test() {
 	}
 	debug(graph);
 
-	const auto color = coloring(graph, limit);
+	C auto color = coloring(graph, limit);
 	debug(color);
 	assert(ssize(color) == n);
 	for (auto c : color)

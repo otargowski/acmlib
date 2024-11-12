@@ -2,18 +2,18 @@
 #include "main.cpp"
 
 template<typename T>
-bool contains(const V<T>& v, T x) {
+bool contains(C V<T>& v, T x) {
 	return find(all(v), x) != v.end();
 }
 
-bool is_edge_coverable(int n, const V<pii>& edges) {
+bool is_edge_coverable(int n, C V<pii>& edges) {
 	V<int> vis(n, 1);
 	for (auto [a, b] : edges)
 		vis[a] = vis[b] = 0;
 	return n == 0 or *max_element(all(vis)) == 0;
 }
 
-bool is_edge_cover(int n, const V<pii>& edges, const V<pii>& edge_cover) {
+bool is_edge_cover(int n, C V<pii>& edges, C V<pii>& edge_cover) {
 	auto doubled_edges = edges;
 	for (auto [a, b] : edges)
 		doubled_edges.eb(b, a);
@@ -27,7 +27,7 @@ bool is_edge_cover(int n, const V<pii>& edges, const V<pii>& edge_cover) {
 	return n == 0 or *max_element(all(vis)) == 0;
 }
 
-int brute_edge_cover(int n, const V<pii>& edges) {
+int brute_edge_cover(int n, C V<pii>& edges) {
 	int ans = ssize(edges);
 	REP(mask, 1 << ssize(edges)) {
 		V<pii> edge_cover;
@@ -40,7 +40,7 @@ int brute_edge_cover(int n, const V<pii>& edges) {
 	return ans;
 }
 
-bool is_independent_set(int n, const V<pii>& edges, const V<int> independent_set) {
+bool is_independent_set(int n, C V<pii>& edges, C V<int> independent_set) {
 	assert(independent_set.empty() or *min_element(all(independent_set)) >= 0);
 	assert(independent_set.empty() or *max_element(all(independent_set)) < n);
 	for (auto [a, b] : edges)
@@ -49,7 +49,7 @@ bool is_independent_set(int n, const V<pii>& edges, const V<int> independent_set
 	return true;
 }
 
-int brute_independent_set(int n, const V<pii>& edges) {
+int brute_independent_set(int n, C V<pii>& edges) {
 	int ans = 0;
 	REP(mask, 1 << n) {
 		V<int> independent_set;
@@ -62,7 +62,7 @@ int brute_independent_set(int n, const V<pii>& edges) {
 	return ans;
 }
 
-bool is_vertex_cover(int n, const V<pii>& edges, const V<int> vertex_cover) {
+bool is_vertex_cover(int n, C V<pii>& edges, C V<int> vertex_cover) {
 	assert(vertex_cover.empty() or *min_element(all(vertex_cover)) >= 0);
 	assert(vertex_cover.empty() or *max_element(all(vertex_cover)) < n);
 	for (auto [a, b] : edges)
@@ -71,7 +71,7 @@ bool is_vertex_cover(int n, const V<pii>& edges, const V<int> vertex_cover) {
 	return true;
 }
 
-int brute_vertex_cover(int n, const V<pii>& edges) {
+int brute_vertex_cover(int n, C V<pii>& edges) {
 	int ans = ssize(edges);
 	REP(mask, 1 << n) {
 		V<int> vertex_cover;
@@ -85,8 +85,8 @@ int brute_vertex_cover(int n, const V<pii>& edges) {
 }
 
 void test() {
-	const int max_side = 7;
-	const int max_edges = 15;
+	C int max_side = 7;
+	C int max_edges = 15;
 
 	int n0 = rd(0, max_side), n1 = rd(0, max_side);
 	int n = n0 + n1;
