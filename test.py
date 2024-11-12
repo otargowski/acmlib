@@ -60,6 +60,8 @@ for root, subdirs, files in os.walk(root_dir + '/' + testing_dir):
 
         todolist.append((tested, code_name))
 
+if len(sys.argv) != 1:
+    exit(0)
 print("Updating readme")
 os.chdir(root_dir)
 with open('README.md', 'r') as readme_f:

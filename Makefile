@@ -7,6 +7,7 @@ help:
 	@echo ""
 	@echo "Available commands are:"
 	@echo "	make pdf	- to build KACTL"
+	@echo "	make test	- to run tests"
 	@echo "	make clean	- to remove the pdf"
 	@echo "	make help	- to show this information"
 	@echo ""
@@ -17,7 +18,13 @@ pdf:
 	$(LATEXCMD) code/main.tex </dev/null
 	cp pdf/build/main.pdf main.pdf
 
+test: $(patsubst code/%, .make/%, $(shell find code -name 'main.cpp'))
+
+.make/%/main.cpp: code/%/*
+	python test.py $(subst .make/, code/, $(@:/main.cpp=))
+	mkdir -p $(@D) && touch $@
+
 clean: 
 	rm -f main.pdf
 
-.PHONY: help pdf clean 
+.PHONY: help pdf clean test-all

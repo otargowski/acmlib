@@ -4,10 +4,15 @@ Credits for make: https://github.com/kth-competitive-programming/kactl/
 
 ```
 make pdf
-python test.py
+make test
 ```
-do `test.py` można dać ścieżkę do odpowiedniego folderu jak chce się wytestować mniej kodów.
-Wtedy i tak odpowiednio zmodyfikuje poniższą todolistę.
+
+### Zależności
+
+#### Arch linux
+```sh
+pacman -S texlive-{fontsextra,latexextra,luatex,pstricks} ttf-ubuntu-font-family
+```
 
 ## Testing status
 - [ ] geo/geo3d
