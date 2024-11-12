@@ -22,7 +22,7 @@
  *   Ważne też jest, aby zapewnić, żeby konstruowany oryginalny graf
  *   nie musiał zawierać multikrawędzi.
  */
-pair<bool, V<pair<int, int>>> get_original_graph(int line_n, V<pair<int, int>> line_edges) {
+pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 	V<V<int>> line_graph(line_n);
 	for(auto &[v, u] : line_edges) {
 		line_graph[v].emplace_back(u);
@@ -39,14 +39,14 @@ pair<bool, V<pair<int, int>>> get_original_graph(int line_n, V<pair<int, int>> l
 		else
 			line_vertex_reduced_to[v] = line_neighbors_repeated[neigh_with_v];
 	}
-	V<pair<int, int>> ans(line_n, pair(-1, -1));
+	V<pii> ans(line_n, pair(-1, -1));
 	V<bool> visited(line_n, false);
 	REP(v, line_n)
 		if(line_vertex_reduced_to[v] != -1)
 			visited[v] = true;
 	int og_cnt_fixed_v = 0;
 	map<int, int> og_deg_visited;
-	set<pair<int, int>> og_used_edges;
+	set<pii> og_used_edges;
 	auto save_edge = [&](int line_v) {
 		assert(ans[line_v].first != -1);
 		int v = ans[line_v].first;
@@ -82,8 +82,8 @@ pair<bool, V<pair<int, int>>> get_original_graph(int line_n, V<pair<int, int>> l
 						que_i_to_visited_neighbors[que_i].emplace_back(line_u);
 					}
 				if(og_n <= 4) {
-					function<bool (int, int, set<pair<int, int>>&)> backtrack
-							= [&](int new_og_n, int i, set<pair<int, int>> &used_edges) {
+					function<bool (int, int, set<pii>&)> backtrack
+							= [&](int new_og_n, int i, set<pii> &used_edges) {
 						if(i == que_i + 1)
 							return true;
 						REP(v, new_og_n)
@@ -122,7 +122,7 @@ pair<bool, V<pair<int, int>>> get_original_graph(int line_n, V<pair<int, int>> l
 					};
 					og_n = [&] {
 						for(int ret = 2; ret <= 8; ++ret) {
-							set<pair<int, int>> used_edges;
+							set<pii> used_edges;
 							if(backtrack(ret, 0, used_edges))
 								return ret;
 						}
@@ -139,7 +139,7 @@ pair<bool, V<pair<int, int>>> get_original_graph(int line_n, V<pair<int, int>> l
 						if(deg == og_deg_visited[og_v])
 							candidates.emplace(og_v);
 					auto get_best_cover = [&] {
-						pair<int, int> found_cover_2 = {-1, -1};
+						pii found_cover_2 = {-1, -1};
 						for(int og_v_cover0 : {
 								ans[que_i_to_visited_neighbors[que_i].front()].first,
 								ans[que_i_to_visited_neighbors[que_i].front()].second,

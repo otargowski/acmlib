@@ -67,7 +67,7 @@ void test() {
 	// check renumerate_vertices
 	auto ren_graph = renumerate_vertices(graph, id);
 	assert(ssize(ren_graph) == n);
-	multiset<pair<int, int>> original, renumerated;
+	multiset<pii> original, renumerated;
 	REP (i, n) {
 		for (int j : graph[i])
 			original.emplace(id[i], id[j]);

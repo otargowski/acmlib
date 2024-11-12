@@ -13,7 +13,7 @@ bool is_planar(V<V<int>> graph) {
 	V<int> low(n, -1), pre(n);
 	REP(start, n)
 		if(low[start] == -1) {
-			V<pair<int, int>> e_up;
+			V<pii> e_up;
 			int tm = 0;
 			function<void (int, int)> dfs_low = [&](int v, int p) {
 				low[v] = pre[v] = tm++;

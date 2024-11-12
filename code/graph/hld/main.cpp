@@ -43,8 +43,8 @@ struct HLD {
 		}
 		return (pre[v] < pre[u] ? v : u);
 	}
-	V<pair<int, int>> path_up(int v, int u) {
-		V<pair<int, int>> ret;
+	V<pii> path_up(int v, int u) {
+		V<pii> ret;
 		while(nxt[v] != nxt[u]) {
 			ret.emplace_back(pre[nxt[v]], pre[v]);
 			v = par[nxt[v]];
@@ -53,7 +53,7 @@ struct HLD {
 		return ret;
 	}
 	int get_vertex(int v) { return pre[v]; }
-	V<pair<int, int>> get_path(int v, int u, bool add_lca = true) {
+	V<pii> get_path(int v, int u, bool add_lca = true) {
 		int w = lca(v, u);
 		auto ret = path_up(v, w);
 		auto path_u = path_up(u, w);
@@ -61,5 +61,5 @@ struct HLD {
 		ret.insert(ret.end(), path_u.begin(), path_u.end());
 		return ret;
 	}
-	pair<int, int> get_subtree(int v) { return {pre[v], pos[v] - 1}; }
+	pii get_subtree(int v) { return {pre[v], pos[v] - 1}; }
 };

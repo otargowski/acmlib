@@ -3,9 +3,9 @@
  */
 #include "../matching/main.cpp"
 // BEGIN HASH
-V<pair<int, int>> get_min_edge_cover(V<V<int>> graph) {
+V<pii> get_min_edge_cover(V<V<int>> graph) {
 	V<int> match = Matching(graph)().second;
-	V<pair<int, int>> ret;
+	V<pii> ret;
 	REP(v, ssize(match))
 		if(match[v] != -1 and v < match[v])
 			ret.emplace_back(v, match[v]);

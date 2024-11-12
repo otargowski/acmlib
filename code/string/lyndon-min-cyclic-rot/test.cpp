@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-void assert_is_valid_lyndon_factorization(V<int> s, V<pair<int, int>> fact) {
+void assert_is_valid_lyndon_factorization(V<int> s, V<pii> fact) {
 	debug(s, fact);
 	REP(i, ssize(fact) - 1)
 		assert(fact[i].second + 1 == fact[i + 1].first);

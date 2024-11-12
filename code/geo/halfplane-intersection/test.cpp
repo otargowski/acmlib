@@ -10,7 +10,7 @@ ostream& operator<<(ostream &o, __int128 x) {
 #include "../../math/bignum/main.cpp"
 
 using Frac = pair<Num, Num>;
-using PInt = pair<int, int>;
+using PInt = pii;
 using PFrac = pair<Frac, Frac>;
 using HalfplanePInt = pair<PInt, PInt>; // (punkt p, V pq)
 

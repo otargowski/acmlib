@@ -12,7 +12,7 @@
  * Wśród sąsiadów zawsze jest najbliższy wierzchołek.
  * Euclidean min. spanning tree to podzbiór krawędzi.
  */
-using PI = pair<int, int>;
+using PI = pii;
 typedef struct Quad* Q;
 PI distinct(INT_MAX, INT_MAX);
 ll dist2(PI p) {

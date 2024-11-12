@@ -2,7 +2,7 @@
  * Opis: O(\log n) na każdą operację dodania,
  *   Wyznacza górną otoczkę wypukłą online.
  */
-using P = pair<int, int>;
+using P = pii;
 ll operator*(P l, P r) {
 	return l.first * ll(r.second) - l.second * ll(r.first);
 }

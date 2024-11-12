@@ -4,7 +4,7 @@
  *   pdfcompile, weighted\_matching::init(n), weighted\_matching::add\_edge(a, b, c)
  *   V<pii> temp, weighted\_matching::solve(temp).first
  */
-#define pii pair<int, int>
+#define pii pii
 namespace weighted_matching{
 const int INF = (int)1e9 + 7;
 const int MAXN = 1050; //double of possible N

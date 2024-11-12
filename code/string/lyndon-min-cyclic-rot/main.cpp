@@ -6,9 +6,9 @@
  * \texttt{min\_suffix("abacab") == "ab"},
  * \texttt{min\_cyclic\_shift("abacaba") == "aabacab"}.
  */
-V<pair<int, int>> duval(V<int> s) {
+V<pii> duval(V<int> s) {
 	int n = ssize(s), i = 0;
-	V<pair<int, int>> ret;
+	V<pii> ret;
 	while(i < n) {
 		int j = i + 1, k = i;
 		while(j < n and s[k] <= s[j]) {

@@ -12,7 +12,7 @@ struct SuffixTree {
 	const int n;
 	const V<int> &_in;
 	V<map<int, int>> sons;
-	V<pair<int, int>> up_edge_range;
+	V<pii> up_edge_range;
 	V<int> parent, slink;
 	int tv = 0, tp = 0, ts = 2, la = 0;
 	void ukkadd(int c) {

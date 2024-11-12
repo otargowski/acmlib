@@ -60,7 +60,7 @@ PathAns merge(PathAns down, PathAns up) {
 struct OperationJumpPtr {
 	SimpleJumpPtr ptr;
 	V<V<PathAns>> ans_jmp;
-	OperationJumpPtr(V<V<pair<int, int>>> g, int root = 0) {
+	OperationJumpPtr(V<V<pii>> g, int root = 0) {
 		debug(g, root);
 		int n = ssize(g);
 		V<V<int>> unweighted_g(n);

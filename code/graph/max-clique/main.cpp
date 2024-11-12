@@ -6,23 +6,23 @@
 constexpr int max_n = 500;
 V<int> get_max_clique(V<bitset<max_n>> e) {
 	double limit = 0.025, pk = 0;
-	V<pair<int, int>> V;
+	V<pii> V;
 	V<V<int>> C(ssize(e) + 1);
 	V<int> qmax, q, S(ssize(C)), old(S);
 	REP(i, ssize(e)) V.emplace_back(0, i);
-	auto init = [&](V<pair<int, int>>& r) {
+	auto init = [&](V<pii>& r) {
 		for (auto& v : r) for (auto j : r) v.first += e[v.second][j.second];
 		sort(r.rbegin(), r.rend());
 		int mxD = r[0].first;
 		REP(i, ssize(r)) r[i].first = min(i, mxD) + 1;
 	};
-	function<void (V<pair<int, int>>&, int)> expand = [&](V<pair<int, int>>& R, int lev) {
+	function<void (V<pii>&, int)> expand = [&](V<pii>& R, int lev) {
 		S[lev] += S[lev - 1] - old[lev];
 		old[lev] = S[lev - 1];
 		while (ssize(R)) {
 			if (ssize(q) + R.back().first <= ssize(qmax)) return;
 			q.emplace_back(R.back().second);
-			V<pair<int, int>> T;
+			V<pii> T;
 			for(auto [_, v] : R) if (e[R.back().second][v]) T.emplace_back(0, v);
 			if (ssize(T)) {
 				if (S[lev]++ / ++pk < limit) init(T);

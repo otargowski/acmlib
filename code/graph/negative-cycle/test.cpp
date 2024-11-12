@@ -4,7 +4,7 @@
 void test() {
 	int n = rd(1, 20);
 	int m = rd(0, n * n);
-	V<V<pair<int, int>>> graph(n);
+	V<V<pii>> graph(n);
 	while(m --> 0)
 		graph[rd(0, n - 1)].emplace_back(rd(0, n - 1), rd(-2 * n, 2 * n));
 	debug(graph);

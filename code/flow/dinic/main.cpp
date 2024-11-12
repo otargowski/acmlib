@@ -60,8 +60,8 @@ struct Dinic {
 		}
 		return answer;
 	}
-	map<pair<int, int>, T> get_flowing() {
-		map<pair<int, int>, T> ret;
+	map<pii, T> get_flowing() {
+		map<pii, T> ret;
 		REP(v, n)
 			for(int i : graph[v]) {
 				if(i % 2) // considering only original edges

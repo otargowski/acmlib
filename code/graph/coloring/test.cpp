@@ -53,7 +53,7 @@ void test() {
 	debug(points);
 
 	V<V<int>> graph(n);
-	set<pair<int, int>> edges;
+	set<pii> edges;
 	REP(i, m) {
 		while (true) {
 			int a = rd(0, n - 1);

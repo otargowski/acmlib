@@ -4,7 +4,7 @@
 void test() {
 	int n = rd(1, 100);
 	int q = rd(1, 100);
-	set<pair<int, int>> cur;
+	set<pii> cur;
 	MajorizedSet<int, int> tes;
 	REP (i, q) {
 		int a = rd(1, n), b = rd(1, n);

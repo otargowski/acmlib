@@ -1,10 +1,10 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-V<pair<int, int>> ranges_of_values(V<int> in) {
+V<pii> ranges_of_values(V<int> in) {
 	if(in.empty())
 		return {};
-	V<pair<int, int>> ret = {{in[0], in[0]}};
+	V<pii> ret = {{in[0], in[0]}};
 	FOR(i, 1, ssize(in) - 1)
 		if(in[i] == in[i - 1] + 1)
 			ret.back().second += 1;

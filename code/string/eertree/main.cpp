@@ -69,10 +69,10 @@ V<Dp> palindromic_split_dp(V<int> str, bool only_even_lens = false) {
 	return ans;
 } // END HASH
 // BEGIN HASH
-V<pair<int, int>> construct_min_palindromic_split(V<Dp> ans) {
+V<pii> construct_min_palindromic_split(V<Dp> ans) {
 	if(ans.back().mn == ssize(ans) + 1)
 		return {};
-	V<pair<int, int>> split = {{0, ssize(ans) - 1}};
+	V<pii> split = {{0, ssize(ans) - 1}};
 	while(ans[split.back().second].mn_i != -1)
 		split.emplace_back(0, ans[split.back().second].mn_i);
 	reverse(split.begin(), split.end());

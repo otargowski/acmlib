@@ -10,7 +10,7 @@ V<int> coloring(const V<V<int>>& graph, const int limit = 5) {
 	function<V<int>(V<bool>)> solve = [&](const V<bool>& active) {
 		if (not *max_element(active.begin(), active.end()))
 			return V (n, -1);
-		pair<int, int> best = {n, -1};
+		pii best = {n, -1};
 		REP(i, n) {
 			if (not active[i])
 				continue;

@@ -1,16 +1,15 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-using PII = pair<int, int>;
 #define ST first
 #define ND second
 
 void test() {
-	V<PII> f;
-	auto eval = [&](PII p, int x) { return p.ST * x + p.ND; };
+	V<pii> f;
+	auto eval = [&](pii p, int x) { return p.ST * x + p.ND; };
 	auto get = [&](int x) {
 		int ret = -1e9;
-		for(PII &p : f) ret = max(ret, eval(p, x));
+		for(pii &p : f) ret = max(ret, eval(p, x));
 		return ret;
 	};
 

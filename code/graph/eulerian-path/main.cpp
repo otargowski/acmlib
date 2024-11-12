@@ -5,7 +5,7 @@
  * \texttt{vertices} zawiera listę wierzchołków na tej ścieżce.
  * Dla cyklu, \texttt{vertices[0] == vertices[m]}.
  */
-tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pair<int, int>> &edges, bool directed) {
+tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pii> &edges, bool directed) {
 	V<int> in(n);
 	V<V<int>> adj(n);
 	int start = 0;

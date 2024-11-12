@@ -4,7 +4,7 @@
  */
 enum Event_type { Add, Remove, Query };
 V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
-	V<pair<int, int>> queries;
+	V<pii> queries;
 	for(auto &[v, u, t] : events) {
 		if(v > u)
 			swap(v, u);
@@ -14,10 +14,10 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 	int leaves = 1;
 	while(leaves < ssize(queries))
 		leaves *= 2;
-	V<V<pair<int, int>>> edges_to_add(2 * leaves);
-	map<pair<int, int>, deque<int>> edge_longevity;
+	V<V<pii>> edges_to_add(2 * leaves);
+	map<pii, deque<int>> edge_longevity;
 	int query_i = 0;
-	auto add = [&](int l, int r, pair<int, int> e) {
+	auto add = [&](int l, int r, pii e) {
 		if(l > r)
 			return;
 		debug(l, r, e);

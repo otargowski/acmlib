@@ -21,7 +21,7 @@ struct Face {
 ostream& operator<<(ostream &o, Face f) {
 	return o << pair(f.is_outside, f.sorted_edges);
 }
-V<Face> split_planar_to_faces(V<pair<int, int>> coord, V<pair<int, int>> edges) {
+V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 	int n = ssize(coord);
 	int E = ssize(edges);
 	V<V<int>> graph(n);
@@ -39,13 +39,13 @@ V<Face> split_planar_to_faces(V<pair<int, int>> coord, V<pair<int, int>> edges) 
 		return 2 * e + ((v != min(edges[e].first, edges[e].second)) ^ outward);
 	};
 	REP(v, n) {
-		V<pair<pair<int, int>, int>> sorted;
+		V<pair<pii, int>> sorted;
 		for(int e : graph[v]) {
 			auto p = coord[edges[e].first ^ edges[e].second ^ v];
 			auto center = coord[v];
 			sorted.emplace_back(pair(p.first - center.first, p.second - center.second), e);
 		}
-		sort(sorted.begin(), sorted.end(), [&](pair<pair<int, int>, int> l0, pair<pair<int, int>, int> r0) {
+		sort(sorted.begin(), sorted.end(), [&](pair<pii, int> l0, pair<pii, int> r0) {
 			auto l = l0.first;
 			auto r = r0.first;
 			bool half_l = l > pair(0, 0);
@@ -66,7 +66,7 @@ V<Face> split_planar_to_faces(V<pair<int, int>> coord, V<pair<int, int>> edges) 
 	REP(i, 2 * E)
 		comps[find(i)].emplace_back(i);
 	V<Face> polygons;
-	V<V<pair<int, int>>> outgoing_for_face(n);
+	V<V<pii>> outgoing_for_face(n);
 	REP(leader, 2 * E)
 		if(ssize(comps[leader])) {
 			for(int id : comps[leader]) {

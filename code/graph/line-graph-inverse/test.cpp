@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-V<V<int>> construct_graph(V<pair<int, int>> ans) {
+V<V<int>> construct_graph(V<pii> ans) {
 	V<V<int>> graph;
 	for(auto [v, u] : ans) {
 		int mx = max(v, u);
@@ -18,7 +18,7 @@ V<V<int>> construct_graph(V<pair<int, int>> ans) {
 void test() {
 	int line_n = rd(2, 6);
 	int line_m = rd(0, line_n * (line_n - 1) / 2);
-	set<pair<int, int>> line_edges;
+	set<pii> line_edges;
 	while(ssize(line_edges) < line_m) {
 		int v = rd(0, line_n - 1);
 		int u = rd(0, line_n - 1);
@@ -29,7 +29,7 @@ void test() {
 
 	set<V<V<int>>> matching_original_graphs;
 	for(int og_n = 0; (matching_original_graphs.empty() and og_n <= 2 * line_n) or og_n <= 5; ++og_n) {
-		V<pair<int, int>> ans(line_n, pair(-1, -1));
+		V<pii> ans(line_n, pair(-1, -1));
 		function<void (int)> backtrack = [&](int i) {
 			if(i == line_n) {
 				V<int> deg(og_n);

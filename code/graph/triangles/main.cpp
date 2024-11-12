@@ -9,7 +9,7 @@ struct Triangles {
 	__int128_t ys4 = 0, stars4 = 0;
 	Triangles(V<V<int>> &graph) {
 		int n = ssize(graph);
-		V<pair<int, int>> sorted_deg(n);
+		V<pii> sorted_deg(n);
 		REP(i, n)
 			sorted_deg[i] = {ssize(graph[i]), i};
 		sort(sorted_deg.begin(), sorted_deg.end());

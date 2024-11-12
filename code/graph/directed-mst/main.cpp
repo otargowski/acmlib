@@ -5,7 +5,7 @@
  * Zwraca (koszt, ojciec każdego wierzchołka w zwróconym drzewie).
  */
 struct RollbackUF {
-	V<int> e; V<pair<int, int>> st;
+	V<int> e; V<pii> st;
 	RollbackUF(int n) : e(n, -1) {}
 	int size(int x) { return -e[find(x)]; }
 	int find(int x) { return e[x] < 0 ? x : find(e[x]); }

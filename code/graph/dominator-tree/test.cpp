@@ -5,7 +5,7 @@ void test() {
 	assert(dominator_tree(V<V<int>>{{1,2},{3},{4},{4},{5},{}},0) == (V<V<int>>{{1,4,2},{3},{},{},{5},{}}));
 	int n = rd(1, 20);
 	int m = rd(n - 1, n * (n - 1) / 2);
-	set<pair<int, int>> edges;
+	set<pii> edges;
 	FOR(v, 1, n - 1)
 		edges.emplace(rd(0, v - 1), v);
 	while(ssize(edges) < m) {
@@ -59,7 +59,7 @@ void test() {
 
 	REP(v, n)
 		if(v != root) {
-			pair<int, int> smallest = {-1, -1};
+			pii smallest = {-1, -1};
 			REP(u, n)
 				if(u != v) {
 					V<bool> visited(n, false);

@@ -14,7 +14,7 @@ void test() {
 		}
 	in = angle_sort(in);
 
-	V<pair<int, int>> ret = angle180_intervals(in);
+	V<pii> ret = angle180_intervals(in);
 	assert(ssize(ret) == n);
 	debug(ret);
 

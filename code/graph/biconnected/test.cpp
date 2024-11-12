@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-int components_cnt(int n, V<pair<int, int>> edges, bool ignore_alone = false) {
+int components_cnt(int n, V<pii> edges, bool ignore_alone = false) {
 	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].emplace_back(u);
@@ -23,7 +23,7 @@ int components_cnt(int n, V<pair<int, int>> edges, bool ignore_alone = false) {
 	return ans;
 }
 
-bool is_cycle(int n, V<pair<int, int>> edges) {
+bool is_cycle(int n, V<pii> edges) {
 	if(components_cnt(n, edges, true) != 1)
 		return false;
 	V<int> deg(n);
@@ -37,12 +37,12 @@ bool is_cycle(int n, V<pair<int, int>> edges) {
 	return true;
 }
 
-bool is_bicon(int n, V<pair<int, int>> edges) {
+bool is_bicon(int n, V<pii> edges) {
 	if(components_cnt(n, edges, true) != 1)
 		return false;
 	V both_through_cycle(ssize(edges), V<bool>(ssize(edges)));
 	REP(subset_cycle, 1 << ssize(edges)) {
-		V<pair<int, int>> cycle;
+		V<pii> cycle;
 		V<int> idx;
 		REP(i, ssize(edges))
 			if((subset_cycle >> i) & 1) {
@@ -64,15 +64,15 @@ bool is_bicon(int n, V<pair<int, int>> edges) {
 	return valid or ssize(edges) == 1;
 }
 
-V<V<int>> bicons(int n, V<pair<int, int>> edges) {
+V<V<int>> bicons(int n, V<pii> edges) {
 	V<int> remaining_edges_id(ssize(edges));
 	iota(remaining_edges_id.begin(), remaining_edges_id.end(), 0);
 	V<V<int>> ret;
 
 	while(not remaining_edges_id.empty()) {
-		pair<int, int> biggest_bicon = {-1, -1};
+		pii biggest_bicon = {-1, -1};
 		REP(mask, 1 << ssize(remaining_edges_id)) {
-			V<pair<int, int>> sub_edges;
+			V<pii> sub_edges;
 			REP(i, ssize(remaining_edges_id))
 				if((mask >> i) & 1)
 					sub_edges.emplace_back(edges[remaining_edges_id[i]]);
@@ -92,11 +92,11 @@ V<V<int>> bicons(int n, V<pair<int, int>> edges) {
 	return ret;
 }
 
-V<int> arti_points(int n, V<pair<int, int>> edges) {
+V<int> arti_points(int n, V<pii> edges) {
 	int init_cnt = components_cnt(n, edges);
 	V<int> ret;
 	REP(deleted, n) {
-		V<pair<int, int>> sub_edges;
+		V<pii> sub_edges;
 		int cnt_edges_deleted = 0;
 		for(auto [v, u] : edges)
 			if(v != deleted and u != deleted)
@@ -114,7 +114,7 @@ V<int> arti_points(int n, V<pair<int, int>> edges) {
 	return ret;
 }
 
-V<int> bridges(int n, V<pair<int, int>> edges) {
+V<int> bridges(int n, V<pii> edges) {
 	int init_cnt = components_cnt(n, edges);
 	V<int> ret;
 	REP(deleted, ssize(edges)) {
@@ -129,7 +129,7 @@ V<int> bridges(int n, V<pair<int, int>> edges) {
 void test() {
 	int n = rd(2, 8);
 	int m = rd(0, 9);
-	V<pair<int, int>> edges(m);
+	V<pii> edges(m);
 	for(auto &[v, u] : edges) {
 		v = rd(0, n - 1);
 		u = rd(0, n - 1);

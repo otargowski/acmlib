@@ -3,7 +3,7 @@
 
 void test() {
 	int n = 1;
-	V<pair<int, int>> all_edges, cycle_edges;
+	V<pii> all_edges, cycle_edges;
 
 	auto add_edge = [&](int a, int b) {
 		all_edges.emplace_back(a, b);

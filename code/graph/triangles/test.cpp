@@ -5,8 +5,8 @@ void test() {
 	int n = 10;
 	n = rd(2, n);
 	int m = min(19, rd(0, n * n));
-	set<pair<int, int>> used;
-	V<pair<int, int>> edges;
+	set<pii> used;
+	V<pii> edges;
 	while(m --> 0) {
 		int v = rd(0, n - 1);
 		int u = rd(0, n - 1);

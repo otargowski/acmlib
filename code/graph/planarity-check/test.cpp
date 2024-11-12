@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-bool is_planar_brute(int n, V<pair<int, int>> edges) {
+bool is_planar_brute(int n, V<pii> edges) {
 	REP(mask, 1 << ssize(edges)) {
 		V<int> lead(n);
 		iota(lead.begin(), lead.end(), 0);
@@ -16,7 +16,7 @@ bool is_planar_brute(int n, V<pair<int, int>> edges) {
 		REP(v, n)
 			if(lead[v] == v)
 				leads.emplace_back(v);
-		set<pair<int, int>> new_edges;
+		set<pii> new_edges;
 		for(auto [v, u] : edges) {
 			v = find(v);
 			u = find(u);
@@ -86,7 +86,7 @@ bool is_planar_brute(int n, V<pair<int, int>> edges) {
 void test() {
 	int n = rd(1, 15);
 	int m = rd(0, min(13, n * (n - 1) / 2));
-	set<pair<int, int>> edges_set;
+	set<pii> edges_set;
 	while(ssize(edges_set) < m) {
 		int v = rd(0, n - 1);
 		int u = rd(0, n - 1);
@@ -103,7 +103,7 @@ void test() {
 	debug(graph);
 	bool ans_main = is_planar(graph);
 	debug(ans_main);
-	bool ans_brut = is_planar_brute(n, V<pair<int, int>>(edges_set.begin(), edges_set.end()));
+	bool ans_brut = is_planar_brute(n, V<pii>(edges_set.begin(), edges_set.end()));
 	debug(ans_brut);
 	assert(ans_main == ans_brut);
 }

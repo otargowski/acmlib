@@ -80,7 +80,7 @@ struct LimOracle {
 // Graphic matroid - each element is edge,
 // set is independent iff subgraph is acyclic.
 struct GraphOracle {
-	V<pair<int, int>> elems; // Ground set: graph edges
+	V<pii> elems; // Ground set: graph edges
 	int n; // Number of vertices, indexed [0;n-1]
 	V<int> par;
 	int find(int i) {
@@ -102,7 +102,7 @@ struct GraphOracle {
 // from graph number of connected components
 // doesn't change.
 struct CographOracle {
-	V<pair<int, int>> elems; // Ground set: graph edges
+	V<pii> elems; // Ground set: graph edges
 	int n; // Number of vertices, indexed [0;n-1]
 	V<V<int>> G;
 	V<int> pre, low;
@@ -121,7 +121,7 @@ struct CographOracle {
 		low.resize(n);
 		cnt = 0;
 		REP(i,ssize(S)) if (!S[i]) {
-			pair<int, int> e = elems[i];
+			pii e = elems[i];
 			G[e.first].emplace_back(e.second);
 			G[e.second].emplace_back(e.first);
 		}
@@ -129,7 +129,7 @@ struct CographOracle {
 	}
 	// Check if S+{k} is independent; time: O(1)
 	bool canAdd(int k) {
-		pair<int, int> e = elems[k];
+		pii e = elems[k];
 		return max(pre[e.first], pre[e.second]) != max(low[e.first], low[e.second]);
 	}
 };

@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-int get_max_matching(int n, V<pair<int, int>> edges) {
+int get_max_matching(int n, V<pii> edges) {
 	int answer = 0;
 	REP(mask, 1 << ssize(edges)) {
 		bool is_valid = true;
@@ -21,7 +21,7 @@ int get_max_matching(int n, V<pair<int, int>> edges) {
 	return answer;
 }
 
-bool is_valid_matching(int n, V<pair<int, int>> edges, V<int> match) {
+bool is_valid_matching(int n, V<pii> edges, V<int> match) {
 	REP(v, n)
 		if(match[v] != -1) {
 			bool found = false;
@@ -39,7 +39,7 @@ bool is_valid_matching(int n, V<pair<int, int>> edges, V<int> match) {
 void test() {
 	int n = rd(2, 14);
 	int m = min(15, rd(0, n * n));
-	V<pair<int, int>> edges(m);
+	V<pii> edges(m);
 	for(auto &[v, u] : edges) {
 		while(true) {
 			v = rd(0, n - 1);

@@ -14,7 +14,7 @@ V<int> de_brujin(int k, int n, bool is_path) {
 	int N = 1;
 	REP(i, n - 1)
 		N *= k;
-	V<pair<int, int>> edges;
+	V<pii> edges;
 	REP(i, N)
 		REP(j, k)
 			edges.emplace_back(i, i * k % N + j);

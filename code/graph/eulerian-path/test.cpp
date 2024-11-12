@@ -6,7 +6,7 @@ void test() {
 	const int n = rd(1, N);
 	const int m = rd(0, M);
 	const bool directed = rd(0, 1);
-	V<pair<int, int>> edges;
+	V<pii> edges;
 	REP(i, m)
 		edges.emplace_back(rd(0, n - 1), rd(0, n - 1));
 	debug(n, m, directed, edges);

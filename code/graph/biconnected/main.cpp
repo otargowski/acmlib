@@ -7,7 +7,7 @@
 struct Low {
 	V<V<int>> graph;
 	V<int> low, pre;
-	V<pair<int, int>> edges;
+	V<pii> edges;
 	V<V<int>> bicon;
 	V<int> bicon_stack, arti_points, bridges;
 	int gtime = 0;
@@ -47,7 +47,7 @@ struct Low {
 		if(is_arti)
 			arti_points.emplace_back(v);
 	}
-	Low(int n, V<pair<int, int>> _edges) : graph(n), low(n), pre(n, -1), edges(_edges) {
+	Low(int n, V<pii> _edges) : graph(n), low(n), pre(n, -1), edges(_edges) {
 		REP(i, ssize(edges)) {
 			auto [v, u] = edges[i];
 #ifdef LOCAL
