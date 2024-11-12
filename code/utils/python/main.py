@@ -7,8 +7,9 @@ def fill_fib(n):
   while len(fib_mem) <= n:
     fib_mem.append(fib_mem[-2] + fib_mem[-1])
 def main():
-  # Write here. Use PyPy. Don't use list of list -- use instead 1D list with indices i + m * j.
-  # Use a // b instead of a / b. Don't use recursive functions (rec limit is approx 1000).
+  """ Write here. Use PyPy. Don't use list of list -- use instead 1D list with indices i + m * j.
+  Use a // b instead of a / b. Don't use recursive functions (rec limit is approx 1000).
+  """
   assert list(range(3, 6)) == [3, 4, 5]
   s = set()
   s.add(5)
@@ -19,8 +20,8 @@ def main():
   m = {}
   m[5] = 6
   assert 5 in m
-  assert list(m) == [5] # only keys!
-  line_list = list(map(int, input().split())) # gets a list of integers in the line
+  assert list(m) == [5] """ only keys! """
+  line_list = list(map(int, input().split())) """ gets a list of integers in the line """
   print(line_list)
   print(' '.join(["a", "b", str(5)]))
   while True:
