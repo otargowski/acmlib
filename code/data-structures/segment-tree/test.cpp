@@ -19,7 +19,7 @@ void test() {
 			else {
 				int mx = 0;
 				FOR(i, l, r)
-					mx = max(mx, brute[i]);
+					chmax(mx, brute[i]);
 				assert(mx == tree.get(l, r));
 			}
 		}
@@ -35,7 +35,7 @@ void test() {
 				int val = rd(0, 10);
 				tree.update(l, r, val);
 				FOR(i, l, r)
-					brute[i] = max(brute[i], val);
+					chmax(brute[i], val);
 			}
 			else {
 				assert(brute[l] == tree.get(l));

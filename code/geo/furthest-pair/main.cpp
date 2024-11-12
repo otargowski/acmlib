@@ -9,7 +9,7 @@ pair<P, P> furthest_pair(V<P> in) {
 	pair<D, pair<P, P>> ret;
 	REP(i, j)
 		for(;; j = (j + 1) % n) {
-			ret = max(ret, {dist(in[i], in[j]), {in[i], in[j]}});
+			chmax(ret, {dist(in[i], in[j]), {in[i], in[j]}});
 			if (sign(cross(in[(j + 1) % n] - in[j], in[i + 1] - in[i])) <= 0)
 				break;
 		}

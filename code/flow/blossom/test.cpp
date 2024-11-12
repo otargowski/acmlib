@@ -16,7 +16,7 @@ int get_max_matching(int n, V<pii> edges) {
 				is_taken[v] = is_taken[u] = true;
 			}
 		if(is_valid)
-			answer = max(answer, __builtin_popcount(mask));
+			chmax(answer, __builtin_popcount(mask));
 	}
 	return answer;
 }

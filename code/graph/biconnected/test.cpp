@@ -77,7 +77,7 @@ V<vi> bicons(int n, V<pii> edges) {
 				if((mask >> i) & 1)
 					sub_edges.eb(edges[remaining_edges_id[i]]);
 			if(is_bicon(n, sub_edges))
-				biggest_bicon = max(biggest_bicon, pair(ssize(sub_edges), mask));
+				chmax(biggest_bicon, pair(ssize(sub_edges), mask));
 		}
 		assert(biggest_bicon.fi > 0);
 		ret.eb();

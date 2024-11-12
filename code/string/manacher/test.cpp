@@ -19,7 +19,7 @@ void test() {
 				continue;
 
 			int mid = (l + r) / 2, len = r - l + 1;
-			radius[len % 2][mid] = max(radius[len % 2][mid], len / 2);
+			chmax(radius[len % 2][mid], len / 2);
 		}
 	assert(radius == manacher(in));
 }

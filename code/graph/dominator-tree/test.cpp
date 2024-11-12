@@ -76,7 +76,7 @@ void test() {
 					bool is_dominating = not dfs(root);
 					debug(v, u, is_dominating);
 					if(is_dominating)
-						smallest = max(smallest, pair(depth[u], u));
+						chmax(smallest, pair(depth[u], u));
 				}
 			debug(v, smallest);
 			assert(smallest.se != -1);

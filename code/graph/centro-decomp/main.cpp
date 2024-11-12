@@ -18,7 +18,7 @@ struct CentroDecomp {
 	C int INF = int(1e9);
 	int root;
 	void refresh() { ++odwi_cnt; }
-	void visit(int v) { odwi[v] = max(odwi[v], odwi_cnt); }
+	void visit(int v) { chmax(odwi[v], odwi_cnt); }
 	bool is_vis(int v) { return odwi[v] >= odwi_cnt; }
 	void dfs_podsz(int v) {
 		visit(v);

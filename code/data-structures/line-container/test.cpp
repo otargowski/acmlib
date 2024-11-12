@@ -6,7 +6,7 @@ void test() {
 	auto eval = [&](pii p, int x) { return p.fi * x + p.se; };
 	auto get = [&](int x) {
 		int ret = -1e9;
-		for(pii &p : f) ret = max(ret, eval(p, x));
+		for(pii &p : f) chmax(ret, eval(p, x));
 		return ret;
 	};
 

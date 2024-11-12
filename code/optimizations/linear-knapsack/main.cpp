@@ -24,10 +24,10 @@ ll knapsack(vi w, ll bound) {
 	FOR(t, b, ssize(w) - 1) {
 		V curr_s = prev_s;
 		for(ll mu = bound - W + 1; mu <= bound; ++mu)
-			get(curr_s, mu + w[t]) = max(get(curr_s, mu + w[t]), get(prev_s, mu));
+			chmax(get(curr_s, mu + w[t]), get(prev_s, mu));
 		for(ll mu = bound + w[t]; mu >= bound + 1; --mu)
 			for(int j = get(curr_s, mu) - 1; j >= get(prev_s, mu); --j)
-				get(curr_s, mu - w[j]) = max(get(curr_s, mu - w[j]), j);
+				chmax(get(curr_s, mu - w[j]), j);
 		swap(prev_s, curr_s);
 	}
 	for(ll mu = bound; mu >= 0; --mu)

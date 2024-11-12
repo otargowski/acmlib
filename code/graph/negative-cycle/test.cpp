@@ -24,7 +24,7 @@ void test() {
 			REP(i, n)
 				REP(j, n) {
 					chmin(dist[i][j], dist[i][k] + dist[k][j]);
-					dist[i][j] = max(dist[i][j], -inf);
+					chmax(dist[i][j], -inf);
 				}
 		REP(v, n)
 			if(dist[v][v] < 0)

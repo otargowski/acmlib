@@ -9,7 +9,7 @@ int knapsack_brute(vi w, int bound) {
 			if((mask >> i) & 1)
 				sum += w[i];
 		if(sum <= bound)
-			ans = max(ans, sum);
+			chmax(ans, sum);
 	}
 	return ans;
 }

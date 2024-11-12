@@ -57,7 +57,7 @@ int brute_independent_set(int n, C V<pii>& edges) {
 			if ((mask >> i) & 1)
 				independent_set.eb(i);
 		if (is_independent_set(n, edges, independent_set))
-			ans = max(ans, __builtin_popcount(mask));
+			chmax(ans, __builtin_popcount(mask));
 	}
 	return ans;
 }

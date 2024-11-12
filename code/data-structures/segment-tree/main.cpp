@@ -44,20 +44,20 @@ struct Tree_Update_Max_On_Interval {
 	T get(int pos) {
 		T ret = tree[pos += sz];
 		while(pos /= 2)
-			ret = max(ret, tree[pos]);
+			chmax(ret, tree[pos]);
 		return ret;
 	}
 	void update(int l, int r, T val) {
 		l += sz, r += sz;
-		tree[l] = max(tree[l], val);
+		chmax(tree[l], val);
 		if(l == r)
 			return;
-		tree[r] = max(tree[r], val);
+		chmax(tree[r], val);
 		while(l + 1 < r) {
 			if(l % 2 == 0)
-				tree[l + 1] = max(tree[l + 1], val);
+				chmax(tree[l + 1], val);
 			if(r % 2 == 1)
-				tree[r - 1] = max(tree[r - 1], val);
+				chmax(tree[r - 1], val);
 			l /= 2, r /= 2;
 		}
 	}

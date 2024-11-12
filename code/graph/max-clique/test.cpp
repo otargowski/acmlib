@@ -34,7 +34,7 @@ void test() {
 			if((mask >> i) & 1)
 				v.eb(i);
 		if(is_ok(v))
-			best_brute = max(best_brute, __builtin_popcount(mask));
+			chmax(best_brute, __builtin_popcount(mask));
 	}
 
 	assert(ssize(max_clique) == best_brute);

@@ -207,7 +207,7 @@ pair<ll, int> solve(V<pii> &ans) {
 	for(int x = 1; x <= n; ++x)
 		for(int y = 1; y <= n; ++y){
 			flo_from[x][y] = (x == y ? x : 0);
-			mx = max(mx, G[x][y].w);
+			chmax(mx, G[x][y].w);
 		}
 	for(int x = 1; x <= n; ++x) lab[x] = mx;
 	while(matching()) ++cnt;

@@ -15,7 +15,7 @@ void test() {
 	D brute = -1;
 	REP(i, n)
 		REP(j, i)
-			brute = max(brute, dist(in[i], in[j]));
+			chmax(brute, dist(in[i], in[j]));
 	debug(wzorc, brute);
 
 	assert(abs(wzorc - brute) < eps);
