@@ -9,16 +9,16 @@ pair<V<int>, V<int>> suffix_array(V<int> s, int alpha = 26) {
 	for(int &c : s) ++c;
 	s.eb(0);
 	int n = ssize(s), k = 0, a, b;
-	V<int> x(s.begin(), s.end());
+	V<int> x(all(s));
 	V<int> y(n), ws(max(n, alpha)), rank(n);
 	V<int> sa = y, lcp = y;
-	iota(sa.begin(), sa.end(), 0);
+	iota(all(sa), 0);
 	for(int j = 0, p = 0; p < n; j = max(1, j * 2), alpha = p) {
 		p = j;
-		iota(y.begin(), y.end(), n - j);
+		iota(all(y), n - j);
 		REP(i, n) if(sa[i] >= j)
 			y[p++] = sa[i] - j;
-		fill(ws.begin(), ws.end(), 0);
+		fill(all(ws), 0);
 		REP(i, n) ws[x[i]]++;
 		FOR(i, 1, alpha - 1) ws[i] += ws[i - 1];
 		for(int i = n; i--;) sa[--ws[x[y[i]]]] = y[i];

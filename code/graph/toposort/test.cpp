@@ -21,8 +21,8 @@ void test() {
 		m = 0;
 	V<V<int>> graph(n);
 	V<int> per(n);
-	iota(per.begin(), per.end(), 0);
-	shuffle(per.begin(), per.end(), rng);
+	iota(all(per), 0);
+	shuffle(all(per), rng);
 	REP (i, m) {
 		int u = rd(0, n - 2);
 		int v = rd(u + 1, n - 1);

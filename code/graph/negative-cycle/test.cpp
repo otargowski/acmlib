@@ -55,7 +55,7 @@ void test() {
 	}
 	assert(sum_on_cycle < 0);
 
-	sort(cycle.begin(), cycle.end());
+	sort(all(cycle));
 	REP(i, ssize(cycle) - 1)
 		assert(cycle[i] != cycle[i + 1]);
 }

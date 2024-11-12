@@ -130,9 +130,9 @@ void test() {
 	auto ans_main = halfplane_intersection(in);
 	auto ans_brute = brute_halfplane(inPInt);
 	debug(ans_main, ans_brute);
-	sort(ans_main.begin(), ans_main.end());
-	sort(ans_brute.begin(), ans_brute.end());
-	ans_brute.erase(unique(ans_brute.begin(), ans_brute.end(), [&](P l, P r) { return equal(l, r); }), ans_brute.end());
+	sort(all(ans_main));
+	sort(all(ans_brute));
+	ans_brute.erase(unique(all(ans_brute), [&](P l, P r) { return equal(l, r); }), ans_brute.end());
 	assert(ssize(ans_main) == ssize(ans_brute));
 	REP(i, ssize(ans_main))
 		assert(equal(ans_main[i], ans_brute[i]));

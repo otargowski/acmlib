@@ -146,7 +146,7 @@ vi exp(const vi& a, int n) { // WYMAGA deriv, integr
 		ntt(b, x, true);
 		vi c = deriv(v);
 		sub(c, b);
-		rotate(c.begin(), c.end() - 1, c.end());
+		rotate(all(c) - 1, c.end());
 		ntt(c, 2 * x);
 		h = f;
 		ntt(h, 2 * x);
@@ -197,7 +197,7 @@ pair<vi, vi> div_slow(vi a, const vi& b) {
 				a.end()[-i - 1] = sub(a.end()[-i - 1], mul(x.back(), b.end()[-i - 1]));
 		a.pop_back();
 	}
-	reverse(x.begin(), x.end());
+	reverse(all(x));
 	return {x, a};
 }
 pair<vi, vi> div(vi a, const vi& b) { // WYMAGA inv, div_slow
@@ -207,7 +207,7 @@ pair<vi, vi> div(vi a, const vi& b) { // WYMAGA inv, div_slow
 	if (min(d, ssize(b)) < 250)
 		return div_slow(a, b);
 	vi x = mod_xn(conv(mod_xn({a.rbegin(), a.rend()}, d), inv({b.rbegin(), b.rend()}, d)), d);
-	reverse(x.begin(), x.end());
+	reverse(all(x));
 	sub(a, conv(x, b));
 	return {x, mod_xn(a, ssize(b))};
 } // END HASH

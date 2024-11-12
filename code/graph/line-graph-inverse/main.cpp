@@ -33,7 +33,7 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 	REP(v, line_n) {
 		auto neigh_with_v = line_graph[v];
 		neigh_with_v.eb(v);
-		sort(neigh_with_v.begin(), neigh_with_v.end());
+		sort(all(neigh_with_v));
 		if(line_neighbors_repeated.find(neigh_with_v) == line_neighbors_repeated.end())
 			line_neighbors_repeated[neigh_with_v] = v;
 		else

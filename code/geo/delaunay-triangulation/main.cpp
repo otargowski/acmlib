@@ -120,8 +120,8 @@ pair<Q, Q> rec(const V<PI>& s) {
 	return {ra, rb};
 }
 V<PI> triangulate(V<PI> in) {
-	sort(in.begin(), in.end()); 
-	assert(unique(in.begin(), in.end()) == in.end());
+	sort(all(in)); 
+	assert(unique(all(in)) == in.end());
 	if (ssize(in) < 2) return {};
 	Q e = rec(in).first;
 	V<Q> q = {e};

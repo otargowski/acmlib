@@ -4,7 +4,7 @@
 bool is_planar_brute(int n, V<pii> edges) {
 	REP(mask, 1 << ssize(edges)) {
 		V<int> lead(n);
-		iota(lead.begin(), lead.end(), 0);
+		iota(all(lead), 0);
 		function<int (int)> find = [&](int v) {
 			return v == lead[v] ? v : lead[v] = find(lead[v]);
 		};
@@ -61,7 +61,7 @@ bool is_planar_brute(int n, V<pii> edges) {
 				}
 				if(m < 9)
 					continue;
-				sort(component.begin(), component.end());
+				sort(all(component));
 				do {
 					auto is_k33 = [&] {
 						for(int v : {component[0], component[1], component[2]})
@@ -77,7 +77,7 @@ bool is_planar_brute(int n, V<pii> edges) {
 					};
 					if(is_k33())
 						return false;
-				} while(next_permutation(component.begin(), component.end()));
+				} while(next_permutation(all(component)));
 			}
 	}
 	return true;
@@ -103,7 +103,7 @@ void test() {
 	debug(graph);
 	bool ans_main = is_planar(graph);
 	debug(ans_main);
-	bool ans_brut = is_planar_brute(n, V<pii>(edges_set.begin(), edges_set.end()));
+	bool ans_brut = is_planar_brute(n, V<pii>(all(edges_set)));
 	debug(ans_brut);
 	assert(ans_main == ans_brut);
 }

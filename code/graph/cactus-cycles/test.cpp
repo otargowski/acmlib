@@ -50,7 +50,7 @@ void test() {
 
 	auto cycles = cactus_cycles(graph);
 	auto test_edge = [&](int a, int b) {
-		auto it = find(cycle_edges.begin(), cycle_edges.end(), pair(a, b));
+		auto it = find(all(cycle_edges), pair(a, b));
 		assert(it != cycle_edges.end());
 		cycle_edges.erase(it);
 	};

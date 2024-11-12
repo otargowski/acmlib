@@ -9,7 +9,7 @@
 #include "../point/main.cpp"
 V<P> angle_sort(V<P> t) {
 	for(P p : t) assert(not equal(p, P(0, 0)));
-	auto it = partition(t.begin(), t.end(), [](P a){ return P(0, 0) < a; });
+	auto it = partition(all(t), [](P a){ return P(0, 0) < a; });
 	auto cmp = [&](P a, P b) {
 		return sign(cross(a, b)) == -1;
 	};

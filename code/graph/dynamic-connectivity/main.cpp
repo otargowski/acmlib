@@ -51,7 +51,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 			add(que.front(), query_i - 1, e);
 	V<bool> ret(ssize(queries));
 	V<int> lead(n), leadsz(n, 1);
-	iota(lead.begin(), lead.end(), 0);
+	iota(all(lead), 0);
 	function<int (int)> find = [&](int i) {
 		return i == lead[i] ? i : find(lead[i]);
 	};
@@ -78,7 +78,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 			dfs(2 * v);
 			dfs(2 * v + 1);
 		}
-		reverse(rollback.begin(), rollback.end());
+		reverse(all(rollback));
 		for(auto [i, val, j, sz] : rollback) {
 			lead[i] = val;
 			leadsz[j] = sz;

@@ -48,7 +48,7 @@ void test() {
 		assert(ssize(ids) == m);
 		for (int id : ids)
 			assert(id >= 0 and id < m);
-		set<int> sids(ids.begin(), ids.end());
+		set<int> sids(all(ids));
 		assert(ssize(sids) == ssize(ids));
 		for (int id : ids) {
 			auto [a, b] = edges[id];
@@ -68,13 +68,13 @@ void test() {
 		REP(i, m) {
 			auto a = vertices[i];
 			auto b = vertices[i + 1];
-			auto it = find(edges.begin(), edges.end(), pair(a, b));
+			auto it = find(all(edges), pair(a, b));
 			if (it != edges.end()) {
 				edges.erase(it);
 				continue;
 			}
 			assert(not directed);
-			it = find(edges.begin(), edges.end(), pair(b, a));
+			it = find(all(edges), pair(b, a));
 			assert(it != edges.end());
 			edges.erase(it);
 		}

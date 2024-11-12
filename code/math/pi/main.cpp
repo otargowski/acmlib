@@ -15,7 +15,7 @@ struct Pi {
 			if (n / i != i)
 				w.eb(n / i);
 		}
-		sort(w.begin(), w.end());
+		sort(all(w));
 		for (ll i : w)
 			dp.eb(i - 1);
 		for (ll i = 1; (i + 1) * (i + 1) <= n; ++i) {

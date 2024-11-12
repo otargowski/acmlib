@@ -5,8 +5,8 @@
 bool check_equiv(V<P> a, V<P> b) {
 	if (ssize(a) != ssize(b))
 		return false;
-	sort(a.begin(), a.end());
-	sort(b.begin(), b.end());
+	sort(all(a));
+	sort(all(b));
 	REP (i, ssize(a))
 		if (!equal(a[i], b[i]))
 			return false;

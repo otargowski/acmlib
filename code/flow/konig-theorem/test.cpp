@@ -3,14 +3,14 @@
 
 template<typename T>
 bool contains(const V<T>& v, T x) {
-	return find(v.begin(), v.end(), x) != v.end();
+	return find(all(v), x) != v.end();
 }
 
 bool is_edge_coverable(int n, const V<pii>& edges) {
 	V<int> vis(n, 1);
 	for (auto [a, b] : edges)
 		vis[a] = vis[b] = 0;
-	return n == 0 or *max_element(vis.begin(), vis.end()) == 0;
+	return n == 0 or *max_element(all(vis)) == 0;
 }
 
 bool is_edge_cover(int n, const V<pii>& edges, const V<pii>& edge_cover) {
@@ -24,7 +24,7 @@ bool is_edge_cover(int n, const V<pii>& edges, const V<pii>& edge_cover) {
 	V<int> vis(n, 1);
 	for (auto [a, b] : edge_cover)
 		vis[a] = vis[b] = 0;
-	return n == 0 or *max_element(vis.begin(), vis.end()) == 0;
+	return n == 0 or *max_element(all(vis)) == 0;
 }
 
 int brute_edge_cover(int n, const V<pii>& edges) {
@@ -41,8 +41,8 @@ int brute_edge_cover(int n, const V<pii>& edges) {
 }
 
 bool is_independent_set(int n, const V<pii>& edges, const V<int> independent_set) {
-	assert(independent_set.empty() or *min_element(independent_set.begin(), independent_set.end()) >= 0);
-	assert(independent_set.empty() or *max_element(independent_set.begin(), independent_set.end()) < n);
+	assert(independent_set.empty() or *min_element(all(independent_set)) >= 0);
+	assert(independent_set.empty() or *max_element(all(independent_set)) < n);
 	for (auto [a, b] : edges)
 		if (contains(independent_set, a) and contains(independent_set, b))
 			return false;
@@ -63,8 +63,8 @@ int brute_independent_set(int n, const V<pii>& edges) {
 }
 
 bool is_vertex_cover(int n, const V<pii>& edges, const V<int> vertex_cover) {
-	assert(vertex_cover.empty() or *min_element(vertex_cover.begin(), vertex_cover.end()) >= 0);
-	assert(vertex_cover.empty() or *max_element(vertex_cover.begin(), vertex_cover.end()) < n);
+	assert(vertex_cover.empty() or *min_element(all(vertex_cover)) >= 0);
+	assert(vertex_cover.empty() or *max_element(all(vertex_cover)) < n);
 	for (auto [a, b] : edges)
 		if (not contains(vertex_cover, a) and not contains(vertex_cover, b))
 			return false;
@@ -93,7 +93,7 @@ void test() {
 	V<int> which_group(n0 + n1);
 	REP(i, n1)
 		which_group[i] = 1;
-	shuffle(which_group.begin(), which_group.end(), rng);
+	shuffle(all(which_group), rng);
 	array<V<int>, 2> in_group;
 	REP(v, n)
 		in_group[which_group[v]].eb(v);

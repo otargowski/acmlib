@@ -29,7 +29,7 @@ V<ll> factor(ll n) {
 } // END HASH
 V<pair<ll, int>> get_pairs(ll n) {
 	auto v = factor(n);
-	sort(v.begin(), v.end());
+	sort(all(v));
 	V<pair<ll, int>> ret;
 	REP(i, ssize(v)) {
 		int x = i + 1;

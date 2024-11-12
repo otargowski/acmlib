@@ -65,8 +65,8 @@ V<V<P>> voronoi_faces(V<PI> in, const int max_xy = int(3e8)) {
 	V<V<P>> faces(n);
 	REP(i, ssize(faces128)) {
 		auto &f = faces128[i];
-		sort(f.begin(), f.end());
-		f.erase(unique(f.begin(), f.end()), f.end());
+		sort(all(f));
+		f.erase(unique(all(f)), f.end());
 		for(auto [x, y] : f)
 			faces[i].eb(to_d(x), to_d(y));
 		faces[i] = hull(faces[i]);

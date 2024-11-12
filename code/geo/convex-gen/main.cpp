@@ -12,8 +12,8 @@ V<int> num_split(int value, int n) {
 	V<int> v(n, value);
 	REP(i, n - 1)
 		v[i] = rd(0, value);
-	sort(v.begin(), v.end());
-	adjacent_difference(v.begin(), v.end(), v.begin());
+	sort(all(v));
+	adjacent_difference(all(v), v.begin());
 	return v;
 }
 V<int> capped_zero_split(int cap, int n) {
@@ -32,7 +32,7 @@ V<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
 		t.clear();
 		auto dx = capped_zero_split(range, n);
 		auto dy = capped_zero_split(range, n);
-		shuffle(dx.begin(), dx.end(), rng);
+		shuffle(all(dx), rng);
 		REP (i, n)
 			if (dx[i] || dy[i])
 				t.eb(dx[i], dy[i]);
@@ -52,6 +52,6 @@ V<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
 			t = nt;
 		}
 	} while (ssize(t) < n * PROC);
-	partial_sum(t.begin(), t.end(), t.begin());
+	partial_sum(all(t), t.begin());
 	return t;
 }

@@ -66,7 +66,7 @@ bool is_bicon(int n, V<pii> edges) {
 
 V<V<int>> bicons(int n, V<pii> edges) {
 	V<int> remaining_edges_id(ssize(edges));
-	iota(remaining_edges_id.begin(), remaining_edges_id.end(), 0);
+	iota(all(remaining_edges_id), 0);
 	V<V<int>> ret;
 
 	while(not remaining_edges_id.empty()) {
@@ -144,21 +144,21 @@ void test() {
 	debug(brute_bicon);
 	debug(main_bicon);
 	for(auto &v : brute_bicon)
-		sort(v.begin(), v.end());
+		sort(all(v));
 	for(auto &v : main_bicon)
-		sort(v.begin(), v.end());
-	sort(brute_bicon.begin(), brute_bicon.end());
-	sort(main_bicon.begin(), main_bicon.end());
+		sort(all(v));
+	sort(all(brute_bicon));
+	sort(all(main_bicon));
 	assert(brute_bicon == main_bicon);
 
 	auto brute_arti = arti_points(n, edges);
 	auto main_arti = low.arti_points;
 	debug(brute_arti, main_arti);
-	sort(main_arti.begin(), main_arti.end());
+	sort(all(main_arti));
 	assert(brute_arti == main_arti);
 
 	auto brute_bridges = bridges(n, edges);
 	auto main_bridges = low.bridges;
-	sort(main_bridges.begin(), main_bridges.end());
+	sort(all(main_bridges));
 	assert(brute_bridges == main_bridges);
 }

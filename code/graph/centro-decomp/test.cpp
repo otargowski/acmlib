@@ -6,7 +6,7 @@ void test() {
 	int n = rd(1, 100);
 	V graph(n, V<int>());
 	V per(n, 0);
-	iota(per.begin(), per.end(), 0);
+	iota(all(per), 0);
 	REP (i, n) {
 		swap(per[i], per[rd(0, i)]);
 	}

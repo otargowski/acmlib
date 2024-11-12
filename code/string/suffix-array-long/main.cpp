@@ -13,18 +13,18 @@ void induced_sort(const V<int> &vec, int alpha, V<int> &sa,
 			++l[c + 1];
 		++r[c];
 	}
-	partial_sum(l.begin(), l.end(), l.begin());
-	partial_sum(r.begin(), r.end(), r.begin());
-	fill(sa.begin(), sa.end(), -1);
+	partial_sum(all(l), l.begin());
+	partial_sum(all(r), r.begin());
+	fill(all(sa), -1);
 	for (int i = ssize(lms_idx) - 1; i >= 0; --i)
 		sa[--r[vec[lms_idx[i]]]] = lms_idx[i];
 	for (int i : sa)
 		if (i >= 1 and sl[i - 1])
 			sa[l[vec[i - 1]]++] = i - 1;
-	fill(r.begin(), r.end(), 0);
+	fill(all(r), 0);
 	for (int c : vec)
 		++r[c];
-	partial_sum(r.begin(), r.end(), r.begin());
+	partial_sum(all(r), r.begin());
 	for (int k = ssize(sa) - 1, i = sa[k]; k >= 1; --k, i = sa[k])
 		if (i >= 1 and not sl[i - 1])
 			sa[--r[vec[i - 1]]] = i - 1;
@@ -38,7 +38,7 @@ V<int> sa_is(const V<int> &vec, int alpha) {
 		if (sl[i] and not sl[i + 1])
 			lms_idx.eb(i + 1);
 	}
-	reverse(lms_idx.begin(), lms_idx.end());
+	reverse(all(lms_idx));
 	induced_sort(vec, alpha, sa, sl, lms_idx);
 	V<int> new_lms_idx(ssize(lms_idx)), lms_vec(ssize(lms_idx));
 	for (int i = 0, k = 0; i < n; ++i)

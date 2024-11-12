@@ -28,7 +28,7 @@ void test() {
 	if(test_type == 0) {
 		ll ans_brute = ll(1e18);
 		V<int> perm(n1);
-		iota(perm.begin(), perm.end(), 0);
+		iota(all(perm), 0);
 		do {
 			V<int> brute_match = perm;
 			brute_match.resize(n0);
@@ -36,7 +36,7 @@ void test() {
 			REP(i, n0)
 				ans_local += weight[i][brute_match[i]];
 			ans_brute = min(ans_brute, ans_local);
-		} while(next_permutation(perm.begin(), perm.end()));
+		} while(next_permutation(all(perm)));
 		assert(ans == ans_brute);
 	}
 }

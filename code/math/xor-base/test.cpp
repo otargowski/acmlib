@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 bool covers(V<int> s, V<int> base) {
-	set<int> ss(s.begin(), s.end());
+	set<int> ss(all(s));
 	REP(mask, 1 << ssize(base)) {
 		int ksor = 0;
 		REP(i, ssize(base))

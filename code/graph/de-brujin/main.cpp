@@ -6,7 +6,7 @@
 V<int> de_brujin(int k, int n, bool is_path) {
 	if (n == 1) {
 		V<int> v(k);
-		iota(v.begin(), v.end(), 0);
+		iota(all(v), 0);
 		return v;
 	}
 	if (k == 1)

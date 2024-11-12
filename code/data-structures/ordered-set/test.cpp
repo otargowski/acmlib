@@ -11,7 +11,7 @@ void test() {
 		s.insert(a[i]);
 	}
 
-	sort(a.begin(), a.end());
+	sort(all(a));
 	REP(i, n)
 		assert(a[i] == *s.find_by_order(i));
 }

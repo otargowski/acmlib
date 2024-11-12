@@ -26,6 +26,6 @@ pair<bool, V<int>> negative_cycle(V<V<pair<int, I>>> graph) {
 	V<int> cycle = {v_on_cycle};
 	for(int v = from[v_on_cycle]; v != v_on_cycle; v = from[v])
 		cycle.eb(v);
-	reverse(cycle.begin(), cycle.end());
+	reverse(all(cycle));
 	return {true, cycle};
 }

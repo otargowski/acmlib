@@ -17,9 +17,9 @@ void test() {
 		ll mn = (1ll << 40);
 		ll n = rd_ll(1, mn);
 		auto vrho = factor(n);
-		sort(vrho.begin(), vrho.end());
+		sort(all(vrho));
 		auto vbrute = f(n);
-		sort(vbrute.begin(), vbrute.end());
+		sort(all(vbrute));
 		assert(vrho == vbrute);
 	}
 	{ // get_pairs test
@@ -59,9 +59,9 @@ void test() {
 		ll mn = (1ll << 40);
 		ll n = rd_ll(1, mn);
 		auto vrho = all_factors(n);
-		sort(vrho.begin(), vrho.end());
+		sort(all(vrho));
 		auto vbrute = f(n);
-		sort(vbrute.begin(), vbrute.end());
+		sort(all(vbrute));
 		assert(vrho == vbrute);
 	}
 }

@@ -15,12 +15,12 @@ struct Fenwick2d {
 	}
 	void init() {
 		for(auto &v : ys) {
-			sort(v.begin(), v.end());
+			sort(all(v));
 			ft.eb(ssize(v));
 		}
 	}
 	int ind(int x, int y) {
-		auto it = lower_bound(ys[x].begin(), ys[x].end(), y);
+		auto it = lower_bound(all(ys[x]), y);
 		return int(distance(ys[x].begin(), it));
 	}
 	void update(int x, int y, ll val) {

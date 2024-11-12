@@ -30,7 +30,7 @@ V<int> get_max_clique(V<bitset<max_n>> e) {
 				C[1] = C[2] = {};
 				for (auto [_, v] : T) {
 					int k = 1;
-					while (any_of(C[k].begin(), C[k].end(), [&](int i) { return e[v][i]; })) k++;
+					while (any_of(all(C[k]), [&](int i) { return e[v][i]; })) k++;
 					if (k > mxk) C[(mxk = k) + 1] = {};
 					if (k < mnk) T[j++].second = v;
 					C[k].eb(v);

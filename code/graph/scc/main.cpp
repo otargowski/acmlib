@@ -35,7 +35,7 @@ struct SCC {
 		REP(v, n)
 			if(group[v] == 0)
 				order_dfs(v);
-		reverse(order.begin(), order.end());
+		reverse(all(order));
 		debug(order);
 		group.assign(n, -1);
 		for(int v : order)
@@ -51,8 +51,8 @@ struct SCC {
 		if(not delete_same)
 			return ans;
 		REP(v, group_cnt) {
-			sort(ans[v].begin(), ans[v].end());
-			ans[v].erase(unique(ans[v].begin(), ans[v].end()), ans[v].end());
+			sort(all(ans[v]));
+			ans[v].erase(unique(all(ans[v])), ans[v].end());
 		}
 		return ans;
 	}

@@ -42,7 +42,7 @@ void test() {
 	V<int> which_group(n0 + n1);
 	REP(i, n1)
 		which_group[i] = 1;
-	shuffle(which_group.begin(), which_group.end(), rng);
+	shuffle(all(which_group), rng);
 	array<V<int>, 2> in_group;
 	REP(v, n)
 		in_group[which_group[v]].eb(v);

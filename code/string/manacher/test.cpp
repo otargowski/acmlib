@@ -14,7 +14,7 @@ void test() {
 			FOR(i, l, r)
 				s.eb(in[i]);
 			V<int> cp = s;
-			reverse(cp.begin(), cp.end());
+			reverse(all(cp));
 			if(cp != s)
 				continue;
 

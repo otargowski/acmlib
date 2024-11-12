@@ -54,6 +54,6 @@ pair<ll, V<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
 	V<int> cuts;
 	for (int p = n - 1; p != -1; p = dp[p].second)
 		cuts.eb(p);
-	reverse(cuts.begin(), cuts.end());
+	reverse(all(cuts));
 	return pair(dp[n - 1].first, cuts);
 }

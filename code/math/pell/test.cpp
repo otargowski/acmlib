@@ -17,9 +17,9 @@ void test() {
 	auto v = all_pell(n, l);
 	for (auto [x, y] : v)
 		check(x, y);
-	sort(v.begin(), v.end());
+	sort(all(v));
 	FOR(x, 2, l) {
-		auto it = lower_bound(v.begin(), v.end(), pair<ll, ll>(x, -1));
+		auto it = lower_bound(all(v), pair<ll, ll>(x, -1));
 		const ll y = ll(sqrtl((x * ll(x) - 1) / n));
 		if (x * __int128(x) - n * __int128(y) * y == 1) {
 			assert(x >= min_x);

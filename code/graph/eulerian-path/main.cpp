@@ -43,9 +43,9 @@ tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pii> &edges, bool direc
 		}
 	};
 	dfs(start);
-	if (cnt_in + cnt_out > 2 or not all_of(used.begin(), used.end(), identity{}))
+	if (cnt_in + cnt_out > 2 or not all_of(all(used), identity{}))
 		return {};
-	reverse(ids.begin(), ids.end());
+	reverse(all(ids));
 	if (ssize(ids))
 		vertices = {start};
 	for (int id : ids)

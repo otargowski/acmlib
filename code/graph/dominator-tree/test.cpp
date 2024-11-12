@@ -23,7 +23,7 @@ void test() {
 	}
 	int root = rd(0, n - 1);
 	REP(v, n)
-		shuffle(graph[v].begin(), graph[v].end(), rng);
+		shuffle(all(graph[v]), rng);
 	V<int> order(n, -1);
 	function<void (int)> dag_dfs = [&](int v) {
 		static int gtime = 0;

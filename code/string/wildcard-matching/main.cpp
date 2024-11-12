@@ -6,13 +6,13 @@
 V<bool> wildcard_matching(vi text, vi pattern) {
 	for (int& e : text) ++e;
 	for (int& e : pattern) ++e;
-	reverse(pattern.begin(), pattern.end());
+	reverse(all(pattern));
 	int n = ssize(text), m = ssize(pattern);
 	int sz = 1 << __lg(2 * n - 1);
 	vi a(sz), b(sz), c(sz);
 	auto h = [&](auto f, auto g) {
-		fill(a.begin(), a.end(), 0);
-		fill(b.begin(), b.end(), 0);
+		fill(all(a), 0);
+		fill(all(b), 0);
 		REP(i, n) a[i] = f(text[i]);
 		REP(i, m) b[i] = g(pattern[i]);
 		ntt(a, sz), ntt(b, sz);

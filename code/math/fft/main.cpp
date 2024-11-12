@@ -29,7 +29,7 @@ V<double> conv(V<double> &a, V<double> &b) {
 	V<double> res(ssize(a) + ssize(b) - 1);
 	int L = 32 - __builtin_clz(ssize(res)), n = (1 << L);
 	V<Complex> in(n), out(n);
-	copy(a.begin(), a.end(), in.begin());
+	copy(all(a), in.begin());
 	REP(i, ssize(b)) in[i].imag(b[i]);
 	fft(in);
 	for(auto &x : in) x *= x;

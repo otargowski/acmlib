@@ -41,8 +41,8 @@ V<int> blossom(V<V<int>> graph) {
 		}
 	};
 	auto bfs = [&](int root) {
-		fill(label.begin(), label.end(), -1);
-		iota(orig.begin(), orig.end(), 0);
+		fill(all(label), -1);
+		iota(all(orig), 0);
 		label[root] = 0;
 		q = {root};
 		REP(i, ssize(q)) {

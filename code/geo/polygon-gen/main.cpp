@@ -16,7 +16,7 @@ V<P> gen_polygon(int n, int r) {
 				REP (j, i)
 					if (dir(t[i], t[j], p) == 0)
 						return false;
-			return find(t.begin(), t.end(), p) == t.end();
+			return find(all(t), p) == t.end();
 		}())
 			t.eb(p);
 	}

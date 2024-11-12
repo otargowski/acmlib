@@ -12,7 +12,7 @@ ostream& operator<<(ostream& o, __int128_t x) {
 		v.eb(x % 10);
 		x /= 10;
 	}
-	reverse(v.begin(), v.end());
+	reverse(all(v));
 	for (auto xd : v) {
 		o << xd;
 	}

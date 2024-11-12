@@ -12,7 +12,7 @@ struct Triangles {
 		V<pii> sorted_deg(n);
 		REP(i, n)
 			sorted_deg[i] = {ssize(graph[i]), i};
-		sort(sorted_deg.begin(), sorted_deg.end());
+		sort(all(sorted_deg));
 		V<int> id(n);
 		REP(i, n)
 			id[sorted_deg[i].second] = i;

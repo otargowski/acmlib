@@ -75,7 +75,7 @@ V<pii> construct_min_palindromic_split(V<Dp> ans) {
 	V<pii> split = {{0, ssize(ans) - 1}};
 	while(ans[split.back().second].mn_i != -1)
 		split.eb(0, ans[split.back().second].mn_i);
-	reverse(split.begin(), split.end());
+	reverse(all(split));
 	REP(i, ssize(split) - 1)
 		split[i + 1].first = split[i].second + 1;
 	return split;

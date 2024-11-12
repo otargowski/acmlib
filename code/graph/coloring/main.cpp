@@ -8,7 +8,7 @@ V<int> coloring(const V<V<int>>& graph, const int limit = 5) {
 	const int n = ssize(graph);
 	if (!n) return {};
 	function<V<int>(V<bool>)> solve = [&](const V<bool>& active) {
-		if (not *max_element(active.begin(), active.end()))
+		if (not *max_element(all(active)))
 			return V (n, -1);
 		pii best = {n, -1};
 		REP(i, n) {

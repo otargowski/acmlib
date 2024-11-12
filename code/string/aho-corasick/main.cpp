@@ -14,8 +14,8 @@ struct AhoCorasick {
 		int p, pch, link = -1;
 		bool is_word_end = false;
 		Node(int _p = -1, int ch = -1) : p(_p), pch(ch) {
-			fill(next.begin(), next.end(), -1);
-			fill(go.begin(), go.end(), -1);
+			fill(all(next), -1);
+			fill(all(go), -1);
 		}
 	};
 	V<Node> node;

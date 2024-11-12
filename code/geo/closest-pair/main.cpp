@@ -5,7 +5,7 @@
 
 pair<P, P> closest_pair(V<P> in) {
 	set<P> s;
-	sort(in.begin(), in.end(), [](P a, P b) { return a.y() < b.y(); });
+	sort(all(in), [](P a, P b) { return a.y() < b.y(); });
 	pair<D, pair<P, P>> ret(1e18, {P(), P()});
 	int j = 0;
 	for (P p : in) {

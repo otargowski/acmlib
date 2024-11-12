@@ -4,7 +4,7 @@
  */
 #include "../point/main.cpp"
 array<V<P>, 2> top_bot_hull(V<P> in) {
-	sort(in.begin(), in.end());
+	sort(all(in));
 	array<V<P>, 2> ret;
 	REP(d, 2) {
 		for(auto p : in) {
@@ -12,7 +12,7 @@ array<V<P>, 2> top_bot_hull(V<P> in) {
 				ret[d].pop_back();
 			ret[d].eb(p);
 		}
-		reverse(in.begin(), in.end());
+		reverse(all(in));
 	}
 	return ret;
 }

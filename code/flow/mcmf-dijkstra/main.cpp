@@ -27,7 +27,7 @@ struct MCMF {
 		edges.eb(u, v, 0, 0, -cost);
 	}
 	void calc_init_dist(int source) {
-		fill(init_dist.begin(), init_dist.end(), inf_LL);
+		fill(all(init_dist), inf_LL);
 		V<bool> inside(n);
 		inside[source] = true;
 		deque<int> que = {source};

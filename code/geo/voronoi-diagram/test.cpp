@@ -10,7 +10,7 @@ ostream& operator<<(ostream &o, __int128_t x) {
 			s += char('0' + (x % 10));
 			x /= 10;
 		}
-	reverse(s.begin(), s.end());
+	reverse(all(s));
 	return o << s.data();
 }
 
@@ -94,8 +94,8 @@ void test() {
 			if(equal(closest_d, dist(P(x, y), P(in[i].first, in[i].second))))
 				closest_v.eb(i);
 		debug(closest_v);
-		sort(matching_areas.begin(), matching_areas.end());
-		sort(closest_v.begin(), closest_v.end());
+		sort(all(matching_areas));
+		sort(all(closest_v));
 		assert(matching_areas == closest_v);
 	}
 }

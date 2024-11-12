@@ -59,7 +59,7 @@ void test() {
 			if(dir(in[0], in[i], in[j]) != 0)
 				all_colinear = false;
 	if(all_colinear)
-		brute = {*min_element(in.begin(), in.end()), *max_element(in.begin(), in.end())};
+		brute = {*min_element(all(in)), *max_element(all(in))};
 
 	V<P> wzorc = hull(in);
 	debug(brute, wzorc);

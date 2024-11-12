@@ -52,7 +52,7 @@ void set_st(int x, int b) {
 		set_st(flo[x][i], b);
 }
 int get_pr(int b, int xr) {
-	int pr = find(flo[b].begin(), flo[b].end(), xr) - flo[b].begin();
+	int pr = find(all(flo[b]), xr) - flo[b].begin();
 	if(pr & 1) {
 		reverse(flo[b].begin() + 1, flo[b].end());
 		return (int)flo[b].size() - pr;

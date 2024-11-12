@@ -52,7 +52,7 @@ void test() {
 		V<int> deg(new_n);
 		REP(i, new_n)
 			deg[i] = ssize(new_graph[i]);
-		sort(deg.begin(), deg.end());
+		sort(all(deg));
 		// debug(deg);
 
 		V<bool> vis(new_n);
@@ -63,7 +63,7 @@ void test() {
 					dfs(u);
 		};
 		dfs(0);
-		if(*min_element(vis.begin(), vis.end()) == false)
+		if(*min_element(all(vis)) == false)
 			continue;
 
 		auto get = [&]() -> int& {

@@ -12,7 +12,7 @@ pair<int, V<int>> hopcroft_karp(V<V<int>> graph, int n0, int n1) {
 	V<int> manual_que(n0 + 1);
 	auto bfs = [&] {
 		int head = 0, tail = -1;
-		fill(dist.begin(), dist.end(), inf);
+		fill(all(dist), inf);
 		REP(v, n0)
 			if(matched_with[v] == -1) {
 				dist[1 + v] = 0;

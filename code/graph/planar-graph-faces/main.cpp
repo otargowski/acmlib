@@ -31,7 +31,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 		graph[u].eb(e);
 	}
 	V<int> lead(2 * E);
-	iota(lead.begin(), lead.end(), 0);
+	iota(all(lead), 0);
 	function<int (int)> find = [&](int v) {
 		return lead[v] == v ? v : lead[v] = find(lead[v]);
 	};
@@ -45,7 +45,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 			auto center = coord[v];
 			sorted.eb(pair(p.first - center.first, p.second - center.second), e);
 		}
-		sort(sorted.begin(), sorted.end(), [&](pair<pii, int> l0, pair<pii, int> r0) {
+		sort(all(sorted), [&](pair<pii, int> l0, pair<pii, int> r0) {
 			auto l = l0.first;
 			auto r = r0.first;
 			bool half_l = l > pair(0, 0);
@@ -88,7 +88,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 				}
 			};
 			dfs(edges[comps[leader].front() / 2].first);
-			reverse(sorted_edges.begin(), sorted_edges.end());
+			reverse(all(sorted_edges));
 			ll area = 0;
 			for(auto edge : sorted_edges) {
 				auto l = coord[edge.from];

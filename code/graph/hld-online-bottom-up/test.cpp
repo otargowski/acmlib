@@ -89,13 +89,13 @@ void test() {
 						dfs(v);
 						break;
 					}
-				if(accumulate(vis.begin(), vis.end(), 0) != __builtin_popcount(mask))
+				if(accumulate(all(vis), 0) != __builtin_popcount(mask))
 					continue;
 				V<int> colors;
 				REP(v, n)
 					if(vis[v])
 						colors.eb(color[v]);
-				if(*min_element(colors.begin(), colors.end()) == *max_element(colors.begin(), colors.end()))
+				if(*min_element(all(colors)) == *max_element(all(colors)))
 					++ans;
 			}
 		return ans;

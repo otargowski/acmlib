@@ -39,7 +39,7 @@ void test() {
 	};
 
 	auto brute_eval = [&](vi a, int x) {
-		reverse(a.begin(), a.end());
+		reverse(all(a));
 		int ret = 0;
 		for (auto e : a)
 			ret = add(mul(ret, x), e);

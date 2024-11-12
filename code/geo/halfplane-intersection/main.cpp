@@ -30,7 +30,7 @@ V<P> halfplane_intersection(V<Halfplane> h) {
 		array box = {P(-inf, -inf), P(inf, -inf), P(inf, inf), P(-inf, inf)};
 		h.eb(box[i], box[(i + 1) % 4]);
 	}
-	sort(h.begin(), h.end(), [&](Halfplane l, Halfplane r) {
+	sort(all(h), [&](Halfplane l, Halfplane r) {
 		return l.angle < r.angle;
 	});
 	deque<Halfplane> dq;
@@ -56,7 +56,7 @@ V<P> halfplane_intersection(V<Halfplane> h) {
 	V<P> ret;
 	REP(i, ssize(dq))
 		ret.eb(inter(dq[i], dq[(i + 1) % ssize(dq)]));
-	ret.erase(unique(ret.begin(), ret.end(), [&](P l, P r) { return equal(l, r); }), ret.end());
+	ret.erase(unique(all(ret), [&](P l, P r) { return equal(l, r); }), ret.end());
 	if(ssize(ret) >= 2 and equal(ret.front(), ret.back()))
 		ret.pop_back();
 	for(Halfplane hi : h)

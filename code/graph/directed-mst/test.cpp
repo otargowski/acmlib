@@ -22,7 +22,7 @@ bool is_correct_tree(V<int> lit, int n, V<Edge> edges, int root) {
 				dfs(u);
 	};
 	dfs(root);
-	if(*min_element(vis.begin(), vis.end()) == 0)
+	if(*min_element(all(vis)) == 0)
 		return false;
 	return true;
 }
@@ -80,7 +80,7 @@ void test() {
 			}
 		assert(sum == main_ans);
 		V<int> lit(ssize(found_subset));
-		iota(lit.begin(), lit.end(), 0);
+		iota(all(lit), 0);
 
 		assert(is_correct_tree(lit, n, found_subset, root));
 	}

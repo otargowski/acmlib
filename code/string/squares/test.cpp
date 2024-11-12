@@ -46,8 +46,8 @@ void test() {
 	auto wzorc = squares(s);
 	if(was_maxtest) {
 		auto brute = brute_squares(s);
-		sort(brute.begin(), brute.end());
-		sort(wzorc.begin(), wzorc.end());
+		sort(all(brute));
+		sort(all(wzorc));
 		assert(brute == wzorc);
 	}
 	was_maxtest = true;

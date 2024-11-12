@@ -5,7 +5,7 @@
 ll knapsack(V<int> w, ll bound) {
 	erase_if(w, [=](int x){ return x > bound; });
 	{
-		ll sum = accumulate(w.begin(), w.end(), 0LL);
+		ll sum = accumulate(all(w), 0LL);
 		if(sum <= bound)
 			return sum;
 	}
@@ -13,7 +13,7 @@ ll knapsack(V<int> w, ll bound) {
 	int b;
 	for(b = 0; w_init + w[b] <= bound; ++b)
 		w_init += w[b];
-	int W = *max_element(w.begin(), w.end());
+	int W = *max_element(all(w));
 	V<int> prev_s(2 * W, -1);
 	auto get = [&](V<int> &v, ll i) -> int& {
 		return v[i - (bound  - W + 1)];

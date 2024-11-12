@@ -35,7 +35,7 @@ void test() {
 	assert(ssize(ret) % 3 == 0);
 
 	array<V<pii>, 2> hulls;
-	sort(in.begin(), in.end());
+	sort(all(in));
 	REP(dir, 2) {
 		auto &hull = hulls[dir];
 		for(auto p : in) {
@@ -43,7 +43,7 @@ void test() {
 				hull.pop_back();
 			hull.eb(p);
 		}
-		reverse(in.begin(), in.end());
+		reverse(all(in));
 		hull.pop_back();
 	}
 	hulls[0].insert(hulls[0].end(), hulls[1].begin(), hulls[1].end());

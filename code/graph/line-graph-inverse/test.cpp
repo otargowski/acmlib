@@ -11,7 +11,7 @@ V<V<int>> construct_graph(V<pii> ans) {
 		graph[u].eb(v);
 	}
 	for(auto &v : graph)
-		sort(v.begin(), v.end());
+		sort(all(v));
 	return graph;
 }
 
@@ -36,7 +36,7 @@ void test() {
 				for(auto [v, u] : ans)
 					for(int x : {v, u})
 						++deg[x];
-				if(*min_element(deg.begin(), deg.end()) == 0)
+				if(*min_element(all(deg)) == 0)
 					return;
 				matching_original_graphs.emplace(construct_graph(ans));
 				return;
@@ -81,7 +81,7 @@ void test() {
 						dfs(u);
 			};
 			dfs(0);
-			return *min_element(visited.begin(), visited.end());
+			return *min_element(all(visited));
 		};
 		auto has_multiedge = [&] {
 			for(auto &v : graph)
@@ -104,23 +104,23 @@ void test() {
 
 		auto is_matching_perm = [&] {
 			V<int> perm(og_n);
-			iota(perm.begin(), perm.end(), 0);
+			iota(all(perm), 0);
 			do {
 				V<V<int>> transmuted1(og_n);
 				REP(v, og_n)
 					for(int u : graph1[v])
 						transmuted1[perm[v]].eb(perm[u]);
 				for(auto &v : transmuted1)
-					sort(v.begin(), v.end());
+					sort(all(v));
 				if(transmuted1 == graph0)
 					return true;
-			} while(next_permutation(perm.begin(), perm.end()));
+			} while(next_permutation(all(perm)));
 			return false;
 		};
 		assert(is_matching_perm());
 	}
 
-	auto [main_found, main_ans] = get_original_graph(line_n, V(line_edges.begin(), line_edges.end()));
+	auto [main_found, main_ans] = get_original_graph(line_n, V(all(line_edges)));
 	debug(main_found, main_ans);
 	auto main_graph = construct_graph(main_ans);
 	debug(main_graph);

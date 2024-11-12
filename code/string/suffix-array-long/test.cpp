@@ -14,7 +14,7 @@ void test() {
 	V<pair<V<int>,int>> v(n + 1);
 	REP(i,n+1)
 		v[i] = {V(s.begin() + i, s.end()), i};
-	sort(v.begin(), v.end());
+	sort(all(v));
 
 	REP(i,n+1)
 		assert(sa[i] == v[i].second);
