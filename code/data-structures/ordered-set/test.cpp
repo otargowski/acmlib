@@ -4,7 +4,7 @@
 void test() {
 	ordered_set<int> s;
 	int n = rd(1, 100);
-	vector<int> a(n);
+	V<int> a(n);
 	REP(i, n) {
 		while(a[i] == 0 || s.find(a[i]) != s.end())
 			a[i] = rd(1, 1000000000);

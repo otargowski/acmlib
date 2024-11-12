@@ -1,9 +1,9 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-vector<int> brute_pref(vector<int> str) {
+V<int> brute_pref(V<int> str) {
 	int n = ssize(str);
-	vector<int> ret(n);
+	V<int> ret(n);
 	REP(i, n) {
 		int len = 0;
 		while(i + len < n and str[i + len] == str[len])
@@ -15,7 +15,7 @@ vector<int> brute_pref(vector<int> str) {
 
 void test() {
 	int n = rd(1, 10);
-	vector<int> s;
+	V<int> s;
 	REP(i, n)
 		s.emplace_back(rd(0, 2));
 	assert(brute_pref(s) == pref(s));

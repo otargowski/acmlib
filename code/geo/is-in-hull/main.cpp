@@ -4,7 +4,7 @@
  */
 #include "../intersect-lines/main.cpp"
 
-bool is_in_hull(vector<P> h, P p, bool can_on_edge) {
+bool is_in_hull(V<P> h, P p, bool can_on_edge) {
 	if(ssize(h) < 3) return can_on_edge and on_segment(h[0], h.back(), p);
 	int l = 1, r = ssize(h) - 1;
 	if(dir(h[0], h[l], p) >= can_on_edge or dir(h[0], h[r], p) <= -can_on_edge)

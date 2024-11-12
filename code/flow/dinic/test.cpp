@@ -7,7 +7,7 @@ void test() {
 	const int n = rd(2, max_n);
 	const int iters = rd(0, 50);
 
-	vector graph(n, vector (n, 0));
+	V graph(n, V (n, 0));
 	Dinic dinic(n);
 
 	auto rd_vertex = [&] {
@@ -31,7 +31,7 @@ void test() {
 	debug(graph);
 	debug(flow, flowing);
 
-	vector<int> sum(n);
+	V<int> sum(n);
 	for (auto [edge, c] : flowing) {
 		auto [a, b] = edge;
 		sum[a] += c;
@@ -46,7 +46,7 @@ void test() {
 		else
 			assert(sum[i] == 0);
 	}
-	vector<bool> vis(n);
+	V<bool> vis(n);
 	function<void(int)> dfs = [&](int v) {
 		assert(v != sink);
 		debug(v);

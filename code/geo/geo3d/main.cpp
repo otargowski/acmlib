@@ -93,7 +93,7 @@ struct Plane {
 		assert(abs(D - normal.DotProd(p[1])) < kEps);
 		assert(abs(D - normal.DotProd(p[2])) < kEps);
 	}
-	vector<P3> GetOrthonormalBase() {
+	V<P3> GetOrthonormalBase() {
 		P3 normal = GetNormal();
 		P3 cand = {-normal.y, normal.x, 0};
 		if (abs(cand.x) < kEps && abs(cand.y) < kEps) {
@@ -141,7 +141,7 @@ bool Lines3Equal(Line3 p, Line3 l) {
 bool PtBelongToPlane(P3 p, Plane pl) { return DisPtPlane(p, pl) < kEps; }
 Point PlanePtTo2D(Plane pl, P3 p) { // ok
 	assert(PtBelongToPlane(p, pl));
-	vector<P3> base = pl.GetOrthonormalBase();
+	V<P3> base = pl.GetOrthonormalBase();
 	P3 control{0, 0, 0};
 	REP(tr, 3) { control += base[tr] * p.DotProd(base[tr]); }
 	assert(PtBelongToPlane(pl[0] + base[1], pl));
@@ -153,7 +153,7 @@ Line PlaneLineTo2D(Plane pl, Line3 l) {
 	return {PlanePtTo2D(pl, l[0]), PlanePtTo2D(pl, l[1])};
 }
 P3 PlanePtTo3D(Plane pl, Point p) { // ok
-	vector<P3> base = pl.GetOrthonormalBase();
+	V<P3> base = pl.GetOrthonormalBase();
 	return base[0] * base[0].DotProd(pl[0]) + base[1] * p.x + base[2] * p.y;
 }
 Line3 PlaneLineTo3D(Plane pl, Line l) {
@@ -185,7 +185,7 @@ LD Area(P3 p, P3 q, P3 r) {
 	q -= p; r -= p;
 	return q.Area(r);
 }
-vector<Point> InterLineLine(Line &a, Line &b) { // working fine
+V<Point> InterLineLine(Line &a, Line &b) { // working fine
 	Point vec_a = a[1] - a[0];
 	Point vec_b1 = b[1] - a[0];
 	Point vec_b0 = b[0] - a[0];
@@ -198,15 +198,15 @@ vector<Point> InterLineLine(Line &a, Line &b) { // working fine
 	}
 	return {a[0] + vec_a * (tr_area / quad_area)};
 }
-vector<P3> InterLineLine(Line3 k, Line3 l) {
+V<P3> InterLineLine(Line3 k, Line3 l) {
 	if (Lines3Equal(k, l)) return {k[0], k[1]};
 	if (PtBelongToLine3(l[0], k)) return {l[0]};
 	Plane pl{l[0], k[0], k[1]};
 	if (!PtBelongToPlane(l[1], pl)) return {};
 	Line k2 = PlaneLineTo2D(pl, k);
 	Line l2 = PlaneLineTo2D(pl, l);
-	vector<Point> inter = InterLineLine(k2, l2);
-	vector<P3> res;
+	V<Point> inter = InterLineLine(k2, l2);
+	V<P3> res;
 	for (auto P : inter) res.push_back(PlanePtTo3D(pl, P));
 	return res;
 }
@@ -233,7 +233,7 @@ P3 RotateAccordingly(P3 A1, P3 A2, P3 B1) { // ok
 	complex<LD> Brot = rat * complex<LD>(B2.x, B2.y);
 	return PlanePtTo3D(plb, {Brot.real(), Brot.imag()});
 }
-vector<Circle3> InterSpherePlane(Sphere s, Plane pl) { // ok
+V<Circle3> InterSpherePlane(Sphere s, Plane pl) { // ok
 	P3 proj = ProjPtToPlane(s.o, pl);
 	LD dis = s.o.Dis(proj);
 	if (dis > s.r + kEps) return {};

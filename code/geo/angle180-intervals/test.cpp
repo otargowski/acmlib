@@ -5,7 +5,7 @@
 void test() {
 	int n = rd(0, 1) ? rd(1, 10) : rd(1, 100);
 	int mx = rd(0, 1) ? 5 : int(1e9);
-	vector<P> in(n);
+	V<P> in(n);
 	for(auto &p : in)
 		while(true) {
 			p = P(rd(-mx, mx), rd(-mx, mx));
@@ -14,7 +14,7 @@ void test() {
 		}
 	in = angle_sort(in);
 
-	vector<pair<int, int>> ret = angle180_intervals(in);
+	V<pair<int, int>> ret = angle180_intervals(in);
 	assert(ssize(ret) == n);
 	debug(ret);
 

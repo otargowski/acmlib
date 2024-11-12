@@ -22,7 +22,7 @@ void test() {
 	int q = rd(1, mq);
 
 	BinomCoeff bc(n);
-	vector brute(n + 1, vector (n + 1, 0));
+	V brute(n + 1, V (n + 1, 0));
 	FOR(i, 0, n)
 		brute[i][0] = brute[i][i] = 1;
 	FOR(i, 1, n)

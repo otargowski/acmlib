@@ -20,10 +20,10 @@ pair<ll, ll> pell(ll n) {
 	}
 	return {num2, den2};
 }
-vector<pair<ll, ll>> all_pell(ll n, ll limit) {
+V<pair<ll, ll>> all_pell(ll n, ll limit) {
 	auto [x0, y0] = pell(n);
 	if (!x0) return {};
-	vector<pair<ll, ll>> ret;
+	V<pair<ll, ll>> ret;
 	__int128 x = x0, y = y0;
 	while (x <= limit) {
 		ret.emplace_back(x, y);

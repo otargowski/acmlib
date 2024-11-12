@@ -7,7 +7,7 @@ int main() {
 
 	int n;
 	cin >> n;
-	vector<vector<int>> adj(n);
+	V<V<int>> adj(n);
 	REP(i, n - 1) {
 		int a, b;
 		cin >> a >> b;

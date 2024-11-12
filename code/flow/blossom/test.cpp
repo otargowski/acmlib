@@ -1,11 +1,11 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-int get_max_matching(int n, vector<pair<int, int>> edges) {
+int get_max_matching(int n, V<pair<int, int>> edges) {
 	int answer = 0;
 	REP(mask, 1 << ssize(edges)) {
 		bool is_valid = true;
-		vector<bool> is_taken(n, false);
+		V<bool> is_taken(n, false);
 		REP(i, ssize(edges))
 			if((mask >> i) & 1) {
 				auto [v, u] = edges[i];
@@ -21,7 +21,7 @@ int get_max_matching(int n, vector<pair<int, int>> edges) {
 	return answer;
 }
 
-bool is_valid_matching(int n, vector<pair<int, int>> edges, vector<int> match) {
+bool is_valid_matching(int n, V<pair<int, int>> edges, V<int> match) {
 	REP(v, n)
 		if(match[v] != -1) {
 			bool found = false;
@@ -39,7 +39,7 @@ bool is_valid_matching(int n, vector<pair<int, int>> edges, vector<int> match) {
 void test() {
 	int n = rd(2, 14);
 	int m = min(15, rd(0, n * n));
-	vector<pair<int, int>> edges(m);
+	V<pair<int, int>> edges(m);
 	for(auto &[v, u] : edges) {
 		while(true) {
 			v = rd(0, n - 1);
@@ -49,13 +49,13 @@ void test() {
 		}
 	}
 
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].emplace_back(u);
 		graph[u].emplace_back(v);
 	}
 
-	vector match = blossom(graph);
+	V match = blossom(graph);
 	int match_size = 0;
 	for(int x : match)
 		match_size += bool(x != -1);

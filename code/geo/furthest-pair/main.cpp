@@ -3,7 +3,7 @@
  */
 #include "../convex-hull/main.cpp"
 
-pair<P, P> furthest_pair(vector<P> in) {
+pair<P, P> furthest_pair(V<P> in) {
 	in = hull(in);
 	int n = ssize(in), j = 1;
 	pair<D, pair<P, P>> ret;

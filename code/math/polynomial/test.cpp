@@ -3,7 +3,7 @@
 
 void test() {
 	auto get_vec_given_length = [&](int n) {
-		vector<int> v(n);
+		V<int> v(n);
 		for(int &e : v)
 			e = rd(0, mod - 1);
 		return v;
@@ -14,7 +14,7 @@ void test() {
 	};
 
 	auto get_vec_diff = [&](int n) {
-		vector<int> v(n);
+		V<int> v(n);
 		set<int> s;
 		for (int &e : v) {
 			do {

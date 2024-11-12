@@ -7,7 +7,7 @@ void test() {
 	const int mn = 20;
 	int n = rd(0, mn);
 	int len = 3 * n + 5;
-	vector<int> v(len), r(n);
+	V<int> v(len), r(n);
 	REP(i, n) {
 		v[i] = rd(0, limit);
 		r[i] = rd(0, limit);

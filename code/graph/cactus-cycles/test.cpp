@@ -3,7 +3,7 @@
 
 void test() {
 	int n = 1;
-	vector<pair<int, int>> all_edges, cycle_edges;
+	V<pair<int, int>> all_edges, cycle_edges;
 
 	auto add_edge = [&](int a, int b) {
 		all_edges.emplace_back(a, b);
@@ -43,7 +43,7 @@ void test() {
 			add_vertex();
 	}
 
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	for (auto [a, b] : all_edges)
 		graph[a].emplace_back(b);
 	debug(graph);

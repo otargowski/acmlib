@@ -3,10 +3,10 @@
  * Dla odwracalnych macierzy (rząd = n) w $a$ znajdzie się jej odwrotność.
  */
 #include "../matrix-header/main.cpp"
-int inverse(vector<vector<T>>& a) {
+int inverse(V<V<T>>& a) {
 	int n = ssize(a);
-	vector<int> col(n);
-	vector h(n, vector<T>(n));
+	V<int> col(n);
+	V h(n, V<T>(n));
 	REP(i, n)
 		h[i][i] = 1, col[i] = i;
 	REP(i, n) {

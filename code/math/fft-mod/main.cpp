@@ -3,9 +3,9 @@
  *   \texttt{conv\_mod(a, b)} zwraca iloczyn wielomianów modulo, ma większą dokładność niż zwykłe fft.
  */
 #include "../fft/main.cpp"
-vector<int> conv_mod(vector<int> a, vector<int> b, int M) {
+V<int> conv_mod(V<int> a, V<int> b, int M) {
 	if(a.empty() or b.empty()) return {};
-	vector<int> res(ssize(a) + ssize(b) - 1);
+	V<int> res(ssize(a) + ssize(b) - 1);
 	const int CUTOFF = 125;
 	if (min(ssize(a), ssize(b)) <= CUTOFF) {
 		if (ssize(a) > ssize(b))
@@ -17,7 +17,7 @@ vector<int> conv_mod(vector<int> a, vector<int> b, int M) {
 	}
 	int B = 32 - __builtin_clz(ssize(res)), n = 1 << B;
 	int cut = int(sqrt(M));
-	vector<Complex> L(n), R(n), outl(n), outs(n);
+	V<Complex> L(n), R(n), outl(n), outs(n);
 	REP(i, ssize(a)) L[i] = Complex((int) a[i] / cut, (int) a[i] % cut);
 	REP(i, ssize(b)) R[i] = Complex((int) b[i] / cut, (int) b[i] % cut);
 	fft(L), fft(R);

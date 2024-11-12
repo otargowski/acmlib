@@ -3,7 +3,7 @@
 
 void test() {
 	int n = rd(1, 12);
-	vector<bitset<max_n>> graph(n);
+	V<bitset<max_n>> graph(n);
 	int m = rd(0, n * n);
 	while(m --> 0) {
 		int v = rd(0, n - 1);
@@ -19,7 +19,7 @@ void test() {
 
 	auto max_clique = get_max_clique(graph);
 
-	auto is_ok = [&](vector<int> v) {
+	auto is_ok = [&](V<int> v) {
 		REP(i, ssize(v))
 			REP(j, i)
 				if(not graph[v[i]][v[j]])
@@ -29,7 +29,7 @@ void test() {
 
 	int best_brute = 0;
 	REP(mask, 1 << n) {
-		vector<int> v;
+		V<int> v;
 		REP(i, n)
 			if((mask >> i) & 1)
 				v.emplace_back(i);

@@ -1,9 +1,9 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-bool is_permutation(vector<int> t) {
+bool is_permutation(V<int> t) {
 	int n = ssize(t);
-	vector<int> odw(n);
+	V<int> odw(n);
 	REP (i, n) {
 		if (t[i] < 0 || n <= t[i])
 			return false;
@@ -19,8 +19,8 @@ void test() {
 	int m = rd(0, 400);
 	if (n < 2)
 		m = 0;
-	vector<vector<int>> graph(n);
-	vector<int> per(n);
+	V<V<int>> graph(n);
+	V<int> per(n);
 	iota(per.begin(), per.end(), 0);
 	shuffle(per.begin(), per.end(), rng);
 	REP (i, m) {
@@ -33,7 +33,7 @@ void test() {
 	auto ord = get_toposort_order(graph);
 	assert(ssize(ord) == n);
 	assert(is_permutation(ord));
-	vector<int> odw(n);
+	V<int> odw(n);
 	REP (i, n) {
 		odw[ord[i]] = 1;
 		for (int j : graph[ord[i]])
@@ -52,7 +52,7 @@ void test() {
 		ll a;
 		int b;
 	};
-	vector<info> info_tab(n);
+	V<info> info_tab(n);
 	REP (i, n) {
 		info_tab[i].a = (ll)rd(1, int(1e9)) * rd(1, int(1e9));
 		info_tab[i].b = rd(1, 100);

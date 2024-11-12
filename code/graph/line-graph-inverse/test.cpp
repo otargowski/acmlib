@@ -1,8 +1,8 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-vector<vector<int>> construct_graph(vector<pair<int, int>> ans) {
-	vector<vector<int>> graph;
+V<V<int>> construct_graph(V<pair<int, int>> ans) {
+	V<V<int>> graph;
 	for(auto [v, u] : ans) {
 		int mx = max(v, u);
 		if(ssize(graph) <= mx)
@@ -27,12 +27,12 @@ void test() {
 	}
 	debug(line_edges);
 
-	set<vector<vector<int>>> matching_original_graphs;
+	set<V<V<int>>> matching_original_graphs;
 	for(int og_n = 0; (matching_original_graphs.empty() and og_n <= 2 * line_n) or og_n <= 5; ++og_n) {
-		vector<pair<int, int>> ans(line_n, pair(-1, -1));
+		V<pair<int, int>> ans(line_n, pair(-1, -1));
 		function<void (int)> backtrack = [&](int i) {
 			if(i == line_n) {
-				vector<int> deg(og_n);
+				V<int> deg(og_n);
 				for(auto [v, u] : ans)
 					for(int x : {v, u})
 						++deg[x];
@@ -68,12 +68,12 @@ void test() {
 	debug(line_edges);
 	debug(matching_original_graphs);
 
-	vector<vector<vector<int>>> matching_big_og_graphs;
+	V<V<V<int>>> matching_big_og_graphs;
 	for(auto &graph : matching_original_graphs) {
 		int og_n = ssize(graph);
 
 		auto is_connected = [&]() -> bool {
-			vector<bool> visited(og_n);
+			V<bool> visited(og_n);
 			function<void (int)> dfs = [&](int v) {
 				visited[v] = true;
 				for(int u : graph[v])
@@ -103,10 +103,10 @@ void test() {
 		assert(ssize(graph1) == og_n);
 
 		auto is_matching_perm = [&] {
-			vector<int> perm(og_n);
+			V<int> perm(og_n);
 			iota(perm.begin(), perm.end(), 0);
 			do {
-				vector<vector<int>> transmuted1(og_n);
+				V<V<int>> transmuted1(og_n);
 				REP(v, og_n)
 					for(int u : graph1[v])
 						transmuted1[perm[v]].emplace_back(perm[u]);
@@ -120,7 +120,7 @@ void test() {
 		assert(is_matching_perm());
 	}
 
-	auto [main_found, main_ans] = get_original_graph(line_n, vector(line_edges.begin(), line_edges.end()));
+	auto [main_found, main_ans] = get_original_graph(line_n, V(line_edges.begin(), line_edges.end()));
 	debug(main_found, main_ans);
 	auto main_graph = construct_graph(main_ans);
 	debug(main_graph);

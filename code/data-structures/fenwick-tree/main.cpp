@@ -4,7 +4,7 @@
  *   \texttt{query(pos)} zwraca sumę $[0, pos]$.
  */
 struct Fenwick {
-	vector<ll> s;
+	V<ll> s;
 	Fenwick(int n) : s(n) {}
 	void update(int pos, ll val) {
 		for(; pos < ssize(s); pos |= pos + 1)

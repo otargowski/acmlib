@@ -4,7 +4,7 @@
 
 void test() {
 	static const int mn = 1e5;
-	static vector<int> pref;
+	static V<int> pref;
 	if (pref.empty()) {
 		sieve(mn);
 		pref.resize(mn + 1);

@@ -7,7 +7,7 @@ int main() {
 
 	string str;
 	cin >> str;
-	vector<int> s(str.begin(), str.end());
+	V<int> s(str.begin(), str.end());
 	for(int &c : s)
 		c -= 'a';
 	SuffixArray q(s);

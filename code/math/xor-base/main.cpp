@@ -5,8 +5,8 @@ int highest_bit(int ai) {
 	return ai == 0 ? 0 : __lg(ai) + 1;
 }
 constexpr int bits = 30;
-vector<int> xor_base(vector<int> elems) {
-	vector<vector<int>> at_bit(bits + 1);
+V<int> xor_base(V<int> elems) {
+	V<V<int>> at_bit(bits + 1);
 	for(int ai : elems)
 		at_bit[highest_bit(ai)].emplace_back(ai);
 	for(int b = bits; b >= 1; --b)
@@ -23,7 +23,7 @@ vector<int> xor_base(vector<int> elems) {
 				for(int &a1 : at_bit[b1])
 					if((a1 >> b0) & 1)
 						a1 ^= a0;
-	vector<int> ret;
+	V<int> ret;
 	for(auto &v : at_bit) {
 		assert(ssize(v) <= 1);
 		for(int ai : v)

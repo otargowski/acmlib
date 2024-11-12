@@ -4,7 +4,7 @@
  */
 #include "../point/main.cpp"
 // BEGIN HASH
-vector<P> circle_line(D r, D a, D b, D c) {
+V<P> circle_line(D r, D a, D b, D c) {
 	D len_ab = a * a + b * b,
 	  x0 = -a * c / len_ab,
 	  y0 = -b * c / len_ab,
@@ -19,11 +19,11 @@ vector<P> circle_line(D r, D a, D b, D c) {
 		{x0 - b * mult, y0 + a * mult}
 	};
 }
-vector<P> circle_line(D x, D y, D r, D a, D b, D c) {
+V<P> circle_line(D x, D y, D r, D a, D b, D c) {
 	return circle_line(r, a, b, c + (a * x + b * y));
 } // END HASH
 // BEGIN HASH
-vector<P> circle_circle(D x1, D y1, D r1, D x2, D y2, D r2) {
+V<P> circle_circle(D x1, D y1, D r1, D x2, D y2, D r2) {
 	x2 -= x1;
 	y2 -= y1;
 	// now x1 = y1 = 0;

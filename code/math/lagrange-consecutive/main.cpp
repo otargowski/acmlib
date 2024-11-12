@@ -2,7 +2,7 @@
  * Opis: O(n), przyjmuje wartości wielomianu w punktach $0,1,\dots,n-1$ i wylicza jego wartość w $x$. lagrange\_consecutive(\{2, 3, 4\}, 3) == 5
  */
 #include "../simple-modulo/main.cpp"
-int lagrange_consecutive(vector<int> y, int x) {
+int lagrange_consecutive(V<int> y, int x) {
 	int n = ssize(y), fac = 1, pref = 1, suff = 1, ret = 0;
 	FOR(i, 1, n) fac = mul(fac, i);
 	fac = inv(fac);

@@ -4,7 +4,7 @@
 
 void test() {
 	int n;
-	vector<P> in;
+	V<P> in;
 	while(true) {
 		n = rd(1, 10);
 		in.resize(n);

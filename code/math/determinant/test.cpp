@@ -2,13 +2,13 @@
 #include "main.cpp"
 
 void test() {
-	function<int(vector<vector<int>>)> brute = [&](vector<vector<int>> a) {
+	function<int(V<V<int>>)> brute = [&](V<V<int>> a) {
 		const int n = ssize(a);
 		if (n == 1)
 			return a[0][0];
 		int ret = 0;
 		REP(i, n) {
-			vector<vector<int>> b;
+			V<V<int>> b;
 			REP(j, n)
 				if (j != i)
 					b.emplace_back(a[j].begin() + 1, a[j].end());
@@ -23,7 +23,7 @@ void test() {
 	};
 	const int mn = 8;
 	int n = rd(1, mn);
-	vector a(n, vector(n, 0));
+	V a(n, V(n, 0));
 	const int limit = rd(0, 1) ? 3 : mod - 1;
 	REP(i, n)
 		REP(j, n)

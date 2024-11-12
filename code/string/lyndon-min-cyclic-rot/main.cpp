@@ -6,9 +6,9 @@
  * \texttt{min\_suffix("abacab") == "ab"},
  * \texttt{min\_cyclic\_shift("abacaba") == "aabacab"}.
  */
-vector<pair<int, int>> duval(vector<int> s) {
+V<pair<int, int>> duval(V<int> s) {
 	int n = ssize(s), i = 0;
-	vector<pair<int, int>> ret;
+	V<pair<int, int>> ret;
 	while(i < n) {
 		int j = i + 1, k = i;
 		while(j < n and s[k] <= s[j]) {
@@ -22,10 +22,10 @@ vector<pair<int, int>> duval(vector<int> s) {
 	}
 	return ret;
 }
-vector<int> min_suffix(vector<int> s) {
+V<int> min_suffix(V<int> s) {
 	return {s.begin() + duval(s).back().first, s.end()};
 }
-vector<int> min_cyclic_shift(vector<int> s) {
+V<int> min_cyclic_shift(V<int> s) {
 	int n = ssize(s);
 	REP(i, n)
 		s.emplace_back(s[i]);

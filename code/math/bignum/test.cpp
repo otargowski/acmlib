@@ -6,7 +6,7 @@ ostream& operator<<(ostream& o, __int128_t x) {
 		x = -x;
 		o << "-";
 	}
-	vector<int> v;
+	V<int> v;
 	if (x == 0) v.emplace_back(0);
 	while (x > 0) {
 		v.emplace_back(x % 10);
@@ -43,8 +43,8 @@ T gcd(T a, T b) {
 T abs(T x) { return x < 0 ? -x : x; }
 
 void test() {
-	vector<Num> vnum{1, 2, 4, 11};
-	vector<T> vt{1, 2, 4, 11};
+	V<Num> vnum{1, 2, 4, 11};
+	V<T> vt{1, 2, 4, 11};
 	set<T> st{1, 2, 4, 11};
 	int opcnt = rd(1, 1000);
 	map<int,int> cnt;

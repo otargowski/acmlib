@@ -7,11 +7,11 @@
  */
 struct SCC {
 	int n;
-	vector<vector<int>> &graph;
+	V<V<int>> &graph;
 	int group_cnt = 0;
-	vector<int> group;
-	vector<vector<int>> rev_graph;
-	vector<int> order;
+	V<int> group;
+	V<V<int>> rev_graph;
+	V<int> order;
 	void order_dfs(int v) {
 		group[v] = 1;
 		for(int u : rev_graph[v])
@@ -25,7 +25,7 @@ struct SCC {
 			if(group[u] == -1)
 				group_dfs(u, color);
 	}
-	SCC(vector<vector<int>> &_graph) : graph(_graph) {
+	SCC(V<V<int>> &_graph) : graph(_graph) {
 		n = ssize(graph);
 		rev_graph.resize(n);
 		REP(v, n)
@@ -42,8 +42,8 @@ struct SCC {
 			if(group[v] == -1)
 				group_dfs(v, group_cnt++);
 	}
-	vector<vector<int>> get_compressed(bool delete_same = true) {
-		vector<vector<int>> ans(group_cnt);
+	V<V<int>> get_compressed(bool delete_same = true) {
+		V<V<int>> ans(group_cnt);
 		REP(v, n)
 			for(int u : graph[v])
 				if(group[v] != group[u])

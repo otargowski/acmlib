@@ -3,7 +3,7 @@
  *   wszystko indexowane od 0,
  *   \texttt{insert(i, val)} insertuję na pozycję $i$,
  *   kopiowanie struktury działa w O(1),
- *   robimy sobie \texttt{vector<Treap>} żeby obsługiwać trwałość
+ *   robimy sobie \texttt{V<Treap>} żeby obsługiwać trwałość
  *   UPD. uwaga potencjalnie się kwadraci, spytać Bartka kiedy
  */
 mt19937 rng_i(0);

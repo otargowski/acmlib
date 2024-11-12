@@ -2,7 +2,7 @@
  * Opis: O(\alpha(n)), mniejszy do wiekszego.
  */
 struct FindUnion {
-	vector<int> rep;
+	V<int> rep;
 	int size(int x) { return -rep[find(x)]; }
 	int find(int x) {
 		return rep[x] < 0 ? x : rep[x] = find(rep[x]);

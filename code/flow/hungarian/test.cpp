@@ -9,13 +9,13 @@ void test() {
 	if(n0 > n1)
 		swap(n0, n1);
 	int max_weight = (rd(0, 1) ? 10 : int(1e9));
-	vector<vector<int>> weight(n0, vector<int>(n1));
+	V<V<int>> weight(n0, V<int>(n1));
 	REP(i, n0)
 		REP(j, n1)
 			weight[i][j] = rd(-max_weight, max_weight);
 
 	auto [ans, match] = hungarian(weight);
-	vector<bool> used_in_m(n1, false);
+	V<bool> used_in_m(n1, false);
 	for(int i : match) {
 		assert(not used_in_m[i]);
 		used_in_m[i] = true;
@@ -27,10 +27,10 @@ void test() {
 
 	if(test_type == 0) {
 		ll ans_brute = ll(1e18);
-		vector<int> perm(n1);
+		V<int> perm(n1);
 		iota(perm.begin(), perm.end(), 0);
 		do {
-			vector<int> brute_match = perm;
+			V<int> brute_match = perm;
 			brute_match.resize(n0);
 			ll ans_local = 0;
 			REP(i, n0)

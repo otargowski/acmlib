@@ -4,7 +4,7 @@
  */
 #include "../point/main.cpp"
 
-void polygon_print(vector<P> v, int r = 10) {
+void polygon_print(V<P> v, int r = 10) {
     int m = 350 / r, d = 50;
     auto ori = v;
     for (auto &p : v)

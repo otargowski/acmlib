@@ -5,7 +5,7 @@
 void test() {
 	int n0 = rd(1, 10);
 	int n1 = rd(1, 10);
-	vector<vector<int>> graph(n0 + n1);
+	V<V<int>> graph(n0 + n1);
 	int m = rd(1, 100);
 	while(m --> 0) {
 		int v = rd(0, n0 - 1);
@@ -14,7 +14,7 @@ void test() {
 		graph[u].emplace_back(v);
 	}
 	auto [ans, match] = hopcroft_karp(graph, n0, n1);
-	vector<bool> vis(n0 + n1);
+	V<bool> vis(n0 + n1);
 	int ans_check = 0;
 	REP(v, n0)
 		assert(match[v] == -1 or match[v] >= n0);

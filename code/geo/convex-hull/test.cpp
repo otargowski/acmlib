@@ -4,14 +4,14 @@
 
 void test() {
 	int n = rd(0, 7);
-	vector<P> in(n);
+	V<P> in(n);
 	for(auto &p : in)
 		p = P(rd(-10, 10), rd(-10, 10));
 	debug(in);
 
-	vector<int> best_hull(n + 1);
+	V<int> best_hull(n + 1);
 
-	auto is_good_order = [&](vector<int> order) {
+	auto is_good_order = [&](V<int> order) {
 		if(ssize(order) <= 1)
 			return ssize(order) == n;
 		for(int i : order)
@@ -32,8 +32,8 @@ void test() {
 		return true;
 	};
 
-	vector<bool> taken(n);
-	vector<int> curr_order;
+	V<bool> taken(n);
+	V<int> curr_order;
 	function<void ()> backtrack = [&] {
 		if(is_good_order(curr_order) and ssize(curr_order) < ssize(best_hull))
 			best_hull = curr_order;
@@ -49,7 +49,7 @@ void test() {
 	backtrack();
 	debug(best_hull);
 
-	vector<P> brute;
+	V<P> brute;
 	for(int i : best_hull)
 		brute.emplace_back(in[i]);
 
@@ -61,7 +61,7 @@ void test() {
 	if(all_colinear)
 		brute = {*min_element(in.begin(), in.end()), *max_element(in.begin(), in.end())};
 
-	vector<P> wzorc = hull(in);
+	V<P> wzorc = hull(in);
 	debug(brute, wzorc);
 	assert(brute == wzorc);
 }

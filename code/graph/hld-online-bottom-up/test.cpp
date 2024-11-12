@@ -62,14 +62,14 @@ DpOneEnd two_to_one(DpTwoEnds two) {
 
 void test() {
 	int n = rd(1, 12);
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	FOR(v, 1, n - 1) {
 		int u = rd(0, v - 1);
 		graph[v].emplace_back(u);
 		graph[u].emplace_back(v);
 	}
 
-	vector<int> color(n);
+	V<int> color(n);
 	REP(i, n)
 		color[i] = rd(0, 1);
 
@@ -77,7 +77,7 @@ void test() {
 		int ans = 0;
 		REP(mask, 1 << n)
 			if(mask != 0) {
-				vector<bool> vis(n);
+				V<bool> vis(n);
 				function<void (int)> dfs = [&](int v) {
 					vis[v] = true;
 					for(int u : graph[v])
@@ -91,7 +91,7 @@ void test() {
 					}
 				if(accumulate(vis.begin(), vis.end(), 0) != __builtin_popcount(mask))
 					continue;
-				vector<int> colors;
+				V<int> colors;
 				REP(v, n)
 					if(vis[v])
 						colors.emplace_back(color[v]);

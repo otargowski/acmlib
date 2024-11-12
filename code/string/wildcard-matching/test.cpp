@@ -3,11 +3,11 @@
 #include "main.cpp"
 #undef rng
 
-vector<bool> brute(vector<int> text, vector<int> pattern) {
+V<bool> brute(V<int> text, V<int> pattern) {
 	const int n = ssize(text);
 	const int m = ssize(pattern);
 	assert(m <= n);
-	vector<bool> ret(n - m + 1);
+	V<bool> ret(n - m + 1);
 	REP(i, n - m + 1) {
 		bool ok = true;
 		REP(j, m) {
@@ -24,7 +24,7 @@ vector<bool> brute(vector<int> text, vector<int> pattern) {
 void test() {
 	int n = rd(1, 30);
 	int m = rd(1, n);
-	vector<int> text(n), pattern(m);
+	V<int> text(n), pattern(m);
 	const int alpha = rd(0, 1) ? 3 : 20;
 	for (int& e : text) e = rd(-1, alpha - 1);
 	for (int& e : pattern) e = rd(-1, alpha - 1);

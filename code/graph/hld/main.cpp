@@ -8,8 +8,8 @@
  */
 struct HLD {
 // BEGIN HASH
-	vector<vector<int>> &adj;
-	vector<int> sz, pre, pos, nxt, par;
+	V<V<int>> &adj;
+	V<int> sz, pre, pos, nxt, par;
 	int t = 0;
 	void init(int v, int p = -1) {
 		par[v] = p;
@@ -31,7 +31,7 @@ struct HLD {
 		}
 		pos[v] = t;
 	}
-	HLD(int n, vector<vector<int>> &_adj)
+	HLD(int n, V<V<int>> &_adj)
 		: adj(_adj), sz(n), pre(n), pos(n), nxt(n), par(n) {
 		init(0), set_paths(0);
 	} // END HASH
@@ -43,8 +43,8 @@ struct HLD {
 		}
 		return (pre[v] < pre[u] ? v : u);
 	}
-	vector<pair<int, int>> path_up(int v, int u) {
-		vector<pair<int, int>> ret;
+	V<pair<int, int>> path_up(int v, int u) {
+		V<pair<int, int>> ret;
 		while(nxt[v] != nxt[u]) {
 			ret.emplace_back(pre[nxt[v]], pre[v]);
 			v = par[nxt[v]];
@@ -53,7 +53,7 @@ struct HLD {
 		return ret;
 	}
 	int get_vertex(int v) { return pre[v]; }
-	vector<pair<int, int>> get_path(int v, int u, bool add_lca = true) {
+	V<pair<int, int>> get_path(int v, int u, bool add_lca = true) {
 		int w = lca(v, u);
 		auto ret = path_up(v, w);
 		auto path_u = path_up(u, w);

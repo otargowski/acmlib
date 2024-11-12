@@ -72,7 +72,7 @@ struct Splay {
 		bool lazy_flip = false;
 		AdditionalInfo info;
 	};
-	vector<Node> t;
+	V<Node> t;
 	const int nil;
 	Splay(int n)
 	: t(n + 1), nil(n) {

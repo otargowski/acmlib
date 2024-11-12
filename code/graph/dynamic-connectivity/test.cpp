@@ -7,7 +7,7 @@ ostream& operator<<(ostream& o, tuple<auto,auto,auto> t) {
 
 void test() {
 	int n = rd(1, 10);
-	vector<tuple<int, int, Event_type>> events(rd(0, 20));
+	V<tuple<int, int, Event_type>> events(rd(0, 20));
 	for(auto &[v, u, t] : events) {
 		v = rd(0, n - 1);
 		u = rd(0, n - 1);
@@ -15,12 +15,12 @@ void test() {
 	}
 	debug(events);
 
-	vector<multiset<int>> graph(n);
-	vector<bool> brute;
+	V<multiset<int>> graph(n);
+	V<bool> brute;
 	for(auto [v, u, t] : events)
 		if(t == Query) {
 			debug(graph);
-			vector<bool> vis(n);
+			V<bool> vis(n);
 			function<void (int)> dfs = [&](int a) {
 				vis[a] = true;
 				for(int b : graph[a])
@@ -42,7 +42,7 @@ void test() {
 					graph[w].erase(it);
 			}
 
-	vector<bool> wzorc = dynamic_connectivity(n, events);
+	V<bool> wzorc = dynamic_connectivity(n, events);
 	debug(brute);
 	debug(wzorc);
 	assert(brute == wzorc);

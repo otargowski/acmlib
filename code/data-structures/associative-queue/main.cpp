@@ -7,7 +7,7 @@ template<typename T>
 struct AssocQueue {
 	using fn = function<T(T, T)>;
 	fn f;
-	vector<pair<T, T>> s1, s2; // {x, f(pref)}
+	V<pair<T, T>> s1, s2; // {x, f(pref)}
 	AssocQueue(fn _f, T e = T()) : f(_f), s1({{e, e}}), s2({{e, e}}) {}
 	void mv() {
 		if (ssize(s2) == 1)

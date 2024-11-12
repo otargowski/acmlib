@@ -7,8 +7,8 @@
 // BEGIN HASH
 struct SimpleJumpPtr {
 	int bits;
-	vector<vector<int>> graph, jmp;
-	vector<int> par, dep;
+	V<V<int>> graph, jmp;
+	V<int> par, dep;
 	void par_dfs(int v) {
 		for(int u : graph[v])
 			if(u != par[v]) {
@@ -17,14 +17,14 @@ struct SimpleJumpPtr {
 				par_dfs(u);
 			}
 	}
-	SimpleJumpPtr(vector<vector<int>> g = {}, int root = 0) : graph(g) {
+	SimpleJumpPtr(V<V<int>> g = {}, int root = 0) : graph(g) {
 		int n = ssize(graph);
 		bits = __lg(max(1, n)) + 1;
 		dep.resize(n);
 		par.resize(n, -1);
 		if(n > 0)
 			par_dfs(root);
-		jmp.resize(bits, vector<int>(n, -1));
+		jmp.resize(bits, V<int>(n, -1));
 		jmp[0] = par;
 		FOR(b, 1, bits - 1)
 			REP(v, n)
@@ -59,18 +59,18 @@ PathAns merge(PathAns down, PathAns up) {
 }
 struct OperationJumpPtr {
 	SimpleJumpPtr ptr;
-	vector<vector<PathAns>> ans_jmp;
-	OperationJumpPtr(vector<vector<pair<int, int>>> g, int root = 0) {
+	V<V<PathAns>> ans_jmp;
+	OperationJumpPtr(V<V<pair<int, int>>> g, int root = 0) {
 		debug(g, root);
 		int n = ssize(g);
-		vector<vector<int>> unweighted_g(n);
+		V<V<int>> unweighted_g(n);
 		REP(v, n)
 			for(auto [u, w] : g[v]) {
 				(void) w;
 				unweighted_g[v].emplace_back(u);
 			}
 		ptr = SimpleJumpPtr(unweighted_g, root);
-		ans_jmp.resize(ptr.bits, vector<PathAns>(n));
+		ans_jmp.resize(ptr.bits, V<PathAns>(n));
 		REP(v, n)
 			for(auto [u, w] : g[v])
 				if(u == ptr.par[v])

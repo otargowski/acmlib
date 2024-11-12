@@ -4,7 +4,7 @@
 void test() {
 	int n = rd(1, 10);
 	int N = (1 << n);
-	vector<ll> A(N), pod(N), nad(N);
+	V<ll> A(N), pod(N), nad(N);
 	REP(i,N) A[i] = rd(0, int(1e9));
 	REP(i,N)
 		REP(j,N)

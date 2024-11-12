@@ -3,9 +3,9 @@
 
 struct Brute {
 	int n;
-	vector<pair<int,bool>> vsetvalue;
-	vector<tuple<int,bool,int,bool>> veither;
-	vector<vector<pair<int,bool>>> vatmostone;
+	V<pair<int,bool>> vsetvalue;
+	V<tuple<int,bool,int,bool>> veither;
+	V<V<pair<int,bool>>> vatmostone;
 
 	Brute(int _n) : n(_n) {}
 
@@ -17,11 +17,11 @@ struct Brute {
 		vsetvalue.emplace_back(a, b);
 	}
 
-	void at_most_one(vector<pair<int,bool>> v) {
+	void at_most_one(V<pair<int,bool>> v) {
 		vatmostone.emplace_back(v);
 	}
 
-	bool does_satisfy(vector<int> v) {
+	bool does_satisfy(V<int> v) {
 		for (auto [a, b] : vsetvalue)
 			if (v[a] != b)
 				return false;
@@ -40,7 +40,7 @@ struct Brute {
 
 	bool solve() {
 		REP(i,(1<<n)) {
-			vector v(n, 0);
+			V v(n, 0);
 			REP(j,n)
 				if ((i >> j) & 1)
 					v[j] = 1;
@@ -80,8 +80,8 @@ void test() {
 		}
 		else if (type == 2) {
 			int k = rd(0, n);
-			vector<int> vts(k);
-			vector<pair<int,bool>> vbr(k);
+			V<int> vts(k);
+			V<pair<int,bool>> vbr(k);
 			REP(i,k) {
 				auto [a, b, c] = var();
 				vts[i] = a;

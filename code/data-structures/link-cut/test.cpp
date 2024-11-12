@@ -99,12 +99,12 @@ stringstream brute(stringstream in) {
 
 	int n, q;
 	in >> n >> q;
-	vector<vector<int>> graph(n);
-	vector<int> node_value(n);
+	V<V<int>> graph(n);
+	V<int> node_value(n);
 
 	auto is_in_same_tree = [&](int v, int u) -> bool {
 		debug(v, u);
-		vector<bool> vis(n, false);
+		V<bool> vis(n, false);
 		function<void (int, int)> dfs = [&](int x, int p) {
 			vis[x] = true;
 			for(int y : graph[x])
@@ -117,7 +117,7 @@ stringstream brute(stringstream in) {
 	};
 
 	auto get_path = [&](int s, int t) {
-		vector<int> path;
+		V<int> path;
 		function<bool (int, int)> dfs = [&](int v, int p) {
 			path.emplace_back(v);
 			if(v == t)
@@ -135,14 +135,14 @@ stringstream brute(stringstream in) {
 	};
 
 	auto get_in_subtree = [&](int s, int outside) {
-		vector<int> in_subtree;
+		V<int> in_subtree;
 		function<void (int, int)> dfs = [&](int x, int p) {
 			in_subtree.emplace_back(x);
 			for(int y : graph[x])
 				if(y != p)
 					dfs(y, x);
 		};
-		vector<int> good_vertices = {s};
+		V<int> good_vertices = {s};
 		for(int u : graph[s]) {
 			dfs(u, s);
 			bool is_outside = false;
@@ -180,7 +180,7 @@ stringstream brute(stringstream in) {
 				out << "0\n";
 			else {
 				out << "1\n";
-				vector<bool> vis(n, false);
+				V<bool> vis(n, false);
 				function<void (int, int)> dfs = [&](int x, int p) {
 					vis[x] = true;
 					for(int y : graph[x])
@@ -234,7 +234,7 @@ stringstream brute(stringstream in) {
 			if(not is_in_same_tree(v, u) or not is_in_same_tree(v, root))
 				out << "0\n";
 			else {
-				vector<int> parent(n, -1), depth(n, 0);
+				V<int> parent(n, -1), depth(n, 0);
 				function<void (int, int)> dfs = [&](int x, int p) {
 					parent[x] = p;
 					for(int y : graph[x])
@@ -267,7 +267,7 @@ stringstream brute(stringstream in) {
 			if(not is_in_same_tree(v, u))
 				out << "0\n";
 			else {
-				vector path = get_path(v, u);
+				V path = get_path(v, u);
 				ll sum = 0;
 				for(int w : path)
 					sum += node_value[w];
@@ -292,7 +292,7 @@ stringstream brute(stringstream in) {
 			if(not is_in_same_tree(v, u))
 				out << "0\n";
 			else {
-				vector path = get_path(v, u);
+				V path = get_path(v, u);
 				for(int w : path)
 					node_value[w] += val;
 				out << "1\n";

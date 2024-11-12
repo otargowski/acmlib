@@ -30,7 +30,7 @@ DpOneEnd two_to_one(DpTwoEnds two);
 
 template<class T> struct Tree {
 	int leaves = 1;
-	vector<T> tree;
+	V<T> tree;
 	Tree(int n = 0) {
 		while(leaves < n)
 			leaves *= 2;
@@ -46,11 +46,11 @@ template<class T> struct Tree {
 struct DpDynamicBottomUp {
 	int n;
 	HLD hld;
-	vector<Tree<DpOneEnd>> tree_sons;
-	vector<Tree<DpTwoEnds>> tree_path;
-	vector<Value_v> current_values;
-	vector<int> which_on_path, which_light_son;
-	DpDynamicBottomUp(vector<vector<int>> graph, vector<Value_v> initial_values)
+	V<Tree<DpOneEnd>> tree_sons;
+	V<Tree<DpTwoEnds>> tree_path;
+	V<Value_v> current_values;
+	V<int> which_on_path, which_light_son;
+	DpDynamicBottomUp(V<V<int>> graph, V<Value_v> initial_values)
 		: n(ssize(graph)), hld(n, graph), tree_sons(n), tree_path(n), current_values(initial_values), which_on_path(n, -1), which_light_son(n, -1) {
 		function<void (int, int*)> dfs = [&](int v, int *on_heavy_cnt) {
 			int light_sons_cnt = 0, tmp = 0;

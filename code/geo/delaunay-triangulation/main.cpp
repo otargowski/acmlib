@@ -6,8 +6,8 @@
  * (czyli maksymalizuje minimalny kąt trójkątów).
  * Zakłada brak identycznych punktów.
  * W przypadku współliniowości wszystkich punktów
- * zwraca pusty vector.
- * Zwraca vector rozmiaru 3X, gdzie wartości 3i, 3i+1, 3i+2
+ * zwraca pusty V.
+ * Zwraca V rozmiaru 3X, gdzie wartości 3i, 3i+1, 3i+2
  * tworzą counter-clockwise trójkąt.
  * Wśród sąsiadów zawsze jest najbliższy wierzchołek.
  * Euclidean min. spanning tree to podzbiór krawędzi.
@@ -38,7 +38,7 @@ struct Quad {
 	Q prev() { return rot->o->rot; }
 	Q next() { return r()->prev(); }
 } *H; // it's safe to use in multitests
-vector<Q> to_dealloc;
+V<Q> to_dealloc;
 bool is_p_inside_circle(PI p, PI a, PI b, PI c) {
 	__int128_t p2 = dist2(p), A = dist2(a)-p2,
 	    B = dist2(b)-p2, C = dist2(c)-p2;
@@ -72,7 +72,7 @@ Q connect(Q a, Q b) {
 	splice(q->r(), b);
 	return q;
 }
-pair<Q, Q> rec(const vector<PI>& s) {
+pair<Q, Q> rec(const V<PI>& s) {
 	if (ssize(s) <= 3) {
 		Q a = makeEdge(s[0], s[1]);
 		Q b = makeEdge(s[1], s.back());
@@ -119,12 +119,12 @@ pair<Q, Q> rec(const vector<PI>& s) {
 	}
 	return {ra, rb};
 }
-vector<PI> triangulate(vector<PI> in) {
+V<PI> triangulate(V<PI> in) {
 	sort(in.begin(), in.end()); 
 	assert(unique(in.begin(), in.end()) == in.end());
 	if (ssize(in) < 2) return {};
 	Q e = rec(in).first;
-	vector<Q> q = {e};
+	V<Q> q = {e};
 	int qi = 0;
 	while (cross(e->o->F(), e->F(), e->p) < 0)
 		e = e->o;

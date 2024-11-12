@@ -1,9 +1,9 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-bool is_planar_brute(int n, vector<pair<int, int>> edges) {
+bool is_planar_brute(int n, V<pair<int, int>> edges) {
 	REP(mask, 1 << ssize(edges)) {
-		vector<int> lead(n);
+		V<int> lead(n);
 		iota(lead.begin(), lead.end(), 0);
 		function<int (int)> find = [&](int v) {
 			return v == lead[v] ? v : lead[v] = find(lead[v]);
@@ -12,7 +12,7 @@ bool is_planar_brute(int n, vector<pair<int, int>> edges) {
 			if((mask >> i) & 1)
 				lead[find(edges[i].first)] = find(edges[i].second);
 
-		vector<int> leads;
+		V<int> leads;
 		REP(v, n)
 			if(lead[v] == v)
 				leads.emplace_back(v);
@@ -27,14 +27,14 @@ bool is_planar_brute(int n, vector<pair<int, int>> edges) {
 		debug(leads);
 		debug(new_edges);
 
-		vector<vector<int>> graph(n);
+		V<V<int>> graph(n);
 		for(auto [v, u] : new_edges) {
 			graph[v].emplace_back(u);
 			graph[u].emplace_back(v);
 		}
 
-		vector<bool> vis(n);
-		vector<int> component;
+		V<bool> vis(n);
+		V<int> component;
 		function<void (int)> dfs = [&](int v) {
 			component.emplace_back(v);
 			vis[v] = true;
@@ -95,7 +95,7 @@ void test() {
 	}
 	debug(edges_set);
 
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	for(auto [v, u] : edges_set) {
 		graph[v].emplace_back(u);
 		graph[u].emplace_back(v);
@@ -103,7 +103,7 @@ void test() {
 	debug(graph);
 	bool ans_main = is_planar(graph);
 	debug(ans_main);
-	bool ans_brut = is_planar_brute(n, vector<pair<int, int>>(edges_set.begin(), edges_set.end()));
+	bool ans_brut = is_planar_brute(n, V<pair<int, int>>(edges_set.begin(), edges_set.end()));
 	debug(ans_brut);
 	assert(ans_main == ans_brut);
 }

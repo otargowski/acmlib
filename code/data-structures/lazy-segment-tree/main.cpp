@@ -28,7 +28,7 @@ void add_to_base(Node &n, int val) {
 } // END HASH
 // BEGIN HASH
 struct Tree {
-	vector<Node> tree;
+	V<Node> tree;
 	int sz = 1;
 	Tree(int n) {
 		while(sz < n)

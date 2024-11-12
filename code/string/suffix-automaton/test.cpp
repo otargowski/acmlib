@@ -3,7 +3,7 @@
 
 void test() {
 	auto random_vec = [](int n, int r) {
-		vector<int> s(rd(1, n));
+		V<int> s(rd(1, n));
 		for (auto& x : s)
 			x = rd(0, r - 1);
 		return s;
@@ -17,10 +17,10 @@ void test() {
 	for (auto x : s)
 		sa.add_letter(x);
 
-	set<vector<int>> ss;
+	set<V<int>> ss;
 	REP(i,n)
 		FOR(j,1,n-i)
-			ss.emplace(vector(s.begin() + i, s.begin() + i + j));
+			ss.emplace(V(s.begin() + i, s.begin() + i + j));
 
 	for (auto x : ss)
 		assert(sa.is_inside(x));

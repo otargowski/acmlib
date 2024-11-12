@@ -7,16 +7,16 @@ struct Triangles {
 	ll stars3 = 0, paths3 = 0;
 	ll ps4 = 0, rectangles4 = 0, paths4 = 0;
 	__int128_t ys4 = 0, stars4 = 0;
-	Triangles(vector<vector<int>> &graph) {
+	Triangles(V<V<int>> &graph) {
 		int n = ssize(graph);
-		vector<pair<int, int>> sorted_deg(n);
+		V<pair<int, int>> sorted_deg(n);
 		REP(i, n)
 			sorted_deg[i] = {ssize(graph[i]), i};
 		sort(sorted_deg.begin(), sorted_deg.end());
-		vector<int> id(n);
+		V<int> id(n);
 		REP(i, n)
 			id[sorted_deg[i].second] = i;
-		vector<int> cnt(n);
+		V<int> cnt(n);
 		REP(v, n) {
 			for(int u : graph[v]) if(id[v] > id[u])
 				cnt[u] = 1;

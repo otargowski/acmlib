@@ -22,14 +22,14 @@
  *   Ważne też jest, aby zapewnić, żeby konstruowany oryginalny graf
  *   nie musiał zawierać multikrawędzi.
  */
-pair<bool, vector<pair<int, int>>> get_original_graph(int line_n, vector<pair<int, int>> line_edges) {
-	vector<vector<int>> line_graph(line_n);
+pair<bool, V<pair<int, int>>> get_original_graph(int line_n, V<pair<int, int>> line_edges) {
+	V<V<int>> line_graph(line_n);
 	for(auto &[v, u] : line_edges) {
 		line_graph[v].emplace_back(u);
 		line_graph[u].emplace_back(v);
 	}
-	map<vector<int>, int> line_neighbors_repeated;
-	vector<int> line_vertex_reduced_to(line_n, -1);
+	map<V<int>, int> line_neighbors_repeated;
+	V<int> line_vertex_reduced_to(line_n, -1);
 	REP(v, line_n) {
 		auto neigh_with_v = line_graph[v];
 		neigh_with_v.emplace_back(v);
@@ -39,8 +39,8 @@ pair<bool, vector<pair<int, int>>> get_original_graph(int line_n, vector<pair<in
 		else
 			line_vertex_reduced_to[v] = line_neighbors_repeated[neigh_with_v];
 	}
-	vector<pair<int, int>> ans(line_n, pair(-1, -1));
-	vector<bool> visited(line_n, false);
+	V<pair<int, int>> ans(line_n, pair(-1, -1));
+	V<bool> visited(line_n, false);
 	REP(v, line_n)
 		if(line_vertex_reduced_to[v] != -1)
 			visited[v] = true;
@@ -57,9 +57,9 @@ pair<bool, vector<pair<int, int>>> get_original_graph(int line_n, vector<pair<in
 	};
 	REP(component_v, line_n)
 		if(not visited[component_v]) {
-			vector<vector<int>> que_i_to_visited_neighbors;
+			V<V<int>> que_i_to_visited_neighbors;
 			int og_n = 0;
-			vector<int> que = {component_v};
+			V<int> que = {component_v};
 			visited[component_v] = true;
 			auto save_current_graph = [&](int until_i) {
 				og_cnt_fixed_v += og_n;

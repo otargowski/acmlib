@@ -9,15 +9,15 @@ struct MCMF {
 		int v, u, flow, cap;
 		ll cost;
 		friend ostream& operator<<(ostream &os, Edge &e) {
-			return os << vector<ll>{e.v, e.u, e.flow, e.cap, e.cost};
+			return os << V<ll>{e.v, e.u, e.flow, e.cap, e.cost};
 		}
 	};
 	int n;
 	const ll inf_LL = 1e18;
 	const int inf_int = 1e9;
-	vector<vector<int>> graph;
-	vector<Edge> edges;
-	vector<ll> init_dist;
+	V<V<int>> graph;
+	V<Edge> edges;
+	V<ll> init_dist;
 	MCMF(int N) : n(N), graph(n), init_dist(n) {}
 	void add_edge(int v, int u, int cap, ll cost) {
 		int e = ssize(edges);
@@ -28,7 +28,7 @@ struct MCMF {
 	}
 	void calc_init_dist(int source) {
 		fill(init_dist.begin(), init_dist.end(), inf_LL);
-		vector<bool> inside(n);
+		V<bool> inside(n);
 		inside[source] = true;
 		deque<int> que = {source};
 		init_dist[source] = 0;
@@ -49,10 +49,10 @@ struct MCMF {
 		}
 	}
 	pair<int, ll> augment(int source, int sink) {
-		vector<bool> vis(n);
-		vector<int> from(n, -1);
-		vector<ll> dist(n, inf_LL);
-		priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<>> que;
+		V<bool> vis(n);
+		V<int> from(n, -1);
+		V<ll> dist(n, inf_LL);
+		priority_queue<pair<ll, int>, V<pair<ll, int>>, greater<>> que;
 		que.emplace(0, source);
 		dist[source] = 0;
 		while(ssize(que)) {

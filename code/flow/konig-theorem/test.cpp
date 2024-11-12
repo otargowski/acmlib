@@ -2,18 +2,18 @@
 #include "main.cpp"
 
 template<typename T>
-bool contains(const vector<T>& v, T x) {
+bool contains(const V<T>& v, T x) {
 	return find(v.begin(), v.end(), x) != v.end();
 }
 
-bool is_edge_coverable(int n, const vector<pair<int, int>>& edges) {
-	vector<int> vis(n, 1);
+bool is_edge_coverable(int n, const V<pair<int, int>>& edges) {
+	V<int> vis(n, 1);
 	for (auto [a, b] : edges)
 		vis[a] = vis[b] = 0;
 	return n == 0 or *max_element(vis.begin(), vis.end()) == 0;
 }
 
-bool is_edge_cover(int n, const vector<pair<int, int>>& edges, const vector<pair<int, int>>& edge_cover) {
+bool is_edge_cover(int n, const V<pair<int, int>>& edges, const V<pair<int, int>>& edge_cover) {
 	auto doubled_edges = edges;
 	for (auto [a, b] : edges)
 		doubled_edges.emplace_back(b, a);
@@ -21,16 +21,16 @@ bool is_edge_cover(int n, const vector<pair<int, int>>& edges, const vector<pair
 		if (not contains(doubled_edges, e))
 			return false;
 
-	vector<int> vis(n, 1);
+	V<int> vis(n, 1);
 	for (auto [a, b] : edge_cover)
 		vis[a] = vis[b] = 0;
 	return n == 0 or *max_element(vis.begin(), vis.end()) == 0;
 }
 
-int brute_edge_cover(int n, const vector<pair<int, int>>& edges) {
+int brute_edge_cover(int n, const V<pair<int, int>>& edges) {
 	int ans = ssize(edges);
 	REP(mask, 1 << ssize(edges)) {
-		vector<pair<int, int>> edge_cover;
+		V<pair<int, int>> edge_cover;
 		REP(i, ssize(edges))
 			if ((mask >> i) & 1)
 				edge_cover.emplace_back(edges[i]);
@@ -40,7 +40,7 @@ int brute_edge_cover(int n, const vector<pair<int, int>>& edges) {
 	return ans;
 }
 
-bool is_independent_set(int n, const vector<pair<int, int>>& edges, const vector<int> independent_set) {
+bool is_independent_set(int n, const V<pair<int, int>>& edges, const V<int> independent_set) {
 	assert(independent_set.empty() or *min_element(independent_set.begin(), independent_set.end()) >= 0);
 	assert(independent_set.empty() or *max_element(independent_set.begin(), independent_set.end()) < n);
 	for (auto [a, b] : edges)
@@ -49,10 +49,10 @@ bool is_independent_set(int n, const vector<pair<int, int>>& edges, const vector
 	return true;
 }
 
-int brute_independent_set(int n, const vector<pair<int, int>>& edges) {
+int brute_independent_set(int n, const V<pair<int, int>>& edges) {
 	int ans = 0;
 	REP(mask, 1 << n) {
-		vector<int> independent_set;
+		V<int> independent_set;
 		REP(i, n)
 			if ((mask >> i) & 1)
 				independent_set.emplace_back(i);
@@ -62,7 +62,7 @@ int brute_independent_set(int n, const vector<pair<int, int>>& edges) {
 	return ans;
 }
 
-bool is_vertex_cover(int n, const vector<pair<int, int>>& edges, const vector<int> vertex_cover) {
+bool is_vertex_cover(int n, const V<pair<int, int>>& edges, const V<int> vertex_cover) {
 	assert(vertex_cover.empty() or *min_element(vertex_cover.begin(), vertex_cover.end()) >= 0);
 	assert(vertex_cover.empty() or *max_element(vertex_cover.begin(), vertex_cover.end()) < n);
 	for (auto [a, b] : edges)
@@ -71,10 +71,10 @@ bool is_vertex_cover(int n, const vector<pair<int, int>>& edges, const vector<in
 	return true;
 }
 
-int brute_vertex_cover(int n, const vector<pair<int, int>>& edges) {
+int brute_vertex_cover(int n, const V<pair<int, int>>& edges) {
 	int ans = ssize(edges);
 	REP(mask, 1 << n) {
-		vector<int> vertex_cover;
+		V<int> vertex_cover;
 		REP(i, n)
 			if ((mask >> i) & 1)
 				vertex_cover.emplace_back(i);
@@ -90,16 +90,16 @@ void test() {
 
 	int n0 = rd(0, max_side), n1 = rd(0, max_side);
 	int n = n0 + n1;
-	vector<int> which_group(n0 + n1);
+	V<int> which_group(n0 + n1);
 	REP(i, n1)
 		which_group[i] = 1;
 	shuffle(which_group.begin(), which_group.end(), rng);
-	array<vector<int>, 2> in_group;
+	array<V<int>, 2> in_group;
 	REP(v, n)
 		in_group[which_group[v]].emplace_back(v);
 
 	int m = min(max_edges, rd(0, n0 * n1));
-	vector<pair<int, int>> edges(m);
+	V<pair<int, int>> edges(m);
 	for(auto &[v, u] : edges) {
 		v = in_group[0][rd(0, n0 - 1)];
 		u = in_group[1][rd(0, n1 - 1)];
@@ -108,7 +108,7 @@ void test() {
 	}
 	debug(n, edges);
 
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].emplace_back(u);
 		graph[u].emplace_back(v);

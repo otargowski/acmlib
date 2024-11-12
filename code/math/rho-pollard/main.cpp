@@ -1,8 +1,8 @@
 /*
  * Opis: O(n\^{}\frac{1}{4}),
- * \texttt{factor(n)} zwraca vector dzielników pierwszych $n$, niekoniecznie posortowany,
- * \texttt{get\_pairs(n)} zwraca posortowany vector par (dzielnik pierwszych, krotność) dla liczby $n$,
- * \texttt{all\_factors(n)} zwraca vector wszystkich dzielników $n$, niekoniecznie posortowany,
+ * \texttt{factor(n)} zwraca V dzielników pierwszych $n$, niekoniecznie posortowany,
+ * \texttt{get\_pairs(n)} zwraca posortowany V par (dzielnik pierwszych, krotność) dla liczby $n$,
+ * \texttt{all\_factors(n)} zwraca V wszystkich dzielników $n$, niekoniecznie posortowany,
  * \texttt{factor(12) = \{2, 2, 3\}, factor(545423) = \{53, 41, 251\};},
  * \texttt{get\_pairs(12) = \{(2, 2), (3, 1)\}},
  * \texttt{all\_factors(12) = \{1, 3, 2, 6, 4, 12\}}.
@@ -19,7 +19,7 @@ ll rho_pollard(ll n) {
 		if(p != n) return p;
 	}
 }
-vector<ll> factor(ll n) {
+V<ll> factor(ll n) {
 	if(n == 1) return {};
 	if(miller_rabin(n)) return {n};
 	ll x = rho_pollard(n);
@@ -27,10 +27,10 @@ vector<ll> factor(ll n) {
 	l.insert(l.end(), r.begin(), r.end());
 	return l;
 } // END HASH
-vector<pair<ll, int>> get_pairs(ll n) {
+V<pair<ll, int>> get_pairs(ll n) {
 	auto v = factor(n);
 	sort(v.begin(), v.end());
-	vector<pair<ll, int>> ret;
+	V<pair<ll, int>> ret;
 	REP(i, ssize(v)) {
 		int x = i + 1;
 		while (x < ssize(v) and v[x] == v[i])
@@ -40,9 +40,9 @@ vector<pair<ll, int>> get_pairs(ll n) {
 	}
 	return ret;
 }
-vector<ll> all_factors(ll n) {
+V<ll> all_factors(ll n) {
 	auto v = get_pairs(n);
-	vector<ll> ret;
+	V<ll> ret;
 	function<void(ll,int)> gen = [&](ll val, int p) {
 		if (p == ssize(v)) {
 			ret.emplace_back(val);

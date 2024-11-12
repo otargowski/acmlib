@@ -6,8 +6,8 @@
  *  Dla $n$ będącego intem można zmienić wszystkie ll na int, w celu zbicia stałej.
  */
 // BEGIN HASH
-vector<pair<ll, ll>> same_floor(ll n) {
-	vector<pair<ll, ll>> v;
+V<pair<ll, ll>> same_floor(ll n) {
+	V<pair<ll, ll>> v;
 	for (ll l = 1, r; l <= n; l = r + 1) {
 		r = n / (n / l);
 		v.emplace_back(l, r);
@@ -15,8 +15,8 @@ vector<pair<ll, ll>> same_floor(ll n) {
 	return v;
 } // END HASH
 // BEGIN HASH
-vector<pair<ll, ll>> same_ceil(ll n) {
-	vector<pair<ll, ll>> v;
+V<pair<ll, ll>> same_ceil(ll n) {
+	V<pair<ll, ll>> v;
 	for (ll r = n, l; r >= 1; r = l - 1) {
 		l = (n + r - 1) / r;
 		l = (n + l - 1) / l;

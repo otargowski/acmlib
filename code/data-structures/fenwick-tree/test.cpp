@@ -4,7 +4,7 @@
 void test() {
 	int n = rd(1, 20);
 	Fenwick fenwick(n);
-	vector<int> brute(n);
+	V<int> brute(n);
 	REP(op, 20)
 		if(rd(0, 1)) {
 			int i = rd(0, n - 1);

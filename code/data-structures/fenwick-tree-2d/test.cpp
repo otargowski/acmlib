@@ -4,10 +4,10 @@
 void test() {
 	int limx = rd(1, 20);
 	int limy = rd(1, 20);
-	vector brute(limx, vector (limy, 0));
+	V brute(limx, V (limy, 0));
 	Fenwick2d tree(limx);
 
-	vector<pair<int,int>> points;
+	V<pair<int,int>> points;
 	const int sz = rd(0, 10);
 	REP(i, sz) {
 		points.emplace_back(rd(0, limx - 1), rd(0, limy - 1));

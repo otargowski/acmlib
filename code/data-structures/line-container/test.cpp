@@ -6,7 +6,7 @@ using PII = pair<int, int>;
 #define ND second
 
 void test() {
-	vector<PII> f;
+	V<PII> f;
 	auto eval = [&](PII p, int x) { return p.ST * x + p.ND; };
 	auto get = [&](int x) {
 		int ret = -1e9;

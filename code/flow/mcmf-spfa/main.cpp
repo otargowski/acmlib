@@ -7,14 +7,14 @@ struct MCMF {
 		int v, u, flow, cap;
 		ll cost;
 		friend ostream& operator<<(ostream &os, Edge &e) {
-			return os << vector<ll>{e.v, e.u, e.flow, e.cap, e.cost};
+			return os << V<ll>{e.v, e.u, e.flow, e.cap, e.cost};
 		}
 	};
 	int n;
 	const ll inf_LL = 1e18;
 	const int inf_int = 1e9;
-	vector<vector<int>> graph;
-	vector<Edge> edges;
+	V<V<int>> graph;
+	V<Edge> edges;
 	MCMF(int N) : n(N), graph(n) {}
 	void add_edge(int v, int u, int cap, ll cost) {
 		int e = ssize(edges);
@@ -24,11 +24,11 @@ struct MCMF {
 		edges.emplace_back(u, v, 0, 0, -cost);
 	}
 	pair<int, ll> augment(int source, int sink) {
-		vector<ll> dist(n, inf_LL);
-		vector<int> from(n, -1);
+		V<ll> dist(n, inf_LL);
+		V<int> from(n, -1);
 		dist[source] = 0;
 		deque<int> que = {source};
-		vector<bool> inside(n);
+		V<bool> inside(n);
 		inside[source] = true;
 		while(ssize(que)) {
 			int v = que.front();

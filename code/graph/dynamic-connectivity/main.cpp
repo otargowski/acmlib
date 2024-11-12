@@ -3,8 +3,8 @@
  *   Multikrawędzie oraz pętelki działają.
  */
 enum Event_type { Add, Remove, Query };
-vector<bool> dynamic_connectivity(int n, vector<tuple<int, int, Event_type>> events) {
-	vector<pair<int, int>> queries;
+V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
+	V<pair<int, int>> queries;
 	for(auto &[v, u, t] : events) {
 		if(v > u)
 			swap(v, u);
@@ -14,7 +14,7 @@ vector<bool> dynamic_connectivity(int n, vector<tuple<int, int, Event_type>> eve
 	int leaves = 1;
 	while(leaves < ssize(queries))
 		leaves *= 2;
-	vector<vector<pair<int, int>>> edges_to_add(2 * leaves);
+	V<V<pair<int, int>>> edges_to_add(2 * leaves);
 	map<pair<int, int>, deque<int>> edge_longevity;
 	int query_i = 0;
 	auto add = [&](int l, int r, pair<int, int> e) {
@@ -49,14 +49,14 @@ vector<bool> dynamic_connectivity(int n, vector<tuple<int, int, Event_type>> eve
 	for(const auto &[e, que] : edge_longevity)
 		if(not que.empty())
 			add(que.front(), query_i - 1, e);
-	vector<bool> ret(ssize(queries));
-	vector<int> lead(n), leadsz(n, 1);
+	V<bool> ret(ssize(queries));
+	V<int> lead(n), leadsz(n, 1);
 	iota(lead.begin(), lead.end(), 0);
 	function<int (int)> find = [&](int i) {
 		return i == lead[i] ? i : find(lead[i]);
 	};
 	function<void (int)> dfs = [&](int v) {
-		vector<tuple<int, int, int, int>> rollback;
+		V<tuple<int, int, int, int>> rollback;
 		for(auto [e0, e1] : edges_to_add[v]) {
 			e0 = find(e0);
 			e1 = find(e1);

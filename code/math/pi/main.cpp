@@ -3,7 +3,7 @@
  *   \texttt{Pi pi(n); pi.query(d); // musi zachodzic d | n}
  */
 struct Pi {
-	vector<ll> w, dp;
+	V<ll> w, dp;
 	int id(ll v) {
 		if (v <= w.back() / v)
 			return int(v - 1);

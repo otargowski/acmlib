@@ -2,7 +2,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-bool check_equiv(vector<P> a, vector<P> b) {
+bool check_equiv(V<P> a, V<P> b) {
 	if (ssize(a) != ssize(b))
 		return false;
 	sort(a.begin(), a.end());
@@ -22,7 +22,7 @@ void test() {
 			return D(rd(-1e9, 1e9)) / 1e6;
 	};
 	int n = rd(0, 1) ? rd(0, 10) : rd(0, 1000);
-	vector<P> t(n);
+	V<P> t(n);
 	REP (i, n)
 		while (true) {
 			t[i] = P(rd_D(), rd_D());

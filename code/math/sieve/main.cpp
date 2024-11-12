@@ -6,8 +6,8 @@
  *   \texttt{prime\_div[i]} zawiera najmniejszy dzielnik pierwszy $i$,
  *   na CF dla $n = 1e8$ działa w 1.2s.
  */
-vector<bool> comp;
-vector<int> primes, prime_div;
+V<bool> comp;
+V<int> primes, prime_div;
 void sieve(int n) {
 	primes.clear();
 	comp.resize(n + 1);

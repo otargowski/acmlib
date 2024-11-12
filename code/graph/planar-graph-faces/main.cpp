@@ -11,26 +11,26 @@ struct Edge {
 	// face is on the right of "from -> to"
 };
 ostream& operator<<(ostream &o, Edge e) {
-	return o << vector{e.e, e.from, e.to};
+	return o << V{e.e, e.from, e.to};
 }
 struct Face {
 	bool is_outside;
-	vector<Edge> sorted_edges;
+	V<Edge> sorted_edges;
 	// edges are sorted clockwise for inside and cc for outside faces
 };
 ostream& operator<<(ostream &o, Face f) {
 	return o << pair(f.is_outside, f.sorted_edges);
 }
-vector<Face> split_planar_to_faces(vector<pair<int, int>> coord, vector<pair<int, int>> edges) {
+V<Face> split_planar_to_faces(V<pair<int, int>> coord, V<pair<int, int>> edges) {
 	int n = ssize(coord);
 	int E = ssize(edges);
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	REP(e, E) {
 		auto [v, u] = edges[e];
 		graph[v].emplace_back(e);
 		graph[u].emplace_back(e);
 	}
-	vector<int> lead(2 * E);
+	V<int> lead(2 * E);
 	iota(lead.begin(), lead.end(), 0);
 	function<int (int)> find = [&](int v) {
 		return lead[v] == v ? v : lead[v] = find(lead[v]);
@@ -39,7 +39,7 @@ vector<Face> split_planar_to_faces(vector<pair<int, int>> coord, vector<pair<int
 		return 2 * e + ((v != min(edges[e].first, edges[e].second)) ^ outward);
 	};
 	REP(v, n) {
-		vector<pair<pair<int, int>, int>> sorted;
+		V<pair<pair<int, int>, int>> sorted;
 		for(int e : graph[v]) {
 			auto p = coord[edges[e].first ^ edges[e].second ^ v];
 			auto center = coord[v];
@@ -62,11 +62,11 @@ vector<Face> split_planar_to_faces(vector<pair<int, int>> coord, vector<pair<int
 			lead[find(side_e0)] = find(side_e1);
 		}
 	}
-	vector<vector<int>> comps(2 * E);
+	V<V<int>> comps(2 * E);
 	REP(i, 2 * E)
 		comps[find(i)].emplace_back(i);
-	vector<Face> polygons;
-	vector<vector<pair<int, int>>> outgoing_for_face(n);
+	V<Face> polygons;
+	V<V<pair<int, int>>> outgoing_for_face(n);
 	REP(leader, 2 * E)
 		if(ssize(comps[leader])) {
 			for(int id : comps[leader]) {
@@ -78,7 +78,7 @@ vector<Face> split_planar_to_faces(vector<pair<int, int>> coord, vector<pair<int
 					swap(v, u);
 				outgoing_for_face[v].emplace_back(u, id / 2);
 			}
-			vector<Edge> sorted_edges;
+			V<Edge> sorted_edges;
 			function<void (int)> dfs = [&](int v) {
 				while(ssize(outgoing_for_face[v])) {
 					auto [u, e] = outgoing_for_face[v].back();

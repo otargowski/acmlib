@@ -5,7 +5,7 @@
  * Zwraca (koszt, ojciec każdego wierzchołka w zwróconym drzewie).
  */
 struct RollbackUF {
-	vector<int> e; vector<pair<int, int>> st;
+	V<int> e; V<pair<int, int>> st;
 	RollbackUF(int n) : e(n, -1) {}
 	int size(int x) { return -e[find(x)]; }
 	int find(int x) { return e[x] < 0 ? x : find(e[x]); }
@@ -44,19 +44,19 @@ Node* merge(Node *a, Node *b) {
 	swap(a->l, (a->r = merge(b, a->r)));
 	return a;
 }
-pair<ll, vector<int>> directed_mst(int n, int r, vector<Edge> &g) {
+pair<ll, V<int>> directed_mst(int n, int r, V<Edge> &g) {
 	RollbackUF uf(n);
-	vector<Node*> heap(n);
-	vector<Node> pool(ssize(g));
+	V<Node*> heap(n);
+	V<Node> pool(ssize(g));
 	REP(i, ssize(g)) {
 		Edge e = g[i];
 		heap[e.b] = merge(heap[e.b], &(pool[i] = Node{e}));
 	}
 	ll res = 0;
-	vector<int> seen(n, -1), path(n), par(n);
+	V<int> seen(n, -1), path(n), par(n);
 	seen[r] = r;
-	vector<Edge> Q(n), in(n, {-1, -1, 0}), comp;
-	deque<tuple<int, int, vector<Edge>>> cycs;
+	V<Edge> Q(n), in(n, {-1, -1, 0}), comp;
+	deque<tuple<int, int, V<Edge>>> cycs;
 	REP(s, n) {
 		int u = s, qi = 0, w;
 		while(seen[u] < 0) {

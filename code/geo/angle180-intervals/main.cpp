@@ -8,13 +8,13 @@
  * stronie wektora $(0,0)-in[i]$, albo są na tej półprostej.
  */
 #include "../angle-sort/main.cpp"
-vector<pair<int, int>> angle180_intervals(vector<P> in) {
+V<pair<int, int>> angle180_intervals(V<P> in) {
 	// in must be sorted by angle
 	int n = ssize(in);
-	vector<int> nxt(n);
+	V<int> nxt(n);
 	iota(nxt.begin(), nxt.end(), 1);
 	int r = nxt[n - 1] = 0;
-	vector<pair<int, int>> ret(n);
+	V<pair<int, int>> ret(n);
 	REP(l, n) {
 		if(nxt[r] == l) r = nxt[r];
 		auto good = [&](int i) {

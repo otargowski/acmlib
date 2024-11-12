@@ -17,7 +17,7 @@ ostream& operator<<(ostream &os, Function f) {
 }
 struct LiChaoTree {
 	int size = 1;
-	vector<Function> tree;
+	V<Function> tree;
 	LiChaoTree(int n) {
 		while(size < n)
 			size *= 2;

@@ -4,8 +4,8 @@
 void test() {
 	const int INF = 1e9;
 	int n = rd(1, 100);
-	vector graph(n, vector<int>());
-	vector per(n, 0);
+	V graph(n, V<int>());
+	V per(n, 0);
 	iota(per.begin(), per.end(), 0);
 	REP (i, n) {
 		swap(per[i], per[rd(0, i)]);
@@ -16,7 +16,7 @@ void test() {
 		graph[per[u]].emplace_back(per[v]);
 	}
 	CentroDecomp CD(n, graph);
-	vector sons(n, vector<int>());
+	V sons(n, V<int>());
 	int root = -1;
 	REP (v, n) {
 		if (CD.par[v] == -1) {
@@ -27,11 +27,11 @@ void test() {
 			sons[CD.par[v]].emplace_back(v);
 	}
 	assert(root != -1);
-	vector<int> odw(n), gle(n);
+	V<int> odw(n), gle(n);
 	int licz = 1;
 
 	int zli;
-	vector akt(n, 0);
+	V akt(n, 0);
 	auto dfs = [&](int v) {
 		++licz;
 		queue<int> q;

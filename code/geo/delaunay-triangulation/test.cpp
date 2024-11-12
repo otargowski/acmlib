@@ -5,7 +5,7 @@ void test() {
 	int n = rd(0, 20);
 	int mx = rd(0, 1) ? 10 : int(1e9);
 
-	vector<pair<int, int>> in(n);
+	V<pair<int, int>> in(n);
 	for(auto &[x, y] : in) {
 		x = rd(-mx, mx);
 		y = rd(-mx, mx);
@@ -34,7 +34,7 @@ void test() {
 	assert(not ret.empty());
 	assert(ssize(ret) % 3 == 0);
 
-	array<vector<pair<int, int>>, 2> hulls;
+	array<V<pair<int, int>>, 2> hulls;
 	sort(in.begin(), in.end());
 	REP(dir, 2) {
 		auto &hull = hulls[dir];

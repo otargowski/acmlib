@@ -26,7 +26,7 @@ void test() {
 	int mx = rd(0, 100) > 0 ? 5 : int(3e8);
 	int n = mx > 5 ? rd(1, int(1e3)) : rd(1, 10);
 	set<PI> already;
-	vector<PI> in(n);
+	V<PI> in(n);
 	for(auto &[x, y] : in) {
 		while(true) {
 			x = rd(-mx, mx);
@@ -64,7 +64,7 @@ void test() {
 		}
 		debug(x, y);
 
-		vector<int> matching_areas;
+		V<int> matching_areas;
 		REP(id, ssize(ret)) {
 			auto poly = ret[id];
 			int inter_cnt = 0;
@@ -89,7 +89,7 @@ void test() {
 		D closest_d = 3e9;
 		REP(i, n)
 			closest_d = min(closest_d, dist(P(x, y), P(in[i].first, in[i].second)));
-		vector<int> closest_v;
+		V<int> closest_v;
 		REP(i, n)
 			if(equal(closest_d, dist(P(x, y), P(in[i].first, in[i].second))))
 				closest_v.emplace_back(i);

@@ -3,7 +3,7 @@
 
 void test() {
 	int n = rd(1, 10);
-	vector cost(n, vector<ll>(n));
+	V cost(n, V<ll>(n));
 	REP(i, n)
 		FOR(j, i, n - 1)
 			cost[i][j] = rd(-10, 10);
@@ -24,7 +24,7 @@ void test() {
 		return;
 	debug(cost);
 
-	vector dp(n, vector(n, int(1e9)));
+	V dp(n, V(n, int(1e9)));
 	REP(i, n)
 		dp[i][i] = int(cost[i][i]);
 	FOR(len, 2, n)

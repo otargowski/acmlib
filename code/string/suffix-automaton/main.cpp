@@ -8,8 +8,8 @@ struct SuffixAutomaton {
 	static constexpr int sigma = 26;
 	using Node = array<int, sigma>; // map<int, int>
 	Node new_node;
-	vector<Node> edges;
-	vector<int> link = {-1}, length = {0};
+	V<Node> edges;
+	V<int> link = {-1}, length = {0};
 	int last = 0;
 	SuffixAutomaton() {
 		new_node.fill(-1);	 // -1 - stan nieistniejacy
@@ -43,7 +43,7 @@ struct SuffixAutomaton {
 		}
 		last = r;
 	}
-	bool is_inside(vector<int> &s) {
+	bool is_inside(V<int> &s) {
 		int q = 0;
 		for(int c : s) {
 			if(edges[q][c] == -1)

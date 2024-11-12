@@ -8,12 +8,12 @@ struct Simplex {
 	using T = double;
 	const T eps = 1e-9, inf = 1/.0;
 	int n, m;
-	vector<int> N, B;
-	vector<vector<T>> A;
-	vector<T> b, c;
+	V<int> N, B;
+	V<V<T>> A;
+	V<T> b, c;
 	T res = 0;
 	Simplex(int vars, int eqs)
-		: n(vars), m(eqs), N(n), B(m), A(m, vector<T>(n)), b(m), c(n) {
+		: n(vars), m(eqs), N(n), B(m), A(m, V<T>(n)), b(m), c(n) {
 		REP(i, n) N[i] = i;
 		REP(i, m) B[i] = n + i;
 	}
@@ -56,8 +56,8 @@ struct Simplex {
 		}
 		return true;
 	}
-	vector<T> get_vars() {
-		vector<T> vars(n);
+	V<T> get_vars() {
+		V<T> vars(n);
 		REP(i, m)
 			if(B[i] < n) vars[B[i]] = b[i];
 		return vars;

@@ -1,13 +1,13 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-int components_cnt(int n, vector<pair<int, int>> edges, bool ignore_alone = false) {
-	vector<vector<int>> graph(n);
+int components_cnt(int n, V<pair<int, int>> edges, bool ignore_alone = false) {
+	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].emplace_back(u);
 		graph[u].emplace_back(v);
 	}
-	vector<bool> visited(n);
+	V<bool> visited(n);
 	function<void (int)> dfs = [&](int v) {
 		visited[v] = true;
 		for(int u : graph[v])
@@ -23,10 +23,10 @@ int components_cnt(int n, vector<pair<int, int>> edges, bool ignore_alone = fals
 	return ans;
 }
 
-bool is_cycle(int n, vector<pair<int, int>> edges) {
+bool is_cycle(int n, V<pair<int, int>> edges) {
 	if(components_cnt(n, edges, true) != 1)
 		return false;
-	vector<int> deg(n);
+	V<int> deg(n);
 	for(auto [v, u] : edges) {
 		++deg[v];
 		++deg[u];
@@ -37,13 +37,13 @@ bool is_cycle(int n, vector<pair<int, int>> edges) {
 	return true;
 }
 
-bool is_bicon(int n, vector<pair<int, int>> edges) {
+bool is_bicon(int n, V<pair<int, int>> edges) {
 	if(components_cnt(n, edges, true) != 1)
 		return false;
-	vector both_through_cycle(ssize(edges), vector<bool>(ssize(edges)));
+	V both_through_cycle(ssize(edges), V<bool>(ssize(edges)));
 	REP(subset_cycle, 1 << ssize(edges)) {
-		vector<pair<int, int>> cycle;
-		vector<int> idx;
+		V<pair<int, int>> cycle;
+		V<int> idx;
 		REP(i, ssize(edges))
 			if((subset_cycle >> i) & 1) {
 				cycle.emplace_back(edges[i]);
@@ -64,15 +64,15 @@ bool is_bicon(int n, vector<pair<int, int>> edges) {
 	return valid or ssize(edges) == 1;
 }
 
-vector<vector<int>> bicons(int n, vector<pair<int, int>> edges) {
-	vector<int> remaining_edges_id(ssize(edges));
+V<V<int>> bicons(int n, V<pair<int, int>> edges) {
+	V<int> remaining_edges_id(ssize(edges));
 	iota(remaining_edges_id.begin(), remaining_edges_id.end(), 0);
-	vector<vector<int>> ret;
+	V<V<int>> ret;
 
 	while(not remaining_edges_id.empty()) {
 		pair<int, int> biggest_bicon = {-1, -1};
 		REP(mask, 1 << ssize(remaining_edges_id)) {
-			vector<pair<int, int>> sub_edges;
+			V<pair<int, int>> sub_edges;
 			REP(i, ssize(remaining_edges_id))
 				if((mask >> i) & 1)
 					sub_edges.emplace_back(edges[remaining_edges_id[i]]);
@@ -81,7 +81,7 @@ vector<vector<int>> bicons(int n, vector<pair<int, int>> edges) {
 		}
 		assert(biggest_bicon.first > 0);
 		ret.emplace_back();
-		vector<int> remaining;
+		V<int> remaining;
 		REP(i, ssize(remaining_edges_id))
 			if((biggest_bicon.second >> i) & 1)
 				ret.back().emplace_back(remaining_edges_id[i]);
@@ -92,11 +92,11 @@ vector<vector<int>> bicons(int n, vector<pair<int, int>> edges) {
 	return ret;
 }
 
-vector<int> arti_points(int n, vector<pair<int, int>> edges) {
+V<int> arti_points(int n, V<pair<int, int>> edges) {
 	int init_cnt = components_cnt(n, edges);
-	vector<int> ret;
+	V<int> ret;
 	REP(deleted, n) {
-		vector<pair<int, int>> sub_edges;
+		V<pair<int, int>> sub_edges;
 		int cnt_edges_deleted = 0;
 		for(auto [v, u] : edges)
 			if(v != deleted and u != deleted)
@@ -114,9 +114,9 @@ vector<int> arti_points(int n, vector<pair<int, int>> edges) {
 	return ret;
 }
 
-vector<int> bridges(int n, vector<pair<int, int>> edges) {
+V<int> bridges(int n, V<pair<int, int>> edges) {
 	int init_cnt = components_cnt(n, edges);
-	vector<int> ret;
+	V<int> ret;
 	REP(deleted, ssize(edges)) {
 		auto sub_edges = edges;
 		sub_edges.erase(sub_edges.begin() + deleted);
@@ -129,7 +129,7 @@ vector<int> bridges(int n, vector<pair<int, int>> edges) {
 void test() {
 	int n = rd(2, 8);
 	int m = rd(0, 9);
-	vector<pair<int, int>> edges(m);
+	V<pair<int, int>> edges(m);
 	for(auto &[v, u] : edges) {
 		v = rd(0, n - 1);
 		u = rd(0, n - 1);

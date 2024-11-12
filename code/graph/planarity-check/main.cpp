@@ -2,18 +2,18 @@
  * Opis: O(szybko) ale istnieją przykłady O(n^2), przyjmuje graf nieskierowany bez pętelek i multikrawędzi.
  */
 
-bool is_planar(vector<vector<int>> graph) {
+bool is_planar(V<V<int>> graph) {
 	int n = ssize(graph), m = 0;
 	REP(v, n)
 		m += ssize(graph[v]);
 	m /= 2;
 	if(n <= 3) return true;
 	if(m > 3 * n - 6) return false;
-	vector<vector<int>> up(n), dn(n);
-	vector<int> low(n, -1), pre(n);
+	V<V<int>> up(n), dn(n);
+	V<int> low(n, -1), pre(n);
 	REP(start, n)
 		if(low[start] == -1) {
-			vector<pair<int, int>> e_up;
+			V<pair<int, int>> e_up;
 			int tm = 0;
 			function<void (int, int)> dfs_low = [&](int v, int p) {
 				low[v] = pre[v] = tm++;
@@ -30,7 +30,7 @@ bool is_planar(vector<vector<int>> graph) {
 					}
 			};
 			dfs_low(start, -1);
-			vector<pair<int, bool>> dsu(ssize(e_up));
+			V<pair<int, bool>> dsu(ssize(e_up));
 			REP(v, ssize(dsu)) dsu[v].first = v;
 			function<pair<int, bool> (int)> find = [&](int v) {
 				if(dsu[v].first == v)
@@ -46,14 +46,14 @@ bool is_planar(vector<vector<int>> graph) {
 				dsu[v] = {u, vb ^ ub ^ flip};
 				return true;
 			};
-			auto interlace = [&](const vector<int> &ids, int lo) {
-				vector<int> ans;
+			auto interlace = [&](const V<int> &ids, int lo) {
+				V<int> ans;
 				for(int e : ids)
 					if(pre[e_up[e].second] > lo)
 						ans.emplace_back(e);
 				return ans;
 			};
-			auto add_fu = [&](const vector<int> &a, const vector<int> &b) {
+			auto add_fu = [&](const V<int> &a, const V<int> &b) {
 				FOR(k, 1, ssize(a) - 1)
 					if(not onion(a[k - 1], a[k], 0))
 						return false;

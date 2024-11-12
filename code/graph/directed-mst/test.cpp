@@ -8,13 +8,13 @@ ostream& operator<<(ostream &o, Edge e) {
 	return o << '(' << e.a << ", " << e.b << ", " << e.w << ')';
 }
 
-bool is_correct_tree(vector<int> lit, int n, vector<Edge> edges, int root) {
+bool is_correct_tree(V<int> lit, int n, V<Edge> edges, int root) {
 	if(ssize(lit) != n - 1)
 		return false;
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	for(int i : lit)
 		graph[edges[i].a].emplace_back(edges[i].b);
-	vector<int> vis(n);
+	V<int> vis(n);
 	function<void (int)> dfs = [&](int v) {
 		vis[v] = true;
 		for(int u : graph[v])
@@ -32,7 +32,7 @@ void test() {
 	int m = rd(0, min(14, n * n));
 	int max_w = rd(0, 1) ? int(1e9) : 10;
 	debug(n, m, max_w);
-	vector<Edge> edges(m);
+	V<Edge> edges(m);
 	for(auto &e : edges) {
 		e.a = rd(0, n - 1);
 		e.b = rd(0, n - 1);
@@ -41,10 +41,10 @@ void test() {
 	}
 	int root = rd(0, n - 1);
 
-	pair<ll, vector<int>> ans = {ll(1e18), {}};
+	pair<ll, V<int>> ans = {ll(1e18), {}};
 
 	REP(mask, 1 << m) {
-		vector<int> lit;
+		V<int> lit;
 		REP(i, m)
 			if((mask >> i) & 1)
 				lit.emplace_back(i);
@@ -63,10 +63,10 @@ void test() {
 	debug(main_ans, main_solve);
 	assert(ans.first == main_ans);
 	if(ans.first != -1) {
-		vector<vector<pair<int, ll>>> rev_graph(n);
+		V<V<pair<int, ll>>> rev_graph(n);
 		for(auto e : edges)
 			rev_graph[e.b].emplace_back(e.a, e.w);
-		vector<Edge> found_subset;
+		V<Edge> found_subset;
 		ll sum = 0;
 		REP(v, n)
 			if(main_solve[v] != -1) {
@@ -79,7 +79,7 @@ void test() {
 				sum += smallest_w;
 			}
 		assert(sum == main_ans);
-		vector<int> lit(ssize(found_subset));
+		V<int> lit(ssize(found_subset));
 		iota(lit.begin(), lit.end(), 0);
 
 		assert(is_correct_tree(lit, n, found_subset, root));

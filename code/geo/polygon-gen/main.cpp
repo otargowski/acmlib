@@ -7,8 +7,8 @@
 #include "../point/main.cpp"
 #include "../intersect-lines/main.cpp"
 #include "../../headers/gen.cpp"
-vector<P> gen_polygon(int n, int r) {
-	vector<P> t;
+V<P> gen_polygon(int n, int r) {
+	V<P> t;
 	while (ssize(t) < n) {
 		P p(rd(-r, r), rd(-r, r));
 		if ([&]() {

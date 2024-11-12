@@ -24,7 +24,7 @@ bool is_intersection_segment(P a, P b, P c, P d) {
 		and dir(d, b, a) * dir(c, b, a) != 1;
 } // END HASH
 // BEGIN HASH
-vector<P> intersect_segments(P a, P b, P c, P d) {
+V<P> intersect_segments(P a, P b, P c, P d) {
 	D acd = cross(c - a, d - c), bcd = cross(c - b, d - c),
 		   cab = cross(a - c, b - a), dab = cross(a - d, b - a);
 	if(sign(acd) * sign(bcd) < 0 and sign(cab) * sign(dab) < 0)

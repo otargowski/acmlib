@@ -11,10 +11,10 @@
  *   Aby uzyskać O(n), należy przepisać overtake w oparciu o dodatkowe założenia,
  *   aby chodził w O(1).
  */
-pair<ll, vector<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
-	vector<pair<ll, int>> dp(n);
-	vector<int> lf(n + 2), rg(n + 2), dead(n);
-	vector<vector<int>> events(n + 1);
+pair<ll, V<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
+	V<pair<ll, int>> dp(n);
+	V<int> lf(n + 2), rg(n + 2), dead(n);
+	V<V<int>> events(n + 1);
 	int beg = n, end = n + 1;
 	rg[beg] = end; lf[end] = beg;
 	auto score = [&](int i, int j) {
@@ -51,7 +51,7 @@ pair<ll, vector<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
 		rg[lf[i]] = i; lf[rg[i]] = i;
 		add(i, i + 1);
 	}
-	vector<int> cuts;
+	V<int> cuts;
 	for (int p = n - 1; p != -1; p = dp[p].second)
 		cuts.emplace_back(p);
 	reverse(cuts.begin(), cuts.end());

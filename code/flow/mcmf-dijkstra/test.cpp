@@ -11,7 +11,7 @@ void test() {
 	const int max_cost = 100;
 	const int n = rd(2, max_n);
 	const int m = rd(0, max_m);
-	vector<tuple<int, int, int, int>> edges;
+	V<tuple<int, int, int, int>> edges;
 	while (ssize(edges) < m) {
 		int a = rd(0, n - 1);
 		int b = rd(0, n - 1);

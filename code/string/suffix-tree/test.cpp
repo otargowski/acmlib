@@ -3,7 +3,7 @@
 
 void test() {
 	auto random_vec = [](int n, int r) {
-		vector<int> s(rd(1, n));
+		V<int> s(rd(1, n));
 		for (auto& x : s)
 			x = rd(0, r - 1);
 		return s;
@@ -14,7 +14,7 @@ void test() {
 	debug(r, s);
 	int n = ssize(s);
 
-	vector<vector<int>> trie = {vector(r, -1)};
+	V<V<int>> trie = {V(r, -1)};
 	REP(i, n) {
 		int v = 0;
 		FOR(j, i, n - 1) {
@@ -22,7 +22,7 @@ void test() {
 			if(trie[v][c] == -1) {
 				int u = ssize(trie);
 				trie[v][c] = u;
-				trie.emplace_back(vector(r, -1));
+				trie.emplace_back(V(r, -1));
 				v = u;
 			}
 			else
@@ -39,7 +39,7 @@ void test() {
 			assert(bool(trie[vtrie][c] == -1) == bool(tree.sons[vsuff].find(c) == tree.sons[vsuff].end()));
 		REP(c, r)
 			if(trie[vtrie][c] != -1) {
-				vector<int> substr_trie = {c};
+				V<int> substr_trie = {c};
 				int u = trie[vtrie][c];
 				while(true) {
 					int cnt_minusone = 0;
@@ -61,7 +61,7 @@ void test() {
 						break;
 				}
 
-				vector<int> substr_tree;
+				V<int> substr_tree;
 				int usuff = tree.sons[vsuff][c];
 				assert(tree.up_edge_range[usuff].first <= tree.up_edge_range[usuff].second);
 				FOR(i, tree.up_edge_range[usuff].first, tree.up_edge_range[usuff].second)
@@ -77,7 +77,7 @@ void test() {
 
 
 	/*
-	SuffixTree tree(vector{0, 1, 0, 0, 1, -1}, 2);
+	SuffixTree tree(V{0, 1, 0, 0, 1, -1}, 2);
 	debug(tree.sons);
 	debug(tree.up_edge_range);
 	debug(tree.parent);

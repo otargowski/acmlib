@@ -1,11 +1,11 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-int get_max_matching(int n, vector<pair<int, int>> edges) {
+int get_max_matching(int n, V<pair<int, int>> edges) {
 	int answer = 0;
 	REP(mask, 1 << ssize(edges)) {
 		bool is_valid = true;
-		vector<bool> is_taken(n, false);
+		V<bool> is_taken(n, false);
 		REP(i, ssize(edges))
 			if((mask >> i) & 1) {
 				auto [v, u] = edges[i];
@@ -21,7 +21,7 @@ int get_max_matching(int n, vector<pair<int, int>> edges) {
 	return answer;
 }
 
-bool is_valid_matching(int n, vector<pair<int, int>> edges, vector<int> match) {
+bool is_valid_matching(int n, V<pair<int, int>> edges, V<int> match) {
 	REP(v, n)
 		if(match[v] != -1) {
 			bool found = false;
@@ -39,16 +39,16 @@ bool is_valid_matching(int n, vector<pair<int, int>> edges, vector<int> match) {
 void test() {
 	int n0 = rd(0, 7), n1 = rd(0, 7);
 	int n = n0 + n1;
-	vector<int> which_group(n0 + n1);
+	V<int> which_group(n0 + n1);
 	REP(i, n1)
 		which_group[i] = 1;
 	shuffle(which_group.begin(), which_group.end(), rng);
-	array<vector<int>, 2> in_group;
+	array<V<int>, 2> in_group;
 	REP(v, n)
 		in_group[which_group[v]].emplace_back(v);
 
 	int m = min(15, rd(0, n0 * n1));
-	vector<pair<int, int>> edges(m);
+	V<pair<int, int>> edges(m);
 	for(auto &[v, u] : edges) {
 		v = in_group[0][rd(0, n0 - 1)];
 		u = in_group[1][rd(0, n1 - 1)];
@@ -56,7 +56,7 @@ void test() {
 			swap(v, u);
 	}
 
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
 		graph[v].emplace_back(u);
 		graph[u].emplace_back(v);

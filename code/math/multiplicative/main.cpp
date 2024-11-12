@@ -6,9 +6,9 @@
  */
 #include "../sieve/main.cpp"
 // BEGIN HASH
-vector<int> mobius(int n) {
+V<int> mobius(int n) {
 	sieve(n);
-	vector<int> ans(n + 1, 0);
+	V<int> ans(n + 1, 0);
 	if (n) ans[1] = 1;
 	FOR(i, 2, n) {
 		int p = prime_div[i];
@@ -17,9 +17,9 @@ vector<int> mobius(int n) {
 	return ans;
 } // END HASH
 // BEGIN HASH
-vector<int> totient(int n) {
+V<int> totient(int n) {
 	sieve(n);
-	vector<int> ans(n + 1, 1);
+	V<int> ans(n + 1, 1);
 	FOR(i, 2, n) {
 		int p = prime_div[i];
 		ans[i] = ans[i / p] * (p - bool(i / p % p));

@@ -7,7 +7,7 @@
  * Zakłada że nie ma punktu (0, 0) na wejściu.
  */
 #include "../point/main.cpp"
-vector<P> angle_sort(vector<P> t) {
+V<P> angle_sort(V<P> t) {
 	for(P p : t) assert(not equal(p, P(0, 0)));
 	auto it = partition(t.begin(), t.end(), [](P a){ return P(0, 0) < a; });
 	auto cmp = [&](P a, P b) {

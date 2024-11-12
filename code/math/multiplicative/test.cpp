@@ -6,7 +6,7 @@ void test() {
 	int n = rd(0, mx);
 
 	auto brute_mobius = [&](int x) {
-		vector<int> ans(x + 1, 1);
+		V<int> ans(x + 1, 1);
 		ans[0] = 0; // only for testing
 		FOR(i, 1, x) {
 			int y = i;
@@ -29,7 +29,7 @@ void test() {
 	assert(mobius(n) == brute_mobius(n));
 
 	auto brute_totient = [&](int x) {
-		vector<int> ans(x + 1);
+		V<int> ans(x + 1);
 		ans[0] = 1; // only for testing
 		FOR(i, 1, x)
 			FOR(j, 1, i)

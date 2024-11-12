@@ -6,12 +6,12 @@ void test() {
 	n = rd(1, n);
 	int m = rd(n, n * n / 4 + 1);
 
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	while(m --> 0)
 		graph[rd(0, n - 1)].emplace_back(rd(0, n - 1));
 
 	auto bfs = [&](int root) {
-		vector<bool> reachable(n);
+		V<bool> reachable(n);
 		reachable[root] = true;
 		deque<int> que = {root};
 		while(ssize(que)) {
@@ -26,7 +26,7 @@ void test() {
 		return reachable;
 	};
 
-	vector<vector<bool>> reachable(n);
+	V<V<bool>> reachable(n);
 	REP(v, n)
 		reachable[v] = bfs(v);
 

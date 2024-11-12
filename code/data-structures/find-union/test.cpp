@@ -3,9 +3,9 @@
 
 void test() {
 	int n = rd(1, 10);
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	auto get_colors = [&] {
-		vector<int> color(n, -1);
+		V<int> color(n, -1);
 		int last_c = 0;
 		REP(v, n)
 			if(color[v] == -1) {

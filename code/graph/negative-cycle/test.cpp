@@ -4,7 +4,7 @@
 void test() {
 	int n = rd(1, 20);
 	int m = rd(0, n * n);
-	vector<vector<pair<int, int>>> graph(n);
+	V<V<pair<int, int>>> graph(n);
 	while(m --> 0)
 		graph[rd(0, n - 1)].emplace_back(rd(0, n - 1), rd(-2 * n, 2 * n));
 	debug(graph);
@@ -14,7 +14,7 @@ void test() {
 
 	auto is_cycle_floyd_warshall = [&] {
 		constexpr int inf = int(1e9);
-		vector dist(n, vector<int>(n, inf));
+		V dist(n, V<int>(n, inf));
 		REP(v, n)
 			dist[v][v] = 0;
 		REP(v, n)

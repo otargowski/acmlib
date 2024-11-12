@@ -6,7 +6,7 @@ void test() {
 	n = rd(2, n);
 	int m = min(19, rd(0, n * n));
 	set<pair<int, int>> used;
-	vector<pair<int, int>> edges;
+	V<pair<int, int>> edges;
 	while(m --> 0) {
 		int v = rd(0, n - 1);
 		int u = rd(0, n - 1);
@@ -29,33 +29,33 @@ void test() {
 		if(popcount != 3 and popcount != 4)
 			continue;
 
-		vector<vector<int>> graph(n);
+		V<V<int>> graph(n);
 		REP(i, ssize(edges))
 			if((mask >> i) & 1) {
 				auto [v, u] = edges[i];
 				graph[v].emplace_back(u);
 				graph[u].emplace_back(v);
 			}
-		vector<int> new_id(n, -1);
+		V<int> new_id(n, -1);
 		int new_n = 0;
 		REP(v, n)
 			if(ssize(graph[v]))
 				new_id[v] = new_n++;
 
-		vector<vector<int>> new_graph(new_n);
+		V<V<int>> new_graph(new_n);
 		REP(v, n)
 			for(int u : graph[v])
 				if(new_id[v] != -1 and new_id[u] != -1)
 					new_graph[new_id[v]].emplace_back(new_id[u]);
 		debug(new_graph, popcount, new_n);
 
-		vector<int> deg(new_n);
+		V<int> deg(new_n);
 		REP(i, new_n)
 			deg[i] = ssize(new_graph[i]);
 		sort(deg.begin(), deg.end());
 		// debug(deg);
 
-		vector<bool> vis(new_n);
+		V<bool> vis(new_n);
 		function<void (int)> dfs = [&](int v) {
 			vis[v] = true;
 			for(int u : new_graph[v])
@@ -96,7 +96,7 @@ void test() {
 		get() += 1;
 	}
 
-	vector<vector<int>> all_graph(n);
+	V<V<int>> all_graph(n);
 	for(auto [v, u] : edges) {
 		all_graph[v].emplace_back(u);
 		all_graph[u].emplace_back(v);

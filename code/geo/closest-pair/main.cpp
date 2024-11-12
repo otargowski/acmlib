@@ -3,7 +3,7 @@
  */
 #include "../point/main.cpp"
 
-pair<P, P> closest_pair(vector<P> in) {
+pair<P, P> closest_pair(V<P> in) {
 	set<P> s;
 	sort(in.begin(), in.end(), [](P a, P b) { return a.y() < b.y(); });
 	pair<D, pair<P, P>> ret(1e18, {P(), P()});

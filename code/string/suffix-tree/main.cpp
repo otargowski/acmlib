@@ -10,10 +10,10 @@
  */
 struct SuffixTree {
 	const int n;
-	const vector<int> &_in;
-	vector<map<int, int>> sons;
-	vector<pair<int, int>> up_edge_range;
-	vector<int> parent, slink;
+	const V<int> &_in;
+	V<map<int, int>> sons;
+	V<pair<int, int>> up_edge_range;
+	V<int> parent, slink;
 	int tv = 0, tp = 0, ts = 2, la = 0;
 	void ukkadd(int c) {
 		auto &lr = up_edge_range;
@@ -45,12 +45,12 @@ suff:
 		}
 	}
 	// Remember to append string with a hash.
-	SuffixTree(const vector<int> &in, int alpha)
+	SuffixTree(const V<int> &in, int alpha)
 		: n(ssize(in)), _in(in), sons(2 * n + 1),
 		up_edge_range(2 * n + 1, pair(0, n - 1)), parent(2 * n + 1), slink(2 * n + 1) {
 		up_edge_range[0] = up_edge_range[1] = {-1, -1};
 		slink[0] = 1;
-		// When changing map to vector, fill sons exactly here with -1 and replace if in ukkadd with sons[tv][c] == -1.
+		// When changing map to V, fill sons exactly here with -1 and replace if in ukkadd with sons[tv][c] == -1.
 		REP(ch, alpha)
 			sons[1][ch] = 0;
 		for(; la < n; ++la)

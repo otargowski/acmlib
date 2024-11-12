@@ -12,7 +12,7 @@
  *   \texttt{convolution\_xor(a, b)[i] = suma(j \^ k == i) a[j] * b[k]}.
  */
 // BEGIN HASH
-vector<int> fwht_or(vector<int> a) {
+V<int> fwht_or(V<int> a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = 1; 2 * s <= n; s *= 2)
@@ -21,7 +21,7 @@ vector<int> fwht_or(vector<int> a) {
 				a[i + s] += a[i];
 	return a;
 }
-vector<int> ifwht_or(vector<int> a) {
+V<int> ifwht_or(V<int> a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = n / 2; s >= 1; s /= 2)
@@ -30,7 +30,7 @@ vector<int> ifwht_or(vector<int> a) {
 				a[i + s] -= a[i];
 	return a;
 }
-vector<int> convolution_or(vector<int> a, vector<int> b) {
+V<int> convolution_or(V<int> a, V<int> b) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0 and ssize(b) == n);
 	a = fwht_or(a);
@@ -40,7 +40,7 @@ vector<int> convolution_or(vector<int> a, vector<int> b) {
 	return ifwht_or(a);
 } // END HASH
 // BEGIN HASH
-vector<int> fwht_and(vector<int> a) {
+V<int> fwht_and(V<int> a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = 1; 2 * s <= n; s *= 2)
@@ -49,7 +49,7 @@ vector<int> fwht_and(vector<int> a) {
 				a[i] += a[i + s];
 	return a;
 }
-vector<int> ifwht_and(vector<int> a) {
+V<int> ifwht_and(V<int> a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = n / 2; s >= 1; s /= 2)
@@ -58,7 +58,7 @@ vector<int> ifwht_and(vector<int> a) {
 				a[i] -= a[i + s];
 	return a;
 }
-vector<int> convolution_and(vector<int> a, vector<int> b) {
+V<int> convolution_and(V<int> a, V<int> b) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0 and ssize(b) == n);
 	a = fwht_and(a);
@@ -68,7 +68,7 @@ vector<int> convolution_and(vector<int> a, vector<int> b) {
 	return ifwht_and(a);
 } // END HASH
 // BEGIN HASH
-vector<int> fwht_xor(vector<int> a) {
+V<int> fwht_xor(V<int> a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = 1; 2 * s <= n; s *= 2)
@@ -80,7 +80,7 @@ vector<int> fwht_xor(vector<int> a) {
 			}
 	return a;
 }
-vector<int> ifwht_xor(vector<int> a) {
+V<int> ifwht_xor(V<int> a) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0);
 	for(int s = n / 2; s >= 1; s /= 2)
@@ -92,7 +92,7 @@ vector<int> ifwht_xor(vector<int> a) {
 			}
 	return a;
 }
-vector<int> convolution_xor(vector<int> a, vector<int> b) {
+V<int> convolution_xor(V<int> a, V<int> b) {
 	int n = ssize(a);
 	assert((n & (n - 1)) == 0 and ssize(b) == n);
 	a = fwht_xor(a);

@@ -2,7 +2,7 @@
  * Opis: O(N^3) (but fast in practice)
  *   Taken from: https://judge.yosupo.jp/submission/218005
  *   pdfcompile, weighted\_matching::init(n), weighted\_matching::add\_edge(a, b, c)
- *   vector<pii> temp, weighted\_matching::solve(temp).first
+ *   V<pii> temp, weighted\_matching::solve(temp).first
  */
 #define pii pair<int, int>
 namespace weighted_matching{
@@ -14,7 +14,7 @@ struct E{
 int n, m;
 E G[MAXN][MAXN];
 int lab[MAXN], match[MAXN], slack[MAXN], st[MAXN], pa[MAXN], flo_from[MAXN][MAXN], S[MAXN], vis[MAXN];
-vector<int> flo[MAXN];
+V<int> flo[MAXN];
 queue<int> Q;
 
 void init(int _n) {
@@ -198,7 +198,7 @@ bool matching() {
 	}
 	return false;
 }
-pair<ll, int> solve(vector<pii> &ans) {
+pair<ll, int> solve(V<pii> &ans) {
 	fill(match + 1, match + n + 1, 0);
 	m = n;
 	int cnt = 0; ll sum = 0;

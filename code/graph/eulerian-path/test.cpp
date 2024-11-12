@@ -6,7 +6,7 @@ void test() {
 	const int n = rd(1, N);
 	const int m = rd(0, M);
 	const bool directed = rd(0, 1);
-	vector<pair<int, int>> edges;
+	V<pair<int, int>> edges;
 	REP(i, m)
 		edges.emplace_back(rd(0, n - 1), rd(0, n - 1));
 	debug(n, m, directed, edges);
@@ -15,7 +15,7 @@ void test() {
 
 	bool exists = m ? false : true;
 	REP(start, n) {
-		vector<bool> used(m);
+		V<bool> used(m);
 		function<bool(int, int)> gen = [&](int last, int len) -> bool {
 			if (len == m) {
 				return true;

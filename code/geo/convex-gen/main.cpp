@@ -8,15 +8,15 @@
 #include "../point/main.cpp"
 #include "../angle-sort/main.cpp"
 #include "../../headers/gen.cpp"
-vector<int> num_split(int value, int n) {
-	vector<int> v(n, value);
+V<int> num_split(int value, int n) {
+	V<int> v(n, value);
 	REP(i, n - 1)
 		v[i] = rd(0, value);
 	sort(v.begin(), v.end());
 	adjacent_difference(v.begin(), v.end(), v.begin());
 	return v;
 }
-vector<int> capped_zero_split(int cap, int n) {
+V<int> capped_zero_split(int cap, int n) {
 	int m = rd(1, n - 1);
 	auto lf = num_split(cap, m);
 	auto rg = num_split(cap, n - m);
@@ -24,9 +24,9 @@ vector<int> capped_zero_split(int cap, int n) {
 		lf.emplace_back(-i);
 	return lf;
 }
-vector<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
+V<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
 	assert(n > 2);
-	vector<P> t;
+	V<P> t;
 	const double PROC = 0.9;
 	do {
 		t.clear();
@@ -38,7 +38,7 @@ vector<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
 				t.emplace_back(dx[i], dy[i]);
 		t = angle_sort(t);
 		if (strictly_convex) {
-			vector<P> nt(1, t[0]);
+			V<P> nt(1, t[0]);
 			FOR (i, 1, ssize(t) - 1) {
 				if (!sign(cross(t[i], nt.back())))
 					nt.back() += t[i];

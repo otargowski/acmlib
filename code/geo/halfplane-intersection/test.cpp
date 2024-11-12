@@ -12,7 +12,7 @@ ostream& operator<<(ostream &o, __int128 x) {
 using Frac = pair<Num, Num>;
 using PInt = pair<int, int>;
 using PFrac = pair<Frac, Frac>;
-using HalfplanePInt = pair<PInt, PInt>; // (punkt p, vector pq)
+using HalfplanePInt = pair<PInt, PInt>; // (punkt p, V pq)
 
 ll crossPInt(PInt l, PInt r) {
 	return l.first * ll(r.second) - l.second * ll(r.first);
@@ -59,7 +59,7 @@ bool is_outside(HalfplanePInt hi, PFrac p) {
 
 D num_to_d(Num n) {
 	D d = 0;
-	for(int x : vector(n.x.rbegin(), n.x.rend()))
+	for(int x : V(n.x.rbegin(), n.x.rend()))
 		d = n.base * d + x;
 	d *= n.sign;
 	return d;
@@ -75,8 +75,8 @@ PInt sub_PInt(PInt l, PInt r) {
 	return {l.first - r.first, l.second - r.second};
 }
 
-vector<P> brute_halfplane(vector<HalfplanePInt> h) {
-	vector<P> potential;
+V<P> brute_halfplane(V<HalfplanePInt> h) {
+	V<P> potential;
 	for(HalfplanePInt s : h)
 		for(HalfplanePInt t : h)
 			if(crossPInt(s.second, t.second) != 0) {
@@ -95,14 +95,14 @@ vector<P> brute_halfplane(vector<HalfplanePInt> h) {
 					potential.emplace_back(to_p(inte));
 			}
 
-	vector<P> got_hull = hull(potential);
+	V<P> got_hull = hull(potential);
 	return got_hull;
 }
 
 void test() {
 	const int n = rd(0, 10);
-	vector<Halfplane> in;
-	vector<HalfplanePInt> inPInt;
+	V<Halfplane> in;
+	V<HalfplanePInt> inPInt;
 	for(int i = 0; i < 4; ++i) {
 		constexpr D inf = 1e5;
 		array box = {P(-inf, -inf), P(inf, -inf), P(inf, inf), P(-inf, inf)};

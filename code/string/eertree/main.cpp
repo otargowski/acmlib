@@ -14,9 +14,9 @@
 // BEGIN HASH
 constexpr int alpha = 26;
 struct Eertree {
-	vector<array<int, alpha>> edge;
+	V<array<int, alpha>> edge;
 	array<int, alpha> empty;
-	vector<int> str = {-1}, link = {1, 0}, len = {0, -1};
+	V<int> str = {-1}, link = {1, 0}, len = {0, -1};
 	int last = 0;
 	Eertree() {
 		empty.fill(0);
@@ -45,11 +45,11 @@ struct Dp { int mn, mn_i, cnt; };
 Dp operator+(Dp l, Dp r) {
 	return {min(l.mn, r.mn), l.mn < r.mn ? l.mn_i : r.mn_i, add(l.cnt, r.cnt)};
 }
-vector<Dp> palindromic_split_dp(vector<int> str, bool only_even_lens = false) {
+V<Dp> palindromic_split_dp(V<int> str, bool only_even_lens = false) {
 	int n = ssize(str);
 	Eertree t;
-	vector<int> big_link(2), diff(2);
-	vector<Dp> series_ans(2), ans(n, {n + 1, -1, 0});
+	V<int> big_link(2), diff(2);
+	V<Dp> series_ans(2), ans(n, {n + 1, -1, 0});
 	REP(i, n) {
 		int last = t.add_letter(str[i]);
 		if(last >= ssize(big_link)) {
@@ -69,10 +69,10 @@ vector<Dp> palindromic_split_dp(vector<int> str, bool only_even_lens = false) {
 	return ans;
 } // END HASH
 // BEGIN HASH
-vector<pair<int, int>> construct_min_palindromic_split(vector<Dp> ans) {
+V<pair<int, int>> construct_min_palindromic_split(V<Dp> ans) {
 	if(ans.back().mn == ssize(ans) + 1)
 		return {};
-	vector<pair<int, int>> split = {{0, ssize(ans) - 1}};
+	V<pair<int, int>> split = {{0, ssize(ans) - 1}};
 	while(ans[split.back().second].mn_i != -1)
 		split.emplace_back(0, ans[split.back().second].mn_i);
 	reverse(split.begin(), split.end());

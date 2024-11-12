@@ -74,9 +74,9 @@ struct modular {
 using mint = modular<int(1e9 + 7)>;
 // using mint = modular<998244353>;
 struct BinomCoeff {
-	vector<mint> fac, rev;
+	V<mint> fac, rev;
 	BinomCoeff(int n) {
-		fac = rev = vector<mint>(n + 1, 1);
+		fac = rev = V<mint>(n + 1, 1);
 		FOR(i, 1, n) fac[i] = fac[i - 1] * i;
 		rev[n] = 1 / fac[n];
 		for(int i = n; i >= 1; i--)

@@ -11,7 +11,7 @@ int rd_coord() {
 P rd_point() {
 	return P(rd_coord(), rd_coord());
 };
-vector<P> gen_noncollinear_points(int n) {
+V<P> gen_noncollinear_points(int n) {
 	if (n == 0)
 		return {};
 	if (n == 3)
@@ -52,7 +52,7 @@ void test() {
 	const auto points = gen_noncollinear_points(n);
 	debug(points);
 
-	vector<vector<int>> graph(n);
+	V<V<int>> graph(n);
 	set<pair<int, int>> edges;
 	REP(i, m) {
 		while (true) {

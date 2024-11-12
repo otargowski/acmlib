@@ -18,10 +18,10 @@ struct AhoCorasick {
 			fill(go.begin(), go.end(), -1);
 		}
 	};
-	vector<Node> node;
+	V<Node> node;
 	bool converted = false;
 	AhoCorasick() : node(1) {}
-	void add(const vector<int> &s) {
+	void add(const V<int> &s) {
 		assert(!converted);
 		int v = 0;
 		for (int c : s) {

@@ -6,13 +6,13 @@
  */
 #include "../pref/main.cpp"
 
-vector<tuple<int, int, int>> squares(const vector<int> &s) {
-	vector<tuple<int, int, int>> ans;
-	vector pos(ssize(s) + 2, -1);
+V<tuple<int, int, int>> squares(const V<int> &s) {
+	V<tuple<int, int, int>> ans;
+	V pos(ssize(s) + 2, -1);
 	FOR(mid, 1, ssize(s) - 1) {
 		int part = mid & ~(mid - 1), off = mid - part;
 		int end = min(mid + part, ssize(s));
-		vector a(s.begin() + off, s.begin() + off + part),
+		V a(s.begin() + off, s.begin() + off + part),
 			b(s.begin() + mid, s.begin() + end),
 			ra(a.rbegin(), a.rend());
 		REP(j, 2) {
@@ -36,7 +36,7 @@ vector<tuple<int, int, int>> squares(const vector<int> &s) {
 				else
 					p = ssize(ans), ans.emplace_back(sb, se - 1, l);
 			 }
-			 a = vector(b.rbegin(), b.rend());
+			 a = V(b.rbegin(), b.rend());
 			 b.swap(ra);
 		 }
 	}

@@ -1,8 +1,8 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-vector<int> get_all_vals(Treap::pNode n) {
-	vector<int> ret;
+V<int> get_all_vals(Treap::pNode n) {
+	V<int> ret;
 	if(n->l)
 		ret = get_all_vals(n->l);
 	ret.emplace_back(n->val);
@@ -16,8 +16,8 @@ void test() {
 	int n = rd(1, 100);
 
 	Treap treap;
-	vector<Treap::pNode> roots = {nullptr};
-	vector<vector<int>> values = {{}};
+	V<Treap::pNode> roots = {nullptr};
+	V<V<int>> values = {{}};
 
 	while(n --> 0) {
 		if(ssize(roots) > 1 and rd(0, 3) == 0) {

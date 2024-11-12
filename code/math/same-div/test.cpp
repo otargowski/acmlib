@@ -2,8 +2,8 @@
 #include "main.cpp"
 
 void test() {
-	auto brute_floor = [&](ll n) -> vector<pair<ll, ll>> {
-		vector<pair<ll, ll>> v;
+	auto brute_floor = [&](ll n) -> V<pair<ll, ll>> {
+		V<pair<ll, ll>> v;
 		for (ll i = 1; i <= n; ++i) {
 			ll x = i + 1;
 			while (x <= n and n / x == n / i)
@@ -14,8 +14,8 @@ void test() {
 		return v;
 	};
 
-	auto brute_ceil = [&](ll n) -> vector<pair<ll, ll>> {
-		vector<pair<ll, ll>> v;
+	auto brute_ceil = [&](ll n) -> V<pair<ll, ll>> {
+		V<pair<ll, ll>> v;
 		for (ll i = n; i >= 1; --i) {
 			ll x = i - 1;
 			while (x >= 1 and (n + x - 1) / x == (n + i - 1) / i)

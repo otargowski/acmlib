@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	vector<pair<int, int>> coord = {
+	V<pair<int, int>> coord = {
 		{1, 6},
 		{3, 9},
 		{6, 8},
@@ -37,7 +37,7 @@ void test() {
 		{7, 11},
 		{2, 12}
 	};
-	vector<pair<int, int>> edges = {
+	V<pair<int, int>> edges = {
 		{0, 1},
 		{1, 2},
 		{2, 3},

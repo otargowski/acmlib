@@ -10,7 +10,7 @@ void test() {
 	bool inside = rd(0, 1);
 	debug(p0, p1, r0, r1, inside);
 
-	vector got = circle_tangents(p0, r0, p1, r1, inside);
+	V got = circle_tangents(p0, r0, p1, r1, inside);
 	debug(got);
 
 	int sgn = sign(dist(p0, p1) - (inside ? r0 + r1 : abs(r0 - r1)));

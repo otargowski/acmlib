@@ -212,7 +212,7 @@ pair<vi, vi> div(vi a, const vi& b) { // WYMAGA inv, div_slow
 	return {x, mod_xn(a, ssize(b))};
 } // END HASH
 // BEGIN HASH
-vi build(vector<vi> &tree, int v, auto l, auto r) {
+vi build(V<vi> &tree, int v, auto l, auto r) {
 	if (r - l == 1) {
 		return tree[v] = vi{sub(0, *l), 1};
 	} else {
@@ -229,7 +229,7 @@ int eval_single(const vi& a, int x) {
 	}
 	return y;
 }
-vi eval_helper(const vi& a, vector<vi>& tree, int v, auto l, auto r) {
+vi eval_helper(const vi& a, V<vi>& tree, int v, auto l, auto r) {
 	if (r - l == 1) {
 		return {eval_single(a, *l)};
 	} else {
@@ -243,12 +243,12 @@ vi eval_helper(const vi& a, vector<vi>& tree, int v, auto l, auto r) {
 vi eval(const vi& a, const vi& x) { // WYMAGA div, eval_single, build, eval_helper
 	if (x.empty())
 		return {};
-	vector<vi> tree(4 * ssize(x));
+	V<vi> tree(4 * ssize(x));
 	build(tree, 1, begin(x), end(x));
 	return eval_helper(a, tree, 1, begin(x), end(x));
 } // END HASH
 // BEGIN HASH
-vi inter_helper(const vi& a, vector<vi>& tree, int v, auto l, auto r, auto ly, auto ry) {
+vi inter_helper(const vi& a, V<vi>& tree, int v, auto l, auto r, auto ly, auto ry) {
 	if (r - l == 1) {
 		return {mul(*ly, inv(a[0]))};
 	}
@@ -268,6 +268,6 @@ vi inter(const vi& x, const vi& y) { // WYMAGA deriv, div, build, inter_helper
 	assert(ssize(x) == ssize(y));
 	if (x.empty())
 		return {};
-	vector<vi> tree(4 * ssize(x));
+	V<vi> tree(4 * ssize(x));
 	return inter_helper(deriv(build(tree, 1, begin(x), end(x))), tree, 1, begin(x), end(x), begin(y), end(y));
 } // END HASH

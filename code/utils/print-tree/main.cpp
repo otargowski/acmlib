@@ -3,7 +3,7 @@
  */
 #ifdef DEBUG
 map<int, bool> edge;
-void print_tree(vector<vector<int>> &graph, int v = 0, int p = -1, int dep = 0, bool end = false) {
+void print_tree(V<V<int>> &graph, int v = 0, int p = -1, int dep = 0, bool end = false) {
 	edge[dep] = true;
 	REP(i, dep - 1) cerr << (edge[i] ? "│" : " ") << "   ";
 	if(dep != 0) {

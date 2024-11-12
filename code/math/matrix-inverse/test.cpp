@@ -4,7 +4,7 @@
 void test() {
 	const int mn = 10;
 	int n = rd(1, mn);
-	vector a(n, vector(n, T(0)));
+	V a(n, V(n, T(0)));
 	const int limit = rd(0, 1) ? 3 : mod - 1;
 	REP(i, n)
 		REP(j, n)

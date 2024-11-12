@@ -7,7 +7,7 @@
 struct Num {
 	static constexpr int digits_per_elem = 9, base = int(1e9);
 	int sign = 0;
-	vector<int> x;
+	V<int> x;
 	Num& shorten() {
 		while(ssize(x) and x.back() == 0)
 			x.pop_back();
@@ -111,7 +111,7 @@ Num operator/(Num a, int b) {
 // BEGIN HASH
 // zwraca a * pow(a.base, b)
 Num shift(Num a, int b) {
-	vector v(b, 0);
+	V v(b, 0);
 	a.x.insert(a.x.begin(), v.begin(), v.end());
 	return a.shorten();
 }

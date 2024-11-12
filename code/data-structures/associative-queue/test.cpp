@@ -2,13 +2,13 @@
 #include "main.cpp"
 
 struct Matrix {
-	vector<vector<int>> m;
+	V<V<int>> m;
 	Matrix() {
 		m = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 	}
-	Matrix(vector<vector<int>> _m) : m(_m) {}
+	Matrix(V<V<int>> _m) : m(_m) {}
 	Matrix operator*(const Matrix& other) {
-		auto res = vector (3, vector (3, 0));
+		auto res = V (3, V (3, 0));
 		REP(i,3) {
 			REP(j,3) {
 				REP(k,3) {
@@ -40,7 +40,7 @@ void test() {
 
 	int n = rd(1, 30);
 	debug(n);
-	vector<Matrix> v(n);
+	V<Matrix> v(n);
 	auto los = [&] {
 		Matrix res{};
 		REP(i,3) {

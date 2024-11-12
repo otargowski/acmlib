@@ -5,7 +5,7 @@ struct Tree_Get_Max {
 	using T = int;
 	T f(T a, T b) { return max(a, b); }
 	const T zero = 0;
-	vector<T> tree;
+	V<T> tree;
 	int sz = 1;
 	Tree_Get_Max(int n) {
 		while(sz < n)
@@ -34,7 +34,7 @@ struct Tree_Get_Max {
 };
 struct Tree_Update_Max_On_Interval {
 	using T = int;
-	vector<T> tree;
+	V<T> tree;
 	int sz = 1;
 	Tree_Update_Max_On_Interval(int n) {
 		while(sz < n)

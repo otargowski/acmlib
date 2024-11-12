@@ -8,7 +8,7 @@
 int power_monomial_sum(int a, int k, int n) {
 	if (n == 0) return 0;
 	int p = 1, b = 1, c = 0, d = a, inva = inv(a);
-	vector<int> v(k + 1, k == 0);
+	V<int> v(k + 1, k == 0);
 	FOR(i, 1, k) v[i] = add(v[i - 1], mul(p = mul(p, a), powi(i, k)));
 	BinomCoeff bc(k + 1);
 	REP(i, k + 1) {

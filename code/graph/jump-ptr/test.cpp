@@ -3,7 +3,7 @@
 
 void test() {
 	int n = rd(1, 20);
-	vector<vector<pair<int, int>>> graph(n);
+	V<V<pair<int, int>>> graph(n);
 	FOR(v, 1, n - 1) {
 		int u = rd(0, v - 1);
 		int w = rd(1, 10);

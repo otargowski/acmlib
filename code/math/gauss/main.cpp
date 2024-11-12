@@ -8,10 +8,10 @@
  *   zwraca \texttt{(1, \{6.75, 0.375, -6.125\})}.
  */
 #include "../matrix-header/main.cpp"
-pair<int, vector<T>> gauss(vector<vector<T>> a) {
+pair<int, V<T>> gauss(V<V<T>> a) {
 	int n = ssize(a); // liczba wierszy
 	int m = ssize(a[0]) - 1; // liczba zmiennych
-	vector<int> where(m, -1); // w ktorym wierszu jest zdefiniowana i-ta zmienna
+	V<int> where(m, -1); // w ktorym wierszu jest zdefiniowana i-ta zmienna
 	for(int col = 0, row = 0; col < m and row < n; ++col) {
 		int sel = row;
 		for(int y = row; y < n; ++y)
@@ -31,7 +31,7 @@ pair<int, vector<T>> gauss(vector<vector<T>> a) {
 			}
 		++row;
 	}
-	vector<T> answer(m);
+	V<T> answer(m);
 	for(int col = 0; col < m; ++col)
 		if(where[col] != -1)
 			answer[col] = divide(a[where[col]][m], a[where[col]][col]);

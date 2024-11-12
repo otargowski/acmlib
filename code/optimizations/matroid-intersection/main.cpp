@@ -2,7 +2,7 @@
  * Opis: O(r^2 \cdot (init + n \cdot add)), where r is max independent set.
  * Find largest subset S of [n] such that S is independent in both
  * matroid A and B, given by their oracles, see example implementations below.
- * Returns vector V such that V[i] = 1 iff i-th element is included in found set;
+ * Returns V V such that V[i] = 1 iff i-th element is included in found set;
  * Zabrane z https://github.com/KacperTopolski/kactl/tree/main
  * Zmienne w matroidach ustawiamy ręcznie aby "zainicjalizować" tylko jeśli mają
  * komentarz co znaczą. W przeciwnym wypadku intersectMatroids zrobi robotę wołając init.
@@ -10,8 +10,8 @@
 
 // BEGIN HASH
 template<class T, class U>
-vector<bool> intersectMatroids(T& A, U& B, int n) {
-	vector<bool> ans(n);
+V<bool> intersectMatroids(T& A, U& B, int n) {
+	V<bool> ans(n);
 	bool ok = 1;
 // NOTE: for weighted matroid intersection find
 // shortest augmenting paths first by weight change,
@@ -25,10 +25,10 @@ vector<bool> intersectMatroids(T& A, U& B, int n) {
 	//End of speedup
 
 	while (ok) {
-		vector<vector<int>> G(n);
-		vector<bool> good(n);
+		V<V<int>> G(n);
+		V<bool> good(n);
 		queue<int> que;
-		vector<int> prev(n, -1);
+		V<int> prev(n, -1);
 		A.init(ans); B.init(ans); ok = 0;
 		REP(i, n) if (!ans[i]) {
 			if (A.canAdd(i)) que.emplace(i), prev[i]=-2;
@@ -66,11 +66,11 @@ vector<bool> intersectMatroids(T& A, U& B, int n) {
 // and set is independent iff for each color c
 // #{elements of color c} <= maxAllowed[c].
 struct LimOracle {
-	vector<int> color; // color[i] = color of i-th element
-	vector<int> maxAllowed; // Limits for colors
-	vector<int> tmp;
+	V<int> color; // color[i] = color of i-th element
+	V<int> maxAllowed; // Limits for colors
+	V<int> tmp;
 	// Init oracle for independent set S; O(n)
-	void init(vector<bool>& S) {
+	void init(V<bool>& S) {
 		tmp = maxAllowed;
 		REP(i, ssize(S)) tmp[color[i]] -= S[i];
 	}
@@ -80,14 +80,14 @@ struct LimOracle {
 // Graphic matroid - each element is edge,
 // set is independent iff subgraph is acyclic.
 struct GraphOracle {
-	vector<pair<int, int>> elems; // Ground set: graph edges
+	V<pair<int, int>> elems; // Ground set: graph edges
 	int n; // Number of vertices, indexed [0;n-1]
-	vector<int> par;
+	V<int> par;
 	int find(int i) {
 		return par[i] == -1 ? i : par[i] = find(par[i]);
 	}
 	// Init oracle for independent set S; ~O(n)
-	void init(vector<bool>& S) {
+	void init(V<bool>& S) {
 		par.assign(n, -1);
 		REP(i, ssize(S)) if (S[i])
 			par[find(elems[i].first)] = find(elems[i].second);
@@ -102,10 +102,10 @@ struct GraphOracle {
 // from graph number of connected components
 // doesn't change.
 struct CographOracle {
-	vector<pair<int, int>> elems; // Ground set: graph edges
+	V<pair<int, int>> elems; // Ground set: graph edges
 	int n; // Number of vertices, indexed [0;n-1]
-	vector<vector<int>> G;
-	vector<int> pre, low;
+	V<V<int>> G;
+	V<int> pre, low;
 	int cnt;
 
 	int dfs(int v, int p) {
@@ -115,7 +115,7 @@ struct CographOracle {
 		return low[v];
 	}
 	// Init oracle for independent set S; O(n)
-	void init(vector<bool>& S) {
+	void init(V<bool>& S) {
 		G.assign(n, {});
 		pre.assign(n, 0);
 		low.resize(n);
@@ -135,10 +135,10 @@ struct CographOracle {
 };
 // Matroid equivalent to linear space with XOR
 struct XorOracle {
-	vector<ll> elems; // Ground set: numbers
-	vector<ll> base;
+	V<ll> elems; // Ground set: numbers
+	V<ll> base;
 	// Init for independent set S; O(n+r^2)
-	void init(vector<bool>& S) {
+	void init(V<bool>& S) {
 		base.assign(63, 0);
 		REP(i, ssize(S)) if (S[i]) {
 			ll e = elems[i];

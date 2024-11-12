@@ -3,9 +3,9 @@
  */
 #include "../matching/main.cpp"
 // BEGIN HASH
-vector<pair<int, int>> get_min_edge_cover(vector<vector<int>> graph) {
-	vector<int> match = Matching(graph)().second;
-	vector<pair<int, int>> ret;
+V<pair<int, int>> get_min_edge_cover(V<V<int>> graph) {
+	V<int> match = Matching(graph)().second;
+	V<pair<int, int>> ret;
 	REP(v, ssize(match))
 		if(match[v] != -1 and v < match[v])
 			ret.emplace_back(v, match[v]);
@@ -14,10 +14,10 @@ vector<pair<int, int>> get_min_edge_cover(vector<vector<int>> graph) {
 	return ret;
 } // END HASH
 // BEGIN HASH
-array<vector<int>, 2> get_coloring(vector<vector<int>> graph) {
+array<V<int>, 2> get_coloring(V<V<int>> graph) {
 	int n = ssize(graph);
-	vector<int> match = Matching(graph)().second;
-	vector<int> color(n, -1);
+	V<int> match = Matching(graph)().second;
+	V<int> color(n, -1);
 	function<void (int)> dfs = [&](int v) {
 		color[v] = 0;
 		for(int u : graph[v])
@@ -32,14 +32,14 @@ array<vector<int>, 2> get_coloring(vector<vector<int>> graph) {
 	REP(v, n)
 		if(color[v] == -1)
 			dfs(v);
-	array<vector<int>, 2> groups;
+	array<V<int>, 2> groups;
 	REP(v, n)
 		groups[color[v]].emplace_back(v);
 	return groups;
 }
-vector<int> get_max_independent_set(vector<vector<int>> graph) {
+V<int> get_max_independent_set(V<V<int>> graph) {
 	return get_coloring(graph)[0];
 }
-vector<int> get_min_vertex_cover(vector<vector<int>> graph) {
+V<int> get_min_vertex_cover(V<V<int>> graph) {
 	return get_coloring(graph)[1];
 } // END HASH

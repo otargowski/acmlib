@@ -9,7 +9,7 @@ void test() {
 
 	AhoCorasick aho;
 
-	auto is_lit_on_link_path = [&](vector<bool> is_lit) {
+	auto is_lit_on_link_path = [&](V<bool> is_lit) {
 		deque<int> que = {0};
 		while (not que.empty()) {
 			int v = que.front();
@@ -23,9 +23,9 @@ void test() {
 		return is_lit;
 	};
 
-	vector<vector<int>> patterns;
+	V<V<int>> patterns;
 	while(str_cnt --> 0) {
-		vector<int> pattern(rd(1, max_len_str));
+		V<int> pattern(rd(1, max_len_str));
 		for(int &c : pattern)
 			c = rd(0, alpha - 1);
 		patterns.emplace_back(pattern);
@@ -34,9 +34,9 @@ void test() {
 	debug(patterns);
 	aho.convert();
 
-	auto is_suffix_equal_to_pattern = [&](vector<int> text) {
+	auto is_suffix_equal_to_pattern = [&](V<int> text) {
 		REP(i, ssize(text)) {
-			vector<int> suffix(text.begin() + i, text.end());
+			V<int> suffix(text.begin() + i, text.end());
 			for(auto &pattern : patterns)
 				if(suffix == pattern)
 					return true;
@@ -44,20 +44,20 @@ void test() {
 		return false;
 	};
 
-	vector<bool> is_suffix_end(ssize(aho.node));
+	V<bool> is_suffix_end(ssize(aho.node));
 	REP(i, ssize(is_suffix_end))
 		is_suffix_end[i] = aho.node[i].is_word_end;
 	is_suffix_end = is_lit_on_link_path(is_suffix_end);
 	debug(is_suffix_end);
 
 	while(queries --> 0) {
-		vector<int> text(rd(1, max_len_str));
+		V<int> text(rd(1, max_len_str));
 		for(int &c : text)
 			c = rd(0, alpha - 1);
 
 		int v = 0;
 		REP(i, ssize(text)) {
-			vector<int> text_sub(text.begin(), text.begin() + i + 1);
+			V<int> text_sub(text.begin(), text.begin() + i + 1);
 			v = aho.go(v, text[i]);
 			debug(i, text_sub, is_suffix_equal_to_pattern(text_sub), v);
 			assert(is_suffix_end[v] == is_suffix_equal_to_pattern(text_sub));

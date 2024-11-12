@@ -15,7 +15,7 @@ void test() {
 	if(max_value == ll(1e18))
 		return;
 
-	vector<pair<ll, ll>> possible;
+	V<pair<ll, ll>> possible;
 	FOR(a, 0, max_value)
 		FOR(b, 1, max_value)
 			if(is_good(pair(a, b)) and __gcd(a, b) == 1)

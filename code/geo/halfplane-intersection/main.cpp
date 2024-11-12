@@ -24,7 +24,7 @@ P inter(Halfplane s, Halfplane t) {
 	D alpha = cross(t.p - s.p, t.pq) / cross(s.pq, t.pq);
 	return s.p + s.pq * alpha;
 }
-vector<P> halfplane_intersection(vector<Halfplane> h) {
+V<P> halfplane_intersection(V<Halfplane> h) {
 	for(int i = 0; i < 4; ++i) {
 		constexpr D inf = 1e9;
 		array box = {P(-inf, -inf), P(inf, -inf), P(inf, inf), P(-inf, inf)};
@@ -53,7 +53,7 @@ vector<P> halfplane_intersection(vector<Halfplane> h) {
 		dq.pop_back();
 	while(ssize(dq) >= 3 and is_outside(dq.end()[-1], inter(dq[0], dq[1])))
 		dq.pop_front();
-	vector<P> ret;
+	V<P> ret;
 	REP(i, ssize(dq))
 		ret.emplace_back(inter(dq[i], dq[(i + 1) % ssize(dq)]));
 	ret.erase(unique(ret.begin(), ret.end(), [&](P l, P r) { return equal(l, r); }), ret.end());

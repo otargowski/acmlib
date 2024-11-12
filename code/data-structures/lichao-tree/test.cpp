@@ -6,7 +6,7 @@ void test() {
 	int m = rd(1, 129);
 	int range_values = 1000;
 	LiChaoTree tree(m);
-	vector<Function> functions(n);
+	V<Function> functions(n);
 	for(Function &f : functions) {
 		f = Function{rd(range_values, range_values), rd(range_values, range_values)};
 		tree.add_func(f);

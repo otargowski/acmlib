@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	vector <ll> v = {
+	V <ll> v = {
 		2047ll,
 		1373653ll,
 		25326001ll,

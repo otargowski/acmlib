@@ -3,13 +3,13 @@
 
 void test() {
 	int n = rd(1, 10), m = rd(0, n * n);
-	vector<tuple<int, int, int>> edges(m);
+	V<tuple<int, int, int>> edges(m);
 	for(auto &[v, u, cap] : edges) {
 		v = rd(0, n - 1);
 		u = rd(0, n - 1);
 		cap = rd(0, 10);
 	}
-	vector gomory_hu = get_gomory_hu(n, edges);
+	V gomory_hu = get_gomory_hu(n, edges);
 	REP(s, n)
 		REP(t, n) {
 			if(s == t)

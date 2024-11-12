@@ -4,14 +4,14 @@
 using namespace Treap;
 
 struct Item {
-	vector<int> t;
+	V<int> t;
 	pNode root;
 	Item() {
 		root = new Node();
 		t.emplace_back(root->prio);
 	}
 	void check_integrity() {
-		vector<int> v;
+		V<int> v;
 		function<void(pNode)> dfs = [&](pNode p) {
 			if (!p)
 				return;
@@ -37,8 +37,8 @@ Item con(Item a, Item b) {
 pair<Item, Item> cut(Item a, int pref) {
 	Item l, r;
 	split(a.root, pref, l.root, r.root);
-	l.t = vector(a.t.begin(), a.t.begin() + pref);
-	r.t = vector(a.t.begin() + pref, a.t.end());
+	l.t = V(a.t.begin(), a.t.begin() + pref);
+	r.t = V(a.t.begin() + pref, a.t.end());
 	l.check_integrity();
 	r.check_integrity();
 	return pair(l, r);
@@ -46,7 +46,7 @@ pair<Item, Item> cut(Item a, int pref) {
 
 void test() {
 	int n = 100;
-	vector<Item> v(n);
+	V<Item> v(n);
 	int reps = 1000;
 	REP (xd, reps) {
 		if (rd(0, 2) && ssize(v) > 1) {

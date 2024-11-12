@@ -3,8 +3,8 @@
  *   zapytanie jest w O(1).
  */
 struct RMQ {
-	vector<vector<int>> st;
-	RMQ(const vector<int> &a) {
+	V<V<int>> st;
+	RMQ(const V<int> &a) {
 		int n = ssize(a), lg = 0;
 		while((1 << lg) < n) lg++;
 		st.resize(lg + 1, a);

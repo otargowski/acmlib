@@ -2,7 +2,7 @@
  * Opis: O(n^3), wyznacznik macierzy (modulo lub double)
  */
 #include "../matrix-header/main.cpp"
-T determinant(vector<vector<T>>& a) {
+T determinant(V<V<T>>& a) {
 	int n = ssize(a);
 	T res = 1;
 	REP(i, n) {

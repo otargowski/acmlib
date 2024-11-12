@@ -4,12 +4,12 @@
 void test() {
 	int n = rd(1, 30);
 	int r = rd(1, 26);
-	vector<int> s(n);
+	V<int> s(n);
 	for (auto& x : s)
 		x = rd(0, r - 1);
 
 	int m = rd(1, n + 1);
-	vector<int> t;
+	V<int> t;
 	if(m <= n and rd(0, 1)) {
 		int l = rd(0, n - m);
 		REP(i, m)
@@ -32,7 +32,7 @@ void test() {
 		return ssize(t);
 	};
 
-	vector<int> good_positions;
+	V<int> good_positions;
 	REP(i, ssize(sa))
 		if(get_t_lcp(sa[i]) == ssize(t))
 			good_positions.emplace_back(i);

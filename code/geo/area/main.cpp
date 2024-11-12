@@ -5,7 +5,7 @@
  *   \texttt{area(a, b, c)} zwraca pole trójkąta o takich długościach boku.
  */
 #include "../point/main.cpp"
-D area(vector<P> pts) {
+D area(V<P> pts) {
 	int n = ssize(pts);
 	D ans = 0;
 	REP(i, n) ans += cross(pts[i], pts[(i + 1) % n]);
