@@ -93,9 +93,9 @@ struct MCMF {
 		pair<int, ll> got;
 		do {
 			got = augment(source, sink);
-			flow += got.first;
-			cost += got.second;
-		} while(got.first);
+			flow += got.fi;
+			cost += got.se;
+		} while(got.fi);
 		return {flow, cost};
 	}
 };

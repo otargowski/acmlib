@@ -7,7 +7,7 @@ V<pii> ranges_of_values(V<int> in) {
 	V<pii> ret = {{in[0], in[0]}};
 	FOR(i, 1, ssize(in) - 1)
 		if(in[i] == in[i - 1] + 1)
-			ret.back().second += 1;
+			ret.back().se += 1;
 		else
 			ret.eb(in[i], in[i]);
 	return ret;

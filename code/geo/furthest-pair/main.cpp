@@ -13,5 +13,5 @@ pair<P, P> furthest_pair(V<P> in) {
 			if (sign(cross(in[(j + 1) % n] - in[j], in[i + 1] - in[i])) <= 0)
 				break;
 		}
-	return ret.second;
+	return ret.se;
 }

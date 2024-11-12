@@ -88,10 +88,10 @@ void test() {
 
 		D closest_d = 3e9;
 		REP(i, n)
-			closest_d = min(closest_d, dist(P(x, y), P(in[i].first, in[i].second)));
+			closest_d = min(closest_d, dist(P(x, y), P(in[i].fi, in[i].se)));
 		V<int> closest_v;
 		REP(i, n)
-			if(equal(closest_d, dist(P(x, y), P(in[i].first, in[i].second))))
+			if(equal(closest_d, dist(P(x, y), P(in[i].fi, in[i].se))))
 				closest_v.eb(i);
 		debug(closest_v);
 		sort(all(matching_areas));

@@ -90,11 +90,11 @@ struct GraphOracle {
 	void init(V<bool>& S) {
 		par.assign(n, -1);
 		REP(i, ssize(S)) if (S[i])
-			par[find(elems[i].first)] = find(elems[i].second);
+			par[find(elems[i].fi)] = find(elems[i].se);
 	}
 	// Check if S+{k} is independent; time: ~O(1)
 	bool canAdd(int k) {
-		return find(elems[k].first) != find(elems[k].second);
+		return find(elems[k].fi) != find(elems[k].se);
 	}
 };
 // Co-graphic matroid - each element is edge,
@@ -122,15 +122,15 @@ struct CographOracle {
 		cnt = 0;
 		REP(i,ssize(S)) if (!S[i]) {
 			pii e = elems[i];
-			G[e.first].eb(e.second);
-			G[e.second].eb(e.first);
+			G[e.fi].eb(e.se);
+			G[e.se].eb(e.fi);
 		}
 		REP(v, n) if (!pre[v]) dfs(v, -1);
 	}
 	// Check if S+{k} is independent; time: O(1)
 	bool canAdd(int k) {
 		pii e = elems[k];
-		return max(pre[e.first], pre[e.second]) != max(low[e.first], low[e.second]);
+		return max(pre[e.fi], pre[e.se]) != max(low[e.fi], low[e.se]);
 	}
 };
 // Matroid equivalent to linear space with XOR

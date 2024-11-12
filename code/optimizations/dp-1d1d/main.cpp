@@ -18,7 +18,7 @@ pair<ll, V<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
 	int beg = n, end = n + 1;
 	rg[beg] = end; lf[end] = beg;
 	auto score = [&](int i, int j) {
-		return dp[j].first + cost(j + 1, i);
+		return dp[j].fi + cost(j + 1, i);
 	};
 	auto overtake = [&](int a, int b, int mn) {
 		int bp = mn - 1, bk = n;
@@ -52,8 +52,8 @@ pair<ll, V<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
 		add(i, i + 1);
 	}
 	V<int> cuts;
-	for (int p = n - 1; p != -1; p = dp[p].second)
+	for (int p = n - 1; p != -1; p = dp[p].se)
 		cuts.eb(p);
 	reverse(all(cuts));
-	return pair(dp[n - 1].first, cuts);
+	return pair(dp[n - 1].fi, cuts);
 }

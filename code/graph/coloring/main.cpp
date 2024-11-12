@@ -19,7 +19,7 @@ V<int> coloring(const V<V<int>>& graph, const int limit = 5) {
 				cnt += active[e];
 			best = min(best, {cnt, i});
 		}
-		const int id = best.second;
+		const int id = best.se;
 		auto cp = active;
 		cp[id] = false;
 		auto col = solve(cp);

@@ -9,9 +9,9 @@ struct MajorizedSet {
 	set<pair<A, B>> s;
 	bool insert(pair<A, B> p) {
 		auto x = s.lower_bound(p);
-		if (x != s.end() && x->second >= p.second)
+		if (x != s.end() && x->second >= p.se)
 			return false;
-		while (x != s.begin() && (--x)->second <= p.second)
+		while (x != s.begin() && (--x)->second <= p.se)
 			x = s.erase(x);
 		s.emplace(p);
 		return true;

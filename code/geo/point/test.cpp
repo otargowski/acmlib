@@ -4,7 +4,7 @@ using namespace std;
 using ll = long long;
 
 ostream& operator<<(ostream& os, pair<auto, auto> p) {
-	return os << "(" << p.first << ", " << p.second << ")\n";
+	return os << "(" << p.fi << ", " << p.se << ")\n";
 }
 
 #include "main.cpp"

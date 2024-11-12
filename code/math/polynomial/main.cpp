@@ -234,8 +234,8 @@ vi eval_helper(const vi& a, V<vi>& tree, int v, auto l, auto r) {
 		return {eval_single(a, *l)};
 	} else {
 		auto m = l + (r - l) / 2;
-		vi A = eval_helper(div(a, tree[2 * v]).second, tree, 2 * v, l, m);
-		vi B = eval_helper(div(a, tree[2 * v + 1]).second, tree, 2 * v + 1, m, r);
+		vi A = eval_helper(div(a, tree[2 * v]).se, tree, 2 * v, l, m);
+		vi B = eval_helper(div(a, tree[2 * v + 1]).se, tree, 2 * v + 1, m, r);
 		A.insert(A.end(), B.begin(), B.end());
 		return A;
 	}
@@ -255,8 +255,8 @@ vi inter_helper(const vi& a, V<vi>& tree, int v, auto l, auto r, auto ly, auto r
 	else {
 		auto m = l + (r - l) / 2;
 		auto my = ly + (ry - ly) / 2;
-		vi A = inter_helper(div(a, tree[2 * v]).second, tree, 2 * v, l, m, ly, my);
-		vi B = inter_helper(div(a, tree[2 * v + 1]).second, tree, 2 * v + 1, m, r, my, ry);
+		vi A = inter_helper(div(a, tree[2 * v]).se, tree, 2 * v, l, m, ly, my);
+		vi B = inter_helper(div(a, tree[2 * v + 1]).se, tree, 2 * v + 1, m, r, my, ry);
 		vi L = conv(A, tree[2 * v + 1]);
 		vi R = conv(B, tree[2 * v]);
 		REP(i, ssize(R))

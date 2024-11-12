@@ -72,7 +72,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 			int i = v - leaves;
 			assert(i < leaves);
 			if(i < ssize(queries))
-				ret[i] = find(queries[i].first) == find(queries[i].second);
+				ret[i] = find(queries[i].fi) == find(queries[i].se);
 		}
 		else {
 			dfs(2 * v);

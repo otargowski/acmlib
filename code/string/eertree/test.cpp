@@ -56,7 +56,7 @@ void test() {
 		REP(i, n)
 			assert(covered[i] == 1);
 		REP(i, ssize(pairs) - 1)
-			assert(pairs[i].second < pairs[i + 1].first);
+			assert(pairs[i].se < pairs[i + 1].fi);
 		for(auto [l, r] : pairs) {
 			debug(l, r);
 			assert(is_palindrome(l, r));

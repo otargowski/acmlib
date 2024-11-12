@@ -17,7 +17,7 @@ void test() {
 	sort(all(v));
 
 	REP(i,n+1)
-		assert(sa[i] == v[i].second);
+		assert(sa[i] == v[i].se);
 
 	auto common = [&](const V<int>& a, const V<int>& b) {
 		int d = min(ssize(a), ssize(b));
@@ -27,5 +27,5 @@ void test() {
 		return d;
 	};
 	REP(i,n)
-		assert(lcp[i] == common(v[i].first, v[i + 1].first));
+		assert(lcp[i] == common(v[i].fi, v[i + 1].fi));
 }

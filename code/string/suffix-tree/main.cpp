@@ -18,30 +18,30 @@ struct SuffixTree {
 	void ukkadd(int c) {
 		auto &lr = up_edge_range;
 suff:
-		if (lr[tv].second < tp) {
+		if (lr[tv].se < tp) {
 			if (sons[tv].find(c) == sons[tv].end()) {
-				sons[tv][c] = ts; lr[ts].first = la; parent[ts++] = tv;
-				tv = slink[tv]; tp = lr[tv].second + 1; goto suff;
+				sons[tv][c] = ts; lr[ts].fi = la; parent[ts++] = tv;
+				tv = slink[tv]; tp = lr[tv].se + 1; goto suff;
 			}
-			tv = sons[tv][c]; tp = lr[tv].first;
+			tv = sons[tv][c]; tp = lr[tv].fi;
 		}
 		if (tp == -1 || c == _in[tp])
 			tp++;
 		else {
-			lr[ts + 1].first = la; parent[ts + 1] = ts;
-			lr[ts].first = lr[tv].first; lr[ts].second = tp - 1;
+			lr[ts + 1].fi = la; parent[ts + 1] = ts;
+			lr[ts].fi = lr[tv].fi; lr[ts].se = tp - 1;
 			parent[ts] = parent[tv]; sons[ts][c] = ts + 1; sons[ts][_in[tp]] = tv;
-			lr[tv].first = tp; parent[tv] = ts;
-			sons[parent[ts]][_in[lr[ts].first]] = ts; ts += 2;
-			tv = slink[parent[ts - 2]]; tp = lr[ts - 2].first;
-			while (tp <= lr[ts - 2].second) {
-				tv = sons[tv][_in[tp]]; tp += lr[tv].second - lr[tv].first + 1;
+			lr[tv].fi = tp; parent[tv] = ts;
+			sons[parent[ts]][_in[lr[ts].fi]] = ts; ts += 2;
+			tv = slink[parent[ts - 2]]; tp = lr[ts - 2].fi;
+			while (tp <= lr[ts - 2].se) {
+				tv = sons[tv][_in[tp]]; tp += lr[tv].se - lr[tv].fi + 1;
 			}
-			if (tp == lr[ts - 2].second + 1)
+			if (tp == lr[ts - 2].se + 1)
 				slink[ts - 2] = tv;
 			else
 				slink[ts - 2] = ts;
-			tp = lr[tv].second - (tp - lr[ts-2].second) + 2; goto suff;
+			tp = lr[tv].se - (tp - lr[ts-2].se) + 2; goto suff;
 		}
 	}
 	// Remember to append string with a hash.

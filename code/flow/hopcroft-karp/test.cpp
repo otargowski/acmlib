@@ -31,5 +31,5 @@ void test() {
 			++ans_check;
 		}
 	assert(ans == ans_check / 2);
-	assert(ans == Matching(graph)().first);
+	assert(ans == Matching(graph)().fi);
 }

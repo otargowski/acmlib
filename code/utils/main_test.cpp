@@ -11,7 +11,7 @@ using ll = long long;
 #define REP(i, n) FOR(i, 0, (n) - 1)
 #define ssize(x) int(x.size())
 template<class A, class B> auto& operator<<(ostream &o, pair<A, B> p) {
-	return o << '(' << p.first << ", " << p.second << ')';
+	return o << '(' << p.fi << ", " << p.se << ')';
 }
 template<class T> auto operator<<(ostream &o, T x) -> decltype(x.end(), o) {
 	o << '{'; int i = 0; for(auto e : x) o << (", ")+2*!i++ << e; return o << '}';

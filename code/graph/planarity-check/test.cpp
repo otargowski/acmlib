@@ -10,7 +10,7 @@ bool is_planar_brute(int n, V<pii> edges) {
 		};
 		REP(i, ssize(edges))
 			if((mask >> i) & 1)
-				lead[find(edges[i].first)] = find(edges[i].second);
+				lead[find(edges[i].fi)] = find(edges[i].se);
 
 		V<int> leads;
 		REP(v, n)

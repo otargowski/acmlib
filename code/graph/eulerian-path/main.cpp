@@ -34,7 +34,7 @@ tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pii> &edges, bool direc
 	V<bool> used(ssize(edges));
 	function<void (int)> dfs = [&](int v) {
 		while (ssize(adj[v])) {
-			int id = adj[v].back(), u = v ^ edges[id].first ^ edges[id].second;
+			int id = adj[v].back(), u = v ^ edges[id].fi ^ edges[id].se;
 			adj[v].pop_back();
 			if (used[id]) continue;
 			used[id] = true;
@@ -49,6 +49,6 @@ tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pii> &edges, bool direc
 	if (ssize(ids))
 		vertices = {start};
 	for (int id : ids)
-		vertices.eb(vertices.back() ^ edges[id].first ^ edges[id].second);
+		vertices.eb(vertices.back() ^ edges[id].fi ^ edges[id].se);
 	return {true, ids, vertices};
 }

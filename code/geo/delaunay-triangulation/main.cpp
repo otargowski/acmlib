@@ -16,16 +16,16 @@ using PI = pii;
 typedef struct Quad* Q;
 PI distinct(INT_MAX, INT_MAX);
 ll dist2(PI p) {
-	return p.first * ll(p.first)
-		+ p.second * ll(p.second);
+	return p.fi * ll(p.fi)
+		+ p.se * ll(p.se);
 }
 ll operator*(PI a, PI b) {
-	return a.first * ll(b.second)
-		- a.second * ll(b.first);
+	return a.fi * ll(b.se)
+		- a.se * ll(b.fi);
 }
 PI operator-(PI a, PI b) {
-	return {a.first - b.first,
-		a.second - b.second};
+	return {a.fi - b.fi,
+		a.se - b.se};
 }
 ll cross(PI a, PI b, PI c) { return (a - b) * (b - c); }
 struct Quad {
@@ -123,7 +123,7 @@ V<PI> triangulate(V<PI> in) {
 	sort(all(in)); 
 	assert(unique(all(in)) == in.end());
 	if (ssize(in) < 2) return {};
-	Q e = rec(in).first;
+	Q e = rec(in).fi;
 	V<Q> q = {e};
 	int qi = 0;
 	while (cross(e->o->F(), e->F(), e->p) < 0)

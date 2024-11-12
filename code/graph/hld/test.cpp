@@ -11,8 +11,8 @@ struct Test {
 	void add(int v, int u, ll val) {
 		auto path = hld.get_path(v, u);
 		for(auto &p : path) {
-			assert(p.first <= p.second);
-			for(int j = p.first; j <= p.second; j++)
+			assert(p.fi <= p.se);
+			for(int j = p.fi; j <= p.se; j++)
 				sums[j] += val;
 		}
 	}
@@ -21,8 +21,8 @@ struct Test {
 		 ll ret = 0;
 		 auto path = hld.get_path(v, u);
 		 for(auto &p : path) {
-			assert(p.first <= p.second);
-			for(int j = p.first; j <= p.second; j++)
+			assert(p.fi <= p.se);
+			for(int j = p.fi; j <= p.se; j++)
 				ret += sums[j];
 		 }
 		 return ret;

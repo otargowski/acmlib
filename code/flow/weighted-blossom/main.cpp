@@ -2,7 +2,7 @@
  * Opis: O(N^3) (but fast in practice)
  *   Taken from: https://judge.yosupo.jp/submission/218005
  *   pdfcompile, weighted\_matching::init(n), weighted\_matching::add\_edge(a, b, c)
- *   V<pii> temp, weighted\_matching::solve(temp).first
+ *   V<pii> temp, weighted\_matching::solve(temp).fi
  */
 #define pii pii
 namespace weighted_matching{

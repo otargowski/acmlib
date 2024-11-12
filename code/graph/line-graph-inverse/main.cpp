@@ -48,9 +48,9 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 	map<int, int> og_deg_visited;
 	set<pii> og_used_edges;
 	auto save_edge = [&](int line_v) {
-		assert(ans[line_v].first != -1);
-		int v = ans[line_v].first;
-		int u = ans[line_v].second;
+		assert(ans[line_v].fi != -1);
+		int v = ans[line_v].fi;
+		int u = ans[line_v].se;
 		for(int og_v : {v, u})
 			og_deg_visited[og_v] += 1;
 		og_used_edges.emplace(min(v, u), max(v, u));
@@ -77,7 +77,7 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 				map<int, int> og_deg_near_v_line;
 				for(int line_u : line_graph[line_v])
 					if(ans[line_u] != pair(-1, -1)) {
-						for(int og_u : {ans[line_u].first, ans[line_u].second})
+						for(int og_u : {ans[line_u].fi, ans[line_u].se})
 							og_deg_near_v_line[og_u] += 1;
 						que_i_to_visited_neighbors[que_i].eb(line_u);
 					}
@@ -141,8 +141,8 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 					auto get_best_cover = [&] {
 						pii found_cover_2 = {-1, -1};
 						for(int og_v_cover0 : {
-								ans[que_i_to_visited_neighbors[que_i].front()].first,
-								ans[que_i_to_visited_neighbors[que_i].front()].second,
+								ans[que_i_to_visited_neighbors[que_i].front()].fi,
+								ans[que_i_to_visited_neighbors[que_i].front()].se,
 							})
 							if(candidates.count(og_v_cover0)) {
 								map<int, int> og_deg_uncovered;
@@ -166,8 +166,8 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 											and og_deg_cover1 == uncovered)
 										found_cover_2 = {og_v_cover0, og_v_cover1};
 							}
-						return make_tuple(found_cover_2.first == -1 ? 3 : 2,
-								found_cover_2.first, found_cover_2.second);
+						return make_tuple(found_cover_2.fi == -1 ? 3 : 2,
+								found_cover_2.fi, found_cover_2.se);
 					};
 					auto [cover_size, og_v_cover0, og_v_cover1] = get_best_cover();
 					if(cover_size == 3)

@@ -63,8 +63,8 @@ void test() {
 
 				V<int> substr_tree;
 				int usuff = tree.sons[vsuff][c];
-				assert(tree.up_edge_range[usuff].first <= tree.up_edge_range[usuff].second);
-				FOR(i, tree.up_edge_range[usuff].first, tree.up_edge_range[usuff].second)
+				assert(tree.up_edge_range[usuff].fi <= tree.up_edge_range[usuff].se);
+				FOR(i, tree.up_edge_range[usuff].fi, tree.up_edge_range[usuff].se)
 					substr_tree.eb(s[i]);
 
 				debug(vtrie, c, substr_trie, u);

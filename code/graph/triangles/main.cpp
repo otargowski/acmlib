@@ -15,7 +15,7 @@ struct Triangles {
 		sort(all(sorted_deg));
 		V<int> id(n);
 		REP(i, n)
-			id[sorted_deg[i].second] = i;
+			id[sorted_deg[i].se] = i;
 		V<int> cnt(n);
 		REP(v, n) {
 			for(int u : graph[v]) if(id[v] > id[u])

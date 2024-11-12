@@ -15,46 +15,46 @@ using PFrac = pair<Frac, Frac>;
 using HalfplanePInt = pair<PInt, PInt>; // (punkt p, V pq)
 
 ll crossPInt(PInt l, PInt r) {
-	return l.first * ll(r.second) - l.second * ll(r.first);
+	return l.fi * ll(r.se) - l.se * ll(r.fi);
 }
 
 Frac to_frac(int x) {
 	return {x, 1};
 }
 PFrac to_pfrac(PInt p) {
-	return {to_frac(p.first), to_frac(p.second)};
+	return {to_frac(p.fi), to_frac(p.se)};
 }
 Frac mul(int x, Frac y) {
-	return {y.first * x, y.second};
+	return {y.fi * x, y.se};
 }
 Frac add(Frac l, Frac r) {
-	return {l.first * r.second + l.second * r.first, l.second * r.second};
+	return {l.fi * r.se + l.se * r.fi, l.se * r.se};
 }
 PFrac add_pfrac(PFrac l, PFrac r) {
-	return {add(l.first, r.first), add(l.second, r.second)};
+	return {add(l.fi, r.fi), add(l.se, r.se)};
 }
 Frac neg(Frac x) {
-	return {-x.first, x.second};
+	return {-x.fi, x.se};
 }
 PFrac sub_pfrac(PFrac l, PFrac r) {
-	return {add(l.first, neg(r.first)), add(l.second, neg(r.second))};
+	return {add(l.fi, neg(r.fi)), add(l.se, neg(r.se))};
 }
 Frac mul_frac(Frac l, Frac r) {
-	return {l.first * r.first, l.second * r.second};
+	return {l.fi * r.fi, l.se * r.se};
 }
 PFrac mul_pfrac(PFrac l, Frac r) {
-	return {mul_frac(l.first, r), mul_frac(l.second, r)};
+	return {mul_frac(l.fi, r), mul_frac(l.se, r)};
 }
 Frac crossPFrac(PFrac l, PFrac r) {
-	return add(mul_frac(l.first, r.second), neg(mul_frac(l.second, r.first)));
+	return add(mul_frac(l.fi, r.se), neg(mul_frac(l.se, r.fi)));
 }
 
 bool is_outside(HalfplanePInt hi, PFrac p) {
-	// return cross(hi.second, p - hi.first) < 0;
-	PFrac l = to_pfrac(hi.second);
-	PFrac r = sub_pfrac(p, to_pfrac(hi.first));
+	// return cross(hi.se, p - hi.fi) < 0;
+	PFrac l = to_pfrac(hi.se);
+	PFrac r = sub_pfrac(p, to_pfrac(hi.fi));
 	Frac prod = crossPFrac(l, r);
-	return prod.first.sign * prod.second.sign < 0;
+	return prod.fi.sign * prod.se.sign < 0;
 }
 
 D num_to_d(Num n) {
@@ -65,25 +65,25 @@ D num_to_d(Num n) {
 	return d;
 }
 D to_d(Frac f) {
-	return num_to_d(f.first) / num_to_d(f.second);
+	return num_to_d(f.fi) / num_to_d(f.se);
 }
 P to_p(PFrac f) {
-	return {to_d(f.first), to_d(f.second)};
+	return {to_d(f.fi), to_d(f.se)};
 }
 
 PInt sub_PInt(PInt l, PInt r) {
-	return {l.first - r.first, l.second - r.second};
+	return {l.fi - r.fi, l.se - r.se};
 }
 
 V<P> brute_halfplane(V<HalfplanePInt> h) {
 	V<P> potential;
 	for(HalfplanePInt s : h)
 		for(HalfplanePInt t : h)
-			if(crossPInt(s.second, t.second) != 0) {
-				Frac alpha = {crossPInt(sub_PInt(t.first, s.first), t.second),
-					crossPInt(s.second, t.second)
+			if(crossPInt(s.se, t.se) != 0) {
+				Frac alpha = {crossPInt(sub_PInt(t.fi, s.fi), t.se),
+					crossPInt(s.se, t.se)
 				};
-				PFrac inte = add_pfrac(to_pfrac(s.first), mul_pfrac(to_pfrac(s.second), alpha));
+				PFrac inte = add_pfrac(to_pfrac(s.fi), mul_pfrac(to_pfrac(s.se), alpha));
 
 				bool is_good = true;
 				for(HalfplanePInt hi : h)
@@ -123,7 +123,7 @@ void test() {
 			if(a != b)
 				break;
 		}
-		in.eb(P(a.first, a.second), P(b.first, b.second));
+		in.eb(P(a.fi, a.se), P(b.fi, b.se));
 		inPInt.eb(a, sub_PInt(b, a));
 	}
 	debug(in);

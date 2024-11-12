@@ -31,12 +31,12 @@ bool is_planar(V<V<int>> graph) {
 			};
 			dfs_low(start, -1);
 			V<pair<int, bool>> dsu(ssize(e_up));
-			REP(v, ssize(dsu)) dsu[v].first = v;
+			REP(v, ssize(dsu)) dsu[v].fi = v;
 			function<pair<int, bool> (int)> find = [&](int v) {
-				if(dsu[v].first == v)
+				if(dsu[v].fi == v)
 					return pair(v, false);
-				auto [u, ub] = find(dsu[v].first);
-				return dsu[v] = pair(u, ub ^ dsu[v].second);
+				auto [u, ub] = find(dsu[v].fi);
+				return dsu[v] = pair(u, ub ^ dsu[v].se);
 			};
 			auto onion = [&](int x, int y, bool flip) {
 				auto [v, vb] = find(x);
@@ -49,7 +49,7 @@ bool is_planar(V<V<int>> graph) {
 			auto interlace = [&](const V<int> &ids, int lo) {
 				V<int> ans;
 				for(int e : ids)
-					if(pre[e_up[e].second] > lo)
+					if(pre[e_up[e].se] > lo)
 						ans.eb(e);
 				return ans;
 			};
@@ -72,16 +72,16 @@ bool is_planar(V<V<int>> graph) {
 									  interlace(up[dn[v][j]], low[dn[v][i]])))
 							return false;
 					for(int j : up[v]) {
-						if(e_up[j].first != v)
+						if(e_up[j].fi != v)
 							continue;
-						if(not add_fu(interlace(up[dn[v][i]], pre[e_up[j].second]),
+						if(not add_fu(interlace(up[dn[v][i]], pre[e_up[j].se]),
 									  interlace({j}, low[dn[v][i]])))
 							return false;
 					}
 				}
 				for(int u : dn[v]) {
 					for(int idx : up[u])
-						if(pre[e_up[idx].second] < pre[p])
+						if(pre[e_up[idx].se] < pre[p])
 							up[v].eb(idx);
 					exchange(up[u], {});
 				}

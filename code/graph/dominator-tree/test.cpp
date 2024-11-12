@@ -79,7 +79,7 @@ void test() {
 						smallest = max(smallest, pair(depth[u], u));
 				}
 			debug(v, smallest);
-			assert(smallest.second != -1);
-			assert(parent[v] == smallest.second);
+			assert(smallest.se != -1);
+			assert(parent[v] == smallest.se);
 		}
 }

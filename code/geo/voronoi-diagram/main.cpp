@@ -9,7 +9,7 @@
 #include "../delaunay-triangulation/main.cpp"
 #include "../convex-hull/main.cpp"
 using Frac = pair<__int128_t, __int128_t>;
-D to_d(Frac f) { return D(f.first) / D(f.second); }
+D to_d(Frac f) { return D(f.fi) / D(f.se); }
 Frac create_frac(__int128_t a, __int128_t b) {
 	assert(b != 0);
 	if(b < 0) a *= -1, b *= -1;
@@ -18,17 +18,17 @@ Frac create_frac(__int128_t a, __int128_t b) {
 }
 using P128 = pair<Frac, Frac>;
 ll sq(int x) { return x * ll(x); }
-__int128_t dist128(PI p) { return sq(p.first) + sq(p.second); }
+__int128_t dist128(PI p) { return sq(p.fi) + sq(p.se); }
 pair<Frac, Frac> calc_mid(PI a, PI b, PI c) {
-	__int128_t ux = dist128(a) * (b.second - c.second)
-		+ dist128(b) * (c.second - a.second) 
-		+ dist128(c) * (a.second - b.second),
-		uy = dist128(a) * (c.first - b.first)
-		+ dist128(b) * (a.first - c.first)
-		+ dist128(c) * (b.first - a.first),
-		d = 2 * (a.first * ll(b.second - c.second)
-		+ b.first * ll(c.second - a.second)
-		+ c.first * ll(a.second - b.second));
+	__int128_t ux = dist128(a) * (b.se - c.se)
+		+ dist128(b) * (c.se - a.se) 
+		+ dist128(c) * (a.se - b.se),
+		uy = dist128(a) * (c.fi - b.fi)
+		+ dist128(b) * (a.fi - c.fi)
+		+ dist128(c) * (b.fi - a.fi),
+		d = 2 * (a.fi * ll(b.se - c.se)
+		+ b.fi * ll(c.se - a.se)
+		+ c.fi * ll(a.se - b.se));
 	return {create_frac(ux, d), create_frac(uy, d)};
 }
 V<V<P>> voronoi_faces(V<PI> in, const int max_xy = int(3e8)) {
@@ -58,7 +58,7 @@ V<V<P>> voronoi_faces(V<PI> in, const int max_xy = int(3e8)) {
 	V<V<P128>> faces128(n);
 	for(auto [edge, sides] : on_sides)
 		if(ssize(sides) == 2)
-			for(PI e : {edge.first, edge.second})
+			for(PI e : {edge.fi, edge.se})
 				if(id_of_in.find(e) != id_of_in.end())
 					for(auto m : sides)
 						faces128[id_of_in[e]].eb(m);

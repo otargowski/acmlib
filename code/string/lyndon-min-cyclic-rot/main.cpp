@@ -23,7 +23,7 @@ V<pii> duval(V<int> s) {
 	return ret;
 }
 V<int> min_suffix(V<int> s) {
-	return {s.begin() + duval(s).back().first, s.end()};
+	return {s.begin() + duval(s).back().fi, s.end()};
 }
 V<int> min_cyclic_shift(V<int> s) {
 	int n = ssize(s);

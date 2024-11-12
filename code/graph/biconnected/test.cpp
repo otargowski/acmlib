@@ -79,11 +79,11 @@ V<V<int>> bicons(int n, V<pii> edges) {
 			if(is_bicon(n, sub_edges))
 				biggest_bicon = max(biggest_bicon, pair(ssize(sub_edges), mask));
 		}
-		assert(biggest_bicon.first > 0);
+		assert(biggest_bicon.fi > 0);
 		ret.eb();
 		V<int> remaining;
 		REP(i, ssize(remaining_edges_id))
-			if((biggest_bicon.second >> i) & 1)
+			if((biggest_bicon.se >> i) & 1)
 				ret.back().eb(remaining_edges_id[i]);
 			else
 				remaining.eb(remaining_edges_id[i]);

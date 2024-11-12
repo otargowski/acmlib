@@ -12,23 +12,23 @@ struct AssocQueue {
 	void mv() {
 		if (ssize(s2) == 1)
 			while (ssize(s1) > 1) {
-				s2.eb(s1.back().first, f(s1.back().first, s2.back().second));
+				s2.eb(s1.back().fi, f(s1.back().fi, s2.back().se));
 				s1.pop_back();
 			}
 	}
 	void emplace(T x) {
-		s1.eb(x, f(s1.back().second, x));
+		s1.eb(x, f(s1.back().se, x));
 	}
 	void pop() {
 		mv();
 		s2.pop_back();
 	}
 	T calc() {
-		return f(s2.back().second, s1.back().second);
+		return f(s2.back().se, s1.back().se);
 	}
 	T front() {
 		mv();
-		return s2.back().first;
+		return s2.back().fi;
 	}
 	int size() {
 		return ssize(s1) + ssize(s2) - 2;

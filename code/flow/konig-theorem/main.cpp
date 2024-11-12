@@ -4,7 +4,7 @@
 #include "../matching/main.cpp"
 // BEGIN HASH
 V<pii> get_min_edge_cover(V<V<int>> graph) {
-	V<int> match = Matching(graph)().second;
+	V<int> match = Matching(graph)().se;
 	V<pii> ret;
 	REP(v, ssize(match))
 		if(match[v] != -1 and v < match[v])
@@ -16,7 +16,7 @@ V<pii> get_min_edge_cover(V<V<int>> graph) {
 // BEGIN HASH
 array<V<int>, 2> get_coloring(V<V<int>> graph) {
 	int n = ssize(graph);
-	V<int> match = Matching(graph)().second;
+	V<int> match = Matching(graph)().se;
 	V<int> color(n, -1);
 	function<void (int)> dfs = [&](int v) {
 		color[v] = 0;

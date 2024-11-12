@@ -17,7 +17,7 @@ struct Low {
 		int son_count = 0;
 		bool is_arti = false;
 		for(int e : graph[v]) {
-			int u = edges[e].first ^ edges[e].second ^ v;
+			int u = edges[e].fi ^ edges[e].se ^ v;
 			if(u == p and not considered_parent)
 				considered_parent = true;
 			else if(pre[u] == -1) {

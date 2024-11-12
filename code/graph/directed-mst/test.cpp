@@ -55,14 +55,14 @@ void test() {
 			local_ans += edges[i].w;
 		ans = min(ans, pair(local_ans, lit));
 	}
-	if(ans.first == ll(1e18))
-		ans.first = -1;
+	if(ans.fi == ll(1e18))
+		ans.fi = -1;
 	debug(ans);
 
 	auto [main_ans, main_solve] = directed_mst(n, root, edges);
 	debug(main_ans, main_solve);
-	assert(ans.first == main_ans);
-	if(ans.first != -1) {
+	assert(ans.fi == main_ans);
+	if(ans.fi != -1) {
 		V<V<pair<int, ll>>> rev_graph(n);
 		for(auto e : edges)
 			rev_graph[e.b].eb(e.a, e.w);

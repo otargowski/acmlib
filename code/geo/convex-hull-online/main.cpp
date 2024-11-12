@@ -4,10 +4,10 @@
  */
 using P = pii;
 ll operator*(P l, P r) {
-	return l.first * ll(r.second) - l.second * ll(r.first);
+	return l.fi * ll(r.se) - l.se * ll(r.fi);
 }
 P operator-(P l, P r) {
-	return {l.first - r.first, l.second - r.second};
+	return {l.fi - r.fi, l.se - r.se};
 }
 int sign(ll x) {
 	return x > 0 ? 1 : x < 0 ? -1 : 0;
@@ -28,7 +28,7 @@ struct UpperConvexHull {
 			if(dir(*prev(it), p, *it) >= 0)
 				return;
 		}
-		it = hull.emplace(p).first;
+		it = hull.emplace(p).fi;
 		auto have_to_rm = [&](auto iter) {
 			if(iter == hull.end() or next(iter) == hull.end() or iter == hull.begin())
 				return false;

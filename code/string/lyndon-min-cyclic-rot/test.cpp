@@ -4,8 +4,8 @@
 void assert_is_valid_lyndon_factorization(V<int> s, V<pii> fact) {
 	debug(s, fact);
 	REP(i, ssize(fact) - 1)
-		assert(fact[i].second + 1 == fact[i + 1].first);
-	assert(fact.front().first == 0 and fact.back().second == ssize(s) - 1);
+		assert(fact[i].se + 1 == fact[i + 1].fi);
+	assert(fact.front().fi == 0 and fact.back().se == ssize(s) - 1);
 	V<V<int>> order;
 	for(auto [l, r] : fact) {
 		assert(l <= r);

@@ -38,7 +38,7 @@ void test() {
 		while(biggest_len < n and good_indices.find((i + biggest_len) % n) != good_indices.end())
 			++biggest_len;
 
-		assert(ret[i].first == i);
-		assert(ret[i].second == (i + biggest_len - 1) % n);
+		assert(ret[i].fi == i);
+		assert(ret[i].se == (i + biggest_len - 1) % n);
 	}
 }

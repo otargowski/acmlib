@@ -23,7 +23,7 @@ void test() {
 	auto a = rd_P(), b = rd_P();
 	auto line = Line(a, b);
 	if (not too_close(a, b))
-		assert(rel_equal_D(line.get_dir().first, slope(a, b)));
+		assert(rel_equal_D(line.get_dir().fi, slope(a, b)));
 
 	auto p = rd_P();
 	if (not too_close(a, b))

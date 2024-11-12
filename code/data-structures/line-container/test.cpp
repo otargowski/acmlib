@@ -1,12 +1,9 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-#define ST first
-#define ND second
-
 void test() {
 	V<pii> f;
-	auto eval = [&](pii p, int x) { return p.ST * x + p.ND; };
+	auto eval = [&](pii p, int x) { return p.fi * x + p.se; };
 	auto get = [&](int x) {
 		int ret = -1e9;
 		for(pii &p : f) ret = max(ret, eval(p, x));

@@ -11,19 +11,19 @@ V<int> get_max_clique(V<bitset<max_n>> e) {
 	V<int> qmax, q, S(ssize(C)), old(S);
 	REP(i, ssize(e)) V.eb(0, i);
 	auto init = [&](V<pii>& r) {
-		for (auto& v : r) for (auto j : r) v.first += e[v.second][j.second];
+		for (auto& v : r) for (auto j : r) v.fi += e[v.se][j.se];
 		sort(rall(r));
-		int mxD = r[0].first;
-		REP(i, ssize(r)) r[i].first = min(i, mxD) + 1;
+		int mxD = r[0].fi;
+		REP(i, ssize(r)) r[i].fi = min(i, mxD) + 1;
 	};
 	function<void (V<pii>&, int)> expand = [&](V<pii>& R, int lev) {
 		S[lev] += S[lev - 1] - old[lev];
 		old[lev] = S[lev - 1];
 		while (ssize(R)) {
-			if (ssize(q) + R.back().first <= ssize(qmax)) return;
-			q.eb(R.back().second);
+			if (ssize(q) + R.back().fi <= ssize(qmax)) return;
+			q.eb(R.back().se);
 			V<pii> T;
-			for(auto [_, v] : R) if (e[R.back().second][v]) T.eb(0, v);
+			for(auto [_, v] : R) if (e[R.back().se][v]) T.eb(0, v);
 			if (ssize(T)) {
 				if (S[lev]++ / ++pk < limit) init(T);
 				int j = 0, mxk = 1, mnk = max(ssize(qmax) - ssize(q) + 1, 1);
@@ -32,10 +32,10 @@ V<int> get_max_clique(V<bitset<max_n>> e) {
 					int k = 1;
 					while (any_of(all(C[k]), [&](int i) { return e[v][i]; })) k++;
 					if (k > mxk) C[(mxk = k) + 1] = {};
-					if (k < mnk) T[j++].second = v;
+					if (k < mnk) T[j++].se = v;
 					C[k].eb(v);
 				}
-				if (j > 0) T[j - 1].first = 0;
+				if (j > 0) T[j - 1].fi = 0;
 				FOR(k, mnk, mxk) for (int i : C[k]) T[j++] = {k, i};
 				expand(T, lev + 1);
 			} else if (ssize(q) > ssize(qmax)) qmax = q;

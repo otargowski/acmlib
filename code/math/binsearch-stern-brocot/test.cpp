@@ -6,9 +6,9 @@ void test() {
 	long double ld = uniform_real_distribution<long double>(0, max_value + 1)(rng);
 	debug(max_value, ld);
 	auto is_good = [&](pair<ll, ll> p) {
-		assert(p.second > 0);
-		assert(p.first >= 0);
-		return p.first / (long double)(p.second) <= ld;
+		assert(p.se > 0);
+		assert(p.fi >= 0);
+		return p.fi / (long double)(p.se) <= ld;
 	};
 	pair<ll, ll> found = binsearch(max_value, is_good);
 
@@ -21,11 +21,11 @@ void test() {
 			if(is_good(pair(a, b)) and __gcd(a, b) == 1)
 				possible.eb(pair(a, b));
 	sort(all(possible), [&](pair<ll, ll> l, pair<ll, ll> r) {
-		return l.first / (long double)(l.second) < r.first / (long double)(r.second);
+		return l.fi / (long double)(l.se) < r.fi / (long double)(r.se);
 	});
 	pair<ll, ll> best = possible.back();
 	debug(best, found);
 	assert(best == found);
-	assert(__gcd(found.first, found.second) == 1);
-	assert(found.first >= 0 and found.second > 0);
+	assert(__gcd(found.fi, found.se) == 1);
+	assert(found.fi >= 0 and found.se > 0);
 }
