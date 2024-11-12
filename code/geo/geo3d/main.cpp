@@ -207,7 +207,7 @@ V<P3> InterLineLine(Line3 k, Line3 l) {
 	Line l2 = PlaneLineTo2D(pl, l);
 	V<Point> inter = InterLineLine(k2, l2);
 	V<P3> res;
-	for (auto P : inter) res.push_back(PlanePtTo3D(pl, P));
+	for (auto P : inter) res.pb(PlanePtTo3D(pl, P));
 	return res;
 }
 LD DisLineLine(Line3 l, Line3 k) { // ok

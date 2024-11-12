@@ -11,7 +11,7 @@ struct Fenwick2d {
 	Fenwick2d(int limx) : ys(limx) {}
 	void preprocess(int x, int y) {
 		for(; x < ssize(ys); x |= x + 1)
-			ys[x].push_back(y);
+			ys[x].pb(y);
 	}
 	void init() {
 		for(auto &v : ys) {

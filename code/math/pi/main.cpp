@@ -11,7 +11,7 @@ struct Pi {
 	}
 	Pi(ll n) {
 		for (ll i = 1; i * i <= n; ++i) {
-			w.push_back(i);
+			w.pb(i);
 			if (n / i != i)
 				w.eb(n / i);
 		}
