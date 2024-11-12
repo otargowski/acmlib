@@ -36,7 +36,7 @@ V<int> sa_is(const V<int> &vec, int alpha) {
 	for (int i = n - 2; i >= 0; --i) {
 		sl[i] = vec[i] > vec[i + 1] or (vec[i] == vec[i + 1] and sl[i + 1]);
 		if (sl[i] and not sl[i + 1])
-			lms_idx.emplace_back(i + 1);
+			lms_idx.eb(i + 1);
 	}
 	reverse(lms_idx.begin(), lms_idx.end());
 	induced_sort(vec, alpha, sa, sl, lms_idx);

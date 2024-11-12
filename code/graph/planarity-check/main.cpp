@@ -19,13 +19,13 @@ bool is_planar(V<V<int>> graph) {
 				low[v] = pre[v] = tm++;
 				for(int u : graph[v])
 					if(u != p and low[u] == -1) {
-						dn[v].emplace_back(u);
+						dn[v].eb(u);
 						dfs_low(u, v);
 						low[v] = min(low[v], low[u]);
 					}
 					else if(u != p and pre[u] < pre[v]) {
-						up[v].emplace_back(ssize(e_up));
-						e_up.emplace_back(v, u);
+						up[v].eb(ssize(e_up));
+						e_up.eb(v, u);
 						low[v] = min(low[v], pre[u]);
 					}
 			};
@@ -50,7 +50,7 @@ bool is_planar(V<V<int>> graph) {
 				V<int> ans;
 				for(int e : ids)
 					if(pre[e_up[e].second] > lo)
-						ans.emplace_back(e);
+						ans.eb(e);
 				return ans;
 			};
 			auto add_fu = [&](const V<int> &a, const V<int> &b) {
@@ -82,7 +82,7 @@ bool is_planar(V<V<int>> graph) {
 				for(int u : dn[v]) {
 					for(int idx : up[u])
 						if(pre[e_up[idx].second] < pre[p])
-							up[v].emplace_back(idx);
+							up[v].eb(idx);
 					exchange(up[u], {});
 				}
 				return true;

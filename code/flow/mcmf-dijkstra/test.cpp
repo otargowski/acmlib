@@ -16,7 +16,7 @@ void test() {
 		int a = rd(0, n - 1);
 		int b = rd(0, n - 1);
 		if (a < b)
-			edges.emplace_back(a, b, rd(0, max_cap), rd(-max_cost, max_cost));
+			edges.eb(a, b, rd(0, max_cap), rd(-max_cost, max_cost));
 	}
 
 	MCMF mcmf(n);

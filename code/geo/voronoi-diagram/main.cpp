@@ -39,7 +39,7 @@ V<V<P>> voronoi_faces(V<PI> in, const int max_xy = int(3e8)) {
 	for(int sx : {-1, 1})
 		for(int sy : {-1, 1}) {
 			int mx = 3 * max_xy + 100;
-			in.emplace_back(mx * sx, mx * sy);
+			in.eb(mx * sx, mx * sy);
 		}
 	V<PI> triangles = triangulate(in);
 	debug(triangles);
@@ -52,7 +52,7 @@ V<V<P>> voronoi_faces(V<PI> in, const int max_xy = int(3e8)) {
 		mids[i] = calc_mid(ps[0], ps[1], ps[2]);
 		REP(j, 3) {
 			PI a = ps[j], b = ps[(j + 1) % 3];
-			on_sides[pair(min(a, b), max(a, b))].emplace_back(mids[i]);
+			on_sides[pair(min(a, b), max(a, b))].eb(mids[i]);
 		}
 	}
 	V<V<P128>> faces128(n);
@@ -61,14 +61,14 @@ V<V<P>> voronoi_faces(V<PI> in, const int max_xy = int(3e8)) {
 			for(PI e : {edge.first, edge.second})
 				if(id_of_in.find(e) != id_of_in.end())
 					for(auto m : sides)
-						faces128[id_of_in[e]].emplace_back(m);
+						faces128[id_of_in[e]].eb(m);
 	V<V<P>> faces(n);
 	REP(i, ssize(faces128)) {
 		auto &f = faces128[i];
 		sort(f.begin(), f.end());
 		f.erase(unique(f.begin(), f.end()), f.end());
 		for(auto [x, y] : f)
-			faces[i].emplace_back(to_d(x), to_d(y));
+			faces[i].eb(to_d(x), to_d(y));
 		faces[i] = hull(faces[i]);
 	}
 	return faces;

@@ -8,9 +8,9 @@ V<pii> get_min_edge_cover(V<V<int>> graph) {
 	V<pii> ret;
 	REP(v, ssize(match))
 		if(match[v] != -1 and v < match[v])
-			ret.emplace_back(v, match[v]);
+			ret.eb(v, match[v]);
 		else if(match[v] == -1 and not graph[v].empty())
-			ret.emplace_back(v, graph[v].front());
+			ret.eb(v, graph[v].front());
 	return ret;
 } // END HASH
 // BEGIN HASH
@@ -34,7 +34,7 @@ array<V<int>, 2> get_coloring(V<V<int>> graph) {
 			dfs(v);
 	array<V<int>, 2> groups;
 	REP(v, n)
-		groups[color[v]].emplace_back(v);
+		groups[color[v]].eb(v);
 	return groups;
 }
 V<int> get_max_independent_set(V<V<int>> graph) {

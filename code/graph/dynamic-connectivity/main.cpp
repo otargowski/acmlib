@@ -9,7 +9,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 		if(v > u)
 			swap(v, u);
 		if(t == Query)
-			queries.emplace_back(v, u);
+			queries.eb(v, u);
 	}
 	int leaves = 1;
 	while(leaves < ssize(queries))
@@ -25,9 +25,9 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 		r += leaves;
 		while(l <= r) {
 			if(l % 2 == 1)
-				edges_to_add[l++].emplace_back(e);
+				edges_to_add[l++].eb(e);
 			if(r % 2 == 0)
-				edges_to_add[r--].emplace_back(e);
+				edges_to_add[r--].eb(e);
 			l /= 2;
 			r /= 2;
 		}
@@ -35,7 +35,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 	for(const auto &[v, u, t] : events) {
 		auto &que = edge_longevity[pair(v, u)];
 		if(t == Add)
-			que.emplace_back(query_i);
+			que.eb(query_i);
 		else if(t == Remove) {
 			if(que.empty())
 				continue;
@@ -64,7 +64,7 @@ V<bool> dynamic_connectivity(int n, V<tuple<int, int, Event_type>> events) {
 				continue;
 			if(leadsz[e0] > leadsz[e1])
 				swap(e0, e1);
-			rollback.emplace_back(e0, lead[e0], e1, leadsz[e1]);
+			rollback.eb(e0, lead[e0], e1, leadsz[e1]);
 			leadsz[e1] += leadsz[e0];
 			lead[e0] = e1;
 		}

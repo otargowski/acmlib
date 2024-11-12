@@ -20,7 +20,7 @@ void test() {
 		V <int> ans;
 		FOR(i,2,x)
 			if (not is_composite(i))
-				ans.emplace_back(i);
+				ans.eb(i);
 		return ans;
 	};
 	assert(primes == brute_primes(n));

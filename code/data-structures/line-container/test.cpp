@@ -20,7 +20,7 @@ void test() {
 		if(i == 0 || rd(0, 1)) {
 			int a = rd(-100, 100);
 			int b = rd(-1000, 1000);
-			f.emplace_back(a, b);
+			f.eb(a, b);
 			lc.add(a, b);
 		}
 		else {

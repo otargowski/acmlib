@@ -8,7 +8,7 @@ void test() {
 	const bool directed = rd(0, 1);
 	V<pii> edges;
 	REP(i, m)
-		edges.emplace_back(rd(0, n - 1), rd(0, n - 1));
+		edges.eb(rd(0, n - 1), rd(0, n - 1));
 	debug(n, m, directed, edges);
 
 	auto [ep_exists, ep_ids, ep_vertices] = eulerian_path(n, edges, directed);

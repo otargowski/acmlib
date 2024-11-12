@@ -8,10 +8,10 @@ V<V<int>> cactus_cycles(V<V<int>> graph) {
 	V<V<int>> ret;
 	function<void (int, int)> dfs = [&](int v, int p) {
 		if(state[v] == 2) {
-			ret.emplace_back(stack.rbegin(), find(stack.rbegin(), stack.rend(), v) + 1);
+			ret.eb(stack.rbegin(), find(stack.rbegin(), stack.rend(), v) + 1);
 			return;
 		}
-		stack.emplace_back(v);
+		stack.eb(v);
 		state[v] = 2;
 		for(int u : graph[v])
 			if(u != p and state[u] != 1)

@@ -17,7 +17,7 @@ struct SCC {
 		for(int u : rev_graph[v])
 			if(group[u] == 0)
 				order_dfs(u);
-		order.emplace_back(v);
+		order.eb(v);
 	}
 	void group_dfs(int v, int color) {
 		group[v] = color;
@@ -30,7 +30,7 @@ struct SCC {
 		rev_graph.resize(n);
 		REP(v, n)
 			for(int u : graph[v])
-				rev_graph[u].emplace_back(v);
+				rev_graph[u].eb(v);
 		group.resize(n);
 		REP(v, n)
 			if(group[v] == 0)
@@ -47,7 +47,7 @@ struct SCC {
 		REP(v, n)
 			for(int u : graph[v])
 				if(group[v] != group[u])
-					ans[group[v]].emplace_back(group[u]);
+					ans[group[v]].eb(group[u]);
 		if(not delete_same)
 			return ans;
 		REP(v, group_cnt) {

@@ -20,7 +20,7 @@ V<int> get_borders(V<int> str) {
 	V<int> kmp = get_kmp(str), ret;
 	int len = ssize(str);
 	while(len) {
-		ret.emplace_back(len);
+		ret.eb(len);
 		len = kmp[len - 1];
 	}
 	return V<int>(ret.rbegin(), ret.rend());

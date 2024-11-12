@@ -7,9 +7,9 @@ ostream& operator<<(ostream& o, __int128_t x) {
 		o << "-";
 	}
 	V<int> v;
-	if (x == 0) v.emplace_back(0);
+	if (x == 0) v.eb(0);
 	while (x > 0) {
-		v.emplace_back(x % 10);
+		v.eb(x % 10);
 		x /= 10;
 	}
 	reverse(v.begin(), v.end());
@@ -56,8 +56,8 @@ void test() {
 		debug(vt[x], vt[y], type);
 		if (type == 0) {
 			if (INF - abs(vt[x]) < abs(vt[y])) continue;
-			vt.emplace_back(vt[x] + vt[y]);
-			vnum.emplace_back(vnum[x] + vnum[y]);
+			vt.eb(vt[x] + vt[y]);
+			vnum.eb(vnum[x] + vnum[y]);
 		}
 		else if (type == 1) {
 			assert((vt[x] < vt[y]) == (vnum[x] < vnum[y]));
@@ -70,47 +70,47 @@ void test() {
 		}
 		else if (type == 4) {
 			if (vt[x] < vt[y]) continue;
-			vt.emplace_back(vt[x] - vt[y]);
-			vnum.emplace_back(vnum[x] - vnum[y]);
+			vt.eb(vt[x] - vt[y]);
+			vnum.eb(vnum[x] - vnum[y]);
 		}
 		else if (type == 5) {
 			int val = rd(-1e9, 1e9);
 			debug(val);
 			if (INF / abs(val) < abs(vt[x])) continue;
-			vt.emplace_back(vt[x] * val);
-			vnum.emplace_back(vnum[x] * val);
+			vt.eb(vt[x] * val);
+			vnum.eb(vnum[x] * val);
 		}
 		else if (type == 6) {
 			if (vt[x] != 0 and INF / abs(vt[x]) < abs(vt[y])) continue;
-			vt.emplace_back(vt[x] * vt[y]);
-			vnum.emplace_back(vnum[x] * vnum[y]);
+			vt.eb(vt[x] * vt[y]);
+			vnum.eb(vnum[x] * vnum[y]);
 		}
 		else if (type == 7) {
 			int val = rd(-1e9, 1e9);
 			debug(val);
-			vt.emplace_back(vt[x] / val);
-			vnum.emplace_back(vnum[x] / val);
+			vt.eb(vt[x] / val);
+			vnum.eb(vnum[x] / val);
 		}
 		else if (type == 8) {
 			if (vt[y] == 0) continue;
-			vt.emplace_back(vt[x] / vt[y]);
-			vnum.emplace_back(vnum[x] / vnum[y]);
+			vt.eb(vt[x] / vt[y]);
+			vnum.eb(vnum[x] / vnum[y]);
 		}
 		else if (type == 9) {
 			if (vt[y] == 0) continue;
-			vt.emplace_back(vt[x] % vt[y]);
-			vnum.emplace_back(vnum[x] % vnum[y]);
+			vt.eb(vt[x] % vt[y]);
+			vnum.eb(vnum[x] % vnum[y]);
 		}
 		else if (type == 10) {
 			int val = rd(-1e9, 1e9);
 			debug(val);
-			vt.emplace_back(vt[x] % val);
-			vnum.emplace_back(vnum[x] % val);
+			vt.eb(vt[x] % val);
+			vnum.eb(vnum[x] % val);
 		}
 		else if (type == 11) {
 			if (vt[x] == 0 and vt[y] == 0) continue;
-			vt.emplace_back(gcd(vt[x], vt[y]));
-			vnum.emplace_back(nwd(vnum[x], vnum[y]));
+			vt.eb(gcd(vt[x], vt[y]));
+			vnum.eb(nwd(vnum[x], vnum[y]));
 		}
 		if (sp != ssize(vt)) {
 			if (st.find(vt.back()) == st.end()) {

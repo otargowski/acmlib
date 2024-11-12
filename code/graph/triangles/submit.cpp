@@ -14,8 +14,8 @@ int main() {
 			int v, u;
 			cin >> v >> u;
 			--v, --u;
-			graph[v].emplace_back(u);
-			graph[u].emplace_back(v);
+			graph[v].eb(u);
+			graph[u].eb(v);
 		}
 		Triangles t(graph);
 		__int128_t sum = t.ps4 + t.rectangles4 + t.paths4 + t.ys4 + t.stars4;

@@ -92,7 +92,7 @@ V<P> brute_halfplane(V<HalfplanePInt> h) {
 						break;
 					}
 				if(is_good)
-					potential.emplace_back(to_p(inte));
+					potential.eb(to_p(inte));
 			}
 
 	V<P> got_hull = hull(potential);
@@ -107,8 +107,8 @@ void test() {
 		constexpr D inf = 1e5;
 		array box = {P(-inf, -inf), P(inf, -inf), P(inf, inf), P(-inf, inf)};
 		array boxPInt = {PInt(-inf, -inf), PInt(inf, -inf), PInt(inf, inf), PInt(-inf, inf)};
-		in.emplace_back(box[i], box[(i + 1) % 4]);
-		inPInt.emplace_back(boxPInt[i], sub_PInt(boxPInt[(i + 1) % 4], boxPInt[i]));
+		in.eb(box[i], box[(i + 1) % 4]);
+		inPInt.eb(boxPInt[i], sub_PInt(boxPInt[(i + 1) % 4], boxPInt[i]));
 	}
 	const int lg = rd(0, 30);
 	const int mx = 1 << lg;
@@ -123,8 +123,8 @@ void test() {
 			if(a != b)
 				break;
 		}
-		in.emplace_back(P(a.first, a.second), P(b.first, b.second));
-		inPInt.emplace_back(a, sub_PInt(b, a));
+		in.eb(P(a.first, a.second), P(b.first, b.second));
+		inPInt.eb(a, sub_PInt(b, a));
 	}
 	debug(in);
 	auto ans_main = halfplane_intersection(in);

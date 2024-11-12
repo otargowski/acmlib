@@ -119,7 +119,7 @@ stringstream brute(stringstream in) {
 	auto get_path = [&](int s, int t) {
 		V<int> path;
 		function<bool (int, int)> dfs = [&](int v, int p) {
-			path.emplace_back(v);
+			path.eb(v);
 			if(v == t)
 				return true;
 			for(int u : graph[v])
@@ -137,7 +137,7 @@ stringstream brute(stringstream in) {
 	auto get_in_subtree = [&](int s, int outside) {
 		V<int> in_subtree;
 		function<void (int, int)> dfs = [&](int x, int p) {
-			in_subtree.emplace_back(x);
+			in_subtree.eb(x);
 			for(int y : graph[x])
 				if(y != p)
 					dfs(y, x);
@@ -153,7 +153,7 @@ stringstream brute(stringstream in) {
 				}
 			if(not is_outside)
 				for(int v_sub : in_subtree)
-					good_vertices.emplace_back(v_sub);
+					good_vertices.eb(v_sub);
 			in_subtree.clear();
 		}
 		return good_vertices;
@@ -169,8 +169,8 @@ stringstream brute(stringstream in) {
 				out << "0\n";
 			else {
 				out << "1\n";
-				graph[v].emplace_back(u);
-				graph[u].emplace_back(v);
+				graph[v].eb(u);
+				graph[u].eb(v);
 			}
 		}
 		else if(type == 1) {

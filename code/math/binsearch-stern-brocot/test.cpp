@@ -19,7 +19,7 @@ void test() {
 	FOR(a, 0, max_value)
 		FOR(b, 1, max_value)
 			if(is_good(pair(a, b)) and __gcd(a, b) == 1)
-				possible.emplace_back(pair(a, b));
+				possible.eb(pair(a, b));
 	sort(possible.begin(), possible.end(), [&](pair<ll, ll> l, pair<ll, ll> r) {
 		return l.first / (long double)(l.second) < r.first / (long double)(r.second);
 	});

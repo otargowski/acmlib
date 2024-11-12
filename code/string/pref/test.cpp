@@ -17,6 +17,6 @@ void test() {
 	int n = rd(1, 10);
 	V<int> s;
 	REP(i, n)
-		s.emplace_back(rd(0, 2));
+		s.eb(rd(0, 2));
 	assert(brute_pref(s) == pref(s));
 }

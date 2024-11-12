@@ -18,10 +18,10 @@ struct MCMF {
 	MCMF(int N) : n(N), graph(n) {}
 	void add_edge(int v, int u, int cap, ll cost) {
 		int e = ssize(edges);
-		graph[v].emplace_back(e);
-		graph[u].emplace_back(e + 1);
-		edges.emplace_back(v, u, 0, cap, cost);
-		edges.emplace_back(u, v, 0, 0, -cost);
+		graph[v].eb(e);
+		graph[u].eb(e + 1);
+		edges.eb(v, u, 0, cap, cost);
+		edges.eb(u, v, 0, 0, -cost);
 	}
 	pair<int, ll> augment(int source, int sink) {
 		V<ll> dist(n, inf_LL);
@@ -41,7 +41,7 @@ struct MCMF {
 					from[e.u] = i;
 					if(not inside[e.u]) {
 						inside[e.u] = true;
-						que.emplace_back(e.u);
+						que.eb(e.u);
 					}
 				}
 			}

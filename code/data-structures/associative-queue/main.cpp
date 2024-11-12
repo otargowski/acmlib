@@ -12,12 +12,12 @@ struct AssocQueue {
 	void mv() {
 		if (ssize(s2) == 1)
 			while (ssize(s1) > 1) {
-				s2.emplace_back(s1.back().first, f(s1.back().first, s2.back().second));
+				s2.eb(s1.back().first, f(s1.back().first, s2.back().second));
 				s1.pop_back();
 			}
 	}
 	void emplace(T x) {
-		s1.emplace_back(x, f(s1.back().second, x));
+		s1.eb(x, f(s1.back().second, x));
 	}
 	void pop() {
 		mv();

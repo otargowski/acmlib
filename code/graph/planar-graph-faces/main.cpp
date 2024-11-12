@@ -27,8 +27,8 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 	V<V<int>> graph(n);
 	REP(e, E) {
 		auto [v, u] = edges[e];
-		graph[v].emplace_back(e);
-		graph[u].emplace_back(e);
+		graph[v].eb(e);
+		graph[u].eb(e);
 	}
 	V<int> lead(2 * E);
 	iota(lead.begin(), lead.end(), 0);
@@ -43,7 +43,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 		for(int e : graph[v]) {
 			auto p = coord[edges[e].first ^ edges[e].second ^ v];
 			auto center = coord[v];
-			sorted.emplace_back(pair(p.first - center.first, p.second - center.second), e);
+			sorted.eb(pair(p.first - center.first, p.second - center.second), e);
 		}
 		sort(sorted.begin(), sorted.end(), [&](pair<pii, int> l0, pair<pii, int> r0) {
 			auto l = l0.first;
@@ -64,7 +64,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 	}
 	V<V<int>> comps(2 * E);
 	REP(i, 2 * E)
-		comps[find(i)].emplace_back(i);
+		comps[find(i)].eb(i);
 	V<Face> polygons;
 	V<V<pii>> outgoing_for_face(n);
 	REP(leader, 2 * E)
@@ -76,7 +76,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 					swap(v, u);
 				if(id % 2 == 1)
 					swap(v, u);
-				outgoing_for_face[v].emplace_back(u, id / 2);
+				outgoing_for_face[v].eb(u, id / 2);
 			}
 			V<Edge> sorted_edges;
 			function<void (int)> dfs = [&](int v) {
@@ -84,7 +84,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 					auto [u, e] = outgoing_for_face[v].back();
 					outgoing_for_face[v].pop_back();
 					dfs(u);
-					sorted_edges.emplace_back(e, v, u);
+					sorted_edges.eb(e, v, u);
 				}
 			};
 			dfs(edges[comps[leader].front() / 2].first);
@@ -95,7 +95,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
 				auto r = coord[edge.to];
 				area += l.first * ll(r.second) - l.second * ll(r.first);
 			}
-			polygons.emplace_back(area >= 0, sorted_edges);
+			polygons.eb(area >= 0, sorted_edges);
 		}
 	// Remember that there can be multiple outside faces.
 	return polygons;

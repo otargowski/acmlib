@@ -16,7 +16,7 @@ V<pii> duval(V<int> s) {
 			++j;
 		}
 		while(i <= k) {
-			ret.emplace_back(i, i + j - k - 1);
+			ret.eb(i, i + j - k - 1);
 			i += j - k;
 		}
 	}
@@ -28,7 +28,7 @@ V<int> min_suffix(V<int> s) {
 V<int> min_cyclic_shift(V<int> s) {
 	int n = ssize(s);
 	REP(i, n)
-		s.emplace_back(s[i]);
+		s.eb(s[i]);
 	for(auto [l, r] : duval(s))
 		if(n <= r) {
 			return {s.begin() + l, s.begin() + l + n};

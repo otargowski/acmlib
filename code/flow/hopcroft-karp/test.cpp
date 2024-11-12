@@ -10,8 +10,8 @@ void test() {
 	while(m --> 0) {
 		int v = rd(0, n0 - 1);
 		int u = rd(n0, n0 + n1 - 1);
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 	auto [ans, match] = hopcroft_karp(graph, n0, n1);
 	V<bool> vis(n0 + n1);

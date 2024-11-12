@@ -6,13 +6,13 @@ void test() {
 	V<pii> all_edges, cycle_edges;
 
 	auto add_edge = [&](int a, int b) {
-		all_edges.emplace_back(a, b);
-		all_edges.emplace_back(b, a);
+		all_edges.eb(a, b);
+		all_edges.eb(b, a);
 	};
 	auto add_cycle_edge = [&](int a, int b) {
 		add_edge(a, b);
-		cycle_edges.emplace_back(a, b);
-		cycle_edges.emplace_back(b, a);
+		cycle_edges.eb(a, b);
+		cycle_edges.eb(b, a);
 	};
 
 	auto add_bridge = [&] {
@@ -45,7 +45,7 @@ void test() {
 
 	V<V<int>> graph(n);
 	for (auto [a, b] : all_edges)
-		graph[a].emplace_back(b);
+		graph[a].eb(b);
 	debug(graph);
 
 	auto cycles = cactus_cycles(graph);

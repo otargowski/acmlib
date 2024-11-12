@@ -9,7 +9,7 @@ V<pii> ranges_of_values(V<int> in) {
 		if(in[i] == in[i - 1] + 1)
 			ret.back().second += 1;
 		else
-			ret.emplace_back(in[i], in[i]);
+			ret.eb(in[i], in[i]);
 	return ret;
 }
 
@@ -21,16 +21,16 @@ V<tuple<int, int, int>> brute_squares(V<int> str) {
 		REP(start, n - 2 * len + 1) {
 			V<int> substr;
 			REP(i, 2 * len)
-				substr.emplace_back(str[i + start]);
+				substr.eb(str[i + start]);
 			bool valid = true;
 			REP(i, len)
 				if(substr[i] != substr[i + len])
 					valid = false;
 			if(valid)
-				good_starts.emplace_back(start);
+				good_starts.eb(start);
 		}
 		for(auto [l, r] : ranges_of_values(good_starts))
-			ret.emplace_back(l, r, len);
+			ret.eb(l, r, len);
 	}
 	return ret;
 }
@@ -40,7 +40,7 @@ void test() {
 	int n = was_maxtest ? rd(1, 10) : int(1e5);
 	V<int> s;
 	REP(i, n)
-		s.emplace_back(rd(0, 2));
+		s.eb(rd(0, 2));
 	debug(n, s);
 
 	auto wzorc = squares(s);

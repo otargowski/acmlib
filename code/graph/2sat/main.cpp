@@ -11,14 +11,14 @@ struct TwoSat {
 	void either(int f, int j) {
 		f = max(2 * f, -1 - 2 * f);
 		j = max(2 * j, -1 - 2 * j);
-		gr[f].emplace_back(j ^ 1);
-		gr[j].emplace_back(f ^ 1);
+		gr[f].eb(j ^ 1);
+		gr[j].eb(f ^ 1);
 	}
 	void set_value(int x) { either(x, x); }
 	void implication(int f, int j) { either(~f, j); }
 	int add_var() {
-		gr.emplace_back();
-		gr.emplace_back();
+		gr.eb();
+		gr.eb();
 		return n++;
 	}
 	void at_most_one(V<int>& li) {
@@ -37,7 +37,7 @@ struct TwoSat {
 	int t = 0;
 	int dfs(int i) {
 		int low = val[i] = ++t, x;
-		z.emplace_back(i);
+		z.eb(i);
 		for(auto &e : gr[i]) if(!comp[e])
 			low = min(low, val[e] ?: dfs(e));
 		if(low == val[i]) do {

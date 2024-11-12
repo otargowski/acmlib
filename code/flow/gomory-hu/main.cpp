@@ -26,8 +26,8 @@ V<V<Dinic::T>> get_gomory_hu(int n, V<tuple<int, int, Dinic::T>> edges) {
 		FOR(u, v + 1, n - 1)
 			if(cut[u] == cut[v] and par[u] == par[v])
 				par[u] = v;
-		tree[v].emplace_back(par[v], flow);
-		tree[par[v]].emplace_back(v, flow);
+		tree[v].eb(par[v], flow);
+		tree[par[v]].eb(v, flow);
 	}
 	T inf = numeric_limits<T>::max();
 	V ret(n, V(n, inf));

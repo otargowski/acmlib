@@ -35,7 +35,7 @@ V<pair<ll, int>> get_pairs(ll n) {
 		int x = i + 1;
 		while (x < ssize(v) and v[x] == v[i])
 			++x;
-		ret.emplace_back(v[i], x - i);
+		ret.eb(v[i], x - i);
 		i = x - 1;
 	}
 	return ret;
@@ -45,7 +45,7 @@ V<ll> all_factors(ll n) {
 	V<ll> ret;
 	function<void(ll,int)> gen = [&](ll val, int p) {
 		if (p == ssize(v)) {
-			ret.emplace_back(val);
+			ret.eb(val);
 			return;
 		}
 		auto [x, cnt] = v[p];

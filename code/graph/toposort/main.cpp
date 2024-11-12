@@ -19,15 +19,15 @@ V<int> get_toposort_order(V<V<int>> graph) {
 	V<int> que;
 	REP(v, n)
 		if(indeg[v] == 0)
-			que.emplace_back(v);
+			que.eb(v);
 	V<int> ret;
 	while(not que.empty()) {
 		int v = que.back();
 		que.pop_back();
-		ret.emplace_back(v);
+		ret.eb(v);
 		for(int u : graph[v])
 			if(--indeg[u] == 0)
-				que.emplace_back(u);
+				que.eb(u);
 	}
 	return ret;
 } // END HASH
@@ -49,7 +49,7 @@ V<V<int>> renumerate_vertices(V<V<int>> graph, V<int> new_id) {
 	V<V<int>> ret(n);
 	REP(v, n)
 		for(int u : graph[v])
-			ret[new_id[v]].emplace_back(new_id[u]);
+			ret[new_id[v]].eb(new_id[u]);
 	REP(v, n)
 		for(int u : ret[v])
 			assert(v < u);

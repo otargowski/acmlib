@@ -16,7 +16,7 @@ struct Fenwick2d {
 	void init() {
 		for(auto &v : ys) {
 			sort(v.begin(), v.end());
-			ft.emplace_back(ssize(v));
+			ft.eb(ssize(v));
 		}
 	}
 	int ind(int x, int y) {

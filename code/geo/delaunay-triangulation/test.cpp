@@ -41,7 +41,7 @@ void test() {
 		for(auto p : in) {
 			while(ssize(hull) >= 2 and cross(hull.end()[-2], hull.back(), p) >= 0)
 				hull.pop_back();
-			hull.emplace_back(p);
+			hull.eb(p);
 		}
 		reverse(in.begin(), in.end());
 		hull.pop_back();

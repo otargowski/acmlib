@@ -65,8 +65,8 @@ void test() {
 	V<V<int>> graph(n);
 	FOR(v, 1, n - 1) {
 		int u = rd(0, v - 1);
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 
 	V<int> color(n);
@@ -94,7 +94,7 @@ void test() {
 				V<int> colors;
 				REP(v, n)
 					if(vis[v])
-						colors.emplace_back(color[v]);
+						colors.eb(color[v]);
 				if(*min_element(colors.begin(), colors.end()) == *max_element(colors.begin(), colors.end()))
 					++ans;
 			}

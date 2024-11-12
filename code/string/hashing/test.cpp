@@ -5,7 +5,7 @@ void test() {
 	int n = rd(1, 100);
 	V<int> s;
 	REP(i, n)
-		s.emplace_back(V{0, 13, 25}[rd(0, 2)]);
+		s.eb(V{0, 13, 25}[rd(0, 2)]);
 	Hashing hashing(s, 31);
 	auto get_interval = [&](int l, int r) {
 		if(l > r)

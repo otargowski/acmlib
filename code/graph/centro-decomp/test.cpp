@@ -12,8 +12,8 @@ void test() {
 	}
 	FOR (v, 1, n - 1) {
 		int u = rd(0, v - 1);
-		graph[per[v]].emplace_back(per[u]);
-		graph[per[u]].emplace_back(per[v]);
+		graph[per[v]].eb(per[u]);
+		graph[per[u]].eb(per[v]);
 	}
 	CentroDecomp CD(n, graph);
 	V sons(n, V<int>());
@@ -24,7 +24,7 @@ void test() {
 			root = v;
 		}
 		else
-			sons[CD.par[v]].emplace_back(v);
+			sons[CD.par[v]].eb(v);
 	}
 	assert(root != -1);
 	V<int> odw(n), gle(n);

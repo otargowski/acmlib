@@ -8,7 +8,7 @@ void test() {
 
 	V<V<int>> graph(n);
 	while(m --> 0)
-		graph[rd(0, n - 1)].emplace_back(rd(0, n - 1));
+		graph[rd(0, n - 1)].eb(rd(0, n - 1));
 
 	auto bfs = [&](int root) {
 		V<bool> reachable(n);
@@ -20,7 +20,7 @@ void test() {
 			for(int u : graph[v])
 				if(not reachable[u]) {
 					reachable[u] = true;
-					que.emplace_back(u);
+					que.eb(u);
 				}
 		}
 		return reachable;

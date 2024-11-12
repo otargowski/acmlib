@@ -26,8 +26,8 @@ void test() {
 		int u = rd(0, n - 1);
 		if(v == u)
 			continue;
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 		fu.join(v, u);
 
 		auto [colors, color_cnt] = get_colors();

@@ -10,7 +10,7 @@ array<V<P>, 2> top_bot_hull(V<P> in) {
 		for(auto p : in) {
 			while(ssize(ret[d]) > 1 and dir(ret[d].end()[-2], ret[d].back(), p) >= 0)
 				ret[d].pop_back();
-			ret[d].emplace_back(p);
+			ret[d].eb(p);
 		}
 		reverse(in.begin(), in.end());
 	}

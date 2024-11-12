@@ -17,9 +17,9 @@ struct SuffixAutomaton {
 	}
 			
 	void add_letter(int c) {
-		edges.emplace_back(new_node);
-		length.emplace_back(length[last] + 1);
-		link.emplace_back(0);
+		edges.eb(new_node);
+		length.eb(length[last] + 1);
+		link.eb(0);
 		int r = ssize(edges) - 1, p = last;
 		while(p != -1 && edges[p][c] == -1) {
 			edges[p][c] = r;
@@ -30,9 +30,9 @@ struct SuffixAutomaton {
 			if(length[p] + 1 == length[q])
 				link[r] = q;
 			else {
-				edges.emplace_back(edges[q]);
-				length.emplace_back(length[p] + 1);
-				link.emplace_back(link[q]);
+				edges.eb(edges[q]);
+				length.eb(length[p] + 1);
+				link.eb(link[q]);
 				int q_prim = ssize(edges) - 1;
 				link[q] = link[r] = q_prim;
 				while(p != -1 && edges[p][c] == q) {

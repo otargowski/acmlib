@@ -6,7 +6,7 @@ void test() {
 	int m = rd(0, n * n);
 	V<V<pii>> graph(n);
 	while(m --> 0)
-		graph[rd(0, n - 1)].emplace_back(rd(0, n - 1), rd(-2 * n, 2 * n));
+		graph[rd(0, n - 1)].eb(rd(0, n - 1), rd(-2 * n, 2 * n));
 	debug(graph);
 
 	auto [is_cycle, cycle] = negative_cycle(graph);

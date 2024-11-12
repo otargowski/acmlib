@@ -46,10 +46,10 @@ struct HLD {
 	V<pii> path_up(int v, int u) {
 		V<pii> ret;
 		while(nxt[v] != nxt[u]) {
-			ret.emplace_back(pre[nxt[v]], pre[v]);
+			ret.eb(pre[nxt[v]], pre[v]);
 			v = par[nxt[v]];
 		}
-		if(pre[u] != pre[v]) ret.emplace_back(pre[u] + 1, pre[v]);
+		if(pre[u] != pre[v]) ret.eb(pre[u] + 1, pre[v]);
 		return ret;
 	}
 	int get_vertex(int v) { return pre[v]; }
@@ -57,7 +57,7 @@ struct HLD {
 		int w = lca(v, u);
 		auto ret = path_up(v, w);
 		auto path_u = path_up(u, w);
-		if(add_lca) ret.emplace_back(pre[w], pre[w]);
+		if(add_lca) ret.eb(pre[w], pre[w]);
 		ret.insert(ret.end(), path_u.begin(), path_u.end());
 		return ret;
 	}

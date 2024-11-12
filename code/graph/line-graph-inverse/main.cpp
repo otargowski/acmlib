@@ -25,14 +25,14 @@
 pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 	V<V<int>> line_graph(line_n);
 	for(auto &[v, u] : line_edges) {
-		line_graph[v].emplace_back(u);
-		line_graph[u].emplace_back(v);
+		line_graph[v].eb(u);
+		line_graph[u].eb(v);
 	}
 	map<V<int>, int> line_neighbors_repeated;
 	V<int> line_vertex_reduced_to(line_n, -1);
 	REP(v, line_n) {
 		auto neigh_with_v = line_graph[v];
-		neigh_with_v.emplace_back(v);
+		neigh_with_v.eb(v);
 		sort(neigh_with_v.begin(), neigh_with_v.end());
 		if(line_neighbors_repeated.find(neigh_with_v) == line_neighbors_repeated.end())
 			line_neighbors_repeated[neigh_with_v] = v;
@@ -71,15 +71,15 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
 				for(int u : line_graph[line_v])
 					if(not visited[u]) {
 						visited[u] = true;
-						que.emplace_back(u);
+						que.eb(u);
 					}
-				que_i_to_visited_neighbors.emplace_back();
+				que_i_to_visited_neighbors.eb();
 				map<int, int> og_deg_near_v_line;
 				for(int line_u : line_graph[line_v])
 					if(ans[line_u] != pair(-1, -1)) {
 						for(int og_u : {ans[line_u].first, ans[line_u].second})
 							og_deg_near_v_line[og_u] += 1;
-						que_i_to_visited_neighbors[que_i].emplace_back(line_u);
+						que_i_to_visited_neighbors[que_i].eb(line_u);
 					}
 				if(og_n <= 4) {
 					function<bool (int, int, set<pii>&)> backtrack

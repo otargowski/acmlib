@@ -73,8 +73,8 @@ void test() {
 	REP(i, n - 1) {
 		int v = i + 1;
 		int p = rd(0, v - 1);
-		graph[v].emplace_back(p);
-		graph[p].emplace_back(v);
+		graph[v].eb(p);
+		graph[p].eb(v);
 	}
 
 	Test hld(n, graph);

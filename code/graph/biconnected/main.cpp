@@ -21,13 +21,13 @@ struct Low {
 			if(u == p and not considered_parent)
 				considered_parent = true;
 			else if(pre[u] == -1) {
-				bicon_stack.emplace_back(e);
+				bicon_stack.eb(e);
 				dfs(u, v);
 				low[v] = min(low[v], low[u]);
 				if(low[u] >= pre[v]) {
-					bicon.emplace_back();
+					bicon.eb();
 					do {
-						bicon.back().emplace_back(bicon_stack.back());
+						bicon.back().eb(bicon_stack.back());
 						bicon_stack.pop_back();
 					} while(bicon.back().back() != e);
 				}
@@ -35,17 +35,17 @@ struct Low {
 				if(p != -1 and low[u] >= pre[v])
 					is_arti = true;
 				if(low[u] > pre[v])
-					bridges.emplace_back(e);
+					bridges.eb(e);
 			}
 			else if(pre[v] > pre[u]) {
 				low[v] = min(low[v], pre[u]);
-				bicon_stack.emplace_back(e);
+				bicon_stack.eb(e);
 			}
 		}
 		if(p == -1 and son_count > 1)
 			is_arti = true;
 		if(is_arti)
-			arti_points.emplace_back(v);
+			arti_points.eb(v);
 	}
 	Low(int n, V<pii> _edges) : graph(n), low(n), pre(n, -1), edges(_edges) {
 		REP(i, ssize(edges)) {
@@ -53,8 +53,8 @@ struct Low {
 #ifdef LOCAL
 			assert(v != u);
 #endif
-			graph[v].emplace_back(i);
-			graph[u].emplace_back(i);
+			graph[v].eb(i);
+			graph[u].eb(i);
 		}
 		REP(v, n)
 			if(pre[v] == -1)

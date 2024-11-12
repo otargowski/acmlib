@@ -27,7 +27,7 @@ struct AhoCorasick {
 		for (int c : s) {
 			if (node[v].next[c] == -1) {
 				node[v].next[c] = ssize(node);
-				node.emplace_back(v, c);
+				node.eb(v, c);
 			}
 			v = node[v].next[c];
 		}
@@ -55,7 +55,7 @@ struct AhoCorasick {
 			REP (c, alpha) {
 				if (node[v].next[c] != -1) {
 					node[v].go[c] = node[v].next[c];
-					que.emplace_back(node[v].next[c]);
+					que.eb(node[v].next[c]);
 				}
 				else
 					node[v].go[c] = v == 0 ? 0 : go(link(v), c);

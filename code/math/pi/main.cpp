@@ -13,11 +13,11 @@ struct Pi {
 		for (ll i = 1; i * i <= n; ++i) {
 			w.push_back(i);
 			if (n / i != i)
-				w.emplace_back(n / i);
+				w.eb(n / i);
 		}
 		sort(w.begin(), w.end());
 		for (ll i : w)
-			dp.emplace_back(i - 1);
+			dp.eb(i - 1);
 		for (ll i = 1; (i + 1) * (i + 1) <= n; ++i) {
 			if (dp[i] == dp[i - 1])
 				continue;

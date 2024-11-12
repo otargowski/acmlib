@@ -45,7 +45,7 @@ void test() {
 	shuffle(which_group.begin(), which_group.end(), rng);
 	array<V<int>, 2> in_group;
 	REP(v, n)
-		in_group[which_group[v]].emplace_back(v);
+		in_group[which_group[v]].eb(v);
 
 	int m = min(15, rd(0, n0 * n1));
 	V<pii> edges(m);
@@ -58,8 +58,8 @@ void test() {
 
 	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 
 	auto [match_size, match] = Matching(graph)();

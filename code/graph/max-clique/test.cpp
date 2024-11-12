@@ -32,7 +32,7 @@ void test() {
 		V<int> v;
 		REP(i, n)
 			if((mask >> i) & 1)
-				v.emplace_back(i);
+				v.eb(i);
 		if(is_ok(v))
 			best_brute = max(best_brute, __builtin_popcount(mask));
 	}

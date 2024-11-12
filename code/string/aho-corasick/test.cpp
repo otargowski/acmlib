@@ -18,7 +18,7 @@ void test() {
 			is_lit[v] = is_lit[v] or (v != 0 and is_lit[aho.link(v)]);
 			REP(c, alpha)
 				if(aho.node[v].next[c] != -1)
-					que.emplace_back(aho.node[v].next[c]);
+					que.eb(aho.node[v].next[c]);
 		}
 		return is_lit;
 	};
@@ -28,7 +28,7 @@ void test() {
 		V<int> pattern(rd(1, max_len_str));
 		for(int &c : pattern)
 			c = rd(0, alpha - 1);
-		patterns.emplace_back(pattern);
+		patterns.eb(pattern);
 		aho.add(pattern);
 	}
 	debug(patterns);

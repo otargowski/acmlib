@@ -13,7 +13,7 @@ V<pair<P, P>> circle_tangents(P p1, D r1, P p2, D r2, bool inner) {
 	V<pair<P, P>> ret;
 	for(D sign : {-1, 1}) {
 		P v = (d * dr + P(-d.y(), d.x()) * sqrt(max(D(0), h2)) * sign) / d2;
-		ret.emplace_back(p1 + v * r1, p2 + v * r2);
+		ret.eb(p1 + v * r1, p2 + v * r2);
 	}
 	ret.resize(1 + (sign(h2) > 0));
 	return ret;

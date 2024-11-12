@@ -28,7 +28,7 @@ V<P> halfplane_intersection(V<Halfplane> h) {
 	for(int i = 0; i < 4; ++i) {
 		constexpr D inf = 1e9;
 		array box = {P(-inf, -inf), P(inf, -inf), P(inf, inf), P(-inf, inf)};
-		h.emplace_back(box[i], box[(i + 1) % 4]);
+		h.eb(box[i], box[(i + 1) % 4]);
 	}
 	sort(h.begin(), h.end(), [&](Halfplane l, Halfplane r) {
 		return l.angle < r.angle;
@@ -47,7 +47,7 @@ V<P> halfplane_intersection(V<Halfplane> h) {
 			else
 				continue;
 		}
-		dq.emplace_back(hi);
+		dq.eb(hi);
 	}
 	while(ssize(dq) >= 3 and is_outside(dq[0], inter(dq.end()[-1], dq.end()[-2])))
 		dq.pop_back();
@@ -55,7 +55,7 @@ V<P> halfplane_intersection(V<Halfplane> h) {
 		dq.pop_front();
 	V<P> ret;
 	REP(i, ssize(dq))
-		ret.emplace_back(inter(dq[i], dq[(i + 1) % ssize(dq)]));
+		ret.eb(inter(dq[i], dq[(i + 1) % ssize(dq)]));
 	ret.erase(unique(ret.begin(), ret.end(), [&](P l, P r) { return equal(l, r); }), ret.end());
 	if(ssize(ret) >= 2 and equal(ret.front(), ret.back()))
 		ret.pop_back();

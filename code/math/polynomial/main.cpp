@@ -33,7 +33,7 @@ vi integr(vi a) {
 	int n = ssize(a);
 	a.insert(a.begin(), 0);
 	static vi f{1};
-	FOR(i, ssize(f), n) f.emplace_back(mul(f[i - 1], i));
+	FOR(i, ssize(f), n) f.eb(mul(f[i - 1], i));
 	int r = inv(f[n]);
 	for(int i = n; i > 0; --i)
 		a[i] = mul(a[i], mul(r, f[i - 1])), r = mul(r, i);
@@ -90,7 +90,7 @@ vi sqrt(const vi& a, int n) {
 		ntt(b, x);
 		REP(i, x) b[i] = mul(b[i], g[i]);
 		ntt(b, x, true);
-		REP(i, x / 2) f.emplace_back(sub(0, b[i + x / 2]));
+		REP(i, x / 2) f.eb(sub(0, b[i + x / 2]));
 		REP(i, x) z[i] = mul(z[i], z[i]);
 		ntt(z, x, true);
 		vi c(2 * x);
@@ -100,7 +100,7 @@ vi sqrt(const vi& a, int n) {
 		ntt(g, 2 * x);
 		REP(i, 2 * x) c[i] = mul(c[i], g[i]);
 		ntt(c, 2 * x, true);
-		REP(i, x) v.emplace_back(mul(c[i + x], inv2));
+		REP(i, x) v.eb(mul(c[i + x], inv2));
 	}
 	return mod_xn(v, n);
 } // END HASH
@@ -161,7 +161,7 @@ vi exp(const vi& a, int n) { // WYMAGA deriv, integr
 		ntt(d, 2 * x);
 		REP(i, 2 * x) d[i] = mul(d[i], s[i]);
 		ntt(d, 2 * x, true);
-		REP(i, x) v.emplace_back(d[i]);
+		REP(i, x) v.eb(d[i]);
 	}
 	return mod_xn(v, n);
 } // END HASH
@@ -191,7 +191,7 @@ vi powi(const vi& a, int k, int n) { // WYMAGA log, exp
 pair<vi, vi> div_slow(vi a, const vi& b) {
 	vi x;
 	while(ssize(a) >= ssize(b)) {
-		x.emplace_back(mul(a.back(), inv(b.back())));
+		x.eb(mul(a.back(), inv(b.back())));
 		if(x.back() != 0)
 			REP(i, ssize(b))
 				a.end()[-i - 1] = sub(a.end()[-i - 1], mul(x.back(), b.end()[-i - 1]));

@@ -11,7 +11,7 @@ void test() {
 			V<V<int>> b;
 			REP(j, n)
 				if (j != i)
-					b.emplace_back(a[j].begin() + 1, a[j].end());
+					b.eb(a[j].begin() + 1, a[j].end());
 			int val = mul(a[i][0], brute(b));
 			if (i % 2 == 0)
 				ret = add(ret, val);

@@ -16,7 +16,7 @@ void test() {
 			swap(v, u);
 		if(used.find(pair(v, u)) != used.end())
 			continue;
-		edges.emplace_back(v, u);
+		edges.eb(v, u);
 		used.emplace(v, u);
 	}
 	debug(n, edges);
@@ -33,8 +33,8 @@ void test() {
 		REP(i, ssize(edges))
 			if((mask >> i) & 1) {
 				auto [v, u] = edges[i];
-				graph[v].emplace_back(u);
-				graph[u].emplace_back(v);
+				graph[v].eb(u);
+				graph[u].eb(v);
 			}
 		V<int> new_id(n, -1);
 		int new_n = 0;
@@ -46,7 +46,7 @@ void test() {
 		REP(v, n)
 			for(int u : graph[v])
 				if(new_id[v] != -1 and new_id[u] != -1)
-					new_graph[new_id[v]].emplace_back(new_id[u]);
+					new_graph[new_id[v]].eb(new_id[u]);
 		debug(new_graph, popcount, new_n);
 
 		V<int> deg(new_n);
@@ -98,8 +98,8 @@ void test() {
 
 	V<V<int>> all_graph(n);
 	for(auto [v, u] : edges) {
-		all_graph[v].emplace_back(u);
-		all_graph[u].emplace_back(v);
+		all_graph[v].eb(u);
+		all_graph[u].eb(v);
 	}
 
 	Triangles t(all_graph);

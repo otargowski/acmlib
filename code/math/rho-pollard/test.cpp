@@ -8,10 +8,10 @@ void test() {
 			for (ll d = 2; d * d <= n; ++d) {
 				while (n % d == 0) {
 					n /= d;
-					v.emplace_back(d);
+					v.eb(d);
 				}
 			}
-			if (n > 1) v.emplace_back(n);
+			if (n > 1) v.eb(n);
 			return v;
 		};
 		ll mn = (1ll << 40);
@@ -32,10 +32,10 @@ void test() {
 						n /= d;
 						++cnt;
 					}
-					v.emplace_back(d, cnt);
+					v.eb(d, cnt);
 				}
 			}
-			if (n > 1) v.emplace_back(n, 1);
+			if (n > 1) v.eb(n, 1);
 			return v;
 		};
 		ll mn = (1ll << 40);
@@ -49,9 +49,9 @@ void test() {
 			V<ll> v;
 			for (ll d = 1; d * d <= n; ++d) {
 				if (n % d == 0) {
-					v.emplace_back(d);
+					v.eb(d);
 					if (d != n / d)
-						v.emplace_back(n / d);
+						v.eb(n / d);
 				}
 			}
 			return v;

@@ -26,7 +26,7 @@ void test() {
 	REP (i, m) {
 		int u = rd(0, n - 2);
 		int v = rd(u + 1, n - 1);
-		graph[per[u]].emplace_back(per[v]);
+		graph[per[u]].eb(per[v]);
 	}
 
 	// check get_toposort_order

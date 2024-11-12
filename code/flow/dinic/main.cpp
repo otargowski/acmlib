@@ -15,10 +15,10 @@ struct Dinic {
 	void add_edge(int v, int u, T cap) {
 		debug(v, u, cap);
 		int e = ssize(edges);
-		graph[v].emplace_back(e);
-		graph[u].emplace_back(e + 1);
-		edges.emplace_back(v, u, 0, cap);
-		edges.emplace_back(u, v, 0, 0);
+		graph[v].eb(e);
+		graph[u].eb(e + 1);
+		edges.eb(v, u, 0, cap);
+		edges.eb(u, v, 0, 0);
 	}
 	V<int> dist;
 	bool bfs(int source, int sink) {
@@ -31,7 +31,7 @@ struct Dinic {
 			for(int e : graph[v])
 				if(edges[e].flow != edges[e].cap and dist[edges[e].u] == 0) {
 					dist[edges[e].u] = dist[v] + 1;
-					que.emplace_back(edges[e].u);
+					que.eb(edges[e].u);
 				}
 		}
 		return dist[sink] != 0;

@@ -13,7 +13,7 @@ void test() {
 	if(m <= n and rd(0, 1)) {
 		int l = rd(0, n - m);
 		REP(i, m)
-			t.emplace_back(s[l + i]);
+			t.eb(s[l + i]);
 	}
 	else {
 		t.resize(m);
@@ -35,7 +35,7 @@ void test() {
 	V<int> good_positions;
 	REP(i, ssize(sa))
 		if(get_t_lcp(sa[i]) == ssize(t))
-			good_positions.emplace_back(i);
+			good_positions.eb(i);
 	debug(n, s, t, sa, good_positions);
 	REP(i, ssize(good_positions) - 1)
 		assert(good_positions[i] + 1 == good_positions[i + 1]);

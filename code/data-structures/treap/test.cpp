@@ -8,7 +8,7 @@ struct Item {
 	pNode root;
 	Item() {
 		root = new Node();
-		t.emplace_back(root->prio);
+		t.eb(root->prio);
 	}
 	void check_integrity() {
 		V<int> v;
@@ -16,7 +16,7 @@ struct Item {
 			if (!p)
 				return;
 			dfs(p->l);
-			v.emplace_back(p->prio);
+			v.eb(p->prio);
 			dfs(p->r);
 		};
 		dfs(root);
@@ -58,7 +58,7 @@ void test() {
 			swap(v[p], v.back());
 			auto b = v.back();
 			v.pop_back();
-			v.emplace_back(con(a, b));
+			v.eb(con(a, b));
 		}
 		else {
 			int p = rd(0, ssize(v) - 1);
@@ -68,8 +68,8 @@ void test() {
 			auto a = v.back();
 			v.pop_back();
 			auto [l, r] = cut(a, rd(1, ssize(a.t) - 1));
-			v.emplace_back(l);
-			v.emplace_back(r);
+			v.eb(l);
+			v.eb(r);
 		}
 	}
 }

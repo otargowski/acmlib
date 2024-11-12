@@ -72,7 +72,7 @@ void test() {
 				if(on_segment(poly[i], poly[(i + 1) % ssize(poly)], P(x, y)))
 					++inter_cnt;
 			if(inter_cnt > 0) {
-				matching_areas.emplace_back(id);
+				matching_areas.eb(id);
 				continue;
 			}
 				
@@ -81,7 +81,7 @@ void test() {
 					++inter_cnt;
 			assert(inter_cnt <= 2);
 			if(inter_cnt == 1)
-				matching_areas.emplace_back(id);
+				matching_areas.eb(id);
 		}
 		debug(ssize(matching_areas));
 		debug(matching_areas);
@@ -92,7 +92,7 @@ void test() {
 		V<int> closest_v;
 		REP(i, n)
 			if(equal(closest_d, dist(P(x, y), P(in[i].first, in[i].second))))
-				closest_v.emplace_back(i);
+				closest_v.eb(i);
 		debug(closest_v);
 		sort(matching_areas.begin(), matching_areas.end());
 		sort(closest_v.begin(), closest_v.end());

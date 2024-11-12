@@ -18,8 +18,8 @@ void test() {
 
 	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 	int root = rd(0, n - 1);
 	REP(v, n)
@@ -37,7 +37,7 @@ void test() {
 	REP(v, n)
 		for(int u : graph[v])
 			if(order[v] < order[u])
-				dag[v].emplace_back(u);
+				dag[v].eb(u);
 	debug(root, dag);
 
 	V<V<int>> sons = dominator_tree(dag, root);

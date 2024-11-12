@@ -7,8 +7,8 @@ void test() {
 	FOR(v, 1, n - 1) {
 		int u = rd(0, v - 1);
 		int w = rd(1, 10);
-		graph[v].emplace_back(u, w);
-		graph[u].emplace_back(v, w);
+		graph[v].eb(u, w);
+		graph[u].eb(v, w);
 	}
 	int root = rd(0, n - 1);
 	int v = rd(0, n - 1), u = rd(0, n - 1);

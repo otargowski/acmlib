@@ -28,7 +28,7 @@ void test() {
 						dfs(b);
 			};
 			dfs(v);
-			brute.emplace_back(vis[u]);
+			brute.eb(vis[u]);
 		}
 		else if(t == Add) {
 			graph[v].emplace(u);

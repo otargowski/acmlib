@@ -16,7 +16,7 @@ bool is_edge_coverable(int n, const V<pii>& edges) {
 bool is_edge_cover(int n, const V<pii>& edges, const V<pii>& edge_cover) {
 	auto doubled_edges = edges;
 	for (auto [a, b] : edges)
-		doubled_edges.emplace_back(b, a);
+		doubled_edges.eb(b, a);
 	for (auto e : edge_cover)
 		if (not contains(doubled_edges, e))
 			return false;
@@ -33,7 +33,7 @@ int brute_edge_cover(int n, const V<pii>& edges) {
 		V<pii> edge_cover;
 		REP(i, ssize(edges))
 			if ((mask >> i) & 1)
-				edge_cover.emplace_back(edges[i]);
+				edge_cover.eb(edges[i]);
 		if (is_edge_cover(n, edges, edge_cover))
 			ans = min(ans, __builtin_popcount(mask));
 	}
@@ -55,7 +55,7 @@ int brute_independent_set(int n, const V<pii>& edges) {
 		V<int> independent_set;
 		REP(i, n)
 			if ((mask >> i) & 1)
-				independent_set.emplace_back(i);
+				independent_set.eb(i);
 		if (is_independent_set(n, edges, independent_set))
 			ans = max(ans, __builtin_popcount(mask));
 	}
@@ -77,7 +77,7 @@ int brute_vertex_cover(int n, const V<pii>& edges) {
 		V<int> vertex_cover;
 		REP(i, n)
 			if ((mask >> i) & 1)
-				vertex_cover.emplace_back(i);
+				vertex_cover.eb(i);
 		if (is_vertex_cover(n, edges, vertex_cover))
 			ans = min(ans, __builtin_popcount(mask));
 	}
@@ -96,7 +96,7 @@ void test() {
 	shuffle(which_group.begin(), which_group.end(), rng);
 	array<V<int>, 2> in_group;
 	REP(v, n)
-		in_group[which_group[v]].emplace_back(v);
+		in_group[which_group[v]].eb(v);
 
 	int m = min(max_edges, rd(0, n0 * n1));
 	V<pii> edges(m);
@@ -110,8 +110,8 @@ void test() {
 
 	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 
 	{ // min_edge_cover

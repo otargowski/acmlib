@@ -11,8 +11,8 @@ int main() {
 	REP(i, n - 1) {
 		int a, b;
 		cin >> a >> b;
-		adj[a - 1].emplace_back(b - 1);
-		adj[b - 1].emplace_back(a - 1);
+		adj[a - 1].eb(b - 1);
+		adj[b - 1].eb(a - 1);
 	}
 
 	print_tree(adj);

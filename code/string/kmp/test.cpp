@@ -13,7 +13,7 @@ void test() {
 	int n = rd(1, 20);
 	V<int> s;
 	REP(i, n)
-		s.emplace_back(rd(0, 2));
+		s.eb(rd(0, 2));
 
 	V kmp = get_kmp(s);
 	REP(i, n) {
@@ -28,6 +28,6 @@ void test() {
 	V<int> borders;
 	FOR(len, 1, n)
 		if(len == n or is_border(s, len))
-			borders.emplace_back(len);
+			borders.eb(len);
 	assert(borders == get_borders(s));
 }

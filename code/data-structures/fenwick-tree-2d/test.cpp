@@ -10,7 +10,7 @@ void test() {
 	V<pii> points;
 	const int sz = rd(0, 10);
 	REP(i, sz) {
-		points.emplace_back(rd(0, limx - 1), rd(0, limy - 1));
+		points.eb(rd(0, limx - 1), rd(0, limy - 1));
 	}
 	for (auto [x, y] : points)
 		tree.preprocess(x, y);

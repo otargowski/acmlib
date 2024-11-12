@@ -12,7 +12,7 @@ void assert_is_valid_lyndon_factorization(V<int> s, V<pii> fact) {
 		V<int> sub(s.begin() + l, s.begin() + r + 1);
 		FOR(suff_len, 1, r - l)
 			assert(sub < V(s.begin() + l + (r - l + 1) - suff_len, s.begin() + l + (r - l + 1)));
-		order.emplace_back(sub);
+		order.eb(sub);
 	}
 	REP(i, ssize(order) - 1)
 		assert(order[i] >= order[i + 1]);
@@ -24,7 +24,7 @@ V<int> brute_min_cyclic_shift(V<int> s) {
 	REP(i, n) {
 		V<int> nw;
 		REP(j, n)
-			nw.emplace_back(s[(i + j) % n]);
+			nw.eb(s[(i + j) % n]);
 		mn = min(mn, nw);
 	}
 	return mn;
@@ -47,7 +47,7 @@ void test() {
 	int n = rd(1, 10), alpha = rd(1, 5);
 	V<int> s;
 	REP(i, n)
-		s.emplace_back(rd(0, alpha - 1));
+		s.eb(rd(0, alpha - 1));
 	assert(brute_min_cyclic_shift(s) == min_cyclic_shift(s));
 	assert_is_valid_lyndon_factorization(s, duval(s));
 	assert(brute_min_suffix(s) == min_suffix(s));

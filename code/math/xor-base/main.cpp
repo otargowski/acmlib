@@ -8,13 +8,13 @@ constexpr int bits = 30;
 V<int> xor_base(V<int> elems) {
 	V<V<int>> at_bit(bits + 1);
 	for(int ai : elems)
-		at_bit[highest_bit(ai)].emplace_back(ai);
+		at_bit[highest_bit(ai)].eb(ai);
 	for(int b = bits; b >= 1; --b)
 		while(ssize(at_bit[b]) > 1) {
 			int ai = at_bit[b].back();
 			at_bit[b].pop_back();
 			ai ^= at_bit[b].back();
-			at_bit[highest_bit(ai)].emplace_back(ai);
+			at_bit[highest_bit(ai)].eb(ai);
 		}
 	at_bit.erase(at_bit.begin());
 	REP(b0, bits - 1)
@@ -27,7 +27,7 @@ V<int> xor_base(V<int> elems) {
 	for(auto &v : at_bit) {
 		assert(ssize(v) <= 1);
 		for(int ai : v)
-			ret.emplace_back(ai);
+			ret.eb(ai);
 	}
 	return ret;
 }

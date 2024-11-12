@@ -10,15 +10,15 @@ struct Brute {
 	Brute(int _n) : n(_n) {}
 
 	void either(int a, bool b, int c, bool d) {
-		veither.emplace_back(a, b, c, d);
+		veither.eb(a, b, c, d);
 	}
 
 	void set_value(int a, bool b) {
-		vsetvalue.emplace_back(a, b);
+		vsetvalue.eb(a, b);
 	}
 
 	void at_most_one(V<pair<int,bool>> v) {
-		vatmostone.emplace_back(v);
+		vatmostone.eb(v);
 	}
 
 	bool does_satisfy(V<int> v) {

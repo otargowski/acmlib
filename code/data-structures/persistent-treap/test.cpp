@@ -5,10 +5,10 @@ V<int> get_all_vals(Treap::pNode n) {
 	V<int> ret;
 	if(n->l)
 		ret = get_all_vals(n->l);
-	ret.emplace_back(n->val);
+	ret.eb(n->val);
 	if(n->r)
 		for(int val : get_all_vals(n->r))
-			ret.emplace_back(val);
+			ret.eb(val);
 	return ret;
 }
 
@@ -29,9 +29,9 @@ void test() {
 		int i = rd(0, ssize(v));
 		int val = rd(-10, 10);
 		v.insert(v.begin() + i, val);
-		values.emplace_back(v);
+		values.eb(v);
 		treap.insert(i, val);
-		roots.emplace_back(treap.root);
+		roots.eb(treap.root);
 		assert(v == get_all_vals(treap.root));
 	}
 }

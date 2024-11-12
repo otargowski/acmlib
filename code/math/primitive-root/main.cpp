@@ -11,7 +11,7 @@ int primitive_root() {
 	V<int> fact;
 	REP(i, ssize(v))
 		if(!i or v[i] != v[i - 1])
-			fact.emplace_back(v[i]);
+			fact.eb(v[i]);
 	while(true) {
 		int g = rd(2, q);
 		auto is_good = [&] {

@@ -51,8 +51,8 @@ void test() {
 
 	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 
 	V match = blossom(graph);

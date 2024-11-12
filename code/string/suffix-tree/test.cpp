@@ -22,7 +22,7 @@ void test() {
 			if(trie[v][c] == -1) {
 				int u = ssize(trie);
 				trie[v][c] = u;
-				trie.emplace_back(V(r, -1));
+				trie.eb(V(r, -1));
 				v = u;
 			}
 			else
@@ -51,7 +51,7 @@ void test() {
 						REP(c2, r) {
 							debug(u, c2);
 							if(trie[u][c2] != -1) {
-								substr_trie.emplace_back(c2);
+								substr_trie.eb(c2);
 								u = trie[u][c2];
 								break;
 							}
@@ -65,7 +65,7 @@ void test() {
 				int usuff = tree.sons[vsuff][c];
 				assert(tree.up_edge_range[usuff].first <= tree.up_edge_range[usuff].second);
 				FOR(i, tree.up_edge_range[usuff].first, tree.up_edge_range[usuff].second)
-					substr_tree.emplace_back(s[i]);
+					substr_tree.eb(s[i]);
 
 				debug(vtrie, c, substr_trie, u);
 				debug(vsuff, c, substr_tree, usuff);

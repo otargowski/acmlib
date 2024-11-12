@@ -8,7 +8,7 @@ void test() {
 			ll x = i + 1;
 			while (x <= n and n / x == n / i)
 				++x;
-			v.emplace_back(i, x - 1);
+			v.eb(i, x - 1);
 			i = x - 1;
 		}
 		return v;
@@ -20,7 +20,7 @@ void test() {
 			ll x = i - 1;
 			while (x >= 1 and (n + x - 1) / x == (n + i - 1) / i)
 				--x;
-			v.emplace_back(x + 1, i);
+			v.eb(x + 1, i);
 			i = x + 1;
 		}
 		return v;

@@ -21,9 +21,9 @@ struct Num {
 		sign = ssize(s) and s[0] == '-' ? s.erase(s.begin()), -1 : 1;
 		for(int i = ssize(s); i > 0; i -= digits_per_elem)
 			if(i < digits_per_elem)
-				x.emplace_back(stoi(s.substr(0, i)));
+				x.eb(stoi(s.substr(0, i)));
 			else
-				x.emplace_back(stoi(s.substr(i - digits_per_elem, digits_per_elem)));
+				x.eb(stoi(s.substr(i - digits_per_elem, digits_per_elem)));
 		shorten();
 	}
 	Num() {}
@@ -58,7 +58,7 @@ Num operator+(Num a, Num b) {
 	int mode = a.sign * b.sign >= 0 ? a.sign |= b.sign, 1 : abs(b) > abs(a) ? swap(a, b), -1 : -1, carry = 0;
 	for(int i = 0; i < max(ssize((mode == 1 ? a : b).x), ssize(b.x)) or carry; ++i) {
 		if(mode == 1 and i == ssize(a.x))
-			a.x.emplace_back(0);
+			a.x.eb(0);
 		a.x[i] += mode * (carry + (i < ssize(b.x) ? b.x[i] : 0));
 		carry = a.x[i] >= a.base or a.x[i] < 0;
 		a.x[i] -= mode * carry * a.base;
@@ -73,7 +73,7 @@ Num operator*(Num a, int b) {
 	int carry = 0;
 	for(int i = 0; i < ssize(a.x) or carry; ++i) {
 		if(i == ssize(a.x))
-			a.x.emplace_back(0);
+			a.x.eb(0);
 		ll cur = a.x[i] * ll(abs(b)) + carry;
 		a.x[i] = int(cur % a.base);
 		carry = int(cur / a.base);

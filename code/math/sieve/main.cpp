@@ -13,7 +13,7 @@ void sieve(int n) {
 	comp.resize(n + 1);
 	prime_div.resize(n + 1);
 	FOR(i, 2, n) {
-		if (!comp[i]) primes.emplace_back(i), prime_div[i] = i;
+		if (!comp[i]) primes.eb(i), prime_div[i] = i;
 		for (int p : primes) {
 			int x = i * p;
 			if (x > n) break;

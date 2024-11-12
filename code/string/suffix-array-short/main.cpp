@@ -7,7 +7,7 @@
 pair<V<int>, V<int>> suffix_array(V<int> s, int alpha = 26) {
 	++alpha;
 	for(int &c : s) ++c;
-	s.emplace_back(0);
+	s.eb(0);
 	int n = ssize(s), k = 0, a, b;
 	V<int> x(s.begin(), s.end());
 	V<int> y(n), ws(max(n, alpha)), rank(n);

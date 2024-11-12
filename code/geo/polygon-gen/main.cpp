@@ -18,7 +18,7 @@ V<P> gen_polygon(int n, int r) {
 						return false;
 			return find(t.begin(), t.end(), p) == t.end();
 		}())
-			t.emplace_back(p);
+			t.eb(p);
 	}
 	bool go = true;
 	while (go) {

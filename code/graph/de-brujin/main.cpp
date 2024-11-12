@@ -17,13 +17,13 @@ V<int> de_brujin(int k, int n, bool is_path) {
 	V<pii> edges;
 	REP(i, N)
 		REP(j, k)
-			edges.emplace_back(i, i * k % N + j);
+			edges.eb(i, i * k % N + j);
 	V<int> path = get<2>(eulerian_path(N, edges, true));
 	path.pop_back();
 	for(auto& e : path)
 		e = e % k;
 	if (is_path)
 		REP(i, n - 1)
-			path.emplace_back(path[i]);
+			path.eb(path[i]);
 	return path;
 }

@@ -12,7 +12,7 @@ void test() {
 		FOR(r, l, n - 1) {
 			V<int> s;
 			FOR(i, l, r)
-				s.emplace_back(in[i]);
+				s.eb(in[i]);
 			V<int> cp = s;
 			reverse(cp.begin(), cp.end());
 			if(cp != s)

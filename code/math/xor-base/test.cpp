@@ -21,7 +21,7 @@ int get_base_size(V<int> s) {
 		V<int> base;
 		REP(i, ssize(s))
 			if((mask >> i) & 1)
-				base.emplace_back(s[i]);
+				base.eb(s[i]);
 		if(covers(s, base))
 			ans = min(ans, ssize(base));
 	}

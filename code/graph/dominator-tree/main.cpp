@@ -24,7 +24,7 @@ V<V<int>> dominator_tree(V<V<int>> dag, int root) {
 		gtime++;
 		for(int w : dag[u]) {
 			if(id[w] == -1) dfs(w), par[id[w]] = id[u];
-			rg[id[w]].emplace_back(id[u]);
+			rg[id[w]].eb(id[u]);
 		}
 	};
 	dfs(root);
@@ -39,7 +39,7 @@ V<V<int>> dominator_tree(V<V<int>> dag, int root) {
 	}
 	FOR(i, 1, n - 1) {
 		if(idom[i] != sdom[i]) idom[i] = idom[idom[i]];
-		t[rev[idom[i]]].emplace_back(rev[i]);
+		t[rev[idom[i]]].eb(rev[i]);
 	}
 	return t;
 }

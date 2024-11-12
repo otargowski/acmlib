@@ -50,7 +50,7 @@ Q makeEdge(PI orig, PI dest) {
 		r = new Quad(new Quad(new Quad(new Quad(0))));
 		Q del = r;
 		REP(i, 4) {
-			to_dealloc.emplace_back(del);
+			to_dealloc.eb(del);
 			del = del->rot;
 		}
 	}
@@ -132,8 +132,8 @@ V<PI> triangulate(V<PI> in) {
 		Q c = e;
 		do {
 			c->mark = 1;
-			in.emplace_back(c->p);
-			q.emplace_back(c->r());
+			in.eb(c->p);
+			q.eb(c->r());
 			c = c->next();
 		} while (c != e);
 	};

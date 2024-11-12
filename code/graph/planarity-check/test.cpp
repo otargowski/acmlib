@@ -15,7 +15,7 @@ bool is_planar_brute(int n, V<pii> edges) {
 		V<int> leads;
 		REP(v, n)
 			if(lead[v] == v)
-				leads.emplace_back(v);
+				leads.eb(v);
 		set<pii> new_edges;
 		for(auto [v, u] : edges) {
 			v = find(v);
@@ -29,14 +29,14 @@ bool is_planar_brute(int n, V<pii> edges) {
 
 		V<V<int>> graph(n);
 		for(auto [v, u] : new_edges) {
-			graph[v].emplace_back(u);
-			graph[u].emplace_back(v);
+			graph[v].eb(u);
+			graph[u].eb(v);
 		}
 
 		V<bool> vis(n);
 		V<int> component;
 		function<void (int)> dfs = [&](int v) {
-			component.emplace_back(v);
+			component.eb(v);
 			vis[v] = true;
 			for(int u : graph[v])
 				if(not vis[u])
@@ -97,8 +97,8 @@ void test() {
 
 	V<V<int>> graph(n);
 	for(auto [v, u] : edges_set) {
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 	debug(graph);
 	bool ans_main = is_planar(graph);

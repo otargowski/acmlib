@@ -26,7 +26,7 @@ V<pair<ll, ll>> all_pell(ll n, ll limit) {
 	V<pair<ll, ll>> ret;
 	__int128 x = x0, y = y0;
 	while (x <= limit) {
-		ret.emplace_back(x, y);
+		ret.eb(x, y);
 		if (y0 * y > (1ll << 62) / n) break;
 		tie(x, y) = pair(x0 * x + n * y0 * y, x0 * y + y0 * x);
 	}

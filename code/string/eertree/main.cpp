@@ -28,12 +28,12 @@ struct Eertree {
 		return v;
 	}
 	int add_letter(int c) {
-		str.emplace_back(c);
+		str.eb(c);
 		last = find(last);
 		if(edge[last][c] == 0) {
-			edge.emplace_back(empty);
-			len.emplace_back(len[last] + 2);
-			link.emplace_back(edge[find(link[last])][c]);
+			edge.eb(empty);
+			len.eb(len[last] + 2);
+			link.eb(edge[find(link[last])][c]);
 			edge[last][c] = ssize(edge) - 1;
 		}
 		return last = edge[last][c];
@@ -53,9 +53,9 @@ V<Dp> palindromic_split_dp(V<int> str, bool only_even_lens = false) {
 	REP(i, n) {
 		int last = t.add_letter(str[i]);
 		if(last >= ssize(big_link)) {
-			diff.emplace_back(t.len.back() - t.len[t.link.back()]);
-			big_link.emplace_back(diff.back() == diff[t.link.back()] ? big_link[t.link.back()] : t.link.back());
-			series_ans.emplace_back();
+			diff.eb(t.len.back() - t.len[t.link.back()]);
+			big_link.eb(diff.back() == diff[t.link.back()] ? big_link[t.link.back()] : t.link.back());
+			series_ans.eb();
 		}
 		for(int v = last; t.len[v] > 0; v = big_link[v]) {
 			int j = i - t.len[big_link[v]] - diff[v];
@@ -74,7 +74,7 @@ V<pii> construct_min_palindromic_split(V<Dp> ans) {
 		return {};
 	V<pii> split = {{0, ssize(ans) - 1}};
 	while(ans[split.back().second].mn_i != -1)
-		split.emplace_back(0, ans[split.back().second].mn_i);
+		split.eb(0, ans[split.back().second].mn_i);
 	reverse(split.begin(), split.end());
 	REP(i, ssize(split) - 1)
 		split[i + 1].first = split[i].second + 1;

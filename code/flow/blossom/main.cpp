@@ -26,7 +26,7 @@ V<int> blossom(V<V<int>> graph) {
 			w = match[v];
 			if(label[w] == 1) {
 				label[w] = 0;
-				q.emplace_back(w);
+				q.eb(w);
 			}
 			orig[v] = orig[w] = a;
 			v = parent[w];
@@ -56,7 +56,7 @@ V<int> blossom(V<V<int>> graph) {
 						return 1;
 					}
 					label[match[x]] = 0;
-					q.emplace_back(match[x]);
+					q.eb(match[x]);
 				}
 				else if(label[x] == 0 and orig[v] != orig[x]) {
 					int a = lca(orig[v], orig[x]);

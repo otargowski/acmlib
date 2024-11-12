@@ -34,7 +34,7 @@ pair<ll, V<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
 	auto add = [&](int i, int mn) {
 		if (lf[i] == beg)
 			return;
-		events[overtake(i, lf[i], mn)].emplace_back(i);
+		events[overtake(i, lf[i], mn)].eb(i);
 	};
 	REP (i, n) {
 		dp[i] = {cost(0, i), -1};
@@ -53,7 +53,7 @@ pair<ll, V<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
 	}
 	V<int> cuts;
 	for (int p = n - 1; p != -1; p = dp[p].second)
-		cuts.emplace_back(p);
+		cuts.eb(p);
 	reverse(cuts.begin(), cuts.end());
 	return pair(dp[n - 1].first, cuts);
 }

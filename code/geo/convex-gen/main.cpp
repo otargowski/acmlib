@@ -21,7 +21,7 @@ V<int> capped_zero_split(int cap, int n) {
 	auto lf = num_split(cap, m);
 	auto rg = num_split(cap, n - m);
 	for (int i : rg)
-		lf.emplace_back(-i);
+		lf.eb(-i);
 	return lf;
 }
 V<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
@@ -35,7 +35,7 @@ V<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
 		shuffle(dx.begin(), dx.end(), rng);
 		REP (i, n)
 			if (dx[i] || dy[i])
-				t.emplace_back(dx[i], dy[i]);
+				t.eb(dx[i], dy[i]);
 		t = angle_sort(t);
 		if (strictly_convex) {
 			V<P> nt(1, t[0]);
@@ -43,7 +43,7 @@ V<P> gen_convex_polygon(int n, int range, bool strictly_convex = false) {
 				if (!sign(cross(t[i], nt.back())))
 					nt.back() += t[i];
 				else
-					nt.emplace_back(t[i]);
+					nt.eb(t[i]);
 			}
 			while (!nt.empty() && !sign(cross(nt.back(), nt[0]))) {
 				nt[0] += nt.back();

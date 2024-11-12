@@ -13,7 +13,7 @@ bool is_correct_tree(V<int> lit, int n, V<Edge> edges, int root) {
 		return false;
 	V<V<int>> graph(n);
 	for(int i : lit)
-		graph[edges[i].a].emplace_back(edges[i].b);
+		graph[edges[i].a].eb(edges[i].b);
 	V<int> vis(n);
 	function<void (int)> dfs = [&](int v) {
 		vis[v] = true;
@@ -47,7 +47,7 @@ void test() {
 		V<int> lit;
 		REP(i, m)
 			if((mask >> i) & 1)
-				lit.emplace_back(i);
+				lit.eb(i);
 		if(not is_correct_tree(lit, n, edges, root))
 			continue;
 		ll local_ans = 0;
@@ -65,7 +65,7 @@ void test() {
 	if(ans.first != -1) {
 		V<V<pair<int, ll>>> rev_graph(n);
 		for(auto e : edges)
-			rev_graph[e.b].emplace_back(e.a, e.w);
+			rev_graph[e.b].eb(e.a, e.w);
 		V<Edge> found_subset;
 		ll sum = 0;
 		REP(v, n)
@@ -75,7 +75,7 @@ void test() {
 					if(u == main_solve[v])
 						smallest_w = min(smallest_w, w);
 				assert(smallest_w != ll(1e18) + 1);
-				found_subset.emplace_back(main_solve[v], v, smallest_w);
+				found_subset.eb(main_solve[v], v, smallest_w);
 				sum += smallest_w;
 			}
 		assert(sum == main_ans);

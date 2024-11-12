@@ -40,7 +40,7 @@ void test() {
 		REP(i, n)
 			if(not taken[i]) {
 				taken[i] = true;
-				curr_order.emplace_back(i);
+				curr_order.eb(i);
 				backtrack();
 				curr_order.pop_back();
 				taken[i] = false;
@@ -51,7 +51,7 @@ void test() {
 
 	V<P> brute;
 	for(int i : best_hull)
-		brute.emplace_back(in[i]);
+		brute.eb(in[i]);
 
 	bool all_colinear = n > 1;
 	REP(i, n)

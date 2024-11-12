@@ -25,8 +25,8 @@ int main() {
 		int a, b;
 		cin >> a >> b;
 		--a, --b;
-		adj[a].emplace_back(b);
-		adj[b].emplace_back(a);
+		adj[a].eb(b);
+		adj[b].eb(a);
 	}
 	print_tree(adj);
 }

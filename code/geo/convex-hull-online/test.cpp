@@ -8,7 +8,7 @@ V<P> top_hull(V<P> pts) {
 	for(auto p : pts) {
 		while(ssize(top) > 1 and dir(top.end()[-2], top.back(), p) >= 0)
 			top.pop_back();
-		top.emplace_back(p);
+		top.eb(p);
 	}
 	return top;
 }
@@ -20,7 +20,7 @@ void test() {
 	V<P> curr;
 	while(n --> 0) {
 		P p = {rd(-mx, mx), rd(-mx, mx)};
-		curr.emplace_back(p);
+		curr.eb(p);
 		online.add_point(p);
 		auto brute = top_hull(curr);
 		auto main = V<P>(online.hull.begin(), online.hull.end());

@@ -4,8 +4,8 @@
 int components_cnt(int n, V<pii> edges, bool ignore_alone = false) {
 	V<V<int>> graph(n);
 	for(auto [v, u] : edges) {
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 	V<bool> visited(n);
 	function<void (int)> dfs = [&](int v) {
@@ -46,8 +46,8 @@ bool is_bicon(int n, V<pii> edges) {
 		V<int> idx;
 		REP(i, ssize(edges))
 			if((subset_cycle >> i) & 1) {
-				cycle.emplace_back(edges[i]);
-				idx.emplace_back(i);
+				cycle.eb(edges[i]);
+				idx.eb(i);
 			}
 		if(not is_cycle(n, cycle))
 			continue;
@@ -75,18 +75,18 @@ V<V<int>> bicons(int n, V<pii> edges) {
 			V<pii> sub_edges;
 			REP(i, ssize(remaining_edges_id))
 				if((mask >> i) & 1)
-					sub_edges.emplace_back(edges[remaining_edges_id[i]]);
+					sub_edges.eb(edges[remaining_edges_id[i]]);
 			if(is_bicon(n, sub_edges))
 				biggest_bicon = max(biggest_bicon, pair(ssize(sub_edges), mask));
 		}
 		assert(biggest_bicon.first > 0);
-		ret.emplace_back();
+		ret.eb();
 		V<int> remaining;
 		REP(i, ssize(remaining_edges_id))
 			if((biggest_bicon.second >> i) & 1)
-				ret.back().emplace_back(remaining_edges_id[i]);
+				ret.back().eb(remaining_edges_id[i]);
 			else
-				remaining.emplace_back(remaining_edges_id[i]);
+				remaining.eb(remaining_edges_id[i]);
 		remaining_edges_id = remaining;
 	}
 	return ret;
@@ -100,7 +100,7 @@ V<int> arti_points(int n, V<pii> edges) {
 		int cnt_edges_deleted = 0;
 		for(auto [v, u] : edges)
 			if(v != deleted and u != deleted)
-				sub_edges.emplace_back(v, u);
+				sub_edges.eb(v, u);
 			else
 				++cnt_edges_deleted;
 		if(cnt_edges_deleted == 0) {
@@ -109,7 +109,7 @@ V<int> arti_points(int n, V<pii> edges) {
 		}
 		debug(deleted, components_cnt(n, sub_edges));
 		if(components_cnt(n, sub_edges) - 1 != init_cnt)
-			ret.emplace_back(deleted);
+			ret.eb(deleted);
 	}
 	return ret;
 }
@@ -121,7 +121,7 @@ V<int> bridges(int n, V<pii> edges) {
 		auto sub_edges = edges;
 		sub_edges.erase(sub_edges.begin() + deleted);
 		if(components_cnt(n, sub_edges) != init_cnt)
-			ret.emplace_back(deleted);
+			ret.eb(deleted);
 	}
 	return ret;
 }

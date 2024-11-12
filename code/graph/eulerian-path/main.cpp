@@ -13,9 +13,9 @@ tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pii> &edges, bool direc
 		auto [a, b] = edges[i];
 		start = a;
 		++in[b];
-		adj[a].emplace_back(i);
+		adj[a].eb(i);
 		if (not directed)
-			adj[b].emplace_back(i);
+			adj[b].eb(i);
 	}
 	int cnt_in = 0, cnt_out = 0;
 	REP(i, n) {
@@ -39,7 +39,7 @@ tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pii> &edges, bool direc
 			if (used[id]) continue;
 			used[id] = true;
 			dfs(u);
-			ids.emplace_back(id);
+			ids.eb(id);
 		}
 	};
 	dfs(start);
@@ -49,6 +49,6 @@ tuple<bool, V<int>, V<int>> eulerian_path(int n, const V<pii> &edges, bool direc
 	if (ssize(ids))
 		vertices = {start};
 	for (int id : ids)
-		vertices.emplace_back(vertices.back() ^ edges[id].first ^ edges[id].second);
+		vertices.eb(vertices.back() ^ edges[id].first ^ edges[id].second);
 	return {true, ids, vertices};
 }

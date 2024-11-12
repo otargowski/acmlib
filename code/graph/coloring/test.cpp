@@ -29,7 +29,7 @@ V<P> gen_noncollinear_points(int n) {
 			}
 		}
 		if (ok) {
-			ret.emplace_back(new_point);
+			ret.eb(new_point);
 			return ret;
 		}
 	}
@@ -77,8 +77,8 @@ void test() {
 
 			edges.emplace(a, b);
 			edges.emplace(b, a);
-			graph[a].emplace_back(b);
-			graph[b].emplace_back(a);
+			graph[a].eb(b);
+			graph[b].eb(a);
 			break;
 		}
 	}

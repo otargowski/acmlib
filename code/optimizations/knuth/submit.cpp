@@ -11,7 +11,7 @@ int main() {
 		V<int> idx(m);
 		for(int &i : idx)
 			cin >> i;
-		idx.emplace_back(n);
+		idx.eb(n);
 		++m;
 
 		V<V<ll>> cost(m, V<ll>(m));

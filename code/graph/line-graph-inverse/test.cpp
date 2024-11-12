@@ -7,8 +7,8 @@ V<V<int>> construct_graph(V<pii> ans) {
 		int mx = max(v, u);
 		if(ssize(graph) <= mx)
 			graph.resize(mx + 1);
-		graph[v].emplace_back(u);
-		graph[u].emplace_back(v);
+		graph[v].eb(u);
+		graph[u].eb(v);
 	}
 	for(auto &v : graph)
 		sort(v.begin(), v.end());
@@ -93,7 +93,7 @@ void test() {
 
 		if(is_connected() and og_n > 4 and not has_multiedge()) {
 			debug(graph);
-			matching_big_og_graphs.emplace_back(graph);
+			matching_big_og_graphs.eb(graph);
 		}
 	}
 	debug(matching_big_og_graphs);
@@ -109,7 +109,7 @@ void test() {
 				V<V<int>> transmuted1(og_n);
 				REP(v, og_n)
 					for(int u : graph1[v])
-						transmuted1[perm[v]].emplace_back(perm[u]);
+						transmuted1[perm[v]].eb(perm[u]);
 				for(auto &v : transmuted1)
 					sort(v.begin(), v.end());
 				if(transmuted1 == graph0)
