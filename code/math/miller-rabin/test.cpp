@@ -2,7 +2,7 @@
 #include "main.cpp"
 
 void test() {
-	vector <LL> v = {
+	vector <ll> v = {
 		2047ll,
 		1373653ll,
 		25326001ll,
@@ -19,9 +19,9 @@ void test() {
 		assert(!miller_rabin(v[counter1]));
 		return;
 	}
-	auto brute = [&](LL x) {
+	auto brute = [&](ll x) {
 		if (x <= 1) return false;
-		for (LL i = 2; i * i <= x; ++i) {
+		for (ll i = 2; i * i <= x; ++i) {
 			if (x % i == 0) return false;
 		}
 		return true;
@@ -33,7 +33,7 @@ void test() {
 		--counter2;
 		return;
 	}
-	LL mn = (1ll << 40);
-	LL n = rd_ll(0, mn);
+	ll mn = (1ll << 40);
+	ll n = rd_ll(0, mn);
 	assert(miller_rabin(n) == brute(n));
 }

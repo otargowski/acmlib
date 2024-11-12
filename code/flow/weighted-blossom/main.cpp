@@ -201,7 +201,7 @@ bool matching() {
 pair<ll, int> solve(vector<pii> &ans) {
 	fill(match + 1, match + n + 1, 0);
 	m = n;
-	int cnt = 0; LL sum = 0;
+	int cnt = 0; ll sum = 0;
 	for(int u = 0; u <= n; ++u) st[u] = u, flo[u].clear();
 	int mx = 0;
 	for(int x = 1; x <= n; ++x)

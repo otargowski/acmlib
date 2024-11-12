@@ -3,9 +3,9 @@
 
 void test() {
 	{ // factor test
-		auto f = [&](LL n) {
-			vector<LL> v;
-			for (LL d = 2; d * d <= n; ++d) {
+		auto f = [&](ll n) {
+			vector<ll> v;
+			for (ll d = 2; d * d <= n; ++d) {
 				while (n % d == 0) {
 					n /= d;
 					v.emplace_back(d);
@@ -14,8 +14,8 @@ void test() {
 			if (n > 1) v.emplace_back(n);
 			return v;
 		};
-		LL mn = (1ll << 40);
-		LL n = rd_ll(1, mn);
+		ll mn = (1ll << 40);
+		ll n = rd_ll(1, mn);
 		auto vrho = factor(n);
 		sort(vrho.begin(), vrho.end());
 		auto vbrute = f(n);
@@ -23,9 +23,9 @@ void test() {
 		assert(vrho == vbrute);
 	}
 	{ // get_pairs test
-		auto f = [&](LL n) {
-			vector<pair<LL, int>> v;
-			for (LL d = 2; d * d <= n; ++d) {
+		auto f = [&](ll n) {
+			vector<pair<ll, int>> v;
+			for (ll d = 2; d * d <= n; ++d) {
 				int cnt = 0;
 				if (n % d == 0) {
 					while (n % d == 0) {
@@ -38,16 +38,16 @@ void test() {
 			if (n > 1) v.emplace_back(n, 1);
 			return v;
 		};
-		LL mn = (1ll << 40);
-		LL n = rd_ll(1, mn);
+		ll mn = (1ll << 40);
+		ll n = rd_ll(1, mn);
 		auto vrho = get_pairs(n);
 		auto vbrute = f(n);
 		assert(vrho == vbrute);
 	}
 	{ // all_factors test
-		auto f = [&](LL n) {
-			vector<LL> v;
-			for (LL d = 1; d * d <= n; ++d) {
+		auto f = [&](ll n) {
+			vector<ll> v;
+			for (ll d = 1; d * d <= n; ++d) {
 				if (n % d == 0) {
 					v.emplace_back(d);
 					if (d != n / d)
@@ -56,8 +56,8 @@ void test() {
 			}
 			return v;
 		};
-		LL mn = (1ll << 40);
-		LL n = rd_ll(1, mn);
+		ll mn = (1ll << 40);
+		ll n = rd_ll(1, mn);
 		auto vrho = all_factors(n);
 		sort(vrho.begin(), vrho.end());
 		auto vbrute = f(n);

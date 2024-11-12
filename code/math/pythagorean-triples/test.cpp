@@ -8,7 +8,7 @@ void test() {
 	debug(limit, vec);
 
 	for (auto [a, b, c] : vec)
-		assert(LL(a) * a + LL(b) * b == LL(c) * c);
+		assert(ll(a) * a + ll(b) * b == ll(c) * c);
 
 	set<tuple<int, int, int>> s;
 	auto add = [&](int a, int b, int c) {
@@ -21,10 +21,10 @@ void test() {
 	}
 	FOR(a, 1, limit) {
 		FOR(b, 1, limit) {
-			int c = int(sqrt(LL(a) * a + LL(b) * b));
+			int c = int(sqrt(ll(a) * a + ll(b) * b));
 			if (c > limit)
 				break;
-			if (LL(a) * a + LL(b) * b != LL(c) * c)
+			if (ll(a) * a + ll(b) * b != ll(c) * c)
 				continue;
 			if (gcd(gcd(a, b), c) != 1)
 				continue;

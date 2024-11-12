@@ -15,19 +15,19 @@
 using PI = pair<int, int>;
 typedef struct Quad* Q;
 PI distinct(INT_MAX, INT_MAX);
-LL dist2(PI p) {
-	return p.first * LL(p.first)
-		+ p.second * LL(p.second);
+ll dist2(PI p) {
+	return p.first * ll(p.first)
+		+ p.second * ll(p.second);
 }
-LL operator*(PI a, PI b) {
-	return a.first * LL(b.second)
-		- a.second * LL(b.first);
+ll operator*(PI a, PI b) {
+	return a.first * ll(b.second)
+		- a.second * ll(b.first);
 }
 PI operator-(PI a, PI b) {
 	return {a.first - b.first,
 		a.second - b.second};
 }
-LL cross(PI a, PI b, PI c) { return (a - b) * (b - c); }
+ll cross(PI a, PI b, PI c) { return (a - b) * (b - c); }
 struct Quad {
 	Q rot, o = nullptr;
 	PI p = distinct;

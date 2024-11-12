@@ -2,10 +2,10 @@
 #include "main.cpp"
 
 void test() {
-	auto brute_floor = [&](LL n) -> vector<pair<LL, LL>> {
-		vector<pair<LL, LL>> v;
-		for (LL i = 1; i <= n; ++i) {
-			LL x = i + 1;
+	auto brute_floor = [&](ll n) -> vector<pair<ll, ll>> {
+		vector<pair<ll, ll>> v;
+		for (ll i = 1; i <= n; ++i) {
+			ll x = i + 1;
 			while (x <= n and n / x == n / i)
 				++x;
 			v.emplace_back(i, x - 1);
@@ -14,10 +14,10 @@ void test() {
 		return v;
 	};
 
-	auto brute_ceil = [&](LL n) -> vector<pair<LL, LL>> {
-		vector<pair<LL, LL>> v;
-		for (LL i = n; i >= 1; --i) {
-			LL x = i - 1;
+	auto brute_ceil = [&](ll n) -> vector<pair<ll, ll>> {
+		vector<pair<ll, ll>> v;
+		for (ll i = n; i >= 1; --i) {
+			ll x = i - 1;
 			while (x >= 1 and (n + x - 1) / x == (n + i - 1) / i)
 				--x;
 			v.emplace_back(x + 1, i);

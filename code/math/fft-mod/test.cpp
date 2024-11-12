@@ -7,7 +7,7 @@ vector<int> brute_conv_mod(vector<int> a, vector<int> b, int mod) {
 	vector<int> res(ssize(a) + ssize(b) - 1);
 	REP(i, ssize(a))
 		REP(j, ssize(b))
-			res[i + j] = int((res[i + j] + a[i] * LL(b[j])) % mod);
+			res[i + j] = int((res[i + j] + a[i] * ll(b[j])) % mod);
 	return res;
 }
 

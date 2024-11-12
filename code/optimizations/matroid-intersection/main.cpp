@@ -135,13 +135,13 @@ struct CographOracle {
 };
 // Matroid equivalent to linear space with XOR
 struct XorOracle {
-	vector<LL> elems; // Ground set: numbers
-	vector<LL> base;
+	vector<ll> elems; // Ground set: numbers
+	vector<ll> base;
 	// Init for independent set S; O(n+r^2)
 	void init(vector<bool>& S) {
 		base.assign(63, 0);
 		REP(i, ssize(S)) if (S[i]) {
-			LL e = elems[i];
+			ll e = elems[i];
 			REP(j, ssize(base)) if ((e >> j) & 1) {
 				if (!base[j]) {
 					base[j] = e;
@@ -153,7 +153,7 @@ struct XorOracle {
 	}
 	// Check if S+{k} is independent; time: O(r)
 	bool canAdd(int k) {
-		LL e = elems[k];
+		ll e = elems[k];
 		REP(i, ssize(base)) if ((e >> i) & 1) {
 			if (!base[i]) return 1;
 			e ^= base[i];

@@ -6,7 +6,7 @@ int add(int a, int b) {
 	return a >= mod ? a - mod : a;
 }
 int mul(int a, int b) {
-	return int((LL(a) * b) % mod);
+	return int((ll(a) * b) % mod);
 }
 
 using Value_v = int;

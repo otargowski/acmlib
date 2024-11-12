@@ -11,8 +11,8 @@
  *   Aby uzyskać O(n), należy przepisać overtake w oparciu o dodatkowe założenia,
  *   aby chodził w O(1).
  */
-pair<LL, vector<int>> dp_1d1d(int n, function<LL (int, int)> cost) {
-	vector<pair<LL, int>> dp(n);
+pair<ll, vector<int>> dp_1d1d(int n, function<ll (int, int)> cost) {
+	vector<pair<ll, int>> dp(n);
 	vector<int> lf(n + 2), rg(n + 2), dead(n);
 	vector<vector<int>> events(n + 1);
 	int beg = n, end = n + 1;

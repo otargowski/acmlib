@@ -6,7 +6,7 @@ template<int mod>
 struct modular {
 	int val;
 	modular() { val = 0; }
-	modular(const LL& v) {
+	modular(const ll& v) {
 		val = int((-mod <= v && v < mod) ? (int) v : v % mod);
 		if(val < 0) val += mod;
 	}
@@ -47,10 +47,10 @@ struct modular {
 		return *this;
 	}
 	modular& operator*=(const modular &m) {
-		val = int((LL) val * m.val % mod);
+		val = int((ll) val * m.val % mod);
 		return *this;
 	}
-	friend modular qpow(modular a, LL n) {
+	friend modular qpow(modular a, ll n) {
 		if(n == 0) return 1;
 		if(n % 2 == 1) return qpow(a, n - 1) * a;
 		return qpow(a * a, n / 2);

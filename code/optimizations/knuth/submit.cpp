@@ -14,7 +14,7 @@ int main() {
 		idx.emplace_back(n);
 		++m;
 
-		vector<vector<LL>> cost(m, vector<LL>(m));
+		vector<vector<ll>> cost(m, vector<ll>(m));
 		REP(l, m)
 			FOR(r, l + 1, m - 1) {
 				cost[l][r] = idx[r] - (l == 0 ? 0 : idx[l - 1]);

@@ -5,10 +5,10 @@
  *   (assert wywali, ale można zmienić na return -1).
  */
 #include "../extended-gcd/main.cpp"
-LL crt(LL a, LL m, LL b, LL n) {
+ll crt(ll a, ll m, ll b, ll n) {
 	if(n > m) swap(a, b), swap(m, n);
 	auto [d, x, y] = extended_gcd(m, n);
 	assert((a - b) % d == 0);
-	LL ret = (b - a) % n * x % n / d * m + a;
+	ll ret = (b - a) % n * x % n / d * m + a;
 	return ret < 0 ? ret + m * n / d : ret;
 }

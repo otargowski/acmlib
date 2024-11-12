@@ -27,7 +27,7 @@ struct Num {
 		shorten();
 	}
 	Num() {}
-	Num(LL s) : Num(to_string(s)) {}
+	Num(ll s) : Num(to_string(s)) {}
 }; // END HASH
 // BEGIN HASH
 string to_string(const Num& n) {
@@ -74,7 +74,7 @@ Num operator*(Num a, int b) {
 	for(int i = 0; i < ssize(a.x) or carry; ++i) {
 		if(i == ssize(a.x))
 			a.x.emplace_back(0);
-		LL cur = a.x[i] * LL(abs(b)) + carry;
+		ll cur = a.x[i] * ll(abs(b)) + carry;
 		a.x[i] = int(cur % a.base);
 		carry = int(cur / a.base);
 	}
@@ -88,7 +88,7 @@ Num operator*(const Num& a, const Num& b) {
 	c.x.resize(ssize(a.x) + ssize(b.x));
 	REP(i, ssize(a.x))
 		for(int j = 0, carry = 0; j < ssize(b.x) or carry; ++j) {
-			LL cur = c.x[i + j] + a.x[i] * LL(j < ssize(b.x) ? b.x[j] : 0) + carry;
+			ll cur = c.x[i + j] + a.x[i] * ll(j < ssize(b.x) ? b.x[j] : 0) + carry;
 			c.x[i + j] = int(cur % a.base);
 			carry = int(cur / a.base);
 		}
@@ -100,7 +100,7 @@ Num operator/(Num a, int b) {
 	assert(b != 0 and abs(b) < a.base);
 	int carry = 0;
 	for(int i = ssize(a.x) - 1; i >= 0; --i) {
-		LL cur = a.x[i] + carry * LL(a.base);
+		ll cur = a.x[i] + carry * ll(a.base);
 		a.x[i] = int(cur / abs(b));
 		carry = int(cur % abs(b));
 	}

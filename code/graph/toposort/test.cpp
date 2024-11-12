@@ -49,12 +49,12 @@ void test() {
 
 	// check permute
 	struct info {
-		LL a;
+		ll a;
 		int b;
 	};
 	vector<info> info_tab(n);
 	REP (i, n) {
-		info_tab[i].a = (LL)rd(1, int(1e9)) * rd(1, int(1e9));
+		info_tab[i].a = (ll)rd(1, int(1e9)) * rd(1, int(1e9));
 		info_tab[i].b = rd(1, 100);
 	}
 	auto reordered_tab = permute(info_tab, id);

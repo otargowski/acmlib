@@ -3,7 +3,7 @@
 
 void test() {
 	int m = rd(1, 10);
-	vector cost(m, vector<LL>(m));
+	vector cost(m, vector<ll>(m));
 	REP(i, m)
 		FOR(j, i, m - 1)
 			cost[i][j] = rd(-10, 10);
@@ -25,7 +25,7 @@ void test() {
 	debug(cost);
 
 	int n = rd(1, 10);
-	vector dp(n + 1, vector(m, numeric_limits<LL>::max()));
+	vector dp(n + 1, vector(m, numeric_limits<ll>::max()));
 	dp[0] = cost[0];
 	FOR(i, 1, n) {
 		REP(j, m) {

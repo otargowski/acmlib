@@ -34,7 +34,7 @@ struct BerlekampMassey {
 			ret[i - j - 1] = add(ret[i - j - 1], mul(ret[i], C[j]));
 		return ret;
 	}
-	int get(LL k) {
+	int get(ll k) {
 		if (!n) return 0;
 		vector<int> r(n + 1), pw(n + 1);
 		r[0] = pw[1] = 1;

@@ -41,7 +41,7 @@ void test() {
 	}
 	int root = rd(0, n - 1);
 
-	pair<LL, vector<int>> ans = {LL(1e18), {}};
+	pair<ll, vector<int>> ans = {ll(1e18), {}};
 
 	REP(mask, 1 << m) {
 		vector<int> lit;
@@ -50,12 +50,12 @@ void test() {
 				lit.emplace_back(i);
 		if(not is_correct_tree(lit, n, edges, root))
 			continue;
-		LL local_ans = 0;
+		ll local_ans = 0;
 		for(auto i : lit)
 			local_ans += edges[i].w;
 		ans = min(ans, pair(local_ans, lit));
 	}
-	if(ans.first == LL(1e18))
+	if(ans.first == ll(1e18))
 		ans.first = -1;
 	debug(ans);
 
@@ -63,18 +63,18 @@ void test() {
 	debug(main_ans, main_solve);
 	assert(ans.first == main_ans);
 	if(ans.first != -1) {
-		vector<vector<pair<int, LL>>> rev_graph(n);
+		vector<vector<pair<int, ll>>> rev_graph(n);
 		for(auto e : edges)
 			rev_graph[e.b].emplace_back(e.a, e.w);
 		vector<Edge> found_subset;
-		LL sum = 0;
+		ll sum = 0;
 		REP(v, n)
 			if(main_solve[v] != -1) {
-				LL smallest_w = LL(1e18) + 1;
+				ll smallest_w = ll(1e18) + 1;
 				for(auto [u, w] : rev_graph[v])
 					if(u == main_solve[v])
 						smallest_w = min(smallest_w, w);
-				assert(smallest_w != LL(1e18) + 1);
+				assert(smallest_w != ll(1e18) + 1);
 				found_subset.emplace_back(main_solve[v], v, smallest_w);
 				sum += smallest_w;
 			}

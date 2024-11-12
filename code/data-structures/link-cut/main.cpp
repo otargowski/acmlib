@@ -4,7 +4,7 @@
  *   Wywołać konstruktor, potem \texttt{set\_value} na wierzchołkach (aby się ustawiło, że nie-nil to nie-nil) i potem jazda.
  */
 struct AdditionalInfo {
-	using T = LL;
+	using T = ll;
 	static constexpr T neutral = 0; // Remember that there is a nil vertex!
 	T node_value = neutral, splay_value = neutral;//, splay_value_reversed = neutral;
 	T whole_subtree_value = neutral, virtual_value = neutral;

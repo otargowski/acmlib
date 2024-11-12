@@ -3,9 +3,9 @@
  *   Działa tylko wtedy, gdy $opt(i,j-1)\le opt(i,j)\le opt(i+1,j)$,
  *   a jest to zawsze spełnione, gdy $cost(b,c)\le cost(a,d)$ oraz $cost(a,c) + cost(b,d)\le cost(a,d) + cost(b,c)$ dla $a\le b\le c\le d$.
  */
-LL knuth_optimization(vector<vector<LL>> cost) {
+ll knuth_optimization(vector<vector<ll>> cost) {
 	int n = ssize(cost);
-	vector dp(n, vector<LL>(n, numeric_limits<LL>::max()));
+	vector dp(n, vector<ll>(n, numeric_limits<ll>::max()));
 	vector opt(n, vector<int>(n));
 	REP(i, n) {
 		opt[i][i] = i;

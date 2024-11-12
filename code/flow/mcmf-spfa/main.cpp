@@ -5,26 +5,26 @@
 struct MCMF {
 	struct Edge {
 		int v, u, flow, cap;
-		LL cost;
+		ll cost;
 		friend ostream& operator<<(ostream &os, Edge &e) {
-			return os << vector<LL>{e.v, e.u, e.flow, e.cap, e.cost};
+			return os << vector<ll>{e.v, e.u, e.flow, e.cap, e.cost};
 		}
 	};
 	int n;
-	const LL inf_LL = 1e18;
+	const ll inf_LL = 1e18;
 	const int inf_int = 1e9;
 	vector<vector<int>> graph;
 	vector<Edge> edges;
 	MCMF(int N) : n(N), graph(n) {}
-	void add_edge(int v, int u, int cap, LL cost) {
+	void add_edge(int v, int u, int cap, ll cost) {
 		int e = ssize(edges);
 		graph[v].emplace_back(e);
 		graph[u].emplace_back(e + 1);
 		edges.emplace_back(v, u, 0, cap, cost);
 		edges.emplace_back(u, v, 0, 0, -cost);
 	}
-	pair<int, LL> augment(int source, int sink) {
-		vector<LL> dist(n, inf_LL);
+	pair<int, ll> augment(int source, int sink) {
+		vector<ll> dist(n, inf_LL);
 		vector<int> from(n, -1);
 		dist[source] = 0;
 		deque<int> que = {source};
@@ -61,10 +61,10 @@ struct MCMF {
 		}
 		return {flow, flow * dist[sink]};
 	}
-	pair<int, LL> operator()(int source, int sink) {
+	pair<int, ll> operator()(int source, int sink) {
 		int flow = 0;
-		LL cost = 0;
-		pair<int, LL> got;
+		ll cost = 0;
+		pair<int, ll> got;
 		do {
 			got = augment(source, sink);
 			flow += got.first;

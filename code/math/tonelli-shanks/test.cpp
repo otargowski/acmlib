@@ -24,9 +24,9 @@ void test() {
 
 	if (ans == -1) {
 		REP(i, p)
-			assert(i * LL(i) % p != a);
+			assert(i * ll(i) % p != a);
 	}
 	else {
-		assert(ans * LL(ans) % p == a);
+		assert(ans * ll(ans) % p == a);
 	}
 }

@@ -53,7 +53,7 @@ struct SimpleJumpPtr {
 		return par[v];
 	}
 }; // END HASH
-using PathAns = LL;
+using PathAns = ll;
 PathAns merge(PathAns down, PathAns up) {
 	return down + up;
 }

@@ -4,8 +4,8 @@
  */
 struct Triangles {
 	int triangles3 = 0;
-	LL stars3 = 0, paths3 = 0;
-	LL ps4 = 0, rectangles4 = 0, paths4 = 0;
+	ll stars3 = 0, paths3 = 0;
+	ll ps4 = 0, rectangles4 = 0, paths4 = 0;
 	__int128_t ys4 = 0, stars4 = 0;
 	Triangles(vector<vector<int>> &graph) {
 		int n = ssize(graph);
@@ -34,9 +34,9 @@ struct Triangles {
 		}
 		paths3 = -3 * triangles3;
 		REP(v, n) for(int u : graph[v]) if(v < u)
-			paths3 += (ssize(graph[v]) - 1) * LL(ssize(graph[u]) - 1);
+			paths3 += (ssize(graph[v]) - 1) * ll(ssize(graph[u]) - 1);
 		ys4 = -2 * ps4;
-		auto choose2 = [&](int x) { return x * LL(x - 1) / 2; };
+		auto choose2 = [&](int x) { return x * ll(x - 1) / 2; };
 		REP(v, n) for(int u : graph[v])
 			ys4 += (ssize(graph[v]) - 1) * choose2(ssize(graph[u]) - 1);
 		paths4 = -(4 * rectangles4 + 2 * ps4 + 3 * triangles3);
@@ -50,8 +50,8 @@ struct Triangles {
 		}
 		REP(v, n) {
 			int s = ssize(graph[v]);
-			stars3 += s * LL(s - 1) * LL(s - 2);
-			stars4 += s * LL(s - 1) * LL(s - 2) * __int128_t(s - 3);
+			stars3 += s * ll(s - 1) * ll(s - 2);
+			stars4 += s * ll(s - 1) * ll(s - 2) * __int128_t(s - 3);
 		}
 		stars3 /= 6;
 		stars4 /= 24;

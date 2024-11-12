@@ -25,11 +25,11 @@ struct RollbackUF {
 		return true;
 	}
 };
-struct Edge { int a, b; LL w; };
+struct Edge { int a, b; ll w; };
 struct Node {
 	Edge key;
 	Node *l = 0, *r = 0;
-	LL delta = 0;
+	ll delta = 0;
 	void prop() {
 		key.w += delta;
 		if(l) l->delta += delta;
@@ -44,7 +44,7 @@ Node* merge(Node *a, Node *b) {
 	swap(a->l, (a->r = merge(b, a->r)));
 	return a;
 }
-pair<LL, vector<int>> directed_mst(int n, int r, vector<Edge> &g) {
+pair<ll, vector<int>> directed_mst(int n, int r, vector<Edge> &g) {
 	RollbackUF uf(n);
 	vector<Node*> heap(n);
 	vector<Node> pool(ssize(g));
@@ -52,7 +52,7 @@ pair<LL, vector<int>> directed_mst(int n, int r, vector<Edge> &g) {
 		Edge e = g[i];
 		heap[e.b] = merge(heap[e.b], &(pool[i] = Node{e}));
 	}
-	LL res = 0;
+	ll res = 0;
 	vector<int> seen(n, -1), path(n), par(n);
 	seen[r] = r;
 	vector<Edge> Q(n), in(n, {-1, -1, 0}), comp;

@@ -4,7 +4,7 @@
 #include<ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
 struct chash {
-	const uint64_t C = LL(2e18 * acosl(-1)) + 69;
+	const uint64_t C = ll(2e18 * acosl(-1)) + 69;
 	const int RANDOM = mt19937(0)();
 	size_t operator()(uint64_t x) const {
 		return __builtin_bswap64((x^RANDOM) * C);

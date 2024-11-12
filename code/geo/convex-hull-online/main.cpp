@@ -3,13 +3,13 @@
  *   Wyznacza górną otoczkę wypukłą online.
  */
 using P = pair<int, int>;
-LL operator*(P l, P r) {
-	return l.first * LL(r.second) - l.second * LL(r.first);
+ll operator*(P l, P r) {
+	return l.first * ll(r.second) - l.second * ll(r.first);
 }
 P operator-(P l, P r) {
 	return {l.first - r.first, l.second - r.second};
 }
-int sign(LL x) {
+int sign(ll x) {
 	return x > 0 ? 1 : x < 0 ? -1 : 0;
 }
 int dir(P a, P b, P c) {

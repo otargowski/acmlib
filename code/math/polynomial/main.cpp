@@ -171,7 +171,7 @@ vi powi(const vi& a, int k, int n) { // WYMAGA log, exp
 	int cnt = 0;
 	while(cnt < ssize(v) and !v[cnt])
 		++cnt;
-	if(LL(cnt) * k >= n)
+	if(ll(cnt) * k >= n)
 		return {};
 	v.erase(v.begin(), v.begin() + cnt);
 	if(v.empty())

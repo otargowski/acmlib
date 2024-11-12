@@ -12,7 +12,7 @@ bool equal(int a, int b) {
 	return a == b;
 }
 int mul(int a, int b) {
-	return int(a * LL(b) % mod);
+	return int(a * ll(b) % mod);
 }
 int add(int a, int b) {
 	a += b;

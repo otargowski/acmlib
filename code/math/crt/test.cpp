@@ -2,13 +2,13 @@
 #include "main.cpp"
 
 void test() {
-	LL mx = 10;
-	LL n = rd(2, mx);
-	LL a = rd(0, n - 1);
-	LL m = rd(2, mx);
-	LL b = rd(0, m - 1);
+	ll mx = 10;
+	ll n = rd(2, mx);
+	ll a = rd(0, n - 1);
+	ll m = rd(2, mx);
+	ll b = rd(0, m - 1);
 	if(__gcd(n, m) != 1) return;
-	LL x = crt(a, n, b, m);
+	ll x = crt(a, n, b, m);
 	debug(a, n, b, m, x);
 	assert(x % n == a and x % m == b);
 }

@@ -1,9 +1,9 @@
 /*
  * Opis: O(\log^2(p))), dla pierwszego $p$ oraz $0 \le a \le p - 1$ znajduje takie $x$,
- * że $x^2 \equiv a \pmod{p}$ lub $-1$ jeżeli takie $x$ nie istnieje, można przepisać by działało dla LL
+ * że $x^2 \equiv a \pmod{p}$ lub $-1$ jeżeli takie $x$ nie istnieje, można przepisać by działało dla ll
  */
 int mul(int a, int b, int p) {
-	return int(a * LL(b) % p);
+	return int(a * ll(b) % p);
 }
 int powi(int a, int b, int p) {
 	for (int ret = 1;; b /= 2) {
@@ -24,7 +24,7 @@ int tonelli_shanks(int a, int p) {
 	while (t != 1) {
 		int i = 0, x = t;
 		while (x != 1) x = mul(x, x, p), ++i;
-		c = powi(c, 1 << (s - i - 1), p); // 1ll dla LL
+		c = powi(c, 1 << (s - i - 1), p); // 1ll dla ll
 		r = mul(r, c, p), c = mul(c, c, p);
 		t = mul(t, c, p), s = i;
 	}

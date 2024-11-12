@@ -13,10 +13,10 @@ void test() {
 	int root = rd(0, n - 1);
 	int v = rd(0, n - 1), u = rd(0, n - 1);
 	OperationJumpPtr ptr(graph, root);
-	LL main_sum = ptr.path_ans(v, u);
+	ll main_sum = ptr.path_ans(v, u);
 	debug(root, v, u, main_sum);
 
-	LL brute_sum = 0;
+	ll brute_sum = 0;
 	function<bool (int, int)> dfs = [&](int curr, int p) {
 		if(curr == u)
 			return true;

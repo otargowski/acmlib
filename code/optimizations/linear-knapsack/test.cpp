@@ -21,7 +21,7 @@ void test() {
 		wi = rd(0, 30);
 	int bound = rd(0, ssize(w) * 30);
 
-	LL ans_wzorc = knapsack(w, bound);
-	LL ans_brute = knapsack_brute(w, bound);
+	ll ans_wzorc = knapsack(w, bound);
+	ll ans_brute = knapsack_brute(w, bound);
 	assert(ans_wzorc == ans_brute);
 }

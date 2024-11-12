@@ -14,8 +14,8 @@ using PInt = pair<int, int>;
 using PFrac = pair<Frac, Frac>;
 using HalfplanePInt = pair<PInt, PInt>; // (punkt p, vector pq)
 
-LL crossPInt(PInt l, PInt r) {
-	return l.first * LL(r.second) - l.second * LL(r.first);
+ll crossPInt(PInt l, PInt r) {
+	return l.first * ll(r.second) - l.second * ll(r.first);
 }
 
 Frac to_frac(int x) {

@@ -17,7 +17,7 @@ int sub(int a, int b) {
 	return add(a, mod - b);
 }
 int mul(int a, int b) {
-	return int(a * LL(b) % mod);
+	return int(a * ll(b) % mod);
 }
 int powi(int a, int b) {
 	for(int ret = 1;; b /= 2) {

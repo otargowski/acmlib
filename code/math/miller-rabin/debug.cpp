@@ -3,7 +3,7 @@
 
 int main()
 {
-	LL n;
+	ll n;
 	cin >> n;
 	cout << miller_rabin(n) << "\n";
 }

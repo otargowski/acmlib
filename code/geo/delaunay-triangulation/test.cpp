@@ -49,11 +49,11 @@ void test() {
 	hulls[0].insert(hulls[0].end(), hulls[1].begin(), hulls[1].end());
 	auto &hull = hulls[0];
 
-	LL correct_area = 0;
+	ll correct_area = 0;
 	REP(i, ssize(hull))
 		correct_area += hull[i] * hull[(i + 1) % ssize(hull)];
 
-	LL triangles_area = 0;
+	ll triangles_area = 0;
 	REP(i, ssize(ret) / 3)
 		triangles_area += cross(ret[3 * i], ret[3 * i + 1], ret[3 * i + 2]);
 

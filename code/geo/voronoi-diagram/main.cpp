@@ -17,7 +17,7 @@ Frac create_frac(__int128_t a, __int128_t b) {
 	return {a / d, b / d};
 }
 using P128 = pair<Frac, Frac>;
-LL sq(int x) { return x * LL(x); }
+ll sq(int x) { return x * ll(x); }
 __int128_t dist128(PI p) { return sq(p.first) + sq(p.second); }
 pair<Frac, Frac> calc_mid(PI a, PI b, PI c) {
 	__int128_t ux = dist128(a) * (b.second - c.second)
@@ -26,9 +26,9 @@ pair<Frac, Frac> calc_mid(PI a, PI b, PI c) {
 		uy = dist128(a) * (c.first - b.first)
 		+ dist128(b) * (a.first - c.first)
 		+ dist128(c) * (b.first - a.first),
-		d = 2 * (a.first * LL(b.second - c.second)
-		+ b.first * LL(c.second - a.second)
-		+ c.first * LL(a.second - b.second));
+		d = 2 * (a.first * ll(b.second - c.second)
+		+ b.first * ll(c.second - a.second)
+		+ c.first * ll(a.second - b.second));
 	return {create_frac(ux, d), create_frac(uy, d)};
 }
 vector<vector<P>> voronoi_faces(vector<PI> in, const int max_xy = int(3e8)) {

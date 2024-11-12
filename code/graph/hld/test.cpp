@@ -3,12 +3,12 @@
 
 struct Test {
 	vector<vector<int>> graph;
-	vector<LL> sums;
+	vector<ll> sums;
 	HLD hld;
 
 	Test(int n, vector<vector<int>> _graph) : graph(_graph), sums(n), hld(n, graph) {}
 
-	void add(int v, int u, LL val) {
+	void add(int v, int u, ll val) {
 		auto path = hld.get_path(v, u);
 		for(auto &p : path) {
 			assert(p.first <= p.second);
@@ -17,8 +17,8 @@ struct Test {
 		}
 	}
 
-	LL query(int v, int u) {
-		 LL ret = 0;
+	ll query(int v, int u) {
+		 ll ret = 0;
 		 auto path = hld.get_path(v, u);
 		 for(auto &p : path) {
 			assert(p.first <= p.second);
@@ -31,10 +31,10 @@ struct Test {
 
 struct Brute {
 	vector<vector<int>> graph;
-	vector<LL> sums;
+	vector<ll> sums;
 
 	bool found;
-	LL dfs(int v, int u, LL val, int p = -1) {
+	ll dfs(int v, int u, ll val, int p = -1) {
 		if(p == -1) found = false;
 		if(v == u) {
 			found = true;
@@ -43,7 +43,7 @@ struct Brute {
 		}
 
 		for(int x : graph[v]) if(x != p) {
-			LL ret = dfs(x, u, val, v);
+			ll ret = dfs(x, u, val, v);
 			if(found) {
 				sums[v] += val;
 				return ret + sums[v];
@@ -53,11 +53,11 @@ struct Brute {
 		return 0;
 	}
 
-	void add(int v, int u, LL val) {
+	void add(int v, int u, ll val) {
 		dfs(v, u, val);
 	}
 
-	LL query(int v, int u) {
+	ll query(int v, int u) {
 		return dfs(v, u, 0);
 	}
 

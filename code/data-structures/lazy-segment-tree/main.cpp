@@ -3,7 +3,7 @@
  */
 // BEGIN HASH
 struct Node {
-	LL sum = 0, lazy = 0;
+	ll sum = 0, lazy = 0;
 	int sz = 1;
 };
 void push_to_sons(Node &n, Node &l, Node &r) {
@@ -23,7 +23,7 @@ Node merge(Node l, Node r) {
 	};
 }
 void add_to_base(Node &n, int val) {
-	n.sum += n.sz * LL(val);
+	n.sum += n.sz * ll(val);
 	n.lazy += val;
 } // END HASH
 // BEGIN HASH

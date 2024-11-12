@@ -6,8 +6,8 @@ mt19937 rng(0);
 int rd(int l, int r) {
 	return uniform_int_distribution<int>(l, r)(rng);
 }
-LL rd_ll(LL l, LL r) {
-	return uniform_int_distribution<LL>(l, r)(rng);
+ll rd_ll(ll l, ll r) {
+	return uniform_int_distribution<ll>(l, r)(rng);
 }
 
 template<class T>

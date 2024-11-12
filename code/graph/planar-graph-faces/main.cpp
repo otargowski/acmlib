@@ -52,7 +52,7 @@ vector<Face> split_planar_to_faces(vector<pair<int, int>> coord, vector<pair<int
 			bool half_r = r > pair(0, 0);
 			if(half_l != half_r)
 				return half_l;
-			return l.first * LL(r.second) - l.second * LL(r.first) > 0;
+			return l.first * ll(r.second) - l.second * ll(r.first) > 0;
 		});
 		REP(i, ssize(sorted)) {
 			int e0 = sorted[i].second;
@@ -89,11 +89,11 @@ vector<Face> split_planar_to_faces(vector<pair<int, int>> coord, vector<pair<int
 			};
 			dfs(edges[comps[leader].front() / 2].first);
 			reverse(sorted_edges.begin(), sorted_edges.end());
-			LL area = 0;
+			ll area = 0;
 			for(auto edge : sorted_edges) {
 				auto l = coord[edge.from];
 				auto r = coord[edge.to];
-				area += l.first * LL(r.second) - l.second * LL(r.first);
+				area += l.first * ll(r.second) - l.second * ll(r.first);
 			}
 			polygons.emplace_back(area >= 0, sorted_edges);
 		}

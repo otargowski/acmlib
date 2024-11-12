@@ -7,7 +7,7 @@ int primitive_root() {
 	if(mod == 2)
 		return 1;
 	int q = mod - 1;
-	vector<LL> v = factor(q);
+	vector<ll> v = factor(q);
 	vector<int> fact;
 	REP(i, ssize(v))
 		if(!i or v[i] != v[i - 1])

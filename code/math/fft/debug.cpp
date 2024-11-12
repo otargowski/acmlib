@@ -1,10 +1,10 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 
-vector</*LL*/double> get_poly() {
+vector</*ll*/double> get_poly() {
 	/*
 	int n = rd(1, 1e3);
-	vector<LL> A(n);
+	vector<ll> A(n);
 	REP(i, n) A[i] = rd(0, 1e9);
 	return A;
 	*/
@@ -16,8 +16,8 @@ vector</*LL*/double> get_poly() {
 }
 
 int mod = 1e9 + 7;
-vector<LL> mul(vector<LL> A, vector<LL> B) {
-	vector<LL> res(ssize(A) + ssize(B) - 1);
+vector<ll> mul(vector<ll> A, vector<ll> B) {
+	vector<ll> res(ssize(A) + ssize(B) - 1);
 	REP(i, ssize(A)) REP(j, ssize(B))
 		res[i + j] = (res[i + j] + A[i] * B[j]) % mod;
 	return res;
@@ -25,7 +25,7 @@ vector<LL> mul(vector<LL> A, vector<LL> B) {
 
 void test() {
 	/*
-	vector<LL> A = get_poly(), B = get_poly();
+	vector<ll> A = get_poly(), B = get_poly();
 	debug(A, B);
 	debug(mul(A, B));
 	debug(conv_mod(A, B, mod));

@@ -3,8 +3,8 @@
  *   Działa tylko wtedy, gdy $opt(i,j-1)\le opt(i,j)$,
  *   a jest to zawsze spełnione, gdy $cost(b,c)\le cost(a,d)$ oraz $cost(a,c) + cost(b,d)\le cost(a,d) + cost(b,c)$ dla $a\le b\le c\le d$.
  */
-vector<LL> divide_and_conquer_optimization(int n, int m, function<LL(int,int)> cost) {
-	vector<LL> dp_before(m);
+vector<ll> divide_and_conquer_optimization(int n, int m, function<ll(int,int)> cost) {
+	vector<ll> dp_before(m);
 	auto dp_cur = dp_before;
 	REP(i, m)
 		dp_before[i] = cost(0, i);
@@ -12,7 +12,7 @@ vector<LL> divide_and_conquer_optimization(int n, int m, function<LL(int,int)> c
 		if (l > r)
 			return;
 		int mid = (l + r) / 2, opt;
-		pair<LL, int> best = {numeric_limits<LL>::max(), -1};
+		pair<ll, int> best = {numeric_limits<ll>::max(), -1};
 		FOR(k, optl, min(mid, optr))
 			best = min(best, {(k ? dp_before[k - 1] : 0) + cost(k, mid), k});
 		tie(dp_cur[mid], opt) = best;

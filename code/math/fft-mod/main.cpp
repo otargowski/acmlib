@@ -12,7 +12,7 @@ vector<int> conv_mod(vector<int> a, vector<int> b, int M) {
 			swap(a, b);
 		REP (i, ssize(a))
 			REP (j, ssize(b))
-				res[i + j] = int((res[i + j] + LL(a[i]) * b[j]) % M);
+				res[i + j] = int((res[i + j] + ll(a[i]) * b[j]) % M);
 		return res;
 	}
 	int B = 32 - __builtin_clz(ssize(res)), n = 1 << B;
@@ -28,8 +28,8 @@ vector<int> conv_mod(vector<int> a, vector<int> b, int M) {
 	}
 	fft(outl), fft(outs);
 	REP(i, ssize(res)) {
-		LL av = LL(real(outl[i]) + 0.5), cv = LL(imag(outs[i]) + 0.5);
-		LL bv = LL(imag(outl[i]) + 0.5) + LL(real(outs[i]) + 0.5);
+		ll av = ll(real(outl[i]) + 0.5), cv = ll(imag(outs[i]) + 0.5);
+		ll bv = ll(imag(outl[i]) + 0.5) + ll(real(outs[i]) + 0.5);
 		res[i] = int(((av % M * cut + bv) % M * cut + cv) % M);
 	}
 	return res;

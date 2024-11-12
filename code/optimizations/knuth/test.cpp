@@ -3,7 +3,7 @@
 
 void test() {
 	int n = rd(1, 10);
-	vector cost(n, vector<LL>(n));
+	vector cost(n, vector<ll>(n));
 	REP(i, n)
 		FOR(j, i, n - 1)
 			cost[i][j] = rd(-10, 10);
@@ -35,7 +35,7 @@ void test() {
 		}
 	debug(dp);
 
-	LL got = knuth_optimization(cost);
+	ll got = knuth_optimization(cost);
 	debug(got, dp[0][n - 1]);
 	assert(dp[0][n - 1] == got);
 }

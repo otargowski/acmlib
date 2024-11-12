@@ -2,23 +2,23 @@
  * Opis: O(n_0^2\cdot n_1), dla macierzy wag (mogą być ujemne) między dwoma warstami o rozmiarach $n0$ oraz $n1$ ($n0 <= n1$) wyznacza minimalną sumę wag skojarzenia pełnego.
  *   Zwraca sumę wag oraz matching.
  */
-pair<LL, vector<int>> hungarian(vector<vector<int>> a) {
+pair<ll, vector<int>> hungarian(vector<vector<int>> a) {
 	if(a.empty())
 		return {0, {}};
 	int n0 = ssize(a) + 1, n1 = ssize(a[0]) + 1;
     assert(n0 <= n1);
 	vector<int> p(n1), ans(n0 - 1);
-	vector<LL> u(n0), v(n1);
+	vector<ll> u(n0), v(n1);
 	FOR(i, 1, n0 - 1) {
 		p[0] = i;
 		int j0 = 0;
-		vector<LL> dist(n1, numeric_limits<LL>::max());
+		vector<ll> dist(n1, numeric_limits<ll>::max());
 		vector<int> pre(n1, -1);
 		vector<bool> done(n1 + 1);
 		do {
 			done[j0] = true;
 			int i0 = p[j0], j1 = -1;
-			LL delta = numeric_limits<LL>::max();
+			ll delta = numeric_limits<ll>::max();
 			FOR(j, 1, n1 - 1)
 				if(!done[j]) {
 					auto cur = a[i0 - 1][j - 1] - u[i0] - v[j];

@@ -16,7 +16,7 @@ void test() {
 			int l = rd(0, n - 1), r = rd(0, n - 1);
 			if(l > r)
 				swap(l, r);
-			LL sum = 0;
+			ll sum = 0;
 			FOR(i, l, r)
 				sum += brute[i];
 			assert(sum == fenwick.query(l, r));

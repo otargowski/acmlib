@@ -268,7 +268,7 @@ stringstream brute(stringstream in) {
 				out << "0\n";
 			else {
 				vector path = get_path(v, u);
-				LL sum = 0;
+				ll sum = 0;
 				for(int w : path)
 					sum += node_value[w];
 				out << "1 " << sum << '\n';
@@ -280,7 +280,7 @@ stringstream brute(stringstream in) {
 			if(v == u or not is_in_same_tree(v, u))
 				out << "0\n";
 			else {
-				LL sum = 0;
+				ll sum = 0;
 				for(int w : get_in_subtree(v, u))
 					sum += node_value[w];
 				out << "1 " << sum << '\n';

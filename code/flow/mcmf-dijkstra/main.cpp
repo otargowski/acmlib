@@ -7,19 +7,19 @@
 struct MCMF {
 	struct Edge {
 		int v, u, flow, cap;
-		LL cost;
+		ll cost;
 		friend ostream& operator<<(ostream &os, Edge &e) {
-			return os << vector<LL>{e.v, e.u, e.flow, e.cap, e.cost};
+			return os << vector<ll>{e.v, e.u, e.flow, e.cap, e.cost};
 		}
 	};
 	int n;
-	const LL inf_LL = 1e18;
+	const ll inf_LL = 1e18;
 	const int inf_int = 1e9;
 	vector<vector<int>> graph;
 	vector<Edge> edges;
-	vector<LL> init_dist;
+	vector<ll> init_dist;
 	MCMF(int N) : n(N), graph(n), init_dist(n) {}
-	void add_edge(int v, int u, int cap, LL cost) {
+	void add_edge(int v, int u, int cap, ll cost) {
 		int e = ssize(edges);
 		graph[v].emplace_back(e);
 		graph[u].emplace_back(e + 1);
@@ -48,11 +48,11 @@ struct MCMF {
 			}
 		}
 	}
-	pair<int, LL> augment(int source, int sink) {
+	pair<int, ll> augment(int source, int sink) {
 		vector<bool> vis(n);
 		vector<int> from(n, -1);
-		vector<LL> dist(n, inf_LL);
-		priority_queue<pair<LL, int>, vector<pair<LL, int>>, greater<>> que;
+		vector<ll> dist(n, inf_LL);
+		priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<>> que;
 		que.emplace(0, source);
 		dist[source] = 0;
 		while(ssize(que)) {
@@ -62,7 +62,7 @@ struct MCMF {
 			vis[v] = true;
 			for (int i : graph[v]) {
 				Edge &e = edges[i];
-				LL new_dist = d + e.cost + init_dist[v];
+				ll new_dist = d + e.cost + init_dist[v];
 				if (not vis[e.u] and e.flow != e.cap and new_dist < dist[e.u]) {
 					dist[e.u] = new_dist;
 					from[e.u] = i;
@@ -86,11 +86,11 @@ struct MCMF {
 		init_dist.swap(dist);
 		return {flow, flow * init_dist[sink]};
 	}
-	pair<int, LL> operator()(int source, int sink) {
+	pair<int, ll> operator()(int source, int sink) {
 		calc_init_dist(source);
 		int flow = 0;
-		LL cost = 0;
-		pair<int, LL> got;
+		ll cost = 0;
+		pair<int, ll> got;
 		do {
 			got = augment(source, sink);
 			flow += got.first;

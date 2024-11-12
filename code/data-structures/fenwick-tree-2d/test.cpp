@@ -27,7 +27,7 @@ void test() {
 		else {
 			int x = rd(0, limx - 1);
 			int y = rd(0, limy - 1);
-			LL sum = 0;
+			ll sum = 0;
 			FOR(i, 0, x)
 				FOR(j, 0, y)
 					sum += brute[i][j];

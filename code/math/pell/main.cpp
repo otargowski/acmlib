@@ -1,14 +1,14 @@
 /*
  * Opis: O(\log n),
  *   \texttt{pell(n)} oblicza rozwiązanie fundamentalne $x^2-ny^2=1$,
- *   zwraca $(0, 0)$ jeżeli nie istnieje ($n$ jest kwadratem lub wynik przekracza LL),
+ *   zwraca $(0, 0)$ jeżeli nie istnieje ($n$ jest kwadratem lub wynik przekracza ll),
  *   \texttt{all\_pell(n, limit)} wyznacza wszystkie rozwiązania $x^2-ny^2=1$ z $x\le \texttt{limit}$,
  *   w razie potrzeby można przepisać na pythona lub użyć bignumów.
  */
-pair<LL, LL> pell(LL n) {
-	LL s = LL(sqrtl(n));
+pair<ll, ll> pell(ll n) {
+	ll s = ll(sqrtl(n));
 	if (s * s == n) return {0, 0};
-	LL m = 0, d = 1, a = s;
+	ll m = 0, d = 1, a = s;
 	__int128 num1 = 1, num2 = a, den1 = 0, den2 = 1;
 	while (num2 * num2 - n * den2 * den2 != 1) {
 		m = d * a - m;
@@ -20,10 +20,10 @@ pair<LL, LL> pell(LL n) {
 	}
 	return {num2, den2};
 }
-vector<pair<LL, LL>> all_pell(LL n, LL limit) {
+vector<pair<ll, ll>> all_pell(ll n, ll limit) {
 	auto [x0, y0] = pell(n);
 	if (!x0) return {};
-	vector<pair<LL, LL>> ret;
+	vector<pair<ll, ll>> ret;
 	__int128 x = x0, y = y0;
 	while (x <= limit) {
 		ret.emplace_back(x, y);

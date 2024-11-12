@@ -8,11 +8,11 @@
 struct RangeAdd {
 	Fenwick f;
 	RangeAdd(int n) : f(n) {}
-	void update(int l, int r, LL val) {
+	void update(int l, int r, ll val) {
 		f.update(l, val);
 		f.update(r + 1, -val);
 	}
-	LL query(int pos) {
+	ll query(int pos) {
 		return f.query(pos);
 	}
 };

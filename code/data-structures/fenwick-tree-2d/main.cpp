@@ -23,12 +23,12 @@ struct Fenwick2d {
 		auto it = lower_bound(ys[x].begin(), ys[x].end(), y);
 		return int(distance(ys[x].begin(), it));
 	}
-	void update(int x, int y, LL val) {
+	void update(int x, int y, ll val) {
 		for(; x < ssize(ys); x |= x + 1)
 			ft[x].update(ind(x, y), val);
 	}
-	LL query(int x, int y) {
-		LL sum = 0;
+	ll query(int x, int y) {
+		ll sum = 0;
 		for(x++; x > 0; x &= x - 1)
 			sum += ft[x - 1].query(ind(x - 1, y + 1) - 1);
 		return sum;

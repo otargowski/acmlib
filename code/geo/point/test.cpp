@@ -1,7 +1,7 @@
 #include "before_bits.cpp"
 #include <bits/stdc++.h>
 using namespace std;
-using LL = long long;
+using ll = long long;
 
 ostream& operator<<(ostream& os, pair<auto, auto> p) {
 	return os << "(" << p.first << ", " << p.second << ")\n";

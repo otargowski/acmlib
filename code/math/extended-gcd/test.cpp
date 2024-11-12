@@ -3,11 +3,11 @@
 
 void test() {
 	int test_type = rd(0, 1);
-	LL limit = test_type ? LL(1e18) : LL(1e9);
+	ll limit = test_type ? ll(1e18) : ll(1e9);
 
-	LL a = rd_ll(-limit, limit), b = rd_ll(-limit, limit);
-	LL good_gcd = __gcd(a, b);
-	LL gcd, x, y;
+	ll a = rd_ll(-limit, limit), b = rd_ll(-limit, limit);
+	ll good_gcd = __gcd(a, b);
+	ll gcd, x, y;
 	tie(gcd, x, y) = extended_gcd(a, b);
 	assert(gcd == good_gcd);
 

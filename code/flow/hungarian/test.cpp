@@ -20,19 +20,19 @@ void test() {
 		assert(not used_in_m[i]);
 		used_in_m[i] = true;
 	}
-	LL ans_check = 0;
+	ll ans_check = 0;
 	REP(i, n0)
 		ans_check += weight[i][match[i]];
 	assert(ans == ans_check);
 
 	if(test_type == 0) {
-		LL ans_brute = LL(1e18);
+		ll ans_brute = ll(1e18);
 		vector<int> perm(n1);
 		iota(perm.begin(), perm.end(), 0);
 		do {
 			vector<int> brute_match = perm;
 			brute_match.resize(n0);
-			LL ans_local = 0;
+			ll ans_local = 0;
 			REP(i, n0)
 				ans_local += weight[i][brute_match[i]];
 			ans_brute = min(ans_brute, ans_local);
