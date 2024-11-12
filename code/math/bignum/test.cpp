@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#include "../../utils/testing/test-wrapper.cpp"
+#include "main.cpp"
+
 ostream& operator<<(ostream& o, __int128_t x) {
 	if(x < 0) {
 		x = -x;
@@ -18,9 +21,6 @@ ostream& operator<<(ostream& o, __int128_t x) {
 	}
 	return o;
 }
-
-#include "../../utils/testing/test-wrapper.cpp"
-#include "main.cpp"
 
 template<typename T1, typename T2>
 bool issame(T1 num, T2 x) {

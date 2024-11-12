@@ -46,7 +46,7 @@ pair<ll, vi> dp_1d1d(int n, function<ll (int, int)> cost) {
 			rg[lf[x]] = x; add(x, i);
 		}
 		if (rg[beg] != end)
-			chmin(dp[i], {score(i, rg[beg]), rg[beg]}); // tu max
+			chmin(dp[i], pair(score(i, rg[beg]), rg[beg])); // tu max
 		lf[i] = lf[end]; rg[i] = end;
 		rg[lf[i]] = i; lf[rg[i]] = i;
 		add(i, i + 1);

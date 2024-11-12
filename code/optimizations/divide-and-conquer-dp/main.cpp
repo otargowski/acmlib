@@ -14,7 +14,7 @@ vll divide_and_conquer_optimization(int n, int m, function<ll(int,int)> cost) {
 		int mid = (l + r) / 2, opt;
 		pair<ll, int> best = {numeric_limits<ll>::max(), -1};
 		FOR(k, optl, min(mid, optr))
-			chmin(best, {(k ? dp_before[k - 1] : 0) + cost(k, mid), k});
+			chmin(best, pair((k ? dp_before[k - 1] : 0) + cost(k, mid), k));
 		tie(dp_cur[mid], opt) = best;
 		compute(l, mid - 1, optl, opt);
 		compute(mid + 1, r, opt, optr);

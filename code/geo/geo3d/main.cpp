@@ -84,14 +84,14 @@ struct Plane {
 		P3 cross = (p[1] - p[0]).CrossProd(p[2] - p[0]);
 		return cross.Normalize();
 	}
-	void GetPlaneEq(LD &A, LD &B, LD &C, LD &D) {
+	void GetPlaneEq(LD &a, LD &b, LD &c, LD &d) {
 		P3 normal = GetNormal();
-		A = normal[0];
-		B = normal[1];
-		C = normal[2];
-		D = normal.DotProd(p[0]);
-		assert(abs(D - normal.DotProd(p[1])) < kEps);
-		assert(abs(D - normal.DotProd(p[2])) < kEps);
+		a = normal[0];
+		b = normal[1];
+		c = normal[2];
+		d = normal.DotProd(p[0]);
+		assert(abs(d - normal.DotProd(p[1])) < kEps);
+		assert(abs(d - normal.DotProd(p[2])) < kEps);
 	}
 	V<P3> GetOrthonormalBase() {
 		P3 normal = GetNormal();
@@ -273,15 +273,15 @@ CircleS From2(P3 a, P3 b) { // neither the same nor the opposite
 	mid = mid / mid.Norm();
 	return From3(a, mid, b);
 }
-LD SphAngle(P3 A, P3 B, P3 C) { // angle at A, no two points opposite
-	LD a = B.DotProd(C);
-	LD b = C.DotProd(A);
-	LD c = A.DotProd(B);
-	return acos((b - a * c) / sqrt((1 - Sq(a)) * (1 - Sq(c))));
+LD SphAngle(P3 a, P3 b, P3 c) { // angle at A, no two points opposite
+	LD a2 = b.DotProd(c);
+	LD b2 = c.DotProd(a);
+	LD c2 = a.DotProd(b);
+	return acos((b2 - a2 * c2) / sqrt((1 - Sq(a2)) * (1 - Sq(c2))));
 }
-LD TriangleArea(P3 A, P3 B, P3 C) { // no two poins opposite
-	LD a = SphAngle(C, A, B);
-	LD b = SphAngle(A, B, C);
-	LD c = SphAngle(B, C, A);
-	return a + b + c - kPi;
+LD TriangleArea(P3 a, P3 b, P3 c) { // no two poins opposite
+	LD a2 = SphAngle(c, a, b);
+	LD b2 = SphAngle(a, b, c);
+	LD c2 = SphAngle(b, c, a);
+	return a2 + b2 + c2 - kPi;
 }

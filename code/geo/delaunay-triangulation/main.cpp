@@ -40,9 +40,9 @@ struct Quad {
 } *H; // it's safe to use in multitests
 V<Q> to_dealloc;
 bool is_p_inside_circle(PI p, PI a, PI b, PI c) {
-	__int128_t p2 = dist2(p), A = dist2(a)-p2,
-	    B = dist2(b)-p2, C = dist2(c)-p2;
-	return cross(p,a,b) * C + cross(p,b,c) * A + cross(p,c,a) * B > 0;
+	__int128_t p2 = dist2(p), a2 = dist2(a)-p2,
+	    b2 = dist2(b)-p2, c2 = dist2(c)-p2;
+	return cross(p,a,b) * c2 + cross(p,b,c) * a2 + cross(p,c,a) * b2 > 0;
 }
 Q makeEdge(PI orig, PI dest) {
 	Q r = H;

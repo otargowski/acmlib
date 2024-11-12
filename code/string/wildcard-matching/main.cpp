@@ -37,7 +37,7 @@ V<bool> safer_wildcard_matching(vi text, vi pattern, int alpha = 26) {
 		REP(i, n) if (text[i] != -1) a[i] = v[text[i]];
 		REP(i, m) if (pattern[i] != -1) b[i] = v[pattern[i]];
 		auto h = wildcard_matching(a, b);
-		REP(i, n - m + 1) chmin(ret[i], h[i]);
+		REP(i, n - m + 1) ret[i] = ret[i] & h[i];
 	}
 	return ret;
 }

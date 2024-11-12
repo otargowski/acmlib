@@ -3,14 +3,13 @@
  *   co najwyżej raz, oblicza minimum w punkcie $x$.
  *   Podany kod jest dla funkcji liniowych.
  */
-constexpr ll inf = ll(1e18);
 struct Function {
 	int a;
 	ll b;
 	ll operator()(int x) {
 		return x * ll(a) + b;
 	}
-	Function(int p = 0, ll q = inf) : a(p), b(q) {}
+	Function(int p = 0, ll q = infll) : a(p), b(q) {}
 };
 ostream& operator<<(ostream &os, Function f) {
 	return os << pair(f.a, f.b);
@@ -25,7 +24,7 @@ struct LiChaoTree {
 	}
 	ll get_min(int x) {
 		int v = x + size;
-		ll ans = inf;
+		ll ans = infll;
 		while(v) {
 			chmin(ans, tree[v](x));
 			v >>= 1;

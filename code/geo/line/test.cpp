@@ -10,9 +10,9 @@ void test() {
 
 	auto [s, t] = line.get_pts();
 	Line line2(s, t);
-	assert(equal(line.A * line2.B, line2.A * line.B)
-			and equal(line.B * line2.C, line2.B * line.C)
-			and equal(line.C * line2.A, line2.C * line.A));
+	assert(equal(line.a * line2.b, line2.a * line.b)
+			and equal(line.b * line2.c, line2.b * line.c)
+			and equal(line.c * line2.a, line2.c * line.a));
 
 	P p(rd_D(), rd_D());
 	auto dist1 = line.dist(p);

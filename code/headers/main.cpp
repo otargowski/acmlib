@@ -6,7 +6,7 @@
 #endif
 #include <bits/stdc++.h>
 #define FOR(i,p,k) for(int i=(p); i<=(k); ++i)
-#define REP(i,k) FOR(i,0,k-1)
+#define REP(i,k) FOR(i,0,(k)-1)
 #define RFOR(i,p,n) for(int i=(p); i>=(n); --i)
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()

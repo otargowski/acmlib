@@ -1,6 +1,9 @@
 #include "../point/before_bits.cpp"
 #include <bits/stdc++.h>
-using namespace std;
+
+#include "../../utils/testing/test-wrapper.cpp"
+#include "main.cpp"
+
 ostream& operator<<(ostream &o, __int128_t x) {
 	string s;
 	if(x == 0)
@@ -14,8 +17,6 @@ ostream& operator<<(ostream &o, __int128_t x) {
 	return o << s.data();
 }
 
-#include "../../utils/testing/test-wrapper.cpp"
-#include "main.cpp"
 #include "../intersect-lines/main.cpp"
 
 D rd_d(int l, int r) {

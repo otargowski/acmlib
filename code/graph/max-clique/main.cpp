@@ -6,15 +6,15 @@
 constexpr int max_n = 500;
 vi get_max_clique(V<bitset<max_n>> e) {
 	double limit = 0.025, pk = 0;
-	V<pii> V;
-	V<vi> C(ssize(e) + 1);
-	vi qmax, q, S(ssize(C)), old(S);
-	REP(i, ssize(e)) V.eb(0, i);
+	V<pii> v;
+	V<vi> c(ssize(e) + 1);
+	vi qmax, q, S(ssize(c)), old(S);
+	REP(i, ssize(e)) v.eb(0, i);
 	auto init = [&](V<pii>& r) {
-		for (auto& v : r) for (auto j : r) v.fi += e[v.se][j.se];
+		for (auto& vv : r) for (auto j : r) vv.fi += e[vv.se][j.se];
 		sort(rall(r));
 		int mxD = r[0].fi;
-		REP(i, ssize(r)) r[i].fchmin(i, mxD) + 1;
+		REP(i, ssize(r)) r[i].fi = min(i, mxD) + 1;
 	};
 	function<void (V<pii>&, int)> expand = [&](V<pii>& R, int lev) {
 		S[lev] += S[lev - 1] - old[lev];
@@ -23,24 +23,24 @@ vi get_max_clique(V<bitset<max_n>> e) {
 			if (ssize(q) + R.back().fi <= ssize(qmax)) return;
 			q.eb(R.back().se);
 			V<pii> T;
-			for(auto [_, v] : R) if (e[R.back().se][v]) T.eb(0, v);
+			for(auto [_, vv] : R) if (e[R.back().se][vv]) T.eb(0, vv);
 			if (ssize(T)) {
 				if (S[lev]++ / ++pk < limit) init(T);
 				int j = 0, mxk = 1, mnk = max(ssize(qmax) - ssize(q) + 1, 1);
-				C[1] = C[2] = {};
+				c[1] = c[2] = {};
 				for (auto [_, v] : T) {
 					int k = 1;
-					while (any_of(all(C[k]), [&](int i) { return e[v][i]; })) k++;
-					if (k > mxk) C[(mxk = k) + 1] = {};
+					while (any_of(all(c[k]), [&](int i) { return e[v][i]; })) k++;
+					if (k > mxk) c[(mxk = k) + 1] = {};
 					if (k < mnk) T[j++].se = v;
-					C[k].eb(v);
+					c[k].eb(v);
 				}
 				if (j > 0) T[j - 1].fi = 0;
-				FOR(k, mnk, mxk) for (int i : C[k]) T[j++] = {k, i};
+				FOR(k, mnk, mxk) for (int i : c[k]) T[j++] = {k, i};
 				expand(T, lev + 1);
 			} else if (ssize(q) > ssize(qmax)) qmax = q;
 			q.pop_back(), R.pop_back();
 		}
 	};
-	init(V), expand(V, 1); return qmax;
+	init(v), expand(v, 1); return qmax;
 }
