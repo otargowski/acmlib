@@ -16,7 +16,7 @@ void induced_sort(C vi &vec, int alpha, vi &sa,
 	partial_sum(all(l), l.begin());
 	partial_sum(all(r), r.begin());
 	fill(all(sa), -1);
-	for (int i = ssize(lms_idx) - 1; i >= 0; --i)
+	RFOR(i, ssize(lms_idx) - 1, 0)
 		sa[--r[vec[lms_idx[i]]]] = lms_idx[i];
 	for (int i : sa)
 		if (i >= 1 and sl[i - 1])
@@ -33,7 +33,7 @@ vi sa_is(C vi &vec, int alpha) {
 	C int n = ssize(vec);
 	vi sa(n), lms_idx;
 	V<bool> sl(n);
-	for (int i = n - 2; i >= 0; --i) {
+	RFOR(i, n - 2, 0) {
 		sl[i] = vec[i] > vec[i + 1] or (vec[i] == vec[i + 1] and sl[i + 1]);
 		if (sl[i] and not sl[i + 1])
 			lms_idx.eb(i + 1);

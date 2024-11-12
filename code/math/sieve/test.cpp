@@ -35,7 +35,7 @@ void test() {
 
 	auto brute_prime_div = [&](int x) {
 		vi ans(x + 1);
-		for (int i = x; i >= 2; --i) {
+		RFOR(i, x, 2) {
 			if (is_composite(i))
 				continue;
 			for (int j = i; j <= x; j += i)

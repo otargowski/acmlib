@@ -223,7 +223,7 @@ vi build(V<vi> &tree, int v, auto l, auto r) {
 // BEGIN HASH
 int eval_single(C vi& a, int x) {
 	int y = 0;
-	for (int i = ssize(a) - 1; i >= 0; --i) {
+	RFOR(i, ssize(a)-1, 0) {
 		y = mul(y, x);
 		y = add(y, a[i]);
 	}
