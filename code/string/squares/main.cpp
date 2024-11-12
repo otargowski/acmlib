@@ -14,7 +14,7 @@ V<tuple<int, int, int>> squares(const V<int> &s) {
 		int end = min(mid + part, ssize(s));
 		V a(s.begin() + off, s.begin() + off + part),
 			b(s.begin() + mid, s.begin() + end),
-			ra(a.rbegin(), a.rend());
+			ra(rall(a));
 		REP(j, 2) {
 			 auto z1 = pref(ra), bha = b;
 			 bha.eb(-1);
@@ -36,7 +36,7 @@ V<tuple<int, int, int>> squares(const V<int> &s) {
 				else
 					p = ssize(ans), ans.eb(sb, se - 1, l);
 			 }
-			 a = V(b.rbegin(), b.rend());
+			 a = V(rall(b));
 			 b.swap(ra);
 		 }
 	}

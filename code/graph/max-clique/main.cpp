@@ -12,7 +12,7 @@ V<int> get_max_clique(V<bitset<max_n>> e) {
 	REP(i, ssize(e)) V.eb(0, i);
 	auto init = [&](V<pii>& r) {
 		for (auto& v : r) for (auto j : r) v.first += e[v.second][j.second];
-		sort(r.rbegin(), r.rend());
+		sort(rall(r));
 		int mxD = r[0].first;
 		REP(i, ssize(r)) r[i].first = min(i, mxD) + 1;
 	};

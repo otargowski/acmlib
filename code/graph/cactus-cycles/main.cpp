@@ -8,7 +8,7 @@ V<V<int>> cactus_cycles(V<V<int>> graph) {
 	V<V<int>> ret;
 	function<void (int, int)> dfs = [&](int v, int p) {
 		if(state[v] == 2) {
-			ret.eb(stack.rbegin(), find(stack.rbegin(), stack.rend(), v) + 1);
+			ret.eb(stack.rbegin(), find(rall(stack), v) + 1);
 			return;
 		}
 		stack.eb(v);

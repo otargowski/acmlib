@@ -59,7 +59,7 @@ bool is_outside(HalfplanePInt hi, PFrac p) {
 
 D num_to_d(Num n) {
 	D d = 0;
-	for(int x : V(n.x.rbegin(), n.x.rend()))
+	for(int x : V(rall(n.x)))
 		d = n.base * d + x;
 	d *= n.sign;
 	return d;

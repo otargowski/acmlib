@@ -23,5 +23,5 @@ V<int> get_borders(V<int> str) {
 		ret.eb(len);
 		len = kmp[len - 1];
 	}
-	return V<int>(ret.rbegin(), ret.rend());
+	return V<int>(rall(ret));
 }
