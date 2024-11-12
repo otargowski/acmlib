@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # encoding: utf-8
 
 # Source code preprocessor for KACTL building process.
@@ -22,7 +22,7 @@ def codeescape(input):
     input = input.replace('}', r'\}')
     input = input.replace('[', '{[}')
     input = input.replace(']', '{]}')
-    input = input.replace('~', '\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}')
+    input = input.replace('~', r'\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}')
     input = input.replace('^', r'\ensuremath{\hat{\;}}')
     return input
 
@@ -64,8 +64,8 @@ def find_start_comment(source, start=None):
 
 def get_hash(txt):
     p = subprocess.Popen(['sh', 'pdf/kactl-include/hash.sh'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    hsh, _ = p.communicate(txt)
-    return hsh.split(None, 1)[0]
+    hsh, _ = p.communicate(bytes(txt, 'utf-8'))
+    return hsh.split(None, 1)[0].decode('utf-8')
 
 def hash_fragments_or_whole(txt):
     txt = txt.split('\n')
@@ -173,7 +173,7 @@ def processwithcomments(caption, instream, outstream, listingslang):
     # Produce output
     out = []
     if warning:
-        out.append(r"\kactlwarning{%s: %s}" % (caption, warning))
+        out.append(r"\\kactlwarning{%s: %s}" % (caption, warning))
     if error:
         out.append(r"\kactlerror{%s: %s}" % (caption, error))
     else:
@@ -204,7 +204,7 @@ def processraw(caption, instream, outstream, listingslang = 'raw'):
         print(source, file=outstream)
         print(r"\end{lstlisting}", file=outstream)
     except:
-        print("\kactlerror{Could not read source.}", file=outstream)
+        print(r"\kactlerror{Could not read source.}", file=outstream)
 
 def parse_include(line):
     line = line.strip()
