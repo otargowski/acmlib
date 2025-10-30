@@ -4,5 +4,4 @@ colorscheme slate
 " NIE POTRZEBNE JAK NEOVIM:
 filetype indent on
 sy on
-ca Hash w !cpp -dD -P -fpreprocessed \| tr -d '[:space:]' \
-\| md5sum \| cut -c-6
+ca Hash w !cpp -dD -P -fpreprocessed \| tr -d '[:space:]' \| md5sum \| cut -c-6

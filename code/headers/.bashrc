@@ -1,5 +1,5 @@
-export FLAGS="-Wall -Wextra -Wshadow -Wconversion -Wformat=2 -Wlogical-op -Wfloat-equal -D_GLIBCXX_DEBUG -DDEBUG -DLOCAL -fsanitize=address,undefined -std=c++20 -O0 -ggdb3"
-export FFLAGS="-ggdb3 -O3 -std=c++20 -static -DLOCAL"
+export FLAGS="-Wall -Wextra -Wshadow -Wconversion -Wformat=2 -Wlogical-op -Wfloat-equal -D_GLIBCXX_DEBUG -DDEBUG -DLOCAL -fsanitize=address,undefined -std=c++23 -O0 -ggdb3"
+export FFLAGS="-ggdb3 -O3 -std=c++23 -static -DLOCAL"
 c(){
     g++ $1.cpp $(echo $FLAGS) -o $@
 }
