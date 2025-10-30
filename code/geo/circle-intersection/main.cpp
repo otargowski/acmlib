@@ -1,6 +1,7 @@
 /*
  * Opis: Przecięcia okręgu oraz prostej $ax+by+c=0$ oraz przecięcia okręgu oraz okręgu.
  *   Gdy \texttt{ssize(circle\_circle(...)) == 3} to jest nieskończenie wiele rozwiązań.
+ *   UWAGA coś jest źle UWAGA
  */
 #include "../point/main.cpp"
 // BEGIN HASH

@@ -3,7 +3,8 @@
 using namespace std;
 using ll = long long;
 
-ostream& operator<<(ostream& os, pair<auto, auto> p) {
+template <typename T1, typename T2>
+ostream& operator<<(ostream& os, pair<T1, T2> p) {
 	return os << "(" << p.fi << ", " << p.se << ")\n";
 }
 
