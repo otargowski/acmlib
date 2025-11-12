@@ -1,7 +1,6 @@
 /*
  * Opis: Przecięcia okręgu oraz prostej $ax+by+c=0$ oraz przecięcia okręgu oraz okręgu.
  *   Gdy \texttt{ssize(circle\_circle(...)) == 3} to jest nieskończenie wiele rozwiązań.
- *   UWAGA trzeba shiftnąć rezultaty funkcji!!! UWAGA
  */
 #include "../point/main.cpp"
 // BEGIN HASH
@@ -21,7 +20,9 @@ V<P> circle_line(D r, D a, D b, D c) {
 	};
 }
 V<P> circle_line(D x, D y, D r, D a, D b, D c) {
-	return circle_line(r, a, b, c + (a * x + b * y));
+	V<P> ret = circle_line(r, a, b, c + (a * x + b * y));
+	for(P &p : ret) p = P(p.x() + x, p.y() + y);
+	return ret;
 } // END HASH
 // BEGIN HASH
 V<P> circle_circle(D x1, D y1, D r1, D x2, D y2, D r2) {
