@@ -1,5 +1,5 @@
 /*
- * Opis: Trzeba wywołać pod koniec main'a. Uwzględnia również \texttt{unused capacity} pochodzące np. z \texttt{std::vector::reverse}.
+ * Opis: Trzeba wywołać pod koniec main'a. Uwzględnia również \texttt{unused capacity} pochodzące np. z \texttt{std::vector::reserve}.
  */
 
 #ifdef LOCAL
