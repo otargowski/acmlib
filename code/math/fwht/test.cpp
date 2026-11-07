@@ -18,12 +18,15 @@ void test_fwht_or() {
 		REP(j, n)
 			if((j | i) == i)
 				should_be[i] += a[j];
-	assert(should_be == fwht_or(a));
+	fwht_or(a);
+	assert(should_be == a);
 }
 
 void test_ifwht_or() {
-	vi a = get_random_a();
-	assert(ifwht_or(fwht_or(a)) == a);
+	vi a = get_random_a(), b = a;
+	fwht_or(b);
+	ifwht_or(b);
+	assert(a == b);
 }
 
 void test_convolution_or() {
@@ -47,12 +50,15 @@ void test_fwht_and() {
 		REP(j, n)
 			if((j & i) == i)
 				should_be[i] += a[j];
-	assert(should_be == fwht_and(a));
+	fwht_and(a);
+	assert(should_be == a);
 }
 
 void test_ifwht_and() {
-	vi a = get_random_a();
-	assert(ifwht_and(fwht_and(a)) == a);
+	vi a = get_random_a(), b = a;
+	fwht_and(b);
+	ifwht_and(b);
+	assert(a == b);
 }
 
 void test_convolution_and() {
@@ -78,12 +84,15 @@ void test_fwht_xor() {
 				should_be[i] += a[j];
 			else
 				should_be[i] -= a[j];
-	assert(should_be == fwht_xor(a));
+	fwht_xor(a);
+	assert(should_be == a);
 }
 
 void test_ifwht_xor() {
-	vi a = get_random_a();
-	assert(ifwht_xor(fwht_xor(a)) == a);
+	vi a = get_random_a(), b = a;
+	fwht_xor(b);
+	ifwht_xor(b);
+	assert(a == b);
 }
 
 void test_convolution_xor() {
