@@ -31,24 +31,24 @@ void chmax(auto &a, auto b){a=max(a,b);}
 ci inf=2.1e9;
 cll infll=4.5e18;
 int I(){
-	int z;
-	scanf("%d", &z);
-	//cin>>z;
-	return z;
+  int z;
+  scanf("%d", &z);
+  //cin>>z;
+  return z;
 }
 
 template<class A, class B> auto& operator<<(ostream &o, pair<A, B> p) {
-	return o << '(' << p.fi << ", " << p.se << ')';
+  return o << '(' << p.fi << ", " << p.se << ')';
 }
 template<class T> auto operator<<(ostream &o, T x) -> decltype(x.end(), o) {
-	o << '{'; int i = 0; for(auto e : x) o << (", ")+2*!i++ << e; return o << '}';
+  o << '{'; int i = 0; for(auto e : x) o << (", ")+2*!i++ << e; return o << '}';
 }
 
 #define debug(...) {}
 
 /*
 int main() {
-	cin.tie(0)->sync_with_stdio(0);
+  cin.tie(0)->sync_with_stdio(0);
 
 }
 */

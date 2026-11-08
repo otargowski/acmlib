@@ -5,27 +5,27 @@
  */
 #include "../suffix-array-short/main.cpp"
 pii get_substring_sa_range(C vi &s, C vi &sa, C vi &t) {
-	auto get_lcp = [&](int i) -> int {
-		REP(k, ssize(t))
-			if(i + k >= ssize(s) or s[i + k] != t[k])
-				return k;
-		return ssize(t);
-	};
-	auto get_side = [&](bool search_left) {
-		int l = 0, r = ssize(sa) - 1;
-		while(l < r) {
-			int m = (l + r + not search_left) / 2, lcp = get_lcp(sa[m]);
-			if(lcp == ssize(t))
-				(search_left ? r : l) = m;
-			else if(sa[m] + lcp >= ssize(s) or s[sa[m] + lcp] < t[lcp])
-				l = m + 1;
-			else
-				r = m - 1;
-		}
-		return l;
-	};
-	int l = get_side(true);
-	if(get_lcp(sa[l]) != ssize(t))
-		return {-1, -1};
-	return {l, get_side(false)};
+  auto get_lcp = [&](int i) -> int {
+    REP(k, ssize(t))
+      if(i + k >= ssize(s) or s[i + k] != t[k])
+        return k;
+    return ssize(t);
+  };
+  auto get_side = [&](bool search_left) {
+    int l = 0, r = ssize(sa) - 1;
+    while(l < r) {
+      int m = (l + r + not search_left) / 2, lcp = get_lcp(sa[m]);
+      if(lcp == ssize(t))
+        (search_left ? r : l) = m;
+      else if(sa[m] + lcp >= ssize(s) or s[sa[m] + lcp] < t[lcp])
+        l = m + 1;
+      else
+        r = m - 1;
+    }
+    return l;
+  };
+  int l = get_side(true);
+  if(get_lcp(sa[l]) != ssize(t))
+    return {-1, -1};
+  return {l, get_side(false)};
 }

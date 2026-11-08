@@ -6,12 +6,12 @@
  */
 #include "../point/main.cpp"
 D area(V<P> pts) {
-	int n = ssize(pts);
-	D ans = 0;
-	REP(i, n) ans += cross(pts[i], pts[(i + 1) % n]);
-	return fabsl(ans / 2);
+  int n = ssize(pts);
+  D ans = 0;
+  REP(i, n) ans += cross(pts[i], pts[(i + 1) % n]);
+  return fabsl(ans / 2);
 }
 D area(D a, D b, D c) {
-	D p = (a + b + c) / 2;
-	return sqrtl(p * (p - a) * (p - b) * (p - c));
+  D p = (a + b + c) / 2;
+  return sqrtl(p * (p - a) * (p - b) * (p - c));
 }

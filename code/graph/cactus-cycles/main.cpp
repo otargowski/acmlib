@@ -4,23 +4,23 @@
  *   \texttt{cactus\_cycles(graph)} zwraca taką listę cykli, że istnieje krawędź między $i$-tym, a $(i+1) \text{mod} \text{ssize(cycle)}$-tym wierzchołkiem.
  */
 V<vi> cactus_cycles(V<vi> graph) {
-	vi state(ssize(graph), 0), stack;
-	V<vi> ret;
-	function<void (int, int)> dfs = [&](int v, int p) {
-		if(state[v] == 2) {
-			ret.eb(stack.rbegin(), find(rall(stack), v) + 1);
-			return;
-		}
-		stack.eb(v);
-		state[v] = 2;
-		for(int u : graph[v])
-			if(u != p and state[u] != 1)
-				dfs(u, v);
-		state[v] = 1;
-		stack.pop_back();
-	};
-	REP(i, ssize(graph))
-		if (!state[i])
-			dfs(i, -1);
-	return ret;
+  vi state(ssize(graph), 0), stack;
+  V<vi> ret;
+  function<void (int, int)> dfs = [&](int v, int p) {
+    if(state[v] == 2) {
+      ret.eb(stack.rbegin(), find(rall(stack), v) + 1);
+      return;
+    }
+    stack.eb(v);
+    state[v] = 2;
+    for(int u : graph[v])
+      if(u != p and state[u] != 1)
+        dfs(u, v);
+    state[v] = 1;
+    stack.pop_back();
+  };
+  REP(i, ssize(graph))
+    if (!state[i])
+      dfs(i, -1);
+  return ret;
 }

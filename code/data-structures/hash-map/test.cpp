@@ -3,6 +3,6 @@
 #include "main.cpp"
 
 void test() {
-	// Check whether it compiles.
-	exit(0);
+  // Check whether it compiles.
+  exit(0);
 }

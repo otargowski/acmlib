@@ -26,18 +26,18 @@ typedef C int ci;
 typedef C ll cll;
 typedef pair <int, int> pii;
 int I(){
-	int z;
-	scanf("%d", &z);
-	return z;
+  int z;
+  scanf("%d", &z);
+  return z;
 }
 ll LL(){
-	ll z;
-	scanf("%lld", &z);
-	return z;
+  ll z;
+  scanf("%lld", &z);
+  return z;
 }
 void ans(){
 }
 int main(){
-	int tt=1;
-	while (tt--) ans();
+  int tt=1;
+  while (tt--) ans();
 }

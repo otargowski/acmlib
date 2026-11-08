@@ -7,20 +7,20 @@
  */
 // BEGIN HASH
 V<pair<ll, ll>> same_floor(ll n) {
-	V<pair<ll, ll>> v;
-	for (ll l = 1, r; l <= n; l = r + 1) {
-		r = n / (n / l);
-		v.eb(l, r);
-	}
-	return v;
+  V<pair<ll, ll>> v;
+  for (ll l = 1, r; l <= n; l = r + 1) {
+    r = n / (n / l);
+    v.eb(l, r);
+  }
+  return v;
 } // END HASH
 // BEGIN HASH
 V<pair<ll, ll>> same_ceil(ll n) {
-	V<pair<ll, ll>> v;
-	for (ll r = n, l; r >= 1; r = l - 1) {
-		l = (n + r - 1) / r;
-		l = (n + l - 1) / l;
-		v.eb(l, r);
-	}
-	return v;
+  V<pair<ll, ll>> v;
+  for (ll r = n, l; r >= 1; r = l - 1) {
+    l = (n + r - 1) / r;
+    l = (n + l - 1) / l;
+    v.eb(l, r);
+  }
+  return v;
 } // END HASH

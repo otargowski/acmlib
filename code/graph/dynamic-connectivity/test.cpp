@@ -3,48 +3,48 @@
 
 template <typename T1, typename T2, typename T3>
 ostream& operator<<(ostream& o, tuple<T1, T2, T3> t) {
-	return o << '(' << get<0>(t) << ", " << get<1>(t) << ", " << get<2>(t) << ')';
+  return o << '(' << get<0>(t) << ", " << get<1>(t) << ", " << get<2>(t) << ')';
 }
 
 void test() {
-	int n = rd(1, 10);
-	V<tuple<int, int, Event_type>> events(rd(0, 20));
-	for(auto &[v, u, t] : events) {
-		v = rd(0, n - 1);
-		u = rd(0, n - 1);
-		t = Event_type(rd(0, 2));
-	}
-	debug(events);
+  int n = rd(1, 10);
+  V<tuple<int, int, Event_type>> events(rd(0, 20));
+  for(auto &[v, u, t] : events) {
+    v = rd(0, n - 1);
+    u = rd(0, n - 1);
+    t = Event_type(rd(0, 2));
+  }
+  debug(events);
 
-	V<multiset<int>> graph(n);
-	V<bool> brute;
-	for(auto [v, u, t] : events)
-		if(t == Query) {
-			debug(graph);
-			V<bool> vis(n);
-			function<void (int)> dfs = [&](int a) {
-				vis[a] = true;
-				for(int b : graph[a])
-					if(not vis[b])
-						dfs(b);
-			};
-			dfs(v);
-			brute.eb(vis[u]);
-		}
-		else if(t == Add) {
-			graph[v].emplace(u);
-			graph[u].emplace(v);
-		}
-		else
-			for(int w : {v, u}) {
-				int w2 = w ^ v ^ u;
-				auto it = graph[w].find(w2);
-				if(it != graph[w].end())
-					graph[w].erase(it);
-			}
+  V<multiset<int>> graph(n);
+  V<bool> brute;
+  for(auto [v, u, t] : events)
+    if(t == Query) {
+      debug(graph);
+      V<bool> vis(n);
+      function<void (int)> dfs = [&](int a) {
+        vis[a] = true;
+        for(int b : graph[a])
+          if(not vis[b])
+            dfs(b);
+      };
+      dfs(v);
+      brute.eb(vis[u]);
+    }
+    else if(t == Add) {
+      graph[v].emplace(u);
+      graph[u].emplace(v);
+    }
+    else
+      for(int w : {v, u}) {
+        int w2 = w ^ v ^ u;
+        auto it = graph[w].find(w2);
+        if(it != graph[w].end())
+          graph[w].erase(it);
+      }
 
-	V<bool> wzorc = dynamic_connectivity(n, events);
-	debug(brute);
-	debug(wzorc);
-	assert(brute == wzorc);
+  V<bool> wzorc = dynamic_connectivity(n, events);
+  debug(brute);
+  debug(wzorc);
+  assert(brute == wzorc);
 }

@@ -7,38 +7,38 @@
 #include "../pref/main.cpp"
 
 V<tuple<int, int, int>> squares(C vi &s) {
-	V<tuple<int, int, int>> ans;
-	V pos(ssize(s) + 2, -1);
-	FOR(mid, 1, ssize(s) - 1) {
-		int part = mid & ~(mid - 1), off = mid - part;
-		int end = min(mid + part, ssize(s));
-		V a(s.begin() + off, s.begin() + off + part),
-			b(s.begin() + mid, s.begin() + end),
-			ra(rall(a));
-		REP(j, 2) {
-			 auto z1 = pref(ra), bha = b;
-			 bha.eb(-1);
-			 for(int x : a) bha.eb(x);
-			 auto z2 = pref(bha);
-			 for(auto *v : {&z1, &z2}) {
-				 v[0][0] = ssize(v[0]);
-				 v->eb(0);
-			 }
-			 REP(c, ssize(a)) {
-				int l = ssize(a) - c, x = c - min(l - 1, z1[l]),
-					y = c - max(l - z2[ssize(b) + c + 1], j),
-					sb = (j ? end - y - l * 2 : off + x),
-					se = (j ? end - x - l * 2 + 1 : off + y + 1),
-					&p = pos[l];
-				if (x > y) continue;
-				if (p != -1 && get<1>(ans[p]) + 1 == sb)
-					get<1>(ans[p]) = se - 1;
-				else
-					p = ssize(ans), ans.eb(sb, se - 1, l);
-			 }
-			 a = V(rall(b));
-			 b.swap(ra);
-		 }
-	}
-	return ans;
+  V<tuple<int, int, int>> ans;
+  V pos(ssize(s) + 2, -1);
+  FOR(mid, 1, ssize(s) - 1) {
+    int part = mid & ~(mid - 1), off = mid - part;
+    int end = min(mid + part, ssize(s));
+    V a(s.begin() + off, s.begin() + off + part),
+      b(s.begin() + mid, s.begin() + end),
+      ra(rall(a));
+    REP(j, 2) {
+       auto z1 = pref(ra), bha = b;
+       bha.eb(-1);
+       for(int x : a) bha.eb(x);
+       auto z2 = pref(bha);
+       for(auto *v : {&z1, &z2}) {
+         v[0][0] = ssize(v[0]);
+         v->eb(0);
+       }
+       REP(c, ssize(a)) {
+        int l = ssize(a) - c, x = c - min(l - 1, z1[l]),
+          y = c - max(l - z2[ssize(b) + c + 1], j),
+          sb = (j ? end - y - l * 2 : off + x),
+          se = (j ? end - x - l * 2 + 1 : off + y + 1),
+          &p = pos[l];
+        if (x > y) continue;
+        if (p != -1 && get<1>(ans[p]) + 1 == sb)
+          get<1>(ans[p]) = se - 1;
+        else
+          p = ssize(ans), ans.eb(sb, se - 1, l);
+       }
+       a = V(rall(b));
+       b.swap(ra);
+     }
+  }
+  return ans;
 }

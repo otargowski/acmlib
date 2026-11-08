@@ -6,13 +6,13 @@
  */
 #include "../fenwick-tree/main.cpp"
 struct RangeAdd {
-	Fenwick f;
-	RangeAdd(int n) : f(n) {}
-	void update(int l, int r, ll val) {
-		f.update(l, val);
-		f.update(r + 1, -val);
-	}
-	ll query(int pos) {
-		return f.query(pos);
-	}
+  Fenwick f;
+  RangeAdd(int n) : f(n) {}
+  void update(int l, int r, ll val) {
+    f.update(l, val);
+    f.update(r + 1, -val);
+  }
+  ll query(int pos) {
+    return f.query(pos);
+  }
 };

@@ -4,19 +4,19 @@
  *   a jest to zawsze spełnione, gdy $cost(b,c)\le cost(a,d)$ oraz $cost(a,c) + cost(b,d)\le cost(a,d) + cost(b,c)$ dla $a\le b\le c\le d$.
  */
 ll knuth_optimization(V<vll> cost) {
-	int n = ssize(cost);
-	V dp(n, vll(n, numeric_limits<ll>::max()));
-	V opt(n, vi(n));
-	REP(i, n) {
-		opt[i][i] = i;
-		dp[i][i] = cost[i][i];
-	}
-	for(int i = n - 2; i >= 0; --i)
-		FOR(j, i + 1, n - 1)
-			FOR(k, opt[i][j - 1], min(j - 1, opt[i + 1][j]))
-				if(dp[i][j] >= dp[i][k] + dp[k + 1][j] + cost[i][j]) {
-					opt[i][j] = k;
-					dp[i][j] = dp[i][k] + dp[k + 1][j] + cost[i][j];
-				}
-	return dp[0][n - 1];
+  int n = ssize(cost);
+  V dp(n, vll(n, numeric_limits<ll>::max()));
+  V opt(n, vi(n));
+  REP(i, n) {
+    opt[i][i] = i;
+    dp[i][i] = cost[i][i];
+  }
+  for(int i = n - 2; i >= 0; --i)
+    FOR(j, i + 1, n - 1)
+      FOR(k, opt[i][j - 1], min(j - 1, opt[i + 1][j]))
+        if(dp[i][j] >= dp[i][k] + dp[k + 1][j] + cost[i][j]) {
+          opt[i][j] = k;
+          dp[i][j] = dp[i][k] + dp[k + 1][j] + cost[i][j];
+        }
+  return dp[0][n - 1];
 }

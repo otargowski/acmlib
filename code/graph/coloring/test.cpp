@@ -6,90 +6,90 @@
 C int max_z = 1000;
 C int INF = 10 * max_z;
 int rd_coord() {
-	return rd(-max_z, max_z);
+  return rd(-max_z, max_z);
 };
 P rd_point() {
-	return P(rd_coord(), rd_coord());
+  return P(rd_coord(), rd_coord());
 };
 V<P> gen_noncollinear_points(int n) {
-	if (n == 0)
-		return {};
-	if (n == 3)
-		return {P(-INF, 0), P(INF, INF), P(INF, -INF)};
-	auto ret = gen_noncollinear_points(n - 1);
-	while (true) {
-		auto new_point = rd_point();
-		bool ok = true;
-		REP(i, ssize(ret)) {
-			REP(j, i) {
-				if (dir(ret[i], ret[j], new_point) == 0) {
-					ok = false;
-					break;
-				}
-			}
-		}
-		if (ok) {
-			ret.eb(new_point);
-			return ret;
-		}
-	}
+  if (n == 0)
+    return {};
+  if (n == 3)
+    return {P(-INF, 0), P(INF, INF), P(INF, -INF)};
+  auto ret = gen_noncollinear_points(n - 1);
+  while (true) {
+    auto new_point = rd_point();
+    bool ok = true;
+    REP(i, ssize(ret)) {
+      REP(j, i) {
+        if (dir(ret[i], ret[j], new_point) == 0) {
+          ok = false;
+          break;
+        }
+      }
+    }
+    if (ok) {
+      ret.eb(new_point);
+      return ret;
+    }
+  }
 };
 
 void test() {
-	auto max_number_of_edges = [](int n) {
-		if (n <= 1)
-			return 0;
-		if (n == 2)
-			return 1;
-		return 3 * n - 6;
-	};
+  auto max_number_of_edges = [](int n) {
+    if (n <= 1)
+      return 0;
+    if (n == 2)
+      return 1;
+    return 3 * n - 6;
+  };
 
-	C int max_n = 20;
-	C int n = rd(0, max_n);
-	C int limit = n < 12 and rd(0, 1) ? 4 : 5;
-	C int m = rd(0, max_number_of_edges(n));
+  C int max_n = 20;
+  C int n = rd(0, max_n);
+  C int limit = n < 12 and rd(0, 1) ? 4 : 5;
+  C int m = rd(0, max_number_of_edges(n));
 
-	C auto points = gen_noncollinear_points(n);
-	debug(points);
+  C auto points = gen_noncollinear_points(n);
+  debug(points);
 
-	V<vi> graph(n);
-	set<pii> edges;
-	REP(i, m) {
-		while (true) {
-			int a = rd(0, n - 1);
-			int b = rd(0, n - 1);
-			if (a == b)
-				continue;
-			if (edges.find(pair(a, b)) != edges.end())
-				continue;
+  V<vi> graph(n);
+  set<pii> edges;
+  REP(i, m) {
+    while (true) {
+      int a = rd(0, n - 1);
+      int b = rd(0, n - 1);
+      if (a == b)
+        continue;
+      if (edges.find(pair(a, b)) != edges.end())
+        continue;
 
-			bool ok = true;
-			for (auto [c, d] : edges) {
-				if (c == a or c == b or d == a or d == b)
-					continue;
-				if (is_intersection_segment(points[a], points[b], points[c], points[d])) {
-					ok = false;
-					break;
-				}
-			}
-			if (not ok)
-				continue;
+      bool ok = true;
+      for (auto [c, d] : edges) {
+        if (c == a or c == b or d == a or d == b)
+          continue;
+        if (is_intersection_segment(points[a], points[b], points[c], points[d])) {
+          ok = false;
+          break;
+        }
+      }
+      if (not ok)
+        continue;
 
-			edges.emplace(a, b);
-			edges.emplace(b, a);
-			graph[a].eb(b);
-			graph[b].eb(a);
-			break;
-		}
-	}
-	debug(graph);
+      edges.emplace(a, b);
+      edges.emplace(b, a);
+      graph[a].eb(b);
+      graph[b].eb(a);
+      break;
+    }
+  }
+  debug(graph);
 
-	C auto color = coloring(graph, limit);
-	debug(color);
-	assert(ssize(color) == n);
-	for (auto c : color)
-		assert(c >= 0 and c < limit);
-	REP(i, n)
-		for (int x : graph[i])
-			assert(color[i] != color[x]);
+  C auto color = coloring(graph, limit);
+  debug(color);
+  assert(ssize(color) == n);
+  for (auto c : color)
+    assert(c >= 0 and c < limit);
+  REP(i, n)
+    for (int x : graph[i])
+      assert(color[i] != color[x]);
 }

@@ -4,24 +4,24 @@
  *   a jest to zawsze spełnione, gdy $cost(b,c)\le cost(a,d)$ oraz $cost(a,c) + cost(b,d)\le cost(a,d) + cost(b,c)$ dla $a\le b\le c\le d$.
  */
 vll divide_and_conquer_optimization(int n, int m, function<ll(int,int)> cost) {
-	vll dp_before(m);
-	auto dp_cur = dp_before;
-	REP(i, m)
-		dp_before[i] = cost(0, i);
-	function<void(int,int,int,int)> compute = [&](int l, int r, int optl, int optr) {
-		if (l > r)
-			return;
-		int mid = (l + r) / 2, opt;
-		pair<ll, int> best = {numeric_limits<ll>::max(), -1};
-		FOR(k, optl, min(mid, optr))
-			chmin(best, pair((k ? dp_before[k - 1] : 0) + cost(k, mid), k));
-		tie(dp_cur[mid], opt) = best;
-		compute(l, mid - 1, optl, opt);
-		compute(mid + 1, r, opt, optr);
-	};
-	REP(i, n) {
-		compute(0, m - 1, 0, m - 1);
-		swap(dp_before, dp_cur);
-	}
-	return dp_before;
+  vll dp_before(m);
+  auto dp_cur = dp_before;
+  REP(i, m)
+    dp_before[i] = cost(0, i);
+  function<void(int,int,int,int)> compute = [&](int l, int r, int optl, int optr) {
+    if (l > r)
+      return;
+    int mid = (l + r) / 2, opt;
+    pair<ll, int> best = {numeric_limits<ll>::max(), -1};
+    FOR(k, optl, min(mid, optr))
+      chmin(best, pair((k ? dp_before[k - 1] : 0) + cost(k, mid), k));
+    tie(dp_cur[mid], opt) = best;
+    compute(l, mid - 1, optl, opt);
+    compute(mid + 1, r, opt, optr);
+  };
+  REP(i, n) {
+    compute(0, m - 1, 0, m - 1);
+    swap(dp_before, dp_cur);
+  }
+  return dp_before;
 }

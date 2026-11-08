@@ -2,26 +2,26 @@
 #include "main.cpp"
 
 void test() {
-	C int mn = 10;
-	int n = rd(1, mn);
-	V a(n, V(n, T(0)));
-	C int limit = rd(0, 1) ? 3 : mod - 1;
-	REP(i, n)
-		REP(j, n)
-			a[i][j] = rd(0, limit);
-	auto inva = a;
-	int rank = inverse(inva);
-	debug(rank, a);
-	assert(rank >= 0 and rank <= n);
-	if (rank == n) {
-		debug(inva);
-		REP(i, n) {
-			REP(j, n) {
-				T sum = 0;
-				REP(k, n)
-					sum = add(sum, mul(a[i][k], inva[k][j]));
-				assert(equal(sum, i == j));
-			}
-		}
-	}
+  C int mn = 10;
+  int n = rd(1, mn);
+  V a(n, V(n, T(0)));
+  C int limit = rd(0, 1) ? 3 : mod - 1;
+  REP(i, n)
+    REP(j, n)
+      a[i][j] = rd(0, limit);
+  auto inva = a;
+  int rank = inverse(inva);
+  debug(rank, a);
+  assert(rank >= 0 and rank <= n);
+  if (rank == n) {
+    debug(inva);
+    REP(i, n) {
+      REP(j, n) {
+        T sum = 0;
+        REP(k, n)
+          sum = add(sum, mul(a[i][k], inva[k][j]));
+        assert(equal(sum, i == j));
+      }
+    }
+  }
 }

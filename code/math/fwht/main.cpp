@@ -13,85 +13,85 @@
  */
 // BEGIN HASH
 void fwht_or(vi &a) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0);
-	for(int s = n; s /= 2;)
-		for(int l = 0; l < n; l += 2 * s)
-			for(int i = l; i < l + s; ++i)
-				a[i + s] += a[i];
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0);
+  for(int s = n; s /= 2;)
+    for(int l = 0; l < n; l += 2 * s)
+      for(int i = l; i < l + s; ++i)
+        a[i + s] += a[i];
 }
 void ifwht_or(vi &a) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0);
-	for(int s = n; s /= 2;)
-		for(int l = 0; l < n; l += 2 * s)
-			for(int i = l; i < l + s; ++i)
-				a[i + s] -= a[i];
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0);
+  for(int s = n; s /= 2;)
+    for(int l = 0; l < n; l += 2 * s)
+      for(int i = l; i < l + s; ++i)
+        a[i + s] -= a[i];
 }
 vi convolution_or(vi a, vi b) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0 and ssize(b) == n);
-	fwht_or(a);
-	fwht_or(b);
-	REP(i, n)
-		a[i] *= b[i];
-	return ifwht_or(a), a;
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0 and ssize(b) == n);
+  fwht_or(a);
+  fwht_or(b);
+  REP(i, n)
+    a[i] *= b[i];
+  return ifwht_or(a), a;
 } // END HASH
 // BEGIN HASH
 void fwht_and(vi &a) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0);
-	for(int s = n; s /= 2;)
-		for(int l = 0; l < n; l += 2 * s)
-			for(int i = l; i < l + s; ++i)
-				a[i] += a[i + s];
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0);
+  for(int s = n; s /= 2;)
+    for(int l = 0; l < n; l += 2 * s)
+      for(int i = l; i < l + s; ++i)
+        a[i] += a[i + s];
 }
 void ifwht_and(vi &a) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0);
-	for(int s = n; s /= 2;)
-		for(int l = 0; l < n; l += 2 * s)
-			for(int i = l; i < l + s; ++i)
-				a[i] -= a[i + s];
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0);
+  for(int s = n; s /= 2;)
+    for(int l = 0; l < n; l += 2 * s)
+      for(int i = l; i < l + s; ++i)
+        a[i] -= a[i + s];
 }
 vi convolution_and(vi a, vi b) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0 and ssize(b) == n);
-	fwht_and(a);
-	fwht_and(b);
-	REP(i, n)
-		a[i] *= b[i];
-	return ifwht_and(a), a;
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0 and ssize(b) == n);
+  fwht_and(a);
+  fwht_and(b);
+  REP(i, n)
+    a[i] *= b[i];
+  return ifwht_and(a), a;
 } // END HASH
 // BEGIN HASH
 void fwht_xor(vi &a) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0);
-	for(int s = n; s /= 2;)
-		for(int l = 0; l < n; l += 2 * s)
-			for(int i = l; i < l + s; ++i) {
-				int t = a[i + s];
-				a[i + s] = a[i] - t;
-				a[i] += t;
-			}
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0);
+  for(int s = n; s /= 2;)
+    for(int l = 0; l < n; l += 2 * s)
+      for(int i = l; i < l + s; ++i) {
+        int t = a[i + s];
+        a[i + s] = a[i] - t;
+        a[i] += t;
+      }
 }
 void ifwht_xor(vi &a) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0);
-	for(int s = n; s /= 2;)
-		for(int l = 0; l < n; l += 2 * s)
-			for(int i = l; i < l + s; ++i) {
-				int t = a[i + s];
-				a[i + s] = (a[i] - t) / 2;
-				a[i] = (a[i] + t) / 2;
-			}
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0);
+  for(int s = n; s /= 2;)
+    for(int l = 0; l < n; l += 2 * s)
+      for(int i = l; i < l + s; ++i) {
+        int t = a[i + s];
+        a[i + s] = (a[i] - t) / 2;
+        a[i] = (a[i] + t) / 2;
+      }
 }
 vi convolution_xor(vi a, vi b) {
-	int n = ssize(a);
-	assert((n & (n - 1)) == 0 and ssize(b) == n);
-	fwht_xor(a);
-	fwht_xor(b);
-	REP(i, n)
-		a[i] *= b[i];
-	return ifwht_xor(a), a;
+  int n = ssize(a);
+  assert((n & (n - 1)) == 0 and ssize(b) == n);
+  fwht_xor(a);
+  fwht_xor(b);
+  REP(i, n)
+    a[i] *= b[i];
+  return ifwht_xor(a), a;
 } // END HASH

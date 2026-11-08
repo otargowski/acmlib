@@ -3,137 +3,137 @@
 
 template<typename T>
 bool contains(C V<T>& v, T x) {
-	return find(all(v), x) != v.end();
+  return find(all(v), x) != v.end();
 }
 
 bool is_edge_coverable(int n, C V<pii>& edges) {
-	vi vis(n, 1);
-	for (auto [a, b] : edges)
-		vis[a] = vis[b] = 0;
-	return n == 0 or *max_element(all(vis)) == 0;
+  vi vis(n, 1);
+  for (auto [a, b] : edges)
+    vis[a] = vis[b] = 0;
+  return n == 0 or *max_element(all(vis)) == 0;
 }
 
 bool is_edge_cover(int n, C V<pii>& edges, C V<pii>& edge_cover) {
-	auto doubled_edges = edges;
-	for (auto [a, b] : edges)
-		doubled_edges.eb(b, a);
-	for (auto e : edge_cover)
-		if (not contains(doubled_edges, e))
-			return false;
+  auto doubled_edges = edges;
+  for (auto [a, b] : edges)
+    doubled_edges.eb(b, a);
+  for (auto e : edge_cover)
+    if (not contains(doubled_edges, e))
+      return false;
 
-	vi vis(n, 1);
-	for (auto [a, b] : edge_cover)
-		vis[a] = vis[b] = 0;
-	return n == 0 or *max_element(all(vis)) == 0;
+  vi vis(n, 1);
+  for (auto [a, b] : edge_cover)
+    vis[a] = vis[b] = 0;
+  return n == 0 or *max_element(all(vis)) == 0;
 }
 
 int brute_edge_cover(int n, C V<pii>& edges) {
-	int ans = ssize(edges);
-	REP(mask, 1 << ssize(edges)) {
-		V<pii> edge_cover;
-		REP(i, ssize(edges))
-			if ((mask >> i) & 1)
-				edge_cover.eb(edges[i]);
-		if (is_edge_cover(n, edges, edge_cover))
-			chmin(ans, __builtin_popcount(mask));
-	}
-	return ans;
+  int ans = ssize(edges);
+  REP(mask, 1 << ssize(edges)) {
+    V<pii> edge_cover;
+    REP(i, ssize(edges))
+      if ((mask >> i) & 1)
+        edge_cover.eb(edges[i]);
+    if (is_edge_cover(n, edges, edge_cover))
+      chmin(ans, __builtin_popcount(mask));
+  }
+  return ans;
 }
 
 bool is_independent_set(int n, C V<pii>& edges, C vi independent_set) {
-	assert(independent_set.empty() or *min_element(all(independent_set)) >= 0);
-	assert(independent_set.empty() or *max_element(all(independent_set)) < n);
-	for (auto [a, b] : edges)
-		if (contains(independent_set, a) and contains(independent_set, b))
-			return false;
-	return true;
+  assert(independent_set.empty() or *min_element(all(independent_set)) >= 0);
+  assert(independent_set.empty() or *max_element(all(independent_set)) < n);
+  for (auto [a, b] : edges)
+    if (contains(independent_set, a) and contains(independent_set, b))
+      return false;
+  return true;
 }
 
 int brute_independent_set(int n, C V<pii>& edges) {
-	int ans = 0;
-	REP(mask, 1 << n) {
-		vi independent_set;
-		REP(i, n)
-			if ((mask >> i) & 1)
-				independent_set.eb(i);
-		if (is_independent_set(n, edges, independent_set))
-			chmax(ans, __builtin_popcount(mask));
-	}
-	return ans;
+  int ans = 0;
+  REP(mask, 1 << n) {
+    vi independent_set;
+    REP(i, n)
+      if ((mask >> i) & 1)
+        independent_set.eb(i);
+    if (is_independent_set(n, edges, independent_set))
+      chmax(ans, __builtin_popcount(mask));
+  }
+  return ans;
 }
 
 bool is_vertex_cover(int n, C V<pii>& edges, C vi vertex_cover) {
-	assert(vertex_cover.empty() or *min_element(all(vertex_cover)) >= 0);
-	assert(vertex_cover.empty() or *max_element(all(vertex_cover)) < n);
-	for (auto [a, b] : edges)
-		if (not contains(vertex_cover, a) and not contains(vertex_cover, b))
-			return false;
-	return true;
+  assert(vertex_cover.empty() or *min_element(all(vertex_cover)) >= 0);
+  assert(vertex_cover.empty() or *max_element(all(vertex_cover)) < n);
+  for (auto [a, b] : edges)
+    if (not contains(vertex_cover, a) and not contains(vertex_cover, b))
+      return false;
+  return true;
 }
 
 int brute_vertex_cover(int n, C V<pii>& edges) {
-	int ans = ssize(edges);
-	REP(mask, 1 << n) {
-		vi vertex_cover;
-		REP(i, n)
-			if ((mask >> i) & 1)
-				vertex_cover.eb(i);
-		if (is_vertex_cover(n, edges, vertex_cover))
-			chmin(ans, __builtin_popcount(mask));
-	}
-	return ans;
+  int ans = ssize(edges);
+  REP(mask, 1 << n) {
+    vi vertex_cover;
+    REP(i, n)
+      if ((mask >> i) & 1)
+        vertex_cover.eb(i);
+    if (is_vertex_cover(n, edges, vertex_cover))
+      chmin(ans, __builtin_popcount(mask));
+  }
+  return ans;
 }
 
 void test() {
-	C int max_side = 7;
-	C int max_edges = 15;
+  C int max_side = 7;
+  C int max_edges = 15;
 
-	int n0 = rd(0, max_side), n1 = rd(0, max_side);
-	int n = n0 + n1;
-	vi which_group(n0 + n1);
-	REP(i, n1)
-		which_group[i] = 1;
-	shuffle(all(which_group), rng);
-	array<vi, 2> in_group;
-	REP(v, n)
-		in_group[which_group[v]].eb(v);
+  int n0 = rd(0, max_side), n1 = rd(0, max_side);
+  int n = n0 + n1;
+  vi which_group(n0 + n1);
+  REP(i, n1)
+    which_group[i] = 1;
+  shuffle(all(which_group), rng);
+  array<vi, 2> in_group;
+  REP(v, n)
+    in_group[which_group[v]].eb(v);
 
-	int m = min(max_edges, rd(0, n0 * n1));
-	V<pii> edges(m);
-	for(auto &[v, u] : edges) {
-		v = in_group[0][rd(0, n0 - 1)];
-		u = in_group[1][rd(0, n1 - 1)];
-		if(rd(0, 1))
-			swap(v, u);
-	}
-	debug(n, edges);
+  int m = min(max_edges, rd(0, n0 * n1));
+  V<pii> edges(m);
+  for(auto &[v, u] : edges) {
+    v = in_group[0][rd(0, n0 - 1)];
+    u = in_group[1][rd(0, n1 - 1)];
+    if(rd(0, 1))
+      swap(v, u);
+  }
+  debug(n, edges);
 
-	V<vi> graph(n);
-	for(auto [v, u] : edges) {
-		graph[v].eb(u);
-		graph[u].eb(v);
-	}
+  V<vi> graph(n);
+  for(auto [v, u] : edges) {
+    graph[v].eb(u);
+    graph[u].eb(v);
+  }
 
-	{ // min_edge_cover
-		auto edge_cover = get_min_edge_cover(graph);
-		debug(edge_cover);
-		if (is_edge_coverable(n, edges)) {
-			assert(ssize(edge_cover) == brute_edge_cover(n, edges));
-			assert(is_edge_cover(n, edges, edge_cover));
-		}
-	}
+  { // min_edge_cover
+    auto edge_cover = get_min_edge_cover(graph);
+    debug(edge_cover);
+    if (is_edge_coverable(n, edges)) {
+      assert(ssize(edge_cover) == brute_edge_cover(n, edges));
+      assert(is_edge_cover(n, edges, edge_cover));
+    }
+  }
 
-	{ // max_independent_set
-		auto independent_set = get_max_independent_set(graph);
-		debug(independent_set);
-		assert(ssize(independent_set) == brute_independent_set(n, edges));
-		assert(is_independent_set(n, edges, independent_set));
-	}
+  { // max_independent_set
+    auto independent_set = get_max_independent_set(graph);
+    debug(independent_set);
+    assert(ssize(independent_set) == brute_independent_set(n, edges));
+    assert(is_independent_set(n, edges, independent_set));
+  }
 
-	{ // min_vertex_cover
-		auto vertex_cover = get_min_vertex_cover(graph);
-		debug(vertex_cover);
-		assert(ssize(vertex_cover) == brute_vertex_cover(n, edges));
-		assert(is_vertex_cover(n, edges, vertex_cover));
-	}
+  { // min_vertex_cover
+    auto vertex_cover = get_min_vertex_cover(graph);
+    debug(vertex_cover);
+    assert(ssize(vertex_cover) == brute_vertex_cover(n, edges));
+    assert(is_vertex_cover(n, edges, vertex_cover));
+  }
 }

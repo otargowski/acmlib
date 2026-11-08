@@ -8,8 +8,8 @@
 #include "../area/main.cpp"
 
 void test() {
-	int N = rd(3, 50);
-	int z = int(1e5);
-	auto v = gen_polygon(N, z);
-	assert(area(v) > 0);
+  int N = rd(3, 50);
+  int z = int(1e5);
+  auto v = gen_polygon(N, z);
+  assert(area(v) > 0);
 }

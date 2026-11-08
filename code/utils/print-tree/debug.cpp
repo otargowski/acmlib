@@ -2,20 +2,20 @@
 #include "main.cpp"
 
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
 
-	int n;
-	cin >> n;
-	V<vi> adj(n);
-	REP(i, n - 1) {
-		int a, b;
-		cin >> a >> b;
-		adj[a - 1].eb(b - 1);
-		adj[b - 1].eb(a - 1);
-	}
+  int n;
+  cin >> n;
+  V<vi> adj(n);
+  REP(i, n - 1) {
+    int a, b;
+    cin >> a >> b;
+    adj[a - 1].eb(b - 1);
+    adj[b - 1].eb(a - 1);
+  }
 
-	print_tree(adj);
+  print_tree(adj);
 }
 
 /*

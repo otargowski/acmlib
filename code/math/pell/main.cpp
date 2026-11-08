@@ -6,29 +6,29 @@
  *   w razie potrzeby można przepisać na pythona lub użyć bignumów.
  */
 pair<ll, ll> pell(ll n) {
-	ll s = ll(sqrtl(n));
-	if (s * s == n) return {0, 0};
-	ll m = 0, d = 1, a = s;
-	__int128 num1 = 1, num2 = a, den1 = 0, den2 = 1;
-	while (num2 * num2 - n * den2 * den2 != 1) {
-		m = d * a - m;
-		d = (n - m * m) / d;
-		a = (s + m) / d;
-		if (num2 > (1ll << 62) / a) return {0, 0};
-		tie(num1, num2) = pair(num2, a * num2 + num1);
-		tie(den1, den2) = pair(den2, a * den2 + den1);
-	}
-	return {num2, den2};
+  ll s = ll(sqrtl(n));
+  if (s * s == n) return {0, 0};
+  ll m = 0, d = 1, a = s;
+  __int128 num1 = 1, num2 = a, den1 = 0, den2 = 1;
+  while (num2 * num2 - n * den2 * den2 != 1) {
+    m = d * a - m;
+    d = (n - m * m) / d;
+    a = (s + m) / d;
+    if (num2 > (1ll << 62) / a) return {0, 0};
+    tie(num1, num2) = pair(num2, a * num2 + num1);
+    tie(den1, den2) = pair(den2, a * den2 + den1);
+  }
+  return {num2, den2};
 }
 V<pair<ll, ll>> all_pell(ll n, ll limit) {
-	auto [x0, y0] = pell(n);
-	if (!x0) return {};
-	V<pair<ll, ll>> ret;
-	__int128 x = x0, y = y0;
-	while (x <= limit) {
-		ret.eb(x, y);
-		if (y0 * y > (1ll << 62) / n) break;
-		tie(x, y) = pair(x0 * x + n * y0 * y, x0 * y + y0 * x);
-	}
-	return ret;
+  auto [x0, y0] = pell(n);
+  if (!x0) return {};
+  V<pair<ll, ll>> ret;
+  __int128 x = x0, y = y0;
+  while (x <= limit) {
+    ret.eb(x, y);
+    if (y0 * y > (1ll << 62) / n) break;
+    tie(x, y) = pair(x0 * x + n * y0 * y, x0 * y + y0 * x);
+  }
+  return ret;
 }

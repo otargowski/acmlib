@@ -4,26 +4,26 @@
  */
 #include "../eulerian-path/main.cpp"
 vi de_brujin(int k, int n, bool is_path) {
-	if (n == 1) {
-		vi v(k);
-		iota(all(v), 0);
-		return v;
-	}
-	if (k == 1)
-		return V (n, 0);
-	int N = 1;
-	REP(i, n - 1)
-		N *= k;
-	V<pii> edges;
-	REP(i, N)
-		REP(j, k)
-			edges.eb(i, i * k % N + j);
-	vi path = get<2>(eulerian_path(N, edges, true));
-	path.pop_back();
-	for(auto& e : path)
-		e = e % k;
-	if (is_path)
-		REP(i, n - 1)
-			path.eb(path[i]);
-	return path;
+  if (n == 1) {
+    vi v(k);
+    iota(all(v), 0);
+    return v;
+  }
+  if (k == 1)
+    return V (n, 0);
+  int N = 1;
+  REP(i, n - 1)
+    N *= k;
+  V<pii> edges;
+  REP(i, N)
+    REP(j, k)
+      edges.eb(i, i * k % N + j);
+  vi path = get<2>(eulerian_path(N, edges, true));
+  path.pop_back();
+  for(auto& e : path)
+    e = e % k;
+  if (is_path)
+    REP(i, n - 1)
+      path.eb(path[i]);
+  return path;
 }

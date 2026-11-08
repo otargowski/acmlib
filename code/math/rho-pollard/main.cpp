@@ -10,51 +10,51 @@
 #include "../miller-rabin/main.cpp"
 // BEGIN HASH
 ll rho_pollard(ll n) {
-	if(n % 2 == 0) return 2;
-	for(ll i = 1;; i++) {
-		auto f = [&](ll x) { return (llmul(x, x, n) + i) % n; };
-		ll x = 2, y = f(x), p;
-		while((p = __gcd(n - x + y, n)) == 1)
-			x = f(x), y = f(f(y));
-		if(p != n) return p;
-	}
+  if(n % 2 == 0) return 2;
+  for(ll i = 1;; i++) {
+    auto f = [&](ll x) { return (llmul(x, x, n) + i) % n; };
+    ll x = 2, y = f(x), p;
+    while((p = __gcd(n - x + y, n)) == 1)
+      x = f(x), y = f(f(y));
+    if(p != n) return p;
+  }
 }
 vll factor(ll n) {
-	if(n == 1) return {};
-	if(miller_rabin(n)) return {n};
-	ll x = rho_pollard(n);
-	auto l = factor(x), r = factor(n / x);
-	l.insert(l.end(), r.begin(), r.end());
-	return l;
+  if(n == 1) return {};
+  if(miller_rabin(n)) return {n};
+  ll x = rho_pollard(n);
+  auto l = factor(x), r = factor(n / x);
+  l.insert(l.end(), r.begin(), r.end());
+  return l;
 } // END HASH
 V<pair<ll, int>> get_pairs(ll n) {
-	auto v = factor(n);
-	sort(all(v));
-	V<pair<ll, int>> ret;
-	REP(i, ssize(v)) {
-		int x = i + 1;
-		while (x < ssize(v) and v[x] == v[i])
-			++x;
-		ret.eb(v[i], x - i);
-		i = x - 1;
-	}
-	return ret;
+  auto v = factor(n);
+  sort(all(v));
+  V<pair<ll, int>> ret;
+  REP(i, ssize(v)) {
+    int x = i + 1;
+    while (x < ssize(v) and v[x] == v[i])
+      ++x;
+    ret.eb(v[i], x - i);
+    i = x - 1;
+  }
+  return ret;
 }
 vll all_factors(ll n) {
-	auto v = get_pairs(n);
-	vll ret;
-	function<void(ll,int)> gen = [&](ll val, int p) {
-		if (p == ssize(v)) {
-			ret.eb(val);
-			return;
-		}
-		auto [x, cnt] = v[p];
-		gen(val, p + 1);
-		REP(i, cnt) {
-			val *= x;
-			gen(val, p + 1);
-		}
-	};
-	gen(1, 0);
-	return ret;
+  auto v = get_pairs(n);
+  vll ret;
+  function<void(ll,int)> gen = [&](ll val, int p) {
+    if (p == ssize(v)) {
+      ret.eb(val);
+      return;
+    }
+    auto [x, cnt] = v[p];
+    gen(val, p + 1);
+    REP(i, cnt) {
+      val *= x;
+      gen(val, p + 1);
+    }
+  };
+  gen(1, 0);
+  return ret;
 }

@@ -11,47 +11,47 @@
  */
 // BEGIN HASH
 vi get_toposort_order(V<vi> graph) {
-	int n = ssize(graph);
-	vi indeg(n);
-	REP(v, n)
-		for(int u : graph[v])
-			++indeg[u];
-	vi que;
-	REP(v, n)
-		if(indeg[v] == 0)
-			que.eb(v);
-	vi ret;
-	while(not que.empty()) {
-		int v = que.back();
-		que.pop_back();
-		ret.eb(v);
-		for(int u : graph[v])
-			if(--indeg[u] == 0)
-				que.eb(u);
-	}
-	return ret;
+  int n = ssize(graph);
+  vi indeg(n);
+  REP(v, n)
+    for(int u : graph[v])
+      ++indeg[u];
+  vi que;
+  REP(v, n)
+    if(indeg[v] == 0)
+      que.eb(v);
+  vi ret;
+  while(not que.empty()) {
+    int v = que.back();
+    que.pop_back();
+    ret.eb(v);
+    for(int u : graph[v])
+      if(--indeg[u] == 0)
+        que.eb(u);
+  }
+  return ret;
 } // END HASH
 vi get_new_vertex_id_from_order(vi order) {
-	vi ret(ssize(order), -1);
-	REP(v, ssize(order))
-		ret[order[v]] = v;
-	return ret;
+  vi ret(ssize(order), -1);
+  REP(v, ssize(order))
+    ret[order[v]] = v;
+  return ret;
 }
 template<class T>
 V<T> permute(V<T> elems, vi new_id) {
-	V<T> ret(ssize(elems));
-	REP(v, ssize(elems))
-		ret[new_id[v]] = elems[v];
-	return ret;
+  V<T> ret(ssize(elems));
+  REP(v, ssize(elems))
+    ret[new_id[v]] = elems[v];
+  return ret;
 }
 V<vi> renumerate_vertices(V<vi> graph, vi new_id) {
-	int n = ssize(graph);
-	V<vi> ret(n);
-	REP(v, n)
-		for(int u : graph[v])
-			ret[new_id[v]].eb(new_id[u]);
-	REP(v, n)
-		for(int u : ret[v])
-			assert(v < u);
-	return ret;
+  int n = ssize(graph);
+  V<vi> ret(n);
+  REP(v, n)
+    for(int u : graph[v])
+      ret[new_id[v]].eb(new_id[u]);
+  REP(v, n)
+    for(int u : ret[v])
+      assert(v < u);
+  return ret;
 }

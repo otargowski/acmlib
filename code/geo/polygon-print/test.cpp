@@ -9,11 +9,11 @@
 
 
 void test() {
-	/*
-	auto v = gen_polygon(8, 8);
-	debug(v);
-	polygon_print(v, 10);
-	exit(0);
-	*/
+  /*
+  auto v = gen_polygon(8, 8);
+  debug(v);
+  polygon_print(v, 10);
+  exit(0);
+  */
 }
 

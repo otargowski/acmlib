@@ -2,6 +2,6 @@
 #include "main.cpp"
 
 void test() {
-	// Checking whether it compiles without warnings.
-	exit(0);
+  // Checking whether it compiles without warnings.
+  exit(0);
 }

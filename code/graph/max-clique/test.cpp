@@ -2,41 +2,41 @@
 #include "main.cpp"
 
 void test() {
-	int n = rd(1, 12);
-	V<bitset<max_n>> graph(n);
-	int m = rd(0, n * n);
-	while(m --> 0) {
-		int v = rd(0, n - 1);
-		int u = rd(0, n - 1);
-		if(v == u)
-			continue;
-		graph[v][u] = graph[u][v] = true;
-	}
-	debug(n);
-	REP(v, n)
-		REP(u, n)
-			debug(v, u, graph[v][u]);
+  int n = rd(1, 12);
+  V<bitset<max_n>> graph(n);
+  int m = rd(0, n * n);
+  while(m --> 0) {
+    int v = rd(0, n - 1);
+    int u = rd(0, n - 1);
+    if(v == u)
+      continue;
+    graph[v][u] = graph[u][v] = true;
+  }
+  debug(n);
+  REP(v, n)
+    REP(u, n)
+      debug(v, u, graph[v][u]);
 
-	auto max_clique = get_max_clique(graph);
+  auto max_clique = get_max_clique(graph);
 
-	auto is_ok = [&](vi v) {
-		REP(i, ssize(v))
-			REP(j, i)
-				if(not graph[v[i]][v[j]])
-					return false;
-		return true;
-	};
+  auto is_ok = [&](vi v) {
+    REP(i, ssize(v))
+      REP(j, i)
+        if(not graph[v[i]][v[j]])
+          return false;
+    return true;
+  };
 
-	int best_brute = 0;
-	REP(mask, 1 << n) {
-		vi v;
-		REP(i, n)
-			if((mask >> i) & 1)
-				v.eb(i);
-		if(is_ok(v))
-			chmax(best_brute, __builtin_popcount(mask));
-	}
+  int best_brute = 0;
+  REP(mask, 1 << n) {
+    vi v;
+    REP(i, n)
+      if((mask >> i) & 1)
+        v.eb(i);
+    if(is_ok(v))
+      chmax(best_brute, __builtin_popcount(mask));
+  }
 
-	assert(ssize(max_clique) == best_brute);
-	assert(is_ok(max_clique));
+  assert(ssize(max_clique) == best_brute);
+  assert(is_ok(max_clique));
 }

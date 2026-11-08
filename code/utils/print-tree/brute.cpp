@@ -15,18 +15,18 @@ template<class T>auto operator<<(ostream&o,T x)->decltype(x.end(),o){o<<'{';int 
 #include "main.cpp"
 
 int main() {
-	cin.tie(0)->sync_with_stdio(0);
+  cin.tie(0)->sync_with_stdio(0);
 
 
-	int n;
-	cin >> n;
-	V<vi> adj(n);
-	REP(i,n-1) {
-		int a, b;
-		cin >> a >> b;
-		--a, --b;
-		adj[a].eb(b);
-		adj[b].eb(a);
-	}
-	print_tree(adj);
+  int n;
+  cin >> n;
+  V<vi> adj(n);
+  REP(i,n-1) {
+    int a, b;
+    cin >> a >> b;
+    --a, --b;
+    adj[a].eb(b);
+    adj[b].eb(a);
+  }
+  print_tree(adj);
 }

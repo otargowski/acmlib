@@ -2,17 +2,17 @@
 #include "main.cpp"
 
 void test() {
-	int n = rd(1, 20);
-	vi a(n);
-	REP(i,n) a[i] = rd(1, 20);
-	RMQ rmq(a);
-	REP(i,n) {
-		REP(j,i) {
-			auto ans = rmq.query(j, i);
-			int brute = 1 << 30;
-			FOR(k,j,i)
-				chmin(brute, a[k]);
-			assert(ans == brute);
-		}
-	}
+  int n = rd(1, 20);
+  vi a(n);
+  REP(i,n) a[i] = rd(1, 20);
+  RMQ rmq(a);
+  REP(i,n) {
+    REP(j,i) {
+      auto ans = rmq.query(j, i);
+      int brute = 1 << 30;
+      FOR(k,j,i)
+        chmin(brute, a[k]);
+      assert(ans == brute);
+    }
+  }
 }

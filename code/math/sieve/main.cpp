@@ -9,17 +9,17 @@
 V<bool> comp;
 vi primes, prime_div;
 void sieve(int n) {
-	primes.clear();
-	comp.resize(n + 1);
-	prime_div.resize(n + 1);
-	FOR(i, 2, n) {
-		if (!comp[i]) primes.eb(i), prime_div[i] = i;
-		for (int p : primes) {
-			int x = i * p;
-			if (x > n) break;
-			comp[x] = true;
-			prime_div[x] = p;
-			if (i % p == 0) break;
-		}
-	}
+  primes.clear();
+  comp.resize(n + 1);
+  prime_div.resize(n + 1);
+  FOR(i, 2, n) {
+    if (!comp[i]) primes.eb(i), prime_div[i] = i;
+    for (int p : primes) {
+      int x = i * p;
+      if (x > n) break;
+      comp[x] = true;
+      prime_div[x] = p;
+      if (i % p == 0) break;
+    }
+  }
 }
