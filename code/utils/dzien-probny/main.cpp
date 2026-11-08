@@ -13,11 +13,11 @@ void test_int128() {
 		s += char(x % 10 + '0');
 		x /= 10;
 	}
-	assert(s == "61231558446921906466935685523974676212");
+	assert(s=="61231558446921906466935685523974676212");
 }
 void test_float128() {
 	__float128 x = 4.2;
-	assert(abs(double(x * x) - double(4.2 * 4.2)) < 1e-9);
+	assert(abs(double(x*x) - double(4.2 * 4.2)) < 1e-9);
 }
 void test_clock() {
 	long seeed = chrono::system_clock::now().time_since_epoch().count();
