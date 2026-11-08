@@ -31,10 +31,10 @@ void chmax(auto &a, auto b){a=max(a,b);}
 ci inf=2.1e9;
 cll infll=4.5e18;
 int I(){
-    int z;
-    scanf("%d", &z);
-    //cin>>z;
-    return z;
+	int z;
+	scanf("%d", &z);
+	//cin>>z;
+	return z;
 }
 
 template<class A, class B> auto& operator<<(ostream &o, pair<A, B> p) {
