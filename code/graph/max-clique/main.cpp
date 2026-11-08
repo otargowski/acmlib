@@ -23,7 +23,7 @@ vi get_max_clique(V<bitset<max_n>> e) {
       if (ssize(q) + R.back().fi <= ssize(qmax)) return;
       q.eb(R.back().se);
       V<pii> T;
-      for(auto [_, vv] : R) if (e[R.back().se][vv]) T.eb(0, vv);
+      for (auto [_, vv] : R) if (e[R.back().se][vv]) T.eb(0, vv);
       if (ssize(T)) {
         if (S[lev]++ / ++pk < limit) init(T);
         int j = 0, mxk = 1, mnk = max(ssize(qmax) - ssize(q) + 1, 1);

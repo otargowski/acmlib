@@ -11,7 +11,7 @@ void test() {
   tie(gcd, x, y) = extended_gcd(a, b);
   assert(gcd == good_gcd);
 
-  if(test_type == 0)
+  if (test_type == 0)
     assert(a * x + b * y == gcd);
   debug(a, b, x, y, gcd);
   assert(abs(x) < abs(b) && abs(y) < abs(a));

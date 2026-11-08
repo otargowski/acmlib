@@ -17,16 +17,16 @@ void test() {
       debug(v, is_lit[v], aho.link(v), is_lit[aho.link(v)]);
       is_lit[v] = is_lit[v] or (v != 0 and is_lit[aho.link(v)]);
       REP(c, alpha)
-        if(aho.node[v].next[c] != -1)
+        if (aho.node[v].next[c] != -1)
           que.eb(aho.node[v].next[c]);
     }
     return is_lit;
   };
 
   V<vi> patterns;
-  while(str_cnt --> 0) {
+  while (str_cnt --> 0) {
     vi pattern(rd(1, max_len_str));
-    for(int &c : pattern)
+    for (int &c : pattern)
       c = rd(0, alpha - 1);
     patterns.eb(pattern);
     aho.add(pattern);
@@ -37,8 +37,8 @@ void test() {
   auto is_suffix_equal_to_pattern = [&](vi text) {
     REP(i, ssize(text)) {
       vi suffix(text.begin() + i, text.end());
-      for(auto &pattern : patterns)
-        if(suffix == pattern)
+      for (auto &pattern : patterns)
+        if (suffix == pattern)
           return true;
     }
     return false;
@@ -50,9 +50,9 @@ void test() {
   is_suffix_end = is_lit_on_link_path(is_suffix_end);
   debug(is_suffix_end);
 
-  while(queries --> 0) {
+  while (queries --> 0) {
     vi text(rd(1, max_len_str));
-    for(int &c : text)
+    for (int &c : text)
       c = rd(0, alpha - 1);
 
     int v = 0;

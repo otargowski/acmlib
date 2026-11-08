@@ -6,7 +6,7 @@
  */
 #include "../extended-gcd/main.cpp"
 ll crt(ll a, ll m, ll b, ll n) {
-  if(n > m) swap(a, b), swap(m, n);
+  if (n > m) swap(a, b), swap(m, n);
   auto [d, x, y] = extended_gcd(m, n);
   assert((a - b) % d == 0);
   ll ret = (b - a) % n * x % n / d * m + a;

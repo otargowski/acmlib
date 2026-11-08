@@ -10,11 +10,11 @@ struct Fenwick2d {
   V<Fenwick> ft;
   Fenwick2d(int limx) : ys(limx) {}
   void preprocess(int x, int y) {
-    for(; x < ssize(ys); x |= x + 1)
+    for (; x < ssize(ys); x |= x + 1)
       ys[x].pb(y);
   }
   void init() {
-    for(auto &v : ys) {
+    for (auto &v : ys) {
       sort(all(v));
       ft.eb(ssize(v));
     }
@@ -24,12 +24,12 @@ struct Fenwick2d {
     return int(distance(ys[x].begin(), it));
   }
   void update(int x, int y, ll val) {
-    for(; x < ssize(ys); x |= x + 1)
+    for (; x < ssize(ys); x |= x + 1)
       ft[x].update(ind(x, y), val);
   }
   ll query(int x, int y) {
     ll sum = 0;
-    for(x++; x > 0; x &= x - 1)
+    for (x++; x > 0; x &= x - 1)
       sum += ft[x - 1].query(ind(x - 1, y + 1) - 1);
     return sum;
   }

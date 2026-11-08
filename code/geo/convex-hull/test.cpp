@@ -5,29 +5,29 @@
 void test() {
   int n = rd(0, 7);
   V<P> in(n);
-  for(auto &p : in)
+  for (auto &p : in)
     p = P(rd(-10, 10), rd(-10, 10));
   debug(in);
 
   vi best_hull(n + 1);
 
   auto is_good_order = [&](vi order) {
-    if(ssize(order) <= 1)
+    if (ssize(order) <= 1)
       return ssize(order) == n;
-    for(int i : order)
-      if(in[i] < in[order[0]])
+    for (int i : order)
+      if (in[i] < in[order[0]])
         return false;
     REP(i, ssize(order))
       REP(j, i)
-        if(in[order[i]] == in[order[j]])
+        if (in[order[i]] == in[order[j]])
           return false;
     REP(i, ssize(order))
-      for(int ord : order)
-        if(dir(in[order[i]], in[order[(i + 1) % ssize(order)]], in[ord]) > 0)
+      for (int ord : order)
+        if (dir(in[order[i]], in[order[(i + 1) % ssize(order)]], in[ord]) > 0)
           return false;
     REP(i, ssize(order))
-      for(P p : in)
-        if(dir(in[order[i]], in[order[(i + 1) % ssize(order)]], p) > 0)
+      for (P p : in)
+        if (dir(in[order[i]], in[order[(i + 1) % ssize(order)]], p) > 0)
           return false;
     return true;
   };
@@ -35,10 +35,10 @@ void test() {
   V<bool> taken(n);
   vi curr_order;
   function<void ()> backtrack = [&] {
-    if(is_good_order(curr_order) and ssize(curr_order) < ssize(best_hull))
+    if (is_good_order(curr_order) and ssize(curr_order) < ssize(best_hull))
       best_hull = curr_order;
     REP(i, n)
-      if(not taken[i]) {
+      if (not taken[i]) {
         taken[i] = true;
         curr_order.eb(i);
         backtrack();
@@ -50,15 +50,15 @@ void test() {
   debug(best_hull);
 
   V<P> brute;
-  for(int i : best_hull)
+  for (int i : best_hull)
     brute.eb(in[i]);
 
   bool all_colinear = n > 1;
   REP(i, n)
     REP(j, n)
-      if(dir(in[0], in[i], in[j]) != 0)
+      if (dir(in[0], in[i], in[j]) != 0)
         all_colinear = false;
-  if(all_colinear)
+  if (all_colinear)
     brute = {*min_element(all(in)), *max_element(all(in))};
 
   V<P> wzorc = hull(in);

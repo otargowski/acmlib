@@ -15,25 +15,25 @@ ll llpowi(ll a, ll n, ll m) {
   }
 }
 bool miller_rabin(ll n) {
-  if(n < 2) return false;
+  if (n < 2) return false;
   int r = 0;
   ll d = n - 1;
-  while(d % 2 == 0)
+  while (d % 2 == 0)
     d /= 2, r++;
-  for(int a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
+  for (int a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
     if (a % n == 0) continue;
     ll x = llpowi(a, d, n);
-    if(x == 1 || x == n - 1)
+    if (x == 1 || x == n - 1)
       continue;
     bool composite = true;
     REP(i, r - 1) {
       x = llmul(x, x, n);
-      if(x == n - 1) {
+      if (x == n - 1) {
         composite = false;
         break;
       }
     }
-    if(composite) return false;
+    if (composite) return false;
   }
   return true;
 }

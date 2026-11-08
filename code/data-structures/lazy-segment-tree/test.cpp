@@ -6,10 +6,10 @@ void test() {
   Tree tree(n);
   vll brute(n);
   int op_cnt = rd(1, 100);
-  while(op_cnt --> 0) {
-    if(rd(0, 1)) {
+  while (op_cnt --> 0) {
+    if (rd(0, 1)) {
       int l = rd(0, n - 1), r = rd(0, n - 1);
-      if(l > r)
+      if (l > r)
         swap(l, r);
       ll sum_brute = 0;
       FOR(i, l, r)
@@ -18,7 +18,7 @@ void test() {
     }
     else {
       int l = rd(0, n - 1), r = rd(0, n - 1);
-      if(l > r)
+      if (l > r)
         swap(l, r);
       int val = rd(-10, 10);
       FOR(i, l, r)

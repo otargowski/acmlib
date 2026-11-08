@@ -6,7 +6,7 @@ void test() {
   int n = rd(1, 100);
   vi a(n);
   REP(i, n) {
-    while(a[i] == 0 || s.find(a[i]) != s.end())
+    while (a[i] == 0 || s.find(a[i]) != s.end())
       a[i] = rd(1, 1000000000);
     s.insert(a[i]);
   }

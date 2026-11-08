@@ -10,18 +10,18 @@
 #include "../miller-rabin/main.cpp"
 // BEGIN HASH
 ll rho_pollard(ll n) {
-  if(n % 2 == 0) return 2;
-  for(ll i = 1;; i++) {
+  if (n % 2 == 0) return 2;
+  for (ll i = 1;; i++) {
     auto f = [&](ll x) { return (llmul(x, x, n) + i) % n; };
     ll x = 2, y = f(x), p;
-    while((p = __gcd(n - x + y, n)) == 1)
+    while ((p = __gcd(n - x + y, n)) == 1)
       x = f(x), y = f(f(y));
-    if(p != n) return p;
+    if (p != n) return p;
   }
 }
 vll factor(ll n) {
-  if(n == 1) return {};
-  if(miller_rabin(n)) return {n};
+  if (n == 1) return {};
+  if (miller_rabin(n)) return {n};
   ll x = rho_pollard(n);
   auto l = factor(x), r = factor(n / x);
   l.insert(l.end(), r.begin(), r.end());

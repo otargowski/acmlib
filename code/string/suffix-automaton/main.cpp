@@ -21,13 +21,13 @@ struct SuffixAutomaton {
     length.eb(length[last] + 1);
     link.eb(0);
     int r = ssize(edges) - 1, p = last;
-    while(p != -1 && edges[p][c] == -1) {
+    while (p != -1 && edges[p][c] == -1) {
       edges[p][c] = r;
       p = link[p];
     }
-    if(p != -1) {
+    if (p != -1) {
       int q = edges[p][c];
-      if(length[p] + 1 == length[q])
+      if (length[p] + 1 == length[q])
         link[r] = q;
       else {
         edges.eb(edges[q]);
@@ -35,7 +35,7 @@ struct SuffixAutomaton {
         link.eb(link[q]);
         int q_prim = ssize(edges) - 1;
         link[q] = link[r] = q_prim;
-        while(p != -1 && edges[p][c] == q) {
+        while (p != -1 && edges[p][c] == q) {
           edges[p][c] = q_prim;
           p = link[p];
         }
@@ -45,8 +45,8 @@ struct SuffixAutomaton {
   }
   bool is_inside(vi &s) {
     int q = 0;
-    for(int c : s) {
-      if(edges[q][c] == -1)
+    for (int c : s) {
+      if (edges[q][c] == -1)
         return false;
       q = edges[q][c];
     }

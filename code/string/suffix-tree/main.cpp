@@ -53,7 +53,7 @@ suff:
     // When changing map to V, fill sons exactly here with -1 and replace if in ukkadd with sons[tv][c] == -1.
     REP(ch, alpha)
       sons[1][ch] = 0;
-    for(; la < n; ++la)
+    for (; la < n; ++la)
       ukkadd(in[la]);
   }
 };

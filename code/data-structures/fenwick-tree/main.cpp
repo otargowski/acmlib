@@ -7,12 +7,12 @@ struct Fenwick {
   vll s;
   Fenwick(int n) : s(n) {}
   void update(int pos, ll val) {
-    for(; pos < ssize(s); pos |= pos + 1)
+    for (; pos < ssize(s); pos |= pos + 1)
       s[pos] += val;
   }
   ll query(int pos) {
     ll ret = 0;
-    for(pos++; pos > 0; pos &= pos - 1)
+    for (pos++; pos > 0; pos &= pos - 1)
       ret += s[pos - 1];
     return ret;
   }

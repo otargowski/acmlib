@@ -7,14 +7,14 @@ void test() {
   int m = min(19, rd(0, n * n));
   set<pii> used;
   V<pii> edges;
-  while(m --> 0) {
+  while (m --> 0) {
     int v = rd(0, n - 1);
     int u = rd(0, n - 1);
-    while(v == u)
+    while (v == u)
       u = rd(0, n - 1);
-    if(v > u)
+    if (v > u)
       swap(v, u);
-    if(used.find(pair(v, u)) != used.end())
+    if (used.find(pair(v, u)) != used.end())
       continue;
     edges.eb(v, u);
     used.emplace(v, u);
@@ -26,12 +26,12 @@ void test() {
 
   REP(mask, 1 << ssize(edges)) {
     int popcount = __builtin_popcount(mask);
-    if(popcount != 3 and popcount != 4)
+    if (popcount != 3 and popcount != 4)
       continue;
 
     V<vi> graph(n);
     REP(i, ssize(edges))
-      if((mask >> i) & 1) {
+      if ((mask >> i) & 1) {
         auto [v, u] = edges[i];
         graph[v].eb(u);
         graph[u].eb(v);
@@ -39,13 +39,13 @@ void test() {
     vi new_id(n, -1);
     int new_n = 0;
     REP(v, n)
-      if(ssize(graph[v]))
+      if (ssize(graph[v]))
         new_id[v] = new_n++;
 
     V<vi> new_graph(new_n);
     REP(v, n)
-      for(int u : graph[v])
-        if(new_id[v] != -1 and new_id[u] != -1)
+      for (int u : graph[v])
+        if (new_id[v] != -1 and new_id[u] != -1)
           new_graph[new_id[v]].eb(new_id[u]);
     debug(new_graph, popcount, new_n);
 
@@ -58,35 +58,35 @@ void test() {
     V<bool> vis(new_n);
     function<void (int)> dfs = [&](int v) {
       vis[v] = true;
-      for(int u : new_graph[v])
-        if(not vis[u])
+      for (int u : new_graph[v])
+        if (not vis[u])
           dfs(u);
     };
     dfs(0);
-    if(*min_element(all(vis)) == false)
+    if (*min_element(all(vis)) == false)
       continue;
 
     auto get = [&]() -> int& {
-      if(popcount == 3) {
-        if(deg[0] == 2)
+      if (popcount == 3) {
+        if (deg[0] == 2)
           return triangles3;
-        else if(deg.back() == 3)
+        else if (deg.back() == 3)
           return stars3;
         return paths3;
       }
-      if(deg[0] == 2)
+      if (deg[0] == 2)
         return rectangles4;
-      if(deg.back() == 4)
+      if (deg.back() == 4)
         return stars4;
-      if(new_n == 4) {
+      if (new_n == 4) {
         assert(deg[0] == 1 and deg[1] == 2 and deg[2] == 2 and deg[3] == 3);
         return ps4;
       }
-      if(new_n == 5 and deg.back() == 3) {
+      if (new_n == 5 and deg.back() == 3) {
         assert(deg[0] == 1 and deg[1] == 1 and deg[2] == 1 and deg[3] == 2 and deg[4] == 3);
         return ys4;
       }
-      if(new_n == 5) {
+      if (new_n == 5) {
         assert(deg[0] == 1 and deg[1] == 1 and deg[2] == 2 and deg[3] == 2 and deg[4] == 2);
         debug("4", mask, deg);
         return paths4;
@@ -97,7 +97,7 @@ void test() {
   }
 
   V<vi> all_graph(n);
-  for(auto [v, u] : edges) {
+  for (auto [v, u] : edges) {
     all_graph[v].eb(u);
     all_graph[u].eb(v);
   }

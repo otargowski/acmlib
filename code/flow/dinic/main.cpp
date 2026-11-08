@@ -25,11 +25,11 @@ struct Dinic {
     dist.assign(n, 0);
     dist[source] = 1;
     deque<int> que = {source};
-    while(ssize(que) and dist[sink] == 0) {
+    while (ssize(que) and dist[sink] == 0) {
       int v = que.front();
       que.pop_front();
-      for(int e : graph[v])
-        if(edges[e].flow != edges[e].cap and dist[edges[e].u] == 0) {
+      for (int e : graph[v])
+        if (edges[e].flow != edges[e].cap and dist[edges[e].u] == 0) {
           dist[edges[e].u] = dist[v] + 1;
           que.eb(edges[e].u);
         }
@@ -38,12 +38,12 @@ struct Dinic {
   }
   vi ended_at;
   T dfs(int v, int sink, T flow = numeric_limits<T>::max()) {
-    if(flow == 0 or v == sink)
+    if (flow == 0 or v == sink)
       return flow;
-    for(; ended_at[v] != ssize(graph[v]); ++ended_at[v]) {
+    for (; ended_at[v] != ssize(graph[v]); ++ended_at[v]) {
       Edge &e = edges[graph[v][ended_at[v]]];
-      if(dist[v] + 1 == dist[e.u])
-        if(T pushed = dfs(e.u, sink, min(flow, e.cap - e.flow))) {
+      if (dist[v] + 1 == dist[e.u])
+        if (T pushed = dfs(e.u, sink, min(flow, e.cap - e.flow))) {
           e.flow += pushed;
           edges[graph[v][ended_at[v]] ^ 1].flow -= pushed;
           return pushed;
@@ -53,9 +53,9 @@ struct Dinic {
   }
   T operator()(int source, int sink) {
     T answer = 0;
-    while(bfs(source, sink)) {
+    while (bfs(source, sink)) {
       ended_at.assign(n, 0);
-      while(T pushed = dfs(source, sink))
+      while (T pushed = dfs(source, sink))
         answer += pushed;
     }
     return answer;
@@ -63,8 +63,8 @@ struct Dinic {
   map<pii, T> get_flowing() {
     map<pii, T> ret;
     REP(v, n)
-      for(int i : graph[v]) {
-        if(i % 2) // considering only original edges
+      for (int i : graph[v]) {
+        if (i % 2) // considering only original edges
           continue;
         Edge &e = edges[i];
         ret[pair(v, e.u)] += e.flow;

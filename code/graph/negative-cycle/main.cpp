@@ -12,19 +12,19 @@ pair<bool, vi> negative_cycle(V<V<pair<int, I>>> graph) {
   REP(iter, n) {
     v_on_cycle = -1;
     REP(v, n)
-      for(auto [u, w] : graph[v])
-        if(dist[u] > dist[v] + w) {
+      for (auto [u, w] : graph[v])
+        if (dist[u] > dist[v] + w) {
           dist[u] = dist[v] + w;
           from[u] = v;
           v_on_cycle = u;
         }
   }
-  if(v_on_cycle == -1)
+  if (v_on_cycle == -1)
     return {false, {}};
   REP(iter, n)
     v_on_cycle = from[v_on_cycle];
   vi cycle = {v_on_cycle};
-  for(int v = from[v_on_cycle]; v != v_on_cycle; v = from[v])
+  for (int v = from[v_on_cycle]; v != v_on_cycle; v = from[v])
     cycle.eb(v);
   reverse(all(cycle));
   return {true, cycle};

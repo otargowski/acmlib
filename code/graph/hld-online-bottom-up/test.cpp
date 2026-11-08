@@ -21,7 +21,7 @@ DpTwoEnds merge(DpTwoEnds u, DpTwoEnds d) {
   ret.ways_total = add(d.ways_total, u.ways_total);
   ret.ways_u = u.ways_u;
   ret.ways_d = d.ways_d;
-  if(d.color_u == u.color_d) {
+  if (d.color_u == u.color_d) {
     ret.ways_total = add(ret.ways_total, mul(u.ways_d, d.ways_u));
     ret.ways_u = add(ret.ways_u, mul(u.ways_ud, d.ways_u));
     ret.ways_d = add(ret.ways_d, mul(d.ways_ud, u.ways_d));
@@ -76,26 +76,26 @@ void test() {
   auto get_brute = [&] {
     int ans = 0;
     REP(mask, 1 << n)
-      if(mask != 0) {
+      if (mask != 0) {
         V<bool> vis(n);
         function<void (int)> dfs = [&](int v) {
           vis[v] = true;
-          for(int u : graph[v])
-            if(not vis[u] and ((mask >> u) & 1))
+          for (int u : graph[v])
+            if (not vis[u] and ((mask >> u) & 1))
               dfs(u);
         };
         REP(v, n)
-          if((mask >> v) & 1) {
+          if ((mask >> v) & 1) {
             dfs(v);
             break;
           }
-        if(accumulate(all(vis), 0) != __builtin_popcount(mask))
+        if (accumulate(all(vis), 0) != __builtin_popcount(mask))
           continue;
         vi colors;
         REP(v, n)
-          if(vis[v])
+          if (vis[v])
             colors.eb(color[v]);
-        if(*min_element(all(colors)) == *max_element(all(colors)))
+        if (*min_element(all(colors)) == *max_element(all(colors)))
           ++ans;
       }
     return ans;
@@ -104,7 +104,7 @@ void test() {
   DpDynamicBottomUp dp(graph, color);
 
   int iter = rd(1, 20);
-  while(iter --> 0) {
+  while (iter --> 0) {
     assert(dp.get().ways_total == get_brute());
     int v = rd(0, n - 1);
     color[v] = rd(0, 1);

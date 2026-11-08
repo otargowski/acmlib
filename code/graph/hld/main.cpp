@@ -14,18 +14,18 @@ struct HLD {
   void init(int v, int p = -1) {
     par[v] = p;
     sz[v] = 1;
-    if(ssize(adj[v]) > 1 && adj[v][0] == p)
+    if (ssize(adj[v]) > 1 && adj[v][0] == p)
       swap(adj[v][0], adj[v][1]);
-    for(int &u : adj[v]) if(u != par[v]) {
+    for (int &u : adj[v]) if (u != par[v]) {
       init(u, v);
       sz[v] += sz[u];
-      if(sz[u] > sz[adj[v][0]])
+      if (sz[u] > sz[adj[v][0]])
         swap(u, adj[v][0]);
     }
   }
   void set_paths(int v) {
     pre[v] = t++;
-    for(int &u : adj[v]) if(u != par[v]) {
+    for (int &u : adj[v]) if (u != par[v]) {
       nxt[u] = (u == adj[v][0] ? nxt[v] : u);
       set_paths(u);
     }
@@ -36,8 +36,8 @@ struct HLD {
     init(0), set_paths(0);
   } // END HASH
   int lca(int v, int u) {
-    while(nxt[v] != nxt[u]) {
-      if(pre[v] < pre[u])
+    while (nxt[v] != nxt[u]) {
+      if (pre[v] < pre[u])
         swap(v, u);
       v = par[nxt[v]];
     }
@@ -45,11 +45,11 @@ struct HLD {
   }
   V<pii> path_up(int v, int u) {
     V<pii> ret;
-    while(nxt[v] != nxt[u]) {
+    while (nxt[v] != nxt[u]) {
       ret.eb(pre[nxt[v]], pre[v]);
       v = par[nxt[v]];
     }
-    if(pre[u] != pre[v]) ret.eb(pre[u] + 1, pre[v]);
+    if (pre[u] != pre[v]) ret.eb(pre[u] + 1, pre[v]);
     return ret;
   }
   int get_vertex(int v) { return pre[v]; }
@@ -57,7 +57,7 @@ struct HLD {
     int w = lca(v, u);
     auto ret = path_up(v, w);
     auto path_u = path_up(u, w);
-    if(add_lca) ret.eb(pre[w], pre[w]);
+    if (add_lca) ret.eb(pre[w], pre[w]);
     ret.insert(ret.end(), path_u.begin(), path_u.end());
     return ret;
   }

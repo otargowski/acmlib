@@ -14,7 +14,7 @@ struct ExampleStruct {
   static constexpr int left = 0, right = 1;
   ExampleStruct() {
     random_variable = getRandomValue(left, right);
-    if(random_variable == 0) {
+    if (random_variable == 0) {
       // some random stuff to show the style
       ++random_variable;
     }

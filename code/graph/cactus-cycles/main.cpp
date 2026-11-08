@@ -7,14 +7,14 @@ V<vi> cactus_cycles(V<vi> graph) {
   vi state(ssize(graph), 0), stack;
   V<vi> ret;
   function<void (int, int)> dfs = [&](int v, int p) {
-    if(state[v] == 2) {
+    if (state[v] == 2) {
       ret.eb(stack.rbegin(), find(rall(stack), v) + 1);
       return;
     }
     stack.eb(v);
     state[v] = 2;
-    for(int u : graph[v])
-      if(u != p and state[u] != 1)
+    for (int u : graph[v])
+      if (u != p and state[u] != 1)
         dfs(u, v);
     state[v] = 1;
     stack.pop_back();

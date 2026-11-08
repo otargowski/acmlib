@@ -25,7 +25,7 @@ int power_binomial_sum(int a, int k, int n) {
   BinomCoeff bc(k + 1);
   REP(i, k + 1) {
     ans = sub(mul(p, binom), mul(ans, a));
-    if(!i) ans = sub(ans, 1);
+    if (!i) ans = sub(ans, 1);
     ans = mul(ans, inva1);
     binom = mul(binom, mul(n - i, mul(bc.rev[i + 1], bc.fac[i])));
   }

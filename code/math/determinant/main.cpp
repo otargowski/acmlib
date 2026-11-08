@@ -8,9 +8,9 @@ T determinant(V<V<T>>& a) {
   REP(i, n) {
     int b = i;
     FOR(j, i + 1, n - 1)
-      if(abs(a[j][i]) > abs(a[b][i]))
+      if (abs(a[j][i]) > abs(a[b][i]))
         b = j;
-    if(i != b)
+    if (i != b)
       swap(a[i], a[b]), res = sub(0, res);
     res = mul(res, a[i][i]);
     if (equal(res, 0))

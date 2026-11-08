@@ -6,11 +6,11 @@ int main() {
 
   int T;
   cin >> T;
-  while(T --> 0) {
+  while (T --> 0) {
     int n, m;
     cin >> n >> m;
     V<vi> graph(n);
-    while(m --> 0) {
+    while (m --> 0) {
       int v, u;
       cin >> v >> u;
       --v, --u;

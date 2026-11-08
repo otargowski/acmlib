@@ -9,20 +9,20 @@ ostream& operator<<(ostream &o, Edge e) {
 }
 
 bool is_correct_tree(vi lit, int n, V<Edge> edges, int root) {
-  if(ssize(lit) != n - 1)
+  if (ssize(lit) != n - 1)
     return false;
   V<vi> graph(n);
-  for(int i : lit)
+  for (int i : lit)
     graph[edges[i].a].eb(edges[i].b);
   vi vis(n);
   function<void (int)> dfs = [&](int v) {
     vis[v] = true;
-    for(int u : graph[v])
-      if(not vis[u])
+    for (int u : graph[v])
+      if (not vis[u])
         dfs(u);
   };
   dfs(root);
-  if(*min_element(all(vis)) == 0)
+  if (*min_element(all(vis)) == 0)
     return false;
   return true;
 }
@@ -33,7 +33,7 @@ void test() {
   int max_w = rd(0, 1) ? int(1e9) : 10;
   debug(n, m, max_w);
   V<Edge> edges(m);
-  for(auto &e : edges) {
+  for (auto &e : edges) {
     e.a = rd(0, n - 1);
     e.b = rd(0, n - 1);
     e.w = rd(-max_w, max_w);
@@ -46,33 +46,33 @@ void test() {
   REP(mask, 1 << m) {
     vi lit;
     REP(i, m)
-      if((mask >> i) & 1)
+      if ((mask >> i) & 1)
         lit.eb(i);
-    if(not is_correct_tree(lit, n, edges, root))
+    if (not is_correct_tree(lit, n, edges, root))
       continue;
     ll local_ans = 0;
-    for(auto i : lit)
+    for (auto i : lit)
       local_ans += edges[i].w;
     chmin(ans, pair(local_ans, lit));
   }
-  if(ans.fi == ll(1e18))
+  if (ans.fi == ll(1e18))
     ans.fi = -1;
   debug(ans);
 
   auto [main_ans, main_solve] = directed_mst(n, root, edges);
   debug(main_ans, main_solve);
   assert(ans.fi == main_ans);
-  if(ans.fi != -1) {
+  if (ans.fi != -1) {
     V<V<pair<int, ll>>> rev_graph(n);
-    for(auto e : edges)
+    for (auto e : edges)
       rev_graph[e.b].eb(e.a, e.w);
     V<Edge> found_subset;
     ll sum = 0;
     REP(v, n)
-      if(main_solve[v] != -1) {
+      if (main_solve[v] != -1) {
         ll smallest_w = ll(1e18) + 1;
-        for(auto [u, w] : rev_graph[v])
-          if(u == main_solve[v])
+        for (auto [u, w] : rev_graph[v])
+          if (u == main_solve[v])
             chmin(smallest_w, w);
         assert(smallest_w != ll(1e18) + 1);
         found_subset.eb(main_solve[v], v, smallest_w);

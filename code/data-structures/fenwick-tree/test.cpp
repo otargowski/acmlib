@@ -6,7 +6,7 @@ void test() {
   Fenwick fenwick(n);
   vi brute(n);
   REP(op, 20)
-    if(rd(0, 1)) {
+    if (rd(0, 1)) {
       int i = rd(0, n - 1);
       int val = rd(-10, 10);
       fenwick.update(i, val);
@@ -14,7 +14,7 @@ void test() {
     }
     else {
       int l = rd(0, n - 1), r = rd(0, n - 1);
-      if(l > r)
+      if (l > r)
         swap(l, r);
       ll sum = 0;
       FOR(i, l, r)

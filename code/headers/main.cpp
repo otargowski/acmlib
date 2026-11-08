@@ -6,8 +6,8 @@
 #endif
 #include <bits/stdc++.h>
 #include <cassert>
-#define FOR(i,p,k) for(int i=(p); i<=(k); ++i)
-#define RFOR(i,p,k) for(int i=(p); i>=(k); --i)
+#define FOR(i,p,k) for (int i=(p); i<=(k); ++i)
+#define RFOR(i,p,k) for (int i=(p); i>=(k); --i)
 #define REP(i,k) FOR(i,0,(k)-1)
 #define all(x) (x).begin(), (x).end()
 #define ssize(x) int((x).size())
@@ -25,19 +25,19 @@ typedef V <ll> vll;
 typedef C int ci;
 typedef C ll cll;
 typedef pair <int, int> pii;
-int I(){
+int I() {
   int z;
   scanf("%d", &z);
   return z;
 }
-ll LL(){
+ll LL() {
   ll z;
   scanf("%lld", &z);
   return z;
 }
-void ans(){
+void ans() {
 }
-int main(){
-  int tt=1;
+int main() {
+  int tt = 1;
   while (tt--) ans();
 }

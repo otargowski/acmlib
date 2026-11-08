@@ -4,7 +4,7 @@
 void test() {
   int n = rd(1, 10);
   vi in(n);
-  for(int &x : in)
+  for (int &x : in)
     x = rd(0, 1);
 
   array<vi, 2> radius = {vi(n - 1), vi(n)};
@@ -15,7 +15,7 @@ void test() {
         s.eb(in[i]);
       vi cp = s;
       reverse(all(cp));
-      if(cp != s)
+      if (cp != s)
         continue;
 
       int mid = (l + r) / 2, len = r - l + 1;

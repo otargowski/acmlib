@@ -12,7 +12,7 @@ int inverse(V<V<T>>& a) {
   REP(i, n) {
     int r = i, c = i;
     FOR(j, i, n - 1) FOR(k, i, n - 1)
-      if(abs(a[j][k]) > abs(a[r][c]))
+      if (abs(a[j][k]) > abs(a[r][c]))
         r = j, c = k;
     if (equal(a[r][c], 0))
       return i;
@@ -36,7 +36,7 @@ int inverse(V<V<T>>& a) {
       h[i][j] = divide(h[i][j], v);
     a[i][i] = 1;
   }
-  for(int i = n - 1; i > 0; --i) REP(j, i) {
+  for (int i = n - 1; i > 0; --i) REP(j, i) {
     T v = a[j][i];
     REP(k, n)
       h[j][k] = sub(h[j][k], mul(v, h[i][k]));

@@ -32,13 +32,13 @@ template<class T> struct Tree {
   int leaves = 1;
   V<T> tree;
   Tree(int n = 0) {
-    while(leaves < n)
+    while (leaves < n)
       leaves *= 2;
     tree.resize(2 * leaves);
   }
   void set(int i, T t) {
     tree[i += leaves] = t;
-    while(i /= 2)
+    while (i /= 2)
       tree[i] = merge(tree[2 * i], tree[2 * i + 1]);
   }
   T get() { return tree[1]; }
@@ -55,8 +55,8 @@ struct DpDynamicBottomUp {
     function<void (int, int*)> dfs = [&](int v, int *on_heavy_cnt) {
       int light_sons_cnt = 0, tmp = 0;
       which_on_path[v] = (*(on_heavy_cnt = on_heavy_cnt ?: &tmp))++;
-      for(int u : hld.adj[v])
-        if(u != hld.par[v])
+      for (int u : hld.adj[v])
+        if (u != hld.par[v])
           dfs(u, hld.nxt[u] == u ? which_light_son[u] = light_sons_cnt++, nullptr : on_heavy_cnt);
       tree_sons[v] = Tree<DpOneEnd>(light_sons_cnt);
       tree_path[v] = Tree<DpTwoEnds>(tmp);
@@ -67,10 +67,10 @@ struct DpDynamicBottomUp {
   }
   void set(int v, int value_vertex) {
     current_values[v] = value_vertex;
-    while(true) {
+    while (true) {
       tree_path[hld.nxt[v]].set(which_on_path[v], merge(tree_sons[v].get(), current_values[v]));
       v = hld.nxt[v];
-      if(hld.par[v] == -1)
+      if (hld.par[v] == -1)
         break;
       tree_sons[hld.par[v]].set(which_light_son[v], two_to_one(tree_path[hld.nxt[v]].get()));
       v = hld.par[v];

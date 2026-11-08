@@ -8,9 +8,9 @@
 vi get_kmp(vi str) {
   int len = ssize(str);
   vi ret(len);
-  for(int i = 1; i < len; i++) {
+  for (int i = 1; i < len; i++) {
     int pos = ret[i - 1];
-    while(pos and str[i] != str[pos])
+    while (pos and str[i] != str[pos])
       pos = ret[pos - 1];
     ret[i] = pos + (str[i] == str[pos]);
   }
@@ -19,7 +19,7 @@ vi get_kmp(vi str) {
 vi get_borders(vi str) {
   vi kmp = get_kmp(str), ret;
   int len = ssize(str);
-  while(len) {
+  while (len) {
     ret.eb(len);
     len = kmp[len - 1];
   }

@@ -107,7 +107,7 @@ pair<Q, Q> rec(C V<PI>& s) {
       }
     return e;
   };
-  while(true) {
+  while (true) {
     Q LC = del(base->r(), [&](Q q) { return q->o; });
     Q RC = del(base, [&](Q q) { return q->prev(); });
     if (!valid(LC, base) and !valid(RC, base)) break;

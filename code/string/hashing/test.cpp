@@ -8,7 +8,7 @@ void test() {
     s.eb(V{0, 13, 25}[rd(0, 2)]);
   Hashing hashing(s, 31);
   auto get_interval = [&](int l, int r) {
-    if(l > r)
+    if (l > r)
       swap(l, r);
     return pair(hashing(l, r), V(s.begin() + l, s.begin() + r + 1));
   };

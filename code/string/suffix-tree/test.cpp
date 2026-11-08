@@ -19,7 +19,7 @@ void test() {
     int v = 0;
     FOR(j, i, n - 1) {
       int c = s[j];
-      if(trie[v][c] == -1) {
+      if (trie[v][c] == -1) {
         int u = ssize(trie);
         trie[v][c] = u;
         trie.eb(V(r, -1));
@@ -38,19 +38,19 @@ void test() {
     REP(c, r)
       assert(bool(trie[vtrie][c] == -1) == bool(tree.sons[vsuff].find(c) == tree.sons[vsuff].end()));
     REP(c, r)
-      if(trie[vtrie][c] != -1) {
+      if (trie[vtrie][c] != -1) {
         vi substr_trie = {c};
         int u = trie[vtrie][c];
-        while(true) {
+        while (true) {
           int cnt_minusone = 0;
           REP(c2, r)
-            if(trie[u][c2] == -1)
+            if (trie[u][c2] == -1)
               ++cnt_minusone;
           debug(u, cnt_minusone);
-          if(cnt_minusone == r - 1) {
+          if (cnt_minusone == r - 1) {
             REP(c2, r) {
               debug(u, c2);
-              if(trie[u][c2] != -1) {
+              if (trie[u][c2] != -1) {
                 substr_trie.eb(c2);
                 u = trie[u][c2];
                 break;

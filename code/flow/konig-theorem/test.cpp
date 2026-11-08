@@ -100,16 +100,16 @@ void test() {
 
   int m = min(max_edges, rd(0, n0 * n1));
   V<pii> edges(m);
-  for(auto &[v, u] : edges) {
+  for (auto &[v, u] : edges) {
     v = in_group[0][rd(0, n0 - 1)];
     u = in_group[1][rd(0, n1 - 1)];
-    if(rd(0, 1))
+    if (rd(0, 1))
       swap(v, u);
   }
   debug(n, edges);
 
   V<vi> graph(n);
-  for(auto [v, u] : edges) {
+  for (auto [v, u] : edges) {
     graph[v].eb(u);
     graph[u].eb(v);
   }

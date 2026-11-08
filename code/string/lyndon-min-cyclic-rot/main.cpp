@@ -9,13 +9,13 @@
 V<pii> duval(vi s) {
   int n = ssize(s), i = 0;
   V<pii> ret;
-  while(i < n) {
+  while (i < n) {
     int j = i + 1, k = i;
-    while(j < n and s[k] <= s[j]) {
+    while (j < n and s[k] <= s[j]) {
       k = (s[k] < s[j] ? i : k + 1);
       ++j;
     }
-    while(i <= k) {
+    while (i <= k) {
       ret.eb(i, i + j - k - 1);
       i += j - k;
     }
@@ -29,8 +29,8 @@ vi min_cyclic_shift(vi s) {
   int n = ssize(s);
   REP(i, n)
     s.eb(s[i]);
-  for(auto [l, r] : duval(s))
-    if(n <= r) {
+  for (auto [l, r] : duval(s))
+    if (n <= r) {
       return {s.begin() + l, s.begin() + l + n};
     }
   assert(false);

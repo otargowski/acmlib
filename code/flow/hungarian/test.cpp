@@ -6,7 +6,7 @@ void test() {
   int max_n = (test_type == 0 ? 7 : 100);
   int n0 = rd(1, max_n);
   int n1 = rd(1, max_n);
-  if(n0 > n1)
+  if (n0 > n1)
     swap(n0, n1);
   int max_weight = (rd(0, 1) ? 10 : int(1e9));
   V<vi> weight(n0, vi(n1));
@@ -16,7 +16,7 @@ void test() {
 
   auto [ans, match] = hungarian(weight);
   V<bool> used_in_m(n1, false);
-  for(int i : match) {
+  for (int i : match) {
     assert(not used_in_m[i]);
     used_in_m[i] = true;
   }
@@ -25,7 +25,7 @@ void test() {
     ans_check += weight[i][match[i]];
   assert(ans == ans_check);
 
-  if(test_type == 0) {
+  if (test_type == 0) {
     ll ans_brute = ll(1e18);
     vi perm(n1);
     iota(all(perm), 0);
@@ -36,7 +36,7 @@ void test() {
       REP(i, n0)
         ans_local += weight[i][brute_match[i]];
       chmin(ans_brute, ans_local);
-    } while(next_permutation(all(perm)));
+    } while (next_permutation(all(perm)));
     assert(ans == ans_brute);
   }
 }

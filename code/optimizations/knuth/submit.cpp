@@ -5,11 +5,11 @@ int main() {
   cin.tie(0)->sync_with_stdio(0);
 
   int n;
-  while(cin >> n) {
+  while (cin >> n) {
     int m;
     cin >> m;
     vi idx(m);
-    for(int &i : idx)
+    for (int &i : idx)
       cin >> i;
     idx.eb(n);
     ++m;

@@ -56,7 +56,7 @@ V<bool> intersectMatroids(T& A, U& B, int n) {
         }
         ok = 1; break;
       }
-      for(auto j: G[i]) if (prev[j] == -1)
+      for (auto j: G[i]) if (prev[j] == -1)
         que.emplace(j), prev[j] = i;
     }
   }
@@ -75,7 +75,7 @@ struct LimOracle {
     REP(i, ssize(S)) tmp[color[i]] -= S[i];
   }
   // Check if S+{k} is independent; time: O(1)
-  bool canAdd(int k) { return tmp[color[k]] > 0;}
+  bool canAdd(int k) { return tmp[color[k]] > 0; }
 };
 // Graphic matroid - each element is edge,
 // set is independent iff subgraph is acyclic.
@@ -110,7 +110,7 @@ struct CographOracle {
 
   int dfs(int v, int p) {
     pre[v] = low[v] = ++cnt;
-    for(auto e: G[v]) if (e != p)
+    for (auto e: G[v]) if (e != p)
       chmin(low[v], pre[e] ?: dfs(e,v));
     return low[v];
   }

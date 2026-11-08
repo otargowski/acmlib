@@ -18,31 +18,31 @@ struct Triangles {
       id[sorted_deg[i].se] = i;
     vi cnt(n);
     REP(v, n) {
-      for(int u : graph[v]) if(id[v] > id[u])
+      for (int u : graph[v]) if (id[v] > id[u])
         cnt[u] = 1;
-      for(int u : graph[v]) if(id[v] > id[u]) for(int w : graph[u]) if(id[w] > id[u] and cnt[w]) {
+      for (int u : graph[v]) if (id[v] > id[u]) for (int w : graph[u]) if (id[w] > id[u] and cnt[w]) {
         ++triangles3;
-        for(int x : {v, u, w})
+        for (int x : {v, u, w})
           ps4 += ssize(graph[x]) - 2;
       }
-      for(int u : graph[v]) if(id[v] > id[u])
+      for (int u : graph[v]) if (id[v] > id[u])
         cnt[u] = 0;
-      for(int u : graph[v]) if(id[v] > id[u]) for(int w : graph[u]) if(id[v] > id[w])
+      for (int u : graph[v]) if (id[v] > id[u]) for (int w : graph[u]) if (id[v] > id[w])
         rectangles4 += cnt[w]++;
-      for(int u : graph[v]) if(id[v] > id[u]) for(int w : graph[u])
+      for (int u : graph[v]) if (id[v] > id[u]) for (int w : graph[u])
         cnt[w] = 0;
     }
     paths3 = -3 * triangles3;
-    REP(v, n) for(int u : graph[v]) if(v < u)
+    REP(v, n) for (int u : graph[v]) if (v < u)
       paths3 += (ssize(graph[v]) - 1) * ll(ssize(graph[u]) - 1);
     ys4 = -2 * ps4;
     auto choose2 = [&](int x) { return x * ll(x - 1) / 2; };
-    REP(v, n) for(int u : graph[v])
+    REP(v, n) for (int u : graph[v])
       ys4 += (ssize(graph[v]) - 1) * choose2(ssize(graph[u]) - 1);
     paths4 = -(4 * rectangles4 + 2 * ps4 + 3 * triangles3);
     REP(v, n) {
       int x = 0;
-      for(int u : graph[v]) {
+      for (int u : graph[v]) {
         x += ssize(graph[u]) - 1;
         paths4 -= choose2(ssize(graph[u]) - 1);
       }

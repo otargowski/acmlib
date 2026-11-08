@@ -12,7 +12,7 @@ using Frac = pair<__int128_t, __int128_t>;
 D to_d(Frac f) { return D(f.fi) / D(f.se); }
 Frac create_frac(__int128_t a, __int128_t b) {
   assert(b != 0);
-  if(b < 0) a *= -1, b *= -1;
+  if (b < 0) a *= -1, b *= -1;
   __int128_t d = __gcd(a, b);
   return {a / d, b / d};
 }
@@ -36,8 +36,8 @@ V<V<P>> voronoi_faces(V<PI> in, C int max_xy = int(3e8)) {
   map<PI, int> id_of_in;
   REP(i, n)
     id_of_in[in[i]] = i;
-  for(int sx : {-1, 1})
-    for(int sy : {-1, 1}) {
+  for (int sx : {-1, 1})
+    for (int sy : {-1, 1}) {
       int mx = 3 * max_xy + 100;
       in.eb(mx * sx, mx * sy);
     }
@@ -56,18 +56,18 @@ V<V<P>> voronoi_faces(V<PI> in, C int max_xy = int(3e8)) {
     }
   }
   V<V<P128>> faces128(n);
-  for(auto [edge, sides] : on_sides)
-    if(ssize(sides) == 2)
-      for(PI e : {edge.fi, edge.se})
-        if(id_of_in.find(e) != id_of_in.end())
-          for(auto m : sides)
+  for (auto [edge, sides] : on_sides)
+    if (ssize(sides) == 2)
+      for (PI e : {edge.fi, edge.se})
+        if (id_of_in.find(e) != id_of_in.end())
+          for (auto m : sides)
             faces128[id_of_in[e]].eb(m);
   V<V<P>> faces(n);
   REP(i, ssize(faces128)) {
     auto &f = faces128[i];
     sort(all(f));
     f.erase(unique(all(f)), f.end());
-    for(auto [x, y] : f)
+    for (auto [x, y] : f)
       faces[i].eb(to_d(x), to_d(y));
     faces[i] = hull(faces[i]);
   }

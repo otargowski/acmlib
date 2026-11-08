@@ -39,7 +39,7 @@ struct AdditionalInfo {
     whole_subtree_cancel = parent.whole_subtree_lazy;
   }
   void pull_lazy_from_parent(AdditionalInfo &parent) {
-    if(splay_size == 0) // nil
+    if (splay_size == 0) // nil
       return;
     add_lazy_in_subtree(parent.whole_subtree_lazy - whole_subtree_cancel);
     cancel_subtree_lazy_from_parent(parent);
@@ -77,19 +77,19 @@ struct Splay {
   Splay(int n)
   : t(n + 1), nil(n) {
     t[nil].subsize_splay = 0;
-    for(Node &v : t)
+    for (Node &v : t)
       v.child[0] = v.child[1] = v.parent = nil;
   }
   void apply_lazy_and_push(int v) {
     auto &[l, r] = t[v].child;
-    if(t[v].lazy_flip) {
-      for(int c : {l, r})
+    if (t[v].lazy_flip) {
+      for (int c : {l, r})
         t[c].lazy_flip ^= 1;
       swap(l, r);
     }
     t[v].info.push_lazy(t[l].info, t[r].info, t[v].lazy_flip);
-    for(int c : {l, r})
-      if(c != nil)
+    for (int c : {l, r})
+      if (c != nil)
         t[c].info.pull_lazy_from_parent(t[v].info);
     t[v].lazy_flip = false;
   }
@@ -97,7 +97,7 @@ struct Splay {
     // assumes that v's info is pushed
     auto [l, r] = t[v].child;
     t[v].subsize_splay = t[l].subsize_splay + 1 + t[r].subsize_splay;
-    for(int c : {l, r})
+    for (int c : {l, r})
       apply_lazy_and_push(c);
     t[v].info.update_from_sons(t[l].info, t[r].info);
   }
@@ -105,16 +105,16 @@ struct Splay {
   void splay(int v) {
     apply_lazy_and_push(v);
     auto set_child = [&](int x, int c, int d) {
-      if(x != nil and d != -1)
+      if (x != nil and d != -1)
         t[x].child[d] = c;
-      if(c != nil) {
+      if (c != nil) {
         t[c].parent = x;
         t[c].info.cancel_subtree_lazy_from_parent(t[x].info);
       }
     };
     auto get_dir = [&](int x) -> int {
       int p = t[x].parent;
-      if(p == nil or (x != t[p].child[0] and x != t[p].child[1]))
+      if (p == nil or (x != t[p].child[0] and x != t[p].child[1]))
         return -1;
       return t[p].child[1] == x;
     };
@@ -127,18 +127,18 @@ struct Splay {
       update_from_sons(x);
       update_from_sons(c);
     };
-    while(get_dir(v) != -1) {
+    while (get_dir(v) != -1) {
       int p = t[v].parent, pp = t[p].parent;
       array path_up = {v, p, pp, t[pp].parent};
-      for(int i = ssize(path_up) - 1; i >= 0; --i) {
-        if(i < ssize(path_up) - 1)
+      for (int i = ssize(path_up) - 1; i >= 0; --i) {
+        if (i < ssize(path_up) - 1)
           t[path_up[i]].info.pull_lazy_from_parent(t[path_up[i + 1]].info);
         apply_lazy_and_push(path_up[i]);
       }
       int dp = get_dir(v), dpp = get_dir(p);
-      if(dpp == -1)
+      if (dpp == -1)
         rotate(p, dp);
-      else if(dp == dpp) {
+      else if (dp == dpp) {
         rotate(pp, dpp);
         rotate(p, dp);
       }
@@ -154,7 +154,7 @@ struct LinkCut : Splay {
   // Cuts the path from x downward, creates path to root, splays x.
   int access(int x) {
     int v = x, cv = nil;
-    for(; v != nil; cv = v, v = t[v].parent) {
+    for (; v != nil; cv = v, v = t[v].parent) {
       splay(v);
       int &right = t[v].child[1];
       t[v].info.change_virtual(t[right].info, +1);
@@ -176,7 +176,7 @@ struct LinkCut : Splay {
   // Returns the root of tree containing v.
   int get_leader(int v) {
     access(v);
-    while(apply_lazy_and_push(v), t[v].child[0] != nil)
+    while (apply_lazy_and_push(v), t[v].child[0] != nil)
       v = t[v].child[0];
     splay(v);
     return v;
@@ -207,7 +207,7 @@ struct LinkCut : Splay {
     t[c].parent = nil;
     t[c].info.cancel_subtree_lazy_from_parent(t[nil].info);
     update_from_sons(v);
-    while(apply_lazy_and_push(c), t[c].child[1] != nil)
+    while (apply_lazy_and_push(c), t[c].child[1] != nil)
       c = t[c].child[1];
     splay(c);
     return c;
@@ -216,7 +216,7 @@ struct LinkCut : Splay {
   // Returns their LCA after a reroot operation.
   int lca(int root, int v, int u) {
     reroot(root);
-    if(v == u)
+    if (v == u)
       return v;
     access(v);
     return access(u);

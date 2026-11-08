@@ -7,9 +7,9 @@ V<pii> get_min_edge_cover(V<vi> graph) {
   vi match = Matching(graph)().se;
   V<pii> ret;
   REP(v, ssize(match))
-    if(match[v] != -1 and v < match[v])
+    if (match[v] != -1 and v < match[v])
       ret.eb(v, match[v]);
-    else if(match[v] == -1 and not graph[v].empty())
+    else if (match[v] == -1 and not graph[v].empty())
       ret.eb(v, graph[v].front());
   return ret;
 } // END HASH
@@ -20,17 +20,17 @@ array<vi, 2> get_coloring(V<vi> graph) {
   vi color(n, -1);
   function<void (int)> dfs = [&](int v) {
     color[v] = 0;
-    for(int u : graph[v])
-      if(color[u] == -1) {
+    for (int u : graph[v])
+      if (color[u] == -1) {
         color[u] = true;
         dfs(match[u]);
       }
   };
   REP(v, n)
-    if(match[v] == -1)
+    if (match[v] == -1)
       dfs(v);
   REP(v, n)
-    if(color[v] == -1)
+    if (color[v] == -1)
       dfs(v);
   array<vi, 2> groups;
   REP(v, n)

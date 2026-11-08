@@ -24,7 +24,7 @@
  */
 pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
   V<vi> line_graph(line_n);
-  for(auto &[v, u] : line_edges) {
+  for (auto &[v, u] : line_edges) {
     line_graph[v].eb(u);
     line_graph[u].eb(v);
   }
@@ -34,7 +34,7 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
     auto neigh_with_v = line_graph[v];
     neigh_with_v.eb(v);
     sort(all(neigh_with_v));
-    if(line_neighbors_repeated.find(neigh_with_v) == line_neighbors_repeated.end())
+    if (line_neighbors_repeated.find(neigh_with_v) == line_neighbors_repeated.end())
       line_neighbors_repeated[neigh_with_v] = v;
     else
       line_vertex_reduced_to[v] = line_neighbors_repeated[neigh_with_v];
@@ -42,7 +42,7 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
   V<pii> ans(line_n, pair(-1, -1));
   V<bool> visited(line_n, false);
   REP(v, line_n)
-    if(line_vertex_reduced_to[v] != -1)
+    if (line_vertex_reduced_to[v] != -1)
       visited[v] = true;
   int og_cnt_fixed_v = 0;
   map<int, int> og_deg_visited;
@@ -51,12 +51,12 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
     assert(ans[line_v].fi != -1);
     int v = ans[line_v].fi;
     int u = ans[line_v].se;
-    for(int og_v : {v, u})
+    for (int og_v : {v, u})
       og_deg_visited[og_v] += 1;
     og_used_edges.emplace(min(v, u), max(v, u));
   };
   REP(component_v, line_n)
-    if(not visited[component_v]) {
+    if (not visited[component_v]) {
       V<vi> que_i_to_visited_neighbors;
       int og_n = 0;
       vi que = {component_v};
@@ -68,27 +68,27 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
       };
       REP(que_i, ssize(que)) {
         int line_v = que[que_i];
-        for(int u : line_graph[line_v])
-          if(not visited[u]) {
+        for (int u : line_graph[line_v])
+          if (not visited[u]) {
             visited[u] = true;
             que.eb(u);
           }
         que_i_to_visited_neighbors.eb();
         map<int, int> og_deg_near_v_line;
-        for(int line_u : line_graph[line_v])
-          if(ans[line_u] != pair(-1, -1)) {
-            for(int og_u : {ans[line_u].fi, ans[line_u].se})
+        for (int line_u : line_graph[line_v])
+          if (ans[line_u] != pair(-1, -1)) {
+            for (int og_u : {ans[line_u].fi, ans[line_u].se})
               og_deg_near_v_line[og_u] += 1;
             que_i_to_visited_neighbors[que_i].eb(line_u);
           }
-        if(og_n <= 4) {
+        if (og_n <= 4) {
           function<bool (int, int, set<pii>&)> backtrack
               = [&](int new_og_n, int i, set<pii> &used_edges) {
-            if(i == que_i + 1)
+            if (i == que_i + 1)
               return true;
             REP(v, new_og_n)
               FOR(u, v + 1, new_og_n - 1)
-                if(used_edges.find(pair(v, u)) == used_edges.end()) {
+                if (used_edges.find(pair(v, u)) == used_edges.end()) {
                   ans[que[i]] = {
                     og_cnt_fixed_v + v,
                     og_cnt_fixed_v + u
@@ -106,14 +106,14 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
                         auto [x, y] = ans[que[j]];
                         return a == x or a == y or b == x or b == y;
                       }();
-                      if(is_neighbor_to_v != should_be_neighbor_to_v)
+                      if (is_neighbor_to_v != should_be_neighbor_to_v)
                         return false;
                     }
                     return true;
                   };
-                  if(is_valid()) {
+                  if (is_valid()) {
                     used_edges.emplace(v, u);
-                    if(backtrack(new_og_n, i + 1, used_edges))
+                    if (backtrack(new_og_n, i + 1, used_edges))
                       return true;
                     used_edges.erase(pair(v, u));
                   }
@@ -121,44 +121,44 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
             return false;
           };
           og_n = [&] {
-            for(int ret = 2; ret <= 8; ++ret) {
+            for (int ret = 2; ret <= 8; ++ret) {
               set<pii> used_edges;
-              if(backtrack(ret, 0, used_edges))
+              if (backtrack(ret, 0, used_edges))
                 return ret;
             }
             return 9;
           }();
-          if(og_n == 9)
+          if (og_n == 9)
             return {false, {}};
-          if(og_n > 4)
+          if (og_n > 4)
             save_current_graph(que_i);
         }
         else {
           set<int> candidates;
-          for(auto [og_v, deg] : og_deg_near_v_line)
-            if(deg == og_deg_visited[og_v])
+          for (auto [og_v, deg] : og_deg_near_v_line)
+            if (deg == og_deg_visited[og_v])
               candidates.emplace(og_v);
           auto get_best_cover = [&] {
             pii found_cover_2 = {-1, -1};
-            for(int og_v_cover0 : {
+            for (int og_v_cover0 : {
                 ans[que_i_to_visited_neighbors[que_i].front()].fi,
                 ans[que_i_to_visited_neighbors[que_i].front()].se,
               })
-              if(candidates.count(og_v_cover0)) {
+              if (candidates.count(og_v_cover0)) {
                 map<int, int> og_deg_uncovered;
                 int uncovered = 0;
-                for(int line_u : que_i_to_visited_neighbors[que_i]) {
+                for (int line_u : que_i_to_visited_neighbors[que_i]) {
                   auto [og_v, og_u] = ans[line_u];
-                  if(og_v != og_v_cover0 and og_u != og_v_cover0) {
+                  if (og_v != og_v_cover0 and og_u != og_v_cover0) {
                     ++uncovered;
-                    for(int v : {og_v, og_u})
+                    for (int v : {og_v, og_u})
                       ++og_deg_uncovered[v];
                   }
                 }
-                if(uncovered == 0)
+                if (uncovered == 0)
                   return make_tuple(1, og_v_cover0, -1);
-                for(auto [og_v_cover1, og_deg_cover1] : og_deg_uncovered)
-                  if(candidates.count(og_v_cover1)
+                for (auto [og_v_cover1, og_deg_cover1] : og_deg_uncovered)
+                  if (candidates.count(og_v_cover1)
                       and not og_used_edges.count(pair(
                           min(og_v_cover0, og_v_cover1),
                           max(og_v_cover0, og_v_cover1)
@@ -170,9 +170,9 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
                 found_cover_2.fi, found_cover_2.se);
           };
           auto [cover_size, og_v_cover0, og_v_cover1] = get_best_cover();
-          if(cover_size == 3)
+          if (cover_size == 3)
             return {false, {}};
-          if(cover_size == 1) {
+          if (cover_size == 1) {
             og_v_cover1 = og_cnt_fixed_v++;
             og_n++;
           }
@@ -180,11 +180,11 @@ pair<bool, V<pii>> get_original_graph(int line_n, V<pii> line_edges) {
           save_edge(line_v);
         }
       }
-      if(og_n <= 4)
+      if (og_n <= 4)
         save_current_graph(ssize(que) - 1);
     }
   REP(line_v, line_n)
-    if(line_vertex_reduced_to[line_v] != -1)
+    if (line_vertex_reduced_to[line_v] != -1)
       ans[line_v] = ans[line_vertex_reduced_to[line_v]];
   return {true, ans};
 }

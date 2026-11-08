@@ -5,10 +5,10 @@ void test() {
   int n = rd(1, 12);
   V<bitset<max_n>> graph(n);
   int m = rd(0, n * n);
-  while(m --> 0) {
+  while (m --> 0) {
     int v = rd(0, n - 1);
     int u = rd(0, n - 1);
-    if(v == u)
+    if (v == u)
       continue;
     graph[v][u] = graph[u][v] = true;
   }
@@ -22,7 +22,7 @@ void test() {
   auto is_ok = [&](vi v) {
     REP(i, ssize(v))
       REP(j, i)
-        if(not graph[v[i]][v[j]])
+        if (not graph[v[i]][v[j]])
           return false;
     return true;
   };
@@ -31,9 +31,9 @@ void test() {
   REP(mask, 1 << n) {
     vi v;
     REP(i, n)
-      if((mask >> i) & 1)
+      if ((mask >> i) & 1)
         v.eb(i);
-    if(is_ok(v))
+    if (is_ok(v))
       chmax(best_brute, __builtin_popcount(mask));
   }
 

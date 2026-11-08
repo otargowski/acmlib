@@ -18,12 +18,12 @@ void test() {
 
   ll brute_sum = 0;
   function<bool (int, int)> dfs = [&](int curr, int p) {
-    if(curr == u)
+    if (curr == u)
       return true;
-    for(auto [nxt, w] : graph[curr])
-      if(nxt != p) {
+    for (auto [nxt, w] : graph[curr])
+      if (nxt != p) {
         brute_sum += w;
-        if(dfs(nxt, curr))
+        if (dfs(nxt, curr))
           return true;
         brute_sum -= w;
       }

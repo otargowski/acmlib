@@ -14,7 +14,7 @@ void test() {
   FOR(i, 1, limit)
     fact[i] = mul(fact[i - 1], i);
   rev[limit] = inv(fact[limit]);
-  for(int i = limit; i > 0; --i)
+  for (int i = limit; i > 0; --i)
     rev[i - 1] = mul(rev[i], i);
   auto newton = [&](int a, int b) {
     if (a < b or b < 0)
@@ -24,11 +24,11 @@ void test() {
 
   int a;
   do {
-    if(rd(0, 1))
+    if (rd(0, 1))
       a = rd(0, min(mod - 1, ma));
     else
       a = rd(0, mod - 1);
-  } while(a == 1);
+  } while (a == 1);
 
   int brute_monomial = 0;
   int brute_binomial = 0;

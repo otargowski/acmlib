@@ -6,12 +6,12 @@ vi pref(vi str) {
   vi ret(n);
   ret[0] = n;
   int i = 1, m = 0;
-  while(i < n) {
-    while(m + i < n and str[m + i] == str[m])
+  while (i < n) {
+    while (m + i < n and str[m + i] == str[m])
       m++;
     ret[i++] = m;
     m = max(0, m - 1);
-    for(int j = 1; ret[j] < m; m--)
+    for (int j = 1; ret[j] < m; m--)
       ret[i++] = ret[j++];
   }
   return ret;

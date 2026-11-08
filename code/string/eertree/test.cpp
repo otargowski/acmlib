@@ -5,27 +5,27 @@ void test() {
   int n = rd(1, 10);
   int alph = rd(1, 26);
   vi s(n);
-  for(int &si : s)
+  for (int &si : s)
     si = rd(0, alph - 1);
   debug(s);
 
   auto is_palindrome = [&](int l, int r) {
     FOR(i, l, r)
-      if(s[i] != s[r - (i - l)])
+      if (s[i] != s[r - (i - l)])
         return false;
     return true;
   };
 
-  for(bool only_even_lens : {false, true}) {
+  for (bool only_even_lens : {false, true}) {
     V<Dp> dp = palindromic_split_dp(s, only_even_lens);
 
     vi dp_min(n, n + 1);
     REP(r, n)
       FOR(l, 0, r)
-        if(is_palindrome(l, r) and (not only_even_lens or (r - l + 1) % 2 == 0))
+        if (is_palindrome(l, r) and (not only_even_lens or (r - l + 1) % 2 == 0))
           chmin(dp_min[r], (l == 0 ? 0 : dp_min[l - 1]) + 1);
     REP(i, n) {
-      if(only_even_lens and i % 2 == 0)
+      if (only_even_lens and i % 2 == 0)
         assert(dp[i].mn == n + 1);
       assert(dp[i].mn == dp_min[i]);
     }
@@ -33,10 +33,10 @@ void test() {
     vi dp_count(n);
     REP(r, n)
       FOR(l, 0, r)
-        if(is_palindrome(l, r) and (not only_even_lens or (r - l + 1) % 2 == 0))
+        if (is_palindrome(l, r) and (not only_even_lens or (r - l + 1) % 2 == 0))
           dp_count[r] += (l == 0 ? 1 : dp_count[l - 1]);
     REP(i, n) {
-      if(only_even_lens and i % 2 == 0)
+      if (only_even_lens and i % 2 == 0)
         assert(dp[i].cnt == 0);
       assert(dp[i].cnt == dp_count[i]);
     }
@@ -44,20 +44,20 @@ void test() {
     REP(i, n)
       debug(i, dp[i].mn_i);
     auto pairs = construct_min_palindromic_split(dp);
-    if(dp.back().mn == n + 1) {
+    if (dp.back().mn == n + 1) {
       assert(pairs.empty());
       continue;
     }
     debug(pairs);
     vi covered(n);
-    for(auto [l, r] : pairs)
+    for (auto [l, r] : pairs)
       FOR(i, l, r)
         ++covered[i];
     REP(i, n)
       assert(covered[i] == 1);
     REP(i, ssize(pairs) - 1)
       assert(pairs[i].se < pairs[i + 1].fi);
-    for(auto [l, r] : pairs) {
+    for (auto [l, r] : pairs) {
       debug(l, r);
       assert(is_palindrome(l, r));
     }

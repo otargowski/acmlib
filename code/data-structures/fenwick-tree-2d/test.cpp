@@ -17,7 +17,7 @@ void test() {
   tree.init();
 
   REP(op, 20) {
-    if(rd(0, 1) and sz) {
+    if (rd(0, 1) and sz) {
       int i = rd(0, sz - 1);
       auto [x, y] = points[i];
       int val = rd(-10, 10);

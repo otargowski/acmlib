@@ -18,14 +18,14 @@ struct Treap {
   pNode root = nullptr;
   int get_cnt(pNode t) { return t ? t->cnt : 0; }
   void update(pNode t) {
-    if(!t) return;
+    if (!t) return;
     t->cnt = get_cnt(t->l) + get_cnt(t->r) + 1;
   }
   void split(pNode t, int i, pNode &l, pNode &r) {
-    if(!t) l = r = nullptr;
+    if (!t) l = r = nullptr;
     else {
       t = new Node(*t);
-      if(i <= get_cnt(t->l))
+      if (i <= get_cnt(t->l))
         split(t->l, i, l, t->l), r = t;
       else
         split(t->r, i - get_cnt(t->l) - 1, t->r, r), l = t;
@@ -33,8 +33,8 @@ struct Treap {
     update(t);
   }
   void merge(pNode &t, pNode l, pNode r) {
-    if(!l || !r) t = (l ? l : r);
-    else if(l->prio > r->prio) {
+    if (!l || !r) t = (l ? l : r);
+    else if (l->prio > r->prio) {
       l = new Node(*l);
       merge(l->r, l->r, r), t = l;
     }
@@ -45,12 +45,12 @@ struct Treap {
     update(t);
   }
   void insert(pNode &t, int i, pNode it) {
-    if(!t) t = it;
-    else if(it->prio > t->prio)
+    if (!t) t = it;
+    else if (it->prio > t->prio)
       split(t, i, it->l, it->r), t = it;
     else {
       t = new Node(*t);
-      if(i <= get_cnt(t->l))
+      if (i <= get_cnt(t->l))
         insert(t->l, i, it);
       else
         insert(t->r, i - get_cnt(t->l) - 1, it);
@@ -61,11 +61,11 @@ struct Treap {
     insert(root, i, new Node(val));
   }
   void erase(pNode &t, int i) {
-    if(get_cnt(t->l) == i)
+    if (get_cnt(t->l) == i)
       merge(t, t->l, t->r);
     else {
       t = new Node(*t);
-      if(i <= get_cnt(t->l))
+      if (i <= get_cnt(t->l))
         erase(t->l, i);
       else
         erase(t->r, i - get_cnt(t->l) - 1);

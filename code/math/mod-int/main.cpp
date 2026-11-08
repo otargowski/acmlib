@@ -8,16 +8,16 @@ struct modular {
   modular() { val = 0; }
   modular(C ll& v) {
     val = int((-mod <= v && v < mod) ? (int) v : v % mod);
-    if(val < 0) val += mod;
+    if (val < 0) val += mod;
   }
   int to_int() { return val; }
   friend ostream& operator<<(ostream &os, C modular &a) {
 #ifdef DEBUG
     constexpr int mx = 1024;
-    for(int y = 1; y <= mx; ++y)
-      if(a * y <= mx)
+    for (int y = 1; y <= mx; ++y)
+      if (a * y <= mx)
         return os << (a * y).val << '/' << y;
-      else if(mod - a * y <= mx)
+      else if (mod - a * y <= mx)
         return os << '-' << (mod - a * y).val << '/' << y;
 #endif
     return os << a.val;
@@ -39,11 +39,11 @@ struct modular {
   }
   modular operator-() C { return modular(-val); }
   modular& operator+=(C modular &m) {
-    if((val += m.val) >= mod) val -= mod;
+    if ((val += m.val) >= mod) val -= mod;
     return *this;
   }
   modular& operator-=(C modular &m) {
-    if((val -= m.val) < 0) val += mod;
+    if ((val -= m.val) < 0) val += mod;
     return *this;
   }
   modular& operator*=(C modular &m) {
@@ -51,8 +51,8 @@ struct modular {
     return *this;
   }
   friend modular qpow(modular a, ll n) {
-    if(n == 0) return 1;
-    if(n % 2 == 1) return qpow(a, n - 1) * a;
+    if (n == 0) return 1;
+    if (n % 2 == 1) return qpow(a, n - 1) * a;
     return qpow(a * a, n / 2);
   }
   friend modular inv(C modular &a) {
@@ -79,7 +79,7 @@ struct BinomCoeff {
     fac = rev = V<mint>(n + 1, 1);
     FOR(i, 1, n) fac[i] = fac[i - 1] * i;
     rev[n] = 1 / fac[n];
-    for(int i = n; i >= 1; i--)
+    for (int i = n; i >= 1; i--)
       rev[i - 1] = rev[i] * i;
   }
   mint operator()(int n, int k) {

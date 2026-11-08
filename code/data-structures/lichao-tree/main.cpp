@@ -18,14 +18,14 @@ struct LiChaoTree {
   int size = 1;
   V<Function> tree;
   LiChaoTree(int n) {
-    while(size < n)
+    while (size < n)
       size *= 2;
     tree.resize(size << 1);
   }
   ll get_min(int x) {
     int v = x + size;
     ll ans = infll;
-    while(v) {
+    while (v) {
       chmin(ans, tree[v](x));
       v >>= 1;
     }
@@ -35,11 +35,11 @@ struct LiChaoTree {
     int m = (l + r) / 2;
     bool domin_l = tree[v](l) > new_func(l),
        domin_m = tree[v](m) > new_func(m);
-    if(domin_m)
+    if (domin_m)
       swap(tree[v], new_func);
-    if(l == r)
+    if (l == r)
       return;
-    else if(domin_l == domin_m)
+    else if (domin_l == domin_m)
       add_func(new_func, v << 1 | 1, m + 1, r);
     else
       add_func(new_func, v << 1, l, m);

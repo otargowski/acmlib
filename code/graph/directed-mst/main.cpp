@@ -11,14 +11,14 @@ struct RollbackUF {
   int find(int x) { return e[x] < 0 ? x : find(e[x]); }
   int time() { return ssize(st); }
   void rollback(int t) {
-    for(int i = time(); i --> t;)
+    for (int i = time(); i --> t;)
       e[st[i].fi] = st[i].se;
     st.resize(t);
   }
   bool join(int a, int b) {
     a = find(a), b = find(b);
-    if(a == b) return false;
-    if(e[a] > e[b]) swap(a, b);
+    if (a == b) return false;
+    if (e[a] > e[b]) swap(a, b);
     st.pb({a, e[a]});
     st.pb({b, e[b]});
     e[a] += e[b]; e[b] = a;
@@ -32,15 +32,15 @@ struct Node {
   ll delta = 0;
   void prop() {
     key.w += delta;
-    if(l) l->delta += delta;
-    if(r) r->delta += delta;
+    if (l) l->delta += delta;
+    if (r) r->delta += delta;
     delta = 0;
   }
 };
 Node* merge(Node *a, Node *b) {
-  if(!a || !b) return a ?: b;
+  if (!a || !b) return a ?: b;
   a->prop(), b->prop();
-  if(a->key.w > b->key.w) swap(a, b);
+  if (a->key.w > b->key.w) swap(a, b);
   swap(a->l, (a->r = merge(b, a->r)));
   return a;
 }
@@ -59,29 +59,29 @@ pair<ll, vi> directed_mst(int n, int r, V<Edge> &g) {
   deque<tuple<int, int, V<Edge>>> cycs;
   REP(s, n) {
     int u = s, qi = 0, w;
-    while(seen[u] < 0) {
+    while (seen[u] < 0) {
       Node *&hu = heap[u];
-      if(!hu) return {-1, {}};
+      if (!hu) return {-1, {}};
       hu->prop();
       Edge e = hu->key;
       hu->delta -= e.w; hu->prop(); hu = merge(hu->l, hu->r);
       Q[qi] = e, path[qi++] = u, seen[u] = s;
       res += e.w, u = uf.find(e.a);
-      if(seen[u] == s) { /// found cycle, contract
+      if (seen[u] == s) { /// found cycle, contract
         Node *c = 0;
          int end = qi, time = uf.time();
         do c = merge(c, heap[w = path[--qi]]);
-        while(uf.join(u, w));
+        while (uf.join(u, w));
         u = uf.find(u), heap[u] = c, seen[u] = -1;
         cycs.push_front({u, time, {&Q[qi], &Q[end]}});
       }
     }
     REP(i,qi) in[uf.find(Q[i].b)] = Q[i];
   }
-  for(auto [u, t, c] : cycs) { // restore sol (optional)
+  for (auto [u, t, c] : cycs) { // restore sol (optional)
     uf.rollback(t);
     Edge inu = in[u];
-    for(auto e : c) in[uf.find(e.b)] = e;
+    for (auto e : c) in[uf.find(e.b)] = e;
     in[uf.find(inu.b)] = inu;
   }
   REP(i, n) par[i] = in[i].a;

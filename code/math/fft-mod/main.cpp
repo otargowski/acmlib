@@ -4,7 +4,7 @@
  */
 #include "../fft/main.cpp"
 vi conv_mod(vi a, vi b, int M) {
-  if(a.empty() or b.empty()) return {};
+  if (a.empty() or b.empty()) return {};
   vi res(ssize(a) + ssize(b) - 1);
   C int CUTOFF = 125;
   if (min(ssize(a), ssize(b)) <= CUTOFF) {

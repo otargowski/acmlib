@@ -8,24 +8,24 @@ struct Tree_Get_Max {
   V<T> tree;
   int sz = 1;
   Tree_Get_Max(int n) {
-    while(sz < n)
+    while (sz < n)
       sz *= 2;
     tree.resize(sz * 2, zero);
   }
   void update(int pos, T val) {
     tree[pos += sz] = val;
-    while(pos /= 2)
+    while (pos /= 2)
       tree[pos] = f(tree[pos * 2], tree[pos * 2 + 1]);
   }
   T get(int l, int r) {
     l += sz, r += sz;
-    if(l == r)
+    if (l == r)
       return tree[l];
     T ret_l = tree[l], ret_r = tree[r];
-    while(l + 1 < r) {
-      if(l % 2 == 0)
+    while (l + 1 < r) {
+      if (l % 2 == 0)
         ret_l = f(ret_l, tree[l + 1]);
-      if(r % 2 == 1)
+      if (r % 2 == 1)
         ret_r = f(tree[r - 1], ret_r);
       l /= 2, r /= 2;
     }
@@ -37,26 +37,26 @@ struct Tree_Update_Max_On_Interval {
   V<T> tree;
   int sz = 1;
   Tree_Update_Max_On_Interval(int n) {
-    while(sz < n)
+    while (sz < n)
       sz *= 2;
     tree.resize(sz * 2);
   }
   T get(int pos) {
     T ret = tree[pos += sz];
-    while(pos /= 2)
+    while (pos /= 2)
       chmax(ret, tree[pos]);
     return ret;
   }
   void update(int l, int r, T val) {
     l += sz, r += sz;
     chmax(tree[l], val);
-    if(l == r)
+    if (l == r)
       return;
     chmax(tree[r], val);
-    while(l + 1 < r) {
-      if(l % 2 == 0)
+    while (l + 1 < r) {
+      if (l % 2 == 0)
         chmax(tree[l + 1], val);
-      if(r % 2 == 1)
+      if (r % 2 == 1)
         chmax(tree[r - 1], val);
       l /= 2, r /= 2;
     }

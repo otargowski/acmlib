@@ -7,7 +7,7 @@ bool equal(double a, double b) {
 
 void test() {
   assert(freopen("t.in", "r", stdin) != 0);
-  for(int i = 10; i > 0; --i)
+  for (int i = 10; i > 0; --i)
     assert(fastin() == i);
 
   assert(equal(fastin_double(), .1234));

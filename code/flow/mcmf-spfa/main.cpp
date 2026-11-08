@@ -30,31 +30,31 @@ struct MCMF {
     deque<int> que = {source};
     V<bool> inside(n);
     inside[source] = true;
-    while(ssize(que)) {
+    while (ssize(que)) {
       int v = que.front();
       inside[v] = false;
       que.pop_front();
-      for(int i : graph[v]) {
+      for (int i : graph[v]) {
         Edge &e = edges[i];
-        if(e.flow != e.cap and dist[e.u] > dist[v] + e.cost) {
+        if (e.flow != e.cap and dist[e.u] > dist[v] + e.cost) {
           dist[e.u] = dist[v] + e.cost;
           from[e.u] = i;
-          if(not inside[e.u]) {
+          if (not inside[e.u]) {
             inside[e.u] = true;
             que.eb(e.u);
           }
         }
       }
     }
-    if(from[sink] == -1)
+    if (from[sink] == -1)
       return {0, 0};
     int flow = inf_int, e = from[sink];
-    while(e != -1) {
+    while (e != -1) {
       chmin(flow, edges[e].cap - edges[e].flow);
       e = from[edges[e].v];
     }
     e = from[sink];
-    while(e != -1) {
+    while (e != -1) {
       edges[e].flow += flow;
       edges[e ^ 1].flow -= flow;
       e = from[edges[e].v];
@@ -69,7 +69,7 @@ struct MCMF {
       got = augment(source, sink);
       flow += got.fi;
       cost += got.se;
-    } while(got.fi);
+    } while (got.fi);
     return {flow, cost};
   }
 };

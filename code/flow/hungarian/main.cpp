@@ -3,7 +3,7 @@
  *   Zwraca sumę wag oraz matching.
  */
 pair<ll, vi> hungarian(V<vi> a) {
-  if(a.empty())
+  if (a.empty())
     return {0, {}};
   int n0 = ssize(a) + 1, n1 = ssize(a[0]) + 1;
   assert(n0 <= n1);
@@ -20,28 +20,28 @@ pair<ll, vi> hungarian(V<vi> a) {
       int i0 = p[j0], j1 = -1;
       ll delta = numeric_limits<ll>::max();
       FOR(j, 1, n1 - 1)
-        if(!done[j]) {
+        if (!done[j]) {
           auto cur = a[i0 - 1][j - 1] - u[i0] - v[j];
-          if(cur < dist[j])
+          if (cur < dist[j])
             dist[j] = cur, pre[j] = j0;
-          if(dist[j] < delta)
+          if (dist[j] < delta)
             delta = dist[j], j1 = j;
         }
       REP(j, n1) {
-        if(done[j])
+        if (done[j])
           u[p[j]] += delta, v[j] -= delta;
         else
           dist[j] -= delta;
       }
       j0 = j1;
-    } while(p[j0]);
-    while(j0) {
+    } while (p[j0]);
+    while (j0) {
       int j1 = pre[j0];
       p[j0] = p[j1], j0 = j1;
     }
   }
   FOR(j, 1, n1 - 1)
-    if(p[j])
+    if (p[j])
       ans[p[j] - 1] = j - 1;
   return {-v[0], ans};
 }

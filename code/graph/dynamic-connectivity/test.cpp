@@ -9,7 +9,7 @@ ostream& operator<<(ostream& o, tuple<T1, T2, T3> t) {
 void test() {
   int n = rd(1, 10);
   V<tuple<int, int, Event_type>> events(rd(0, 20));
-  for(auto &[v, u, t] : events) {
+  for (auto &[v, u, t] : events) {
     v = rd(0, n - 1);
     u = rd(0, n - 1);
     t = Event_type(rd(0, 2));
@@ -18,28 +18,28 @@ void test() {
 
   V<multiset<int>> graph(n);
   V<bool> brute;
-  for(auto [v, u, t] : events)
-    if(t == Query) {
+  for (auto [v, u, t] : events)
+    if (t == Query) {
       debug(graph);
       V<bool> vis(n);
       function<void (int)> dfs = [&](int a) {
         vis[a] = true;
-        for(int b : graph[a])
-          if(not vis[b])
+        for (int b : graph[a])
+          if (not vis[b])
             dfs(b);
       };
       dfs(v);
       brute.eb(vis[u]);
     }
-    else if(t == Add) {
+    else if (t == Add) {
       graph[v].emplace(u);
       graph[u].emplace(v);
     }
     else
-      for(int w : {v, u}) {
+      for (int w : {v, u}) {
         int w2 = w ^ v ^ u;
         auto it = graph[w].find(w2);
-        if(it != graph[w].end())
+        if (it != graph[w].end())
           graph[w].erase(it);
       }
 

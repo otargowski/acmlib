@@ -7,7 +7,7 @@ void test() {
   int n1 = rd(1, 10);
   V<vi> graph(n0 + n1);
   int m = rd(1, 100);
-  while(m --> 0) {
+  while (m --> 0) {
     int v = rd(0, n0 - 1);
     int u = rd(n0, n0 + n1 - 1);
     graph[v].eb(u);
@@ -22,10 +22,10 @@ void test() {
     assert(match[v] == -1 or match[v] < n0);
   debug(match);
   REP(v, n0)
-    if(match[v] != -1)
+    if (match[v] != -1)
       assert(match[match[v]] == v);
-  for(int u : match)
-    if(u != -1) {
+  for (int u : match)
+    if (u != -1) {
       assert(not vis[u]);
       vis[u] = true;
       ++ans_check;

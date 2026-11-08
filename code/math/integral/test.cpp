@@ -7,7 +7,7 @@ void test() {
     return x * x * a + x * b + c + d * sin(x) + e * exp(x);
   };
   D l = rd(-5, 5), r = rd(-5, 5);
-  if(l > r)
+  if (l > r)
     swap(l, r);
   D wzorc = integrate(f, l, r);
   auto fp = [&](D x) {

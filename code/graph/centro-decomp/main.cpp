@@ -50,7 +50,7 @@ struct CentroDecomp {
     // Tu kod. Centroid to v, ktory jest juz dozywotnie odwiedzony.
     // Koniec kodu.
     refresh();
-    for(int u : graph[v]) // tu
+    for (int u : graph[v]) // tu
       if (!is_vis(u)) {
         u = centro(u);
         par[u] = v;

@@ -7,8 +7,8 @@ array<V<P>, 2> top_bot_hull(V<P> in) {
   sort(all(in));
   array<V<P>, 2> ret;
   REP(d, 2) {
-    for(auto p : in) {
-      while(ssize(ret[d]) > 1 and dir(ret[d].end()[-2], ret[d].back(), p) >= 0)
+    for (auto p : in) {
+      while (ssize(ret[d]) > 1 and dir(ret[d].end()[-2], ret[d].back(), p) >= 0)
         ret[d].pop_back();
       ret[d].eb(p);
     }
@@ -17,7 +17,7 @@ array<V<P>, 2> top_bot_hull(V<P> in) {
   return ret;
 }
 V<P> hull(V<P> in) {
-  if(ssize(in) <= 1) return in;
+  if (ssize(in) <= 1) return in;
   auto ret = top_bot_hull(in);
   REP(d, 2) ret[d].pop_back();
   ret[0].insert(ret[0].end(), ret[1].begin(), ret[1].end());

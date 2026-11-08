@@ -4,7 +4,7 @@
 void test() {
   auto get_vec_given_length = [&](int n) {
     vi v(n);
-    for(int &e : v)
+    for (int &e : v)
       e = rd(0, mod - 1);
     return v;
   };
@@ -100,7 +100,7 @@ void test() {
       b = add_vi(b, c);
       c = mod_xn(conv(c, a), n);
       int invi = inv(i + 1);
-      for(auto& e : c) e = mul(e, invi);
+      for (auto& e : c) e = mul(e, invi);
     }
     assert(eq(mod_xn(b, n), exp(a, n)));
   }

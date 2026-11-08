@@ -3,9 +3,9 @@
 #include "main.cpp"
 
 void test() {
-  while(true) {
+  while (true) {
     mod = rd(7, int(1e5));
-    if(miller_rabin(mod))
+    if (miller_rabin(mod))
       break;
   }
   int g = primitive_root();

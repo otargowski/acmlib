@@ -6,7 +6,7 @@ vi brute_pref(vi str) {
   vi ret(n);
   REP(i, n) {
     int len = 0;
-    while(i + len < n and str[i + len] == str[len])
+    while (i + len < n and str[i + len] == str[len])
       ++len;
     ret[i] = len;
   }

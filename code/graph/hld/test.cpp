@@ -10,9 +10,9 @@ struct Test {
 
   void add(int v, int u, ll val) {
     auto path = hld.get_path(v, u);
-    for(auto &p : path) {
+    for (auto &p : path) {
       assert(p.fi <= p.se);
-      for(int j = p.fi; j <= p.se; j++)
+      for (int j = p.fi; j <= p.se; j++)
         sums[j] += val;
     }
   }
@@ -20,9 +20,9 @@ struct Test {
   ll query(int v, int u) {
      ll ret = 0;
      auto path = hld.get_path(v, u);
-     for(auto &p : path) {
+     for (auto &p : path) {
       assert(p.fi <= p.se);
-      for(int j = p.fi; j <= p.se; j++)
+      for (int j = p.fi; j <= p.se; j++)
         ret += sums[j];
      }
      return ret;
@@ -35,16 +35,16 @@ struct Brute {
 
   bool found;
   ll dfs(int v, int u, ll val, int p = -1) {
-    if(p == -1) found = false;
-    if(v == u) {
+    if (p == -1) found = false;
+    if (v == u) {
       found = true;
       sums[v] += val;
       return sums[v];
     }
 
-    for(int x : graph[v]) if(x != p) {
+    for (int x : graph[v]) if (x != p) {
       ll ret = dfs(x, u, val, v);
-      if(found) {
+      if (found) {
         sums[v] += val;
         return ret + sums[v];
       }
@@ -81,7 +81,7 @@ void test() {
   Brute brut(n, graph);
 
   REP(i, q)
-    if(rd(0, 1)) {
+    if (rd(0, 1)) {
       int v = rd(0, n - 1), u = rd(0, n - 1), val = rd(1, 100);
       hld.add(v, u, val);
       brut.add(v, u, val);

@@ -20,7 +20,7 @@ vi de_brujin(int k, int n, bool is_path) {
       edges.eb(i, i * k % N + j);
   vi path = get<2>(eulerian_path(N, edges, true));
   path.pop_back();
-  for(auto& e : path)
+  for (auto& e : path)
     e = e % k;
   if (is_path)
     REP(i, n - 1)

@@ -10,9 +10,9 @@ struct FindUnion {
   bool same_set(int a, int b) { return find(a) == find(b); }
   bool join(int a, int b) {
     a = find(a), b = find(b);
-    if(a == b)
+    if (a == b)
       return false;
-    if(-rep[a] < -rep[b])
+    if (-rep[a] < -rep[b])
       swap(a, b);
     rep[a] += rep[b];
     rep[b] = a;

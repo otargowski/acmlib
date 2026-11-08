@@ -15,17 +15,17 @@
 void fwht_or(vi &a) {
   int n = ssize(a);
   assert((n & (n - 1)) == 0);
-  for(int s = n; s /= 2;)
-    for(int l = 0; l < n; l += 2 * s)
-      for(int i = l; i < l + s; ++i)
+  for (int s = n; s /= 2;)
+    for (int l = 0; l < n; l += 2 * s)
+      for (int i = l; i < l + s; ++i)
         a[i + s] += a[i];
 }
 void ifwht_or(vi &a) {
   int n = ssize(a);
   assert((n & (n - 1)) == 0);
-  for(int s = n; s /= 2;)
-    for(int l = 0; l < n; l += 2 * s)
-      for(int i = l; i < l + s; ++i)
+  for (int s = n; s /= 2;)
+    for (int l = 0; l < n; l += 2 * s)
+      for (int i = l; i < l + s; ++i)
         a[i + s] -= a[i];
 }
 vi convolution_or(vi a, vi b) {
@@ -41,17 +41,17 @@ vi convolution_or(vi a, vi b) {
 void fwht_and(vi &a) {
   int n = ssize(a);
   assert((n & (n - 1)) == 0);
-  for(int s = n; s /= 2;)
-    for(int l = 0; l < n; l += 2 * s)
-      for(int i = l; i < l + s; ++i)
+  for (int s = n; s /= 2;)
+    for (int l = 0; l < n; l += 2 * s)
+      for (int i = l; i < l + s; ++i)
         a[i] += a[i + s];
 }
 void ifwht_and(vi &a) {
   int n = ssize(a);
   assert((n & (n - 1)) == 0);
-  for(int s = n; s /= 2;)
-    for(int l = 0; l < n; l += 2 * s)
-      for(int i = l; i < l + s; ++i)
+  for (int s = n; s /= 2;)
+    for (int l = 0; l < n; l += 2 * s)
+      for (int i = l; i < l + s; ++i)
         a[i] -= a[i + s];
 }
 vi convolution_and(vi a, vi b) {
@@ -67,9 +67,9 @@ vi convolution_and(vi a, vi b) {
 void fwht_xor(vi &a) {
   int n = ssize(a);
   assert((n & (n - 1)) == 0);
-  for(int s = n; s /= 2;)
-    for(int l = 0; l < n; l += 2 * s)
-      for(int i = l; i < l + s; ++i) {
+  for (int s = n; s /= 2;)
+    for (int l = 0; l < n; l += 2 * s)
+      for (int i = l; i < l + s; ++i) {
         int t = a[i + s];
         a[i + s] = a[i] - t;
         a[i] += t;
@@ -78,9 +78,9 @@ void fwht_xor(vi &a) {
 void ifwht_xor(vi &a) {
   int n = ssize(a);
   assert((n & (n - 1)) == 0);
-  for(int s = n; s /= 2;)
-    for(int l = 0; l < n; l += 2 * s)
-      for(int i = l; i < l + s; ++i) {
+  for (int s = n; s /= 2;)
+    for (int l = 0; l < n; l += 2 * s)
+      for (int i = l; i < l + s; ++i) {
         int t = a[i + s];
         a[i + s] = (a[i] - t) / 2;
         a[i] = (a[i] + t) / 2;

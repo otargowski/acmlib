@@ -12,13 +12,13 @@ void test() {
   };
   pair<ll, ll> found = binsearch(max_value, is_good);
 
-  if(max_value == ll(1e18))
+  if (max_value == ll(1e18))
     return;
 
   V<pair<ll, ll>> possible;
   FOR(a, 0, max_value)
     FOR(b, 1, max_value)
-      if(is_good(pair(a, b)) and __gcd(a, b) == 1)
+      if (is_good(pair(a, b)) and __gcd(a, b) == 1)
         possible.eb(pair(a, b));
   sort(all(possible), [&](pair<ll, ll> l, pair<ll, ll> r) {
     return l.fi / (long double)(l.se) < r.fi / (long double)(r.se);

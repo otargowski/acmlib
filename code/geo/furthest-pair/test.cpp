@@ -5,7 +5,7 @@
 void test() {
   int n = rd(2, 3);
   V<P> in(n);
-  for(auto &p : in)
+  for (auto &p : in)
     p = P(rd(-10, 10), rd(-10, 10));
   debug(in);
 

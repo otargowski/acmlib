@@ -34,9 +34,9 @@ ostream& operator<<(ostream&o, C Matrix& matrix) {
 }
 
 void test() {
-  AssocQueue<int> q1([](int a, int b){ return min(a, b);}, (1 << 30));
-  AssocQueue<Matrix> q2([](Matrix a, Matrix b){ return a * b;});
-  AssocQueue<int> q3([](int a, int b){ return min(a, b);}, numeric_limits<int>::max());
+  AssocQueue<int> q1([](int a, int b) { return min(a, b); }, (1 << 30));
+  AssocQueue<Matrix> q2([](Matrix a, Matrix b) { return a * b; });
+  AssocQueue<int> q3([](int a, int b) { return min(a, b); }, numeric_limits<int>::max());
 
   int n = rd(1, 30);
   debug(n);
@@ -65,7 +65,7 @@ void test() {
   int cntl = n;
   int cntr = n;
   int l = 0, r = -1;
-  AssocQueue<Matrix> que([&](Matrix a, Matrix b) { return a * b;});
+  AssocQueue<Matrix> que([&](Matrix a, Matrix b) { return a * b; });
   while (cntl + cntr > 0) {
     int type = rd(0,5);
     debug(type, ssize(que.s1), ssize(que.s2));

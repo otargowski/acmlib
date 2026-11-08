@@ -1,7 +1,7 @@
 #include "../../utils/testing/test-wrapper.cpp"
 #include "main.cpp"
 template <typename T1, typename T2, typename T3>
-auto& operator<<(ostream& o, tuple<T1, T2, T3> t) { return o<<"("<<get<0>(t)<<", "<<get<1>(t)<<", "<<get<2>(t)<<")";}
+auto& operator<<(ostream& o, tuple<T1, T2, T3> t) { return o<<"("<<get<0>(t)<<", "<<get<1>(t)<<", "<<get<2>(t)<<")"; }
 
 void test() {
   int limit = rd(0, 1e3);

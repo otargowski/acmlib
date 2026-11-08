@@ -20,9 +20,9 @@ V<bool> wildcard_matching(vi text, vi pattern) {
     ntt(a, sz, true);
     REP(i, sz) c[i] = add(c[i], a[i]);
   };
-  h([](int x){return powi(x,3);},identity());
-  h([](int x){return sub(0, mul(2, mul(x, x)));}, [](int x){return mul(x, x);});
-  h(identity(),[](int x){return powi(x,3);});
+  h([](int x) { return powi(x,3); }, identity());
+  h([](int x) { return sub(0, mul(2, mul(x, x))); }, [](int x) { return mul(x, x); });
+  h(identity(),[](int x) { return powi(x,3); });
   V<bool> ret(n - m + 1);
   FOR(i, m, n) ret[i - m] = !c[i - 1];
   return ret;

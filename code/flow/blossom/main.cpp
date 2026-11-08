@@ -7,24 +7,24 @@
 vi blossom(V<vi> graph) {
   int n = ssize(graph), timer = -1;
   REP(v, n)
-    for(int u : graph[v])
+    for (int u : graph[v])
       assert(v != u);
   vi match(n, -1), label(n), parent(n), orig(n), aux(n, -1), q;
   auto lca = [&](int x, int y) {
-    for(++timer; ; swap(x, y)) {
-      if(x == -1)
+    for (++timer; ; swap(x, y)) {
+      if (x == -1)
         continue;
-      if(aux[x] == timer)
+      if (aux[x] == timer)
         return x;
       aux[x] = timer;
       x = (match[x] == -1 ? -1 : orig[parent[match[x]]]);
     }
   };
   auto blossom = [&](int v, int w, int a) {
-    while(orig[v] != a) {
+    while (orig[v] != a) {
       parent[v] = w;
       w = match[v];
-      if(label[w] == 1) {
+      if (label[w] == 1) {
         label[w] = 0;
         q.eb(w);
       }
@@ -33,7 +33,7 @@ vi blossom(V<vi> graph) {
     }
   };
   auto augment = [&](int v) {
-    while(v != -1) {
+    while (v != -1) {
       int pv = parent[v], nv = match[pv];
       match[v] = pv;
       match[pv] = v;
@@ -47,18 +47,18 @@ vi blossom(V<vi> graph) {
     q = {root};
     REP(i, ssize(q)) {
       int v = q[i];
-      for(int x : graph[v])
-        if(label[x] == -1) {
+      for (int x : graph[v])
+        if (label[x] == -1) {
           label[x] = 1;
           parent[x] = v;
-          if(match[x] == -1) {
+          if (match[x] == -1) {
             augment(x);
             return 1;
           }
           label[match[x]] = 0;
           q.eb(match[x]);
         }
-        else if(label[x] == 0 and orig[v] != orig[x]) {
+        else if (label[x] == 0 and orig[v] != orig[x]) {
           int a = lca(orig[v], orig[x]);
           blossom(x, v, a);
           blossom(v, x, a);
@@ -67,7 +67,7 @@ vi blossom(V<vi> graph) {
     return 0;
   };
   REP(i, n)
-    if(match[i] == -1)
+    if (match[i] == -1)
       bfs(i);
   return match;
 }

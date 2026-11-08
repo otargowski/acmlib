@@ -13,14 +13,14 @@ void test() {
       FOR(b, a, m - 1)
         FOR(c, b, m - 1)
           FOR(d, c, m - 1) {
-            if(cost[b][c] > cost[a][d])
+            if (cost[b][c] > cost[a][d])
               return false;
-            if(cost[a][c] + cost[b][d] > cost[a][d] + cost[b][c])
+            if (cost[a][c] + cost[b][d] > cost[a][d] + cost[b][c])
               return false;
           }
     return true;
   };
-  if(not check_valid_c())
+  if (not check_valid_c())
     return;
   debug(cost);
 

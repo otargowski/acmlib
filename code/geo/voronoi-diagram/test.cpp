@@ -6,10 +6,10 @@
 
 ostream& operator<<(ostream &o, __int128_t x) {
   string s;
-  if(x == 0)
+  if (x == 0)
     s = "0";
   else
-    while(x > 0) {
+    while (x > 0) {
       s += char('0' + (x % 10));
       x /= 10;
     }
@@ -28,11 +28,11 @@ void test() {
   int n = mx > 5 ? rd(1, int(1e3)) : rd(1, 10);
   set<PI> already;
   V<PI> in(n);
-  for(auto &[x, y] : in) {
-    while(true) {
+  for (auto &[x, y] : in) {
+    while (true) {
       x = rd(-mx, mx);
       y = rd(-mx, mx);
-      if(already.find(pair(x, y)) == already.end())
+      if (already.find(pair(x, y)) == already.end())
         break;
     }
     already.emplace(x, y);
@@ -42,7 +42,7 @@ void test() {
   debug(ret);
 
   assert(ssize(ret) == n);
-  for(auto poly : ret) {
+  for (auto poly : ret) {
     assert(ssize(poly) >= 3);
     REP(i, ssize(poly)) {
       P p0 = poly[i];
@@ -53,9 +53,9 @@ void test() {
   }
 
   int queries = 10;
-  while(queries --> 0) {
+  while (queries --> 0) {
     D x, y;
-    if(rd(0, 1)) {
+    if (rd(0, 1)) {
       x = rd_d(-mx, mx);
       y = rd_d(-mx, mx);
     }
@@ -70,18 +70,18 @@ void test() {
       auto poly = ret[id];
       int inter_cnt = 0;
       REP(i, ssize(poly))
-        if(on_segment(poly[i], poly[(i + 1) % ssize(poly)], P(x, y)))
+        if (on_segment(poly[i], poly[(i + 1) % ssize(poly)], P(x, y)))
           ++inter_cnt;
-      if(inter_cnt > 0) {
+      if (inter_cnt > 0) {
         matching_areas.eb(id);
         continue;
       }
         
       REP(i, ssize(poly))
-        if(is_intersection_segment(P(x, y), P(int(2e9), y + 1), poly[i], poly[(i + 1) % ssize(poly)]))
+        if (is_intersection_segment(P(x, y), P(int(2e9), y + 1), poly[i], poly[(i + 1) % ssize(poly)]))
           ++inter_cnt;
       assert(inter_cnt <= 2);
-      if(inter_cnt == 1)
+      if (inter_cnt == 1)
         matching_areas.eb(id);
     }
     debug(ssize(matching_areas));
@@ -92,7 +92,7 @@ void test() {
       chmin(closest_d, dist(P(x, y), P(in[i].fi, in[i].se)));
     vi closest_v;
     REP(i, n)
-      if(equal(closest_d, dist(P(x, y), P(in[i].fi, in[i].se))))
+      if (equal(closest_d, dist(P(x, y), P(in[i].fi, in[i].se))))
         closest_v.eb(i);
     debug(closest_v);
     sort(all(matching_areas));

@@ -18,9 +18,9 @@ V<tuple<int, int, int>> squares(C vi &s) {
     REP(j, 2) {
        auto z1 = pref(ra), bha = b;
        bha.eb(-1);
-       for(int x : a) bha.eb(x);
+       for (int x : a) bha.eb(x);
        auto z2 = pref(bha);
-       for(auto *v : {&z1, &z2}) {
+       for (auto *v : {&z1, &z2}) {
          v[0][0] = ssize(v[0]);
          v->eb(0);
        }

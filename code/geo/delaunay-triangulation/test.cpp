@@ -6,7 +6,7 @@ void test() {
   int mx = rd(0, 1) ? 10 : int(1e9);
 
   V<pii> in(n);
-  for(auto &[x, y] : in) {
+  for (auto &[x, y] : in) {
     x = rd(-mx, mx);
     y = rd(-mx, mx);
   }
@@ -14,20 +14,20 @@ void test() {
   bool all_unique = true;
   REP(i, n)
     REP(j, i)
-      if(in[i] == in[j])
+      if (in[i] == in[j])
         all_unique = false;
-  if(not all_unique)
+  if (not all_unique)
     return;
 
   auto ret = triangulate(in);
 
   bool is_all_colinear = true;
-  if(n >= 2)
+  if (n >= 2)
     REP(i, n)
-      if(cross(in[0], in[1], in[i]) != 0)
+      if (cross(in[0], in[1], in[i]) != 0)
         is_all_colinear = false;
 
-  if(is_all_colinear) {
+  if (is_all_colinear) {
     assert(ret.empty());
     return;
   }
@@ -38,8 +38,8 @@ void test() {
   sort(all(in));
   REP(dir, 2) {
     auto &hull = hulls[dir];
-    for(auto p : in) {
-      while(ssize(hull) >= 2 and cross(hull.end()[-2], hull.back(), p) >= 0)
+    for (auto p : in) {
+      while (ssize(hull) >= 2 and cross(hull.end()[-2], hull.back(), p) >= 0)
         hull.pop_back();
       hull.eb(p);
     }

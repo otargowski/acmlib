@@ -7,7 +7,7 @@ void assert_is_valid_lyndon_factorization(vi s, V<pii> fact) {
     assert(fact[i].se + 1 == fact[i + 1].fi);
   assert(fact.front().fi == 0 and fact.back().se == ssize(s) - 1);
   V<vi> order;
-  for(auto [l, r] : fact) {
+  for (auto [l, r] : fact) {
     assert(l <= r);
     vi sub(s.begin() + l, s.begin() + r + 1);
     FOR(suff_len, 1, r - l)

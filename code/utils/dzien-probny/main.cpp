@@ -9,7 +9,7 @@ void test_int128() {
   __int128 x = (1llu << 62);
   x *= x;
   string s;
-  while(x) {
+  while (x) {
     s += char(x % 10 + '0');
     x /= 10;
   }
@@ -23,10 +23,10 @@ void test_clock() {
   long seeed = chrono::system_clock::now().time_since_epoch().count();
   (void) seeed;
   auto start = chrono::system_clock::now();
-  while(true) {
+  while (true) {
     auto end = chrono::system_clock::now();
     int ms = int(chrono::duration_cast<chrono::milliseconds>(end - start).count());
-    if(ms > 420)
+    if (ms > 420)
       break;
   }
 }

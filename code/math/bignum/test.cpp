@@ -5,7 +5,7 @@ using namespace std;
 #include "main.cpp"
 
 ostream& operator<<(ostream& o, __int128_t x) {
-  if(x < 0) {
+  if (x < 0) {
     x = -x;
     o << "-";
   }

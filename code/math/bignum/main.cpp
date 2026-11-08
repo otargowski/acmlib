@@ -9,18 +9,18 @@ struct Num {
   int sign = 0;
   vi x;
   Num& shorten() {
-    while(ssize(x) and x.back() == 0)
+    while (ssize(x) and x.back() == 0)
       x.pop_back();
-    for(int a : x)
+    for (int a : x)
       assert(0 <= a and a < base);
-    if(x.empty())
+    if (x.empty())
       sign = 0;
     return *this;
   }
   Num(string s) {
     sign = ssize(s) and s[0] == '-' ? s.erase(s.begin()), -1 : 1;
-    for(int i = ssize(s); i > 0; i -= digits_per_elem)
-      if(i < digits_per_elem)
+    for (int i = ssize(s); i > 0; i -= digits_per_elem)
+      if (i < digits_per_elem)
         x.eb(stoi(s.substr(0, i)));
       else
         x.eb(stoi(s.substr(i - digits_per_elem, digits_per_elem)));
@@ -33,7 +33,7 @@ struct Num {
 string to_string(C Num& n) {
   stringstream s;
   s << (n.sign == -1 ? "-" : "") << (ssize(n.x) ? n.x.back() : 0);
-  for(int i = ssize(n.x) - 2; i >= 0; --i)
+  for (int i = ssize(n.x) - 2; i >= 0; --i)
     s << setfill('0') << setw(n.digits_per_elem) << n.x[i];
   return s.str();
 }
@@ -42,10 +42,10 @@ ostream& operator<<(ostream &o, C Num& n) {
 } // END HASH
 // BEGIN HASH
 auto operator<=>(C Num& a, C Num& b) {
-  if(a.sign != b.sign or ssize(a.x) != ssize(b.x))
+  if (a.sign != b.sign or ssize(a.x) != ssize(b.x))
     return ssize(a.x) * a.sign <=> ssize(b.x) * b.sign;
-  for(int i = ssize(a.x) - 1; i >= 0; --i)
-    if(a.x[i] != b.x[i])
+  for (int i = ssize(a.x) - 1; i >= 0; --i)
+    if (a.x[i] != b.x[i])
       return a.x[i] * a.sign <=> b.x[i] * b.sign;
   return strong_ordering::equal;
 }
@@ -56,8 +56,8 @@ bool operator==(C Num& a, C Num& b) {
 Num abs(Num n) { n.sign &= 1; return n; }
 Num operator+(Num a, Num b) {
   int mode = a.sign * b.sign >= 0 ? a.sign |= b.sign, 1 : abs(b) > abs(a) ? swap(a, b), -1 : -1, carry = 0;
-  for(int i = 0; i < max(ssize((mode == 1 ? a : b).x), ssize(b.x)) or carry; ++i) {
-    if(mode == 1 and i == ssize(a.x))
+  for (int i = 0; i < max(ssize((mode == 1 ? a : b).x), ssize(b.x)) or carry; ++i) {
+    if (mode == 1 and i == ssize(a.x))
       a.x.eb(0);
     a.x[i] += mode * (carry + (i < ssize(b.x) ? b.x[i] : 0));
     carry = a.x[i] >= a.base or a.x[i] < 0;
@@ -71,14 +71,14 @@ Num operator-(Num a, Num b) { return a + -b; }
 Num operator*(Num a, int b) {
   assert(abs(b) < a.base);
   int carry = 0;
-  for(int i = 0; i < ssize(a.x) or carry; ++i) {
-    if(i == ssize(a.x))
+  for (int i = 0; i < ssize(a.x) or carry; ++i) {
+    if (i == ssize(a.x))
       a.x.eb(0);
     ll cur = a.x[i] * ll(abs(b)) + carry;
     a.x[i] = int(cur % a.base);
     carry = int(cur / a.base);
   }
-  if(b < 0)
+  if (b < 0)
     a.sign *= -1;
   return a.shorten();
 } // END HASH
@@ -87,7 +87,7 @@ Num operator*(C Num& a, C Num& b) {
   Num c;
   c.x.resize(ssize(a.x) + ssize(b.x));
   REP(i, ssize(a.x))
-    for(int j = 0, carry = 0; j < ssize(b.x) or carry; ++j) {
+    for (int j = 0, carry = 0; j < ssize(b.x) or carry; ++j) {
       ll cur = c.x[i + j] + a.x[i] * ll(j < ssize(b.x) ? b.x[j] : 0) + carry;
       c.x[i + j] = int(cur % a.base);
       carry = int(cur / a.base);
@@ -99,12 +99,12 @@ Num operator*(C Num& a, C Num& b) {
 Num operator/(Num a, int b) {
   assert(b != 0 and abs(b) < a.base);
   int carry = 0;
-  for(int i = ssize(a.x) - 1; i >= 0; --i) {
+  for (int i = ssize(a.x) - 1; i >= 0; --i) {
     ll cur = a.x[i] + carry * ll(a.base);
     a.x[i] = int(cur / abs(b));
     carry = int(cur % abs(b));
   }
-  if(b < 0)
+  if (b < 0)
     a.sign *= -1;
   return a.shorten();
 } // END HASH
@@ -121,7 +121,7 @@ Num operator/(Num a, Num b) {
   Num c;
   a = abs(a);
   b = abs(b);
-  for(int i = ssize(a.x) - ssize(b.x); i >= 0; --i) {
+  for (int i = ssize(a.x) - ssize(b.x); i >= 0; --i) {
     if (a < shift(b, i)) continue;
     int l = 0, r = a.base - 1;
     while (l < r) {

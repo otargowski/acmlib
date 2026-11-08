@@ -2,10 +2,10 @@
 #include "main.cpp"
 
 vi get_random_a(int n = -1) {
-  if(n == -1)
+  if (n == -1)
     n = 1 << rd(0, 4);
   vi a(n);
-  for(int &ai : a)
+  for (int &ai : a)
     ai = rd(-5, 5);
   return a;
 }
@@ -16,7 +16,7 @@ void test_fwht_or() {
   vi should_be(n);
   REP(i, n)
     REP(j, n)
-      if((j | i) == i)
+      if ((j | i) == i)
         should_be[i] += a[j];
   fwht_or(a);
   assert(should_be == a);
@@ -37,7 +37,7 @@ void test_convolution_or() {
   REP(i, n)
     REP(j, n)
       REP(k, n)
-        if((j | k) == i)
+        if ((j | k) == i)
           should_be[i] += a[j] * b[k];
   assert(should_be == convolution_or(a, b));
 }
@@ -48,7 +48,7 @@ void test_fwht_and() {
   vi should_be(n);
   REP(i, n)
     REP(j, n)
-      if((j & i) == i)
+      if ((j & i) == i)
         should_be[i] += a[j];
   fwht_and(a);
   assert(should_be == a);
@@ -69,7 +69,7 @@ void test_convolution_and() {
   REP(i, n)
     REP(j, n)
       REP(k, n)
-        if((j & k) == i)
+        if ((j & k) == i)
           should_be[i] += a[j] * b[k];
   assert(should_be == convolution_and(a, b));
 }
@@ -80,7 +80,7 @@ void test_fwht_xor() {
   vi should_be(n);
   REP(i, n)
     REP(j, n)
-      if(__builtin_popcount(i & j) % 2 == 0)
+      if (__builtin_popcount(i & j) % 2 == 0)
         should_be[i] += a[j];
       else
         should_be[i] -= a[j];
@@ -103,7 +103,7 @@ void test_convolution_xor() {
   REP(i, n)
     REP(j, n)
       REP(k, n)
-        if((j ^ k) == i)
+        if ((j ^ k) == i)
           should_be[i] += a[j] * b[k];
   assert(should_be == convolution_xor(a, b));
 }

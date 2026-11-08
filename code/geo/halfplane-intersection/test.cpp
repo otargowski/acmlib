@@ -59,7 +59,7 @@ bool is_outside(HalfplanePInt hi, PFrac p) {
 
 D num_to_d(Num n) {
   D d = 0;
-  for(int x : V(rall(n.x)))
+  for (int x : V(rall(n.x)))
     d = n.base * d + x;
   d *= n.sign;
   return d;
@@ -77,21 +77,21 @@ PInt sub_PInt(PInt l, PInt r) {
 
 V<P> brute_halfplane(V<HalfplanePInt> h) {
   V<P> potential;
-  for(HalfplanePInt s : h)
-    for(HalfplanePInt t : h)
-      if(crossPInt(s.se, t.se) != 0) {
+  for (HalfplanePInt s : h)
+    for (HalfplanePInt t : h)
+      if (crossPInt(s.se, t.se) != 0) {
         Frac alpha = {crossPInt(sub_PInt(t.fi, s.fi), t.se),
           crossPInt(s.se, t.se)
         };
         PFrac inte = add_pfrac(to_pfrac(s.fi), mul_pfrac(to_pfrac(s.se), alpha));
 
         bool is_good = true;
-        for(HalfplanePInt hi : h)
-          if(is_outside(hi, inte)) {
+        for (HalfplanePInt hi : h)
+          if (is_outside(hi, inte)) {
             is_good = false;
             break;
           }
-        if(is_good)
+        if (is_good)
           potential.eb(to_p(inte));
       }
 
@@ -103,7 +103,7 @@ void test() {
   C int n = rd(0, 10);
   V<Halfplane> in;
   V<HalfplanePInt> inPInt;
-  for(int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 4; ++i) {
     constexpr D inf = 1e5;
     array box = {P(-inf, -inf), P(inf, -inf), P(inf, inf), P(-inf, inf)};
     array boxPInt = {PInt(-inf, -inf), PInt(inf, -inf), PInt(inf, inf), PInt(-inf, inf)};
@@ -117,10 +117,10 @@ void test() {
   };
   REP(i, n) {
     PInt a, b;
-    while(true) {
+    while (true) {
       a = get_random_p();
       b = get_random_p();
-      if(a != b)
+      if (a != b)
         break;
     }
     in.eb(P(a.fi, a.se), P(b.fi, b.se));

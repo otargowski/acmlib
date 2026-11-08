@@ -8,11 +8,11 @@ void test() {
     vi color(n, -1);
     int last_c = 0;
     REP(v, n)
-      if(color[v] == -1) {
+      if (color[v] == -1) {
         function<void (int)> dfs = [&](int u) {
           color[u] = last_c;
-          for(int w : graph[u])
-            if(color[w] == -1)
+          for (int w : graph[u])
+            if (color[w] == -1)
               dfs(w);
         };
         dfs(v);
@@ -24,7 +24,7 @@ void test() {
   REP(edge, 2 * n) {
     int v = rd(0, n - 1);
     int u = rd(0, n - 1);
-    if(v == u)
+    if (v == u)
       continue;
     graph[v].eb(u);
     graph[u].eb(v);
@@ -35,10 +35,10 @@ void test() {
       REP(b, n)
         assert((colors[a] == colors[b]) == (fu.same_set(a, b)));
     REP(a, n)
-      if(fu.find(a) == a) {
+      if (fu.find(a) == a) {
         int sz = 0;
         REP(b, n)
-          if(colors[a] == colors[b])
+          if (colors[a] == colors[b])
             ++sz;
         assert(sz == fu.size(a));
       }

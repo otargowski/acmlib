@@ -5,13 +5,13 @@
  */
 #include "../point/main.cpp"
 V<pair<P, P>> circle_tangents(P p1, D r1, P p2, D r2, bool inner) {
-  if(inner) r2 *= -1;
+  if (inner) r2 *= -1;
   P d = p2 - p1;
   D dr = r1 - r2, d2 = dot(d, d), h2 = d2 - dr * dr;
-  if(equal(d2, 0) or sign(h2) < 0)
+  if (equal(d2, 0) or sign(h2) < 0)
     return {};
   V<pair<P, P>> ret;
-  for(D sign : {-1, 1}) {
+  for (D sign : {-1, 1}) {
     P v = (d * dr + P(-d.y(), d.x()) * sqrt(max(D(0), h2)) * sign) / d2;
     ret.eb(p1 + v * r1, p2 + v * r2);
   }

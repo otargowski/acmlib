@@ -9,9 +9,9 @@ inline void putchar_unlocked(char c) { _putchar_nolock(c); }
 // BEGIN HASH
 int fastin() {
   int n = 0, c = getchar_unlocked();
-  while(isspace(c))
+  while (isspace(c))
     c = getchar_unlocked();
-  while(isdigit(c)) {
+  while (isdigit(c)) {
     n = 10 * n + (c - '0');
     c = getchar_unlocked();
   }
@@ -20,13 +20,13 @@ int fastin() {
 // BEGIN HASH
 int fastin_negative() {
   int n = 0, negative = false, c = getchar_unlocked();
-  while(isspace(c))
+  while (isspace(c))
     c = getchar_unlocked();
-  if(c == '-') {
+  if (c == '-') {
     negative = true;
     c = getchar_unlocked();
   }
-  while(isdigit(c)) {
+  while (isdigit(c)) {
     n = 10 * n + (c - '0');
     c = getchar_unlocked();
   }
@@ -36,7 +36,7 @@ int fastin_negative() {
 double fastin_double() {
   double x = 0, t = 1;
   int negative = false, c = getchar_unlocked();
-  while(isspace(c))
+  while (isspace(c))
     c = getchar_unlocked();
   if (c == '-') {
     negative = true;
@@ -58,22 +58,22 @@ double fastin_double() {
 } // END HASH
 // BEGIN HASH
 void fastout(int x) {
-  if(x == 0) {
+  if (x == 0) {
     putchar_unlocked('0');
     putchar_unlocked(' ');
     return;
   }
-  if(x < 0) {
+  if (x < 0) {
     putchar_unlocked('-');
     x *= -1;
   }
   static char t[10];
   int i = 0;
-  while(x) {
+  while (x) {
     t[i++] = char('0' + (x % 10));
     x /= 10;
   }
-  while(--i >= 0)
+  while (--i >= 0)
     putchar_unlocked(t[i]);
   putchar_unlocked(' ');
 }

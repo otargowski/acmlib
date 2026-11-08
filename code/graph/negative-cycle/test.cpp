@@ -5,7 +5,7 @@ void test() {
   int n = rd(1, 20);
   int m = rd(0, n * n);
   V<V<pii>> graph(n);
-  while(m --> 0)
+  while (m --> 0)
     graph[rd(0, n - 1)].eb(rd(0, n - 1), rd(-2 * n, 2 * n));
   debug(graph);
 
@@ -18,7 +18,7 @@ void test() {
     REP(v, n)
       dist[v][v] = 0;
     REP(v, n)
-      for(auto [u, w] : graph[v])
+      for (auto [u, w] : graph[v])
         chmin(dist[v][u], w);
     REP(k, n)
       REP(i, n)
@@ -27,12 +27,12 @@ void test() {
           chmax(dist[i][j], -inf);
         }
     REP(v, n)
-      if(dist[v][v] < 0)
+      if (dist[v][v] < 0)
         return true;
     return false;
   };
   assert(is_cycle == is_cycle_floyd_warshall());
-  if(not is_cycle)
+  if (not is_cycle)
     return;
 
   int sum_on_cycle = 0;
@@ -41,9 +41,9 @@ void test() {
     int u = cycle[(i + 1) % ssize(cycle)];
     bool found = false;
     int found_w;
-    for(auto [uu, w] : graph[v])
-      if(uu == u) {
-        if(not found) {
+    for (auto [uu, w] : graph[v])
+      if (uu == u) {
+        if (not found) {
           found_w = w;
           found = true;
         }

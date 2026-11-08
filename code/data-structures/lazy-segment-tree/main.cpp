@@ -31,37 +31,37 @@ struct Tree {
   V<Node> tree;
   int sz = 1;
   Tree(int n) {
-    while(sz < n)
+    while (sz < n)
       sz *= 2;
     tree.resize(sz * 2);
-    for(int v = sz - 1; v >= 1; v--)
+    for (int v = sz - 1; v >= 1; v--)
       tree[v] = merge(tree[2 * v], tree[2 * v + 1]);
   }
   void push(int v) {
     push_to_sons(tree[v], tree[2 * v], tree[2 * v + 1]);
   }
   Node get(int l, int r, int v = 1) {
-    if(l == 0 and r == tree[v].sz - 1)
+    if (l == 0 and r == tree[v].sz - 1)
       return tree[v];
     push(v);
     int m = tree[v].sz / 2;
-    if(r < m)
+    if (r < m)
       return get(l, r, 2 * v);
-    else if(m <= l)
+    else if (m <= l)
       return get(l - m, r - m, 2 * v + 1);
     else
       return merge(get(l, m - 1, 2 * v), get(0, r - m, 2 * v + 1));
   }
   void update(int l, int r, int val, int v = 1) {
-    if(l == 0 && r == tree[v].sz - 1) {
+    if (l == 0 && r == tree[v].sz - 1) {
       add_to_base(tree[v], val);
       return;
     }
     push(v);
     int m = tree[v].sz / 2;
-    if(r < m)
+    if (r < m)
       update(l, r, val, 2 * v);
-    else if(m <= l)
+    else if (m <= l)
       update(l - m, r - m, val, 2 * v + 1);
     else {
       update(l, m - 1, val, 2 * v);

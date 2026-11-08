@@ -40,7 +40,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
   };
   REP(v, n) {
     V<pair<pii, int>> sorted;
-    for(int e : graph[v]) {
+    for (int e : graph[v]) {
       auto p = coord[edges[e].fi ^ edges[e].se ^ v];
       auto center = coord[v];
       sorted.eb(pair(p.fi - center.fi, p.se - center.se), e);
@@ -50,7 +50,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
       auto r = r0.fi;
       bool half_l = l > pair(0, 0);
       bool half_r = r > pair(0, 0);
-      if(half_l != half_r)
+      if (half_l != half_r)
         return half_l;
       return l.fi * ll(r.se) - l.se * ll(r.fi) > 0;
     });
@@ -68,19 +68,19 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
   V<Face> polygons;
   V<V<pii>> outgoing_for_face(n);
   REP(leader, 2 * E)
-    if(ssize(comps[leader])) {
-      for(int id : comps[leader]) {
+    if (ssize(comps[leader])) {
+      for (int id : comps[leader]) {
         int v = edges[id / 2].fi;
         int u = edges[id / 2].se;
-        if(v > u)
+        if (v > u)
           swap(v, u);
-        if(id % 2 == 1)
+        if (id % 2 == 1)
           swap(v, u);
         outgoing_for_face[v].eb(u, id / 2);
       }
       V<Edge> sorted_edges;
       function<void (int)> dfs = [&](int v) {
-        while(ssize(outgoing_for_face[v])) {
+        while (ssize(outgoing_for_face[v])) {
           auto [u, e] = outgoing_for_face[v].back();
           outgoing_for_face[v].pop_back();
           dfs(u);
@@ -90,7 +90,7 @@ V<Face> split_planar_to_faces(V<pii> coord, V<pii> edges) {
       dfs(edges[comps[leader].front() / 2].fi);
       reverse(all(sorted_edges));
       ll area = 0;
-      for(auto edge : sorted_edges) {
+      for (auto edge : sorted_edges) {
         auto l = coord[edge.from];
         auto r = coord[edge.to];
         area += l.fi * ll(r.se) - l.se * ll(r.fi);

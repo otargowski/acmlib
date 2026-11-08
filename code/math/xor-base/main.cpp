@@ -7,10 +7,10 @@ int highest_bit(int ai) {
 constexpr int bits = 30;
 vi xor_base(vi elems) {
   V<vi> at_bit(bits + 1);
-  for(int ai : elems)
+  for (int ai : elems)
     at_bit[highest_bit(ai)].eb(ai);
-  for(int b = bits; b >= 1; --b)
-    while(ssize(at_bit[b]) > 1) {
+  for (int b = bits; b >= 1; --b)
+    while (ssize(at_bit[b]) > 1) {
       int ai = at_bit[b].back();
       at_bit[b].pop_back();
       ai ^= at_bit[b].back();
@@ -18,15 +18,15 @@ vi xor_base(vi elems) {
     }
   at_bit.erase(at_bit.begin());
   REP(b0, bits - 1)
-    for(int a0 : at_bit[b0])
+    for (int a0 : at_bit[b0])
       FOR(b1, b0 + 1, bits - 1)
-        for(int &a1 : at_bit[b1])
-          if((a1 >> b0) & 1)
+        for (int &a1 : at_bit[b1])
+          if ((a1 >> b0) & 1)
             a1 ^= a0;
   vi ret;
-  for(auto &v : at_bit) {
+  for (auto &v : at_bit) {
     assert(ssize(v) <= 1);
-    for(int ai : v)
+    for (int ai : v)
       ret.eb(ai);
   }
   return ret;

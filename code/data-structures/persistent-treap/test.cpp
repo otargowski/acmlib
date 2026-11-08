@@ -3,11 +3,11 @@
 
 vi get_all_vals(Treap::pNode n) {
   vi ret;
-  if(n->l)
+  if (n->l)
     ret = get_all_vals(n->l);
   ret.eb(n->val);
-  if(n->r)
-    for(int val : get_all_vals(n->r))
+  if (n->r)
+    for (int val : get_all_vals(n->r))
       ret.eb(val);
   return ret;
 }
@@ -19,8 +19,8 @@ void test() {
   V<Treap::pNode> roots = {nullptr};
   V<vi> values = {{}};
 
-  while(n --> 0) {
-    if(ssize(roots) > 1 and rd(0, 3) == 0) {
+  while (n --> 0) {
+    if (ssize(roots) > 1 and rd(0, 3) == 0) {
       roots.pop_back();
       values.pop_back();
       treap.root = roots.back();

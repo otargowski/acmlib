@@ -3,20 +3,20 @@
 
 int components_cnt(int n, V<pii> edges, bool ignore_alone = false) {
   V<vi> graph(n);
-  for(auto [v, u] : edges) {
+  for (auto [v, u] : edges) {
     graph[v].eb(u);
     graph[u].eb(v);
   }
   V<bool> visited(n);
   function<void (int)> dfs = [&](int v) {
     visited[v] = true;
-    for(int u : graph[v])
-      if(not visited[u])
+    for (int u : graph[v])
+      if (not visited[u])
         dfs(u);
   };
   int ans = 0;
   REP(v, n)
-    if(not visited[v] and (not ignore_alone or ssize(graph[v]))) {
+    if (not visited[v] and (not ignore_alone or ssize(graph[v]))) {
       ++ans;
       dfs(v);
     }
@@ -24,42 +24,42 @@ int components_cnt(int n, V<pii> edges, bool ignore_alone = false) {
 }
 
 bool is_cycle(int n, V<pii> edges) {
-  if(components_cnt(n, edges, true) != 1)
+  if (components_cnt(n, edges, true) != 1)
     return false;
   vi deg(n);
-  for(auto [v, u] : edges) {
+  for (auto [v, u] : edges) {
     ++deg[v];
     ++deg[u];
   }
   REP(v, n)
-    if(deg[v] != 2 and deg[v] != 0)
+    if (deg[v] != 2 and deg[v] != 0)
       return false;
   return true;
 }
 
 bool is_bicon(int n, V<pii> edges) {
-  if(components_cnt(n, edges, true) != 1)
+  if (components_cnt(n, edges, true) != 1)
     return false;
   V both_through_cycle(ssize(edges), V<bool>(ssize(edges)));
   REP(subset_cycle, 1 << ssize(edges)) {
     V<pii> cycle;
     vi idx;
     REP(i, ssize(edges))
-      if((subset_cycle >> i) & 1) {
+      if ((subset_cycle >> i) & 1) {
         cycle.eb(edges[i]);
         idx.eb(i);
       }
-    if(not is_cycle(n, cycle))
+    if (not is_cycle(n, cycle))
       continue;
 
-    for(int i : idx)
-      for(int j : idx)
+    for (int i : idx)
+      for (int j : idx)
         both_through_cycle[i][j] = both_through_cycle[j][i] = true;
   }
   bool valid = true;
-  for(auto &v : both_through_cycle)
-    for(bool b : v)
-      if(not b)
+  for (auto &v : both_through_cycle)
+    for (bool b : v)
+      if (not b)
         valid = false;
   return valid or ssize(edges) == 1;
 }
@@ -69,21 +69,21 @@ V<vi> bicons(int n, V<pii> edges) {
   iota(all(remaining_edges_id), 0);
   V<vi> ret;
 
-  while(not remaining_edges_id.empty()) {
+  while (not remaining_edges_id.empty()) {
     pii biggest_bicon = {-1, -1};
     REP(mask, 1 << ssize(remaining_edges_id)) {
       V<pii> sub_edges;
       REP(i, ssize(remaining_edges_id))
-        if((mask >> i) & 1)
+        if ((mask >> i) & 1)
           sub_edges.eb(edges[remaining_edges_id[i]]);
-      if(is_bicon(n, sub_edges))
+      if (is_bicon(n, sub_edges))
         chmax(biggest_bicon, pair(ssize(sub_edges), mask));
     }
     assert(biggest_bicon.fi > 0);
     ret.eb();
     vi remaining;
     REP(i, ssize(remaining_edges_id))
-      if((biggest_bicon.se >> i) & 1)
+      if ((biggest_bicon.se >> i) & 1)
         ret.back().eb(remaining_edges_id[i]);
       else
         remaining.eb(remaining_edges_id[i]);
@@ -98,17 +98,17 @@ vi arti_points(int n, V<pii> edges) {
   REP(deleted, n) {
     V<pii> sub_edges;
     int cnt_edges_deleted = 0;
-    for(auto [v, u] : edges)
-      if(v != deleted and u != deleted)
+    for (auto [v, u] : edges)
+      if (v != deleted and u != deleted)
         sub_edges.eb(v, u);
       else
         ++cnt_edges_deleted;
-    if(cnt_edges_deleted == 0) {
+    if (cnt_edges_deleted == 0) {
       // izolowany
       continue;
     }
     debug(deleted, components_cnt(n, sub_edges));
-    if(components_cnt(n, sub_edges) - 1 != init_cnt)
+    if (components_cnt(n, sub_edges) - 1 != init_cnt)
       ret.eb(deleted);
   }
   return ret;
@@ -120,7 +120,7 @@ vi bridges(int n, V<pii> edges) {
   REP(deleted, ssize(edges)) {
     auto sub_edges = edges;
     sub_edges.erase(sub_edges.begin() + deleted);
-    if(components_cnt(n, sub_edges) != init_cnt)
+    if (components_cnt(n, sub_edges) != init_cnt)
       ret.eb(deleted);
   }
   return ret;
@@ -130,10 +130,10 @@ void test() {
   int n = rd(2, 8);
   int m = rd(0, 9);
   V<pii> edges(m);
-  for(auto &[v, u] : edges) {
+  for (auto &[v, u] : edges) {
     v = rd(0, n - 1);
     u = rd(0, n - 1);
-    while(v == u)
+    while (v == u)
       u = rd(0, n - 1);
   }
   debug(edges);
@@ -143,9 +143,9 @@ void test() {
   auto main_bicon = low.bicon;
   debug(brute_bicon);
   debug(main_bicon);
-  for(auto &v : brute_bicon)
+  for (auto &v : brute_bicon)
     sort(all(v));
-  for(auto &v : main_bicon)
+  for (auto &v : main_bicon)
     sort(all(v));
   sort(all(brute_bicon));
   sort(all(main_bicon));

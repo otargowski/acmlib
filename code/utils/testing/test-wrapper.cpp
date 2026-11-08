@@ -16,7 +16,7 @@ int difference(T &start, T &end) {
 }
 
 int main(int argc, char *argv[]) {
-  if(argc != 2) {
+  if (argc != 2) {
     cerr << "The only accepted argument is time in seconds\n";
     return 1;
   }
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 
   int test_no = 0;
 
-  while(difference(start_time, last_measured) < milli_limit) {
+  while (difference(start_time, last_measured) < milli_limit) {
     try {
       test();
     }

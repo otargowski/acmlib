@@ -6,9 +6,9 @@ int knapsack_brute(vi w, int bound) {
   REP(mask, 1 << ssize(w)) {
     int sum = 0;
     REP(i, ssize(w))
-      if((mask >> i) & 1)
+      if ((mask >> i) & 1)
         sum += w[i];
-    if(sum <= bound)
+    if (sum <= bound)
       chmax(ans, sum);
   }
   return ans;
@@ -17,7 +17,7 @@ int knapsack_brute(vi w, int bound) {
 void test() {
   int n = rd(0, 15);
   vi w(n);
-  for(int &wi : w)
+  for (int &wi : w)
     wi = rd(0, 30);
   int bound = rd(0, ssize(w) * 30);
 

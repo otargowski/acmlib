@@ -17,7 +17,7 @@ int discrete_log(int a, int b) {
   cur = 1;
   FOR(p, 1, n) {
     cur = mul(cur, an);
-    if(vals.count(cur)) {
+    if (vals.count(cur)) {
       int ans = n * p - vals[cur];
       return ans;
     }

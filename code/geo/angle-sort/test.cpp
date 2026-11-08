@@ -16,7 +16,7 @@ bool check_equiv(V<P> a, V<P> b) {
 void test() {
   int points_type = rd(0, 1);
   auto rd_D = [&] {
-    if(points_type)
+    if (points_type)
       return D(rd(-5, 5));
     else
       return D(rd(-1e9, 1e9)) / 1e6;
@@ -26,7 +26,7 @@ void test() {
   REP (i, n)
     while (true) {
       t[i] = P(rd_D(), rd_D());
-      if(t[i] != P(0, 0))
+      if (t[i] != P(0, 0))
         break;
     }
   debug(t);

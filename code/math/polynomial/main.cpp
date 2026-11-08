@@ -26,7 +26,7 @@ void sub(vi& a, C vi& b) { // KONIECZNE
 // BEGIN HASH
 vi deriv(vi a) {
   REP(i, ssize(a)) a[i] = mul(a[i], i);
-  if(ssize(a)) a.erase(a.begin());
+  if (ssize(a)) a.erase(a.begin());
   return a;
 }
 vi integr(vi a) {
@@ -35,7 +35,7 @@ vi integr(vi a) {
   static vi f{1};
   FOR(i, ssize(f), n) f.eb(mul(f[i - 1], i));
   int r = inv(f[n]);
-  for(int i = n; i > 0; --i)
+  for (int i = n; i > 0; --i)
     a[i] = mul(a[i], mul(r, f[i - 1])), r = mul(r, i);
   return a;
 } // END HASH
@@ -58,10 +58,10 @@ vi powi_deg(C vi& a, int k, int n) {
 // BEGIN HASH
 vi powi_slow(C vi &a, int k, int n) {
   vi v{1}, b = mod_xn(a, n);
-  int x = 1; while(x < n) x *= 2;
-  while(k) {
+  int x = 1; while (x < n) x *= 2;
+  while (k) {
     ntt(b, 2 * x);
-    if(k & 1) {
+    if (k & 1) {
       ntt(v, 2 * x);
       REP(i, 2 * x) v[i] = mul(v[i], b[i]);
       ntt(v, 2 * x, true);
@@ -76,11 +76,11 @@ vi powi_slow(C vi &a, int k, int n) {
 } // END HASH
 // BEGIN HASH
 vi sqrt(C vi& a, int n) {
-  auto at = [&](int i) { if(i < ssize(a)) return a[i]; else return 0; };
+  auto at = [&](int i) { if (i < ssize(a)) return a[i]; else return 0; };
   assert(ssize(a) and a[0] == 1);
   C int inv2 = inv(2);
   vi v{1}, f{1}, g{1};
-  for(int x = 1; x < n; x *= 2) {
+  for (int x = 1; x < n; x *= 2) {
     vi z = v;
     ntt(z, x);
     vi b = g;
@@ -108,7 +108,7 @@ vi sqrt(C vi& a, int n) {
 vi inv(C vi& a, int n) {
   assert(ssize(a) and a[0] != 0);
   vi v{inv(a[0])};
-  for(int x = 1; x < n; x *= 2) {
+  for (int x = 1; x < n; x *= 2) {
     vi f = mod_xn(a, 2 * x), g = v;
     ntt(g, 2 * x);
     REP(k, 2) {
@@ -130,11 +130,11 @@ vi log(C vi& a, int n) { // WYMAGA deriv, integr, inv
 vi exp(C vi& a, int n) { // WYMAGA deriv, integr
   assert(a.empty() or a[0] == 0);
   vi v{1}, f{1}, g, h{0}, s;
-  for(int x = 1; x < n; x *= 2) {
+  for (int x = 1; x < n; x *= 2) {
     g = v;
     REP(k, 2) {
       ntt(g, (2 - k) * x);
-      if(!k) s = g;
+      if (!k) s = g;
       REP(i, x) g[i] = mul(g[(2 - k) * i], h[i]);
       ntt(g, x, true);
       REP(i, x / 2) g[i] = 0;
@@ -169,20 +169,20 @@ vi exp(C vi& a, int n) { // WYMAGA deriv, integr
 vi powi(C vi& a, int k, int n) { // WYMAGA log, exp
   vi v = mod_xn(a, n);
   int cnt = 0;
-  while(cnt < ssize(v) and !v[cnt])
+  while (cnt < ssize(v) and !v[cnt])
     ++cnt;
-  if(ll(cnt) * k >= n)
+  if (ll(cnt) * k >= n)
     return {};
   v.erase(v.begin(), v.begin() + cnt);
-  if(v.empty())
+  if (v.empty())
     return k ? vi{} : vi{1};
   int powi0 = powi(v[0], k);
   int inv0 = inv(v[0]);
-  for(int& e : v) e = mul(e, inv0);
+  for (int& e : v) e = mul(e, inv0);
   v = log(v, n - cnt * k);
-  for(int& e : v) e = mul(e, k);
+  for (int& e : v) e = mul(e, k);
   v = exp(v, n - cnt * k);
-  for(int& e : v) e = mul(e, powi0);
+  for (int& e : v) e = mul(e, powi0);
   vi t(cnt * k, 0);
   v.insert(v.begin(), t.begin(), t.end());
   return v;
@@ -190,9 +190,9 @@ vi powi(C vi& a, int k, int n) { // WYMAGA log, exp
 // BEGIN HASH
 pair<vi, vi> div_slow(vi a, C vi& b) {
   vi x;
-  while(ssize(a) >= ssize(b)) {
+  while (ssize(a) >= ssize(b)) {
     x.eb(mul(a.back(), inv(b.back())));
-    if(x.back() != 0)
+    if (x.back() != 0)
       REP(i, ssize(b))
         a.end()[-i - 1] = sub(a.end()[-i - 1], mul(x.back(), b.end()[-i - 1]));
     a.pop_back();

@@ -4,14 +4,14 @@
 void test() {
   int n = rd(1, 17);
   int op_cnt = rd(1, 100);
-  if(rd(0, 1)) {
+  if (rd(0, 1)) {
     Tree_Get_Max tree(n);
     vi brute(n);
-    while(op_cnt --> 0) {
+    while (op_cnt --> 0) {
       int l = rd(0, n - 1), r = rd(0, n - 1);
-      if(l > r)
+      if (l > r)
         swap(l, r);
-      if(rd(0, 1)) {
+      if (rd(0, 1)) {
         int val = rd(0, 10);
         tree.update(l, val);
         brute[l] = val;
@@ -27,11 +27,11 @@ void test() {
   else {
     Tree_Update_Max_On_Interval tree(n);
     vi brute(n);
-    while(op_cnt --> 0) {
+    while (op_cnt --> 0) {
       int l = rd(0, n - 1), r = rd(0, n - 1);
-      if(l > r)
+      if (l > r)
         swap(l, r);
-      if(rd(0, 1)) {
+      if (rd(0, 1)) {
         int val = rd(0, 10);
         tree.update(l, r, val);
         FOR(i, l, r)

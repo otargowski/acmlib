@@ -15,8 +15,8 @@ void test() {
   auto vec = circle_circle(P(in[0], in[1]), in[2], P(in[3], in[4]), in[5]);
   debug(in, vec);
 
-  if(equal(in[0], in[3]) and equal(in[1], in[4])) {
-    if(equal(in[2], in[5]))
+  if (equal(in[0], in[3]) and equal(in[1], in[4])) {
+    if (equal(in[2], in[5]))
       assert(ssize(vec) == 3);
     else
       assert(ssize(vec) == 0);
@@ -27,15 +27,15 @@ void test() {
   D d = dist(P(in[0], in[1]), P(in[3], in[4]));
   debug(d);
   int sign1 = sign(abs(in[2] - in[5]) - d), sign2 = sign(d - in[2] - in[5]);
-  if(sign1 == 0 or sign2 == 0)
+  if (sign1 == 0 or sign2 == 0)
     assert(ssize(vec) == 1);
-  else if(sign1 > 0 or sign2 > 0)
+  else if (sign1 > 0 or sign2 > 0)
     assert(ssize(vec) == 0);
   else
     assert(ssize(vec) == 2);
 
-  for(P p : vec)
-    for(int i : {0, 3}) {
+  for (P p : vec)
+    for (int i : {0, 3}) {
       D di = dist(p, P(in[i], in[i + 1]));
       assert(equal(di, in[i + 2]));
     }
