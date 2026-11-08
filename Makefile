@@ -25,6 +25,12 @@ test: $(patsubst code/%, .make/%, $(shell find code -name 'main.cpp'))
 	mkdir -p $(@D) && touch $@
 
 clean: 
-	rm -f main.pdf
+	rm -f main.pdf typst-src/output.pdf
 
-.PHONY: help pdf clean test-all
+typst-build:
+	python3 typst-src/build_typst.py
+	typst compile typst-src/main.typ typst-src/output.pdf
+
+typst: typst-build
+
+.PHONY: help pdf clean test-all typst typst-build
