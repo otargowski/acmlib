@@ -12,7 +12,7 @@ void test() {
 	array<D, 6> in;
 	REP(i, 6)
 		in[i] = rd_double(i % 3 == 2 ? 0 : -mx, mx);
-	auto vec = circle_circle(in[0], in[1], in[2], in[3], in[4], in[5]);
+	auto vec = circle_circle(P(in[0], in[1]), in[2], P(in[3], in[4]), in[5]);
 	debug(in, vec);
 
 	if(equal(in[0], in[3]) and equal(in[1], in[4])) {
