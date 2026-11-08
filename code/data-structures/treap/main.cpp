@@ -6,7 +6,7 @@
  *   tam gdzie oznaczono komentarzem.
  */
 namespace Treap {
-	// BEGIN HASH
+// BEGIN HASH
 	mt19937 rng_key(0);
 	struct Node {
 		int prio, cnt = 1;
@@ -45,13 +45,13 @@ namespace Treap {
 		}
 		update(t);
 	} // END HASH
-	void apply_on_interval(pNode &root, int l, int r, function<void (pNode)> f) {
+	void apply_on_interval(pNode &t, int l, int r, function<void (pNode)> f) {
 		pNode left, mid, right;
-		split(root, r + 1, mid, right);
+		split(t, r + 1, mid, right);
 		split(mid, l, left, mid);
 		assert(l <= r and mid);
 		f(mid);
 		merge(mid, left, mid);
-		merge(root, mid, right);
+		merge(t, mid, right);
 	}
 }

@@ -4,31 +4,31 @@
  *   \texttt{insert(i, val)} insertuję na pozycję $i$,
  *   kopiowanie struktury działa w O(1),
  *   robimy sobie \texttt{V<Treap>} żeby obsługiwać trwałość
- *   UPD. uwaga potencjalnie się kwadraci, spytać Bartka kiedy
+ *   UPD. uwaga potencjalnie się kwadraci, spytać Waldiego kiedy
  */
 mt19937 rng_i(0);
 struct Treap {
 	struct Node {
-		int val, prio, sub = 1;
+		int val, prio, cnt = 1;
 		Node *l = nullptr, *r = nullptr;
 		Node(int _val) : val(_val), prio(int(rng_i())) {}
 		~Node() { delete l; delete r; }
 	};
 	using pNode = Node*;
 	pNode root = nullptr;
-	int get_sub(pNode n) { return n ? n->sub : 0; }
-	void update(pNode n) {
-		if(!n) return;
-		n->sub = get_sub(n->l) + get_sub(n->r) + 1;
+	int get_cnt(pNode t) { return t ? t->cnt : 0; }
+	void update(pNode t) {
+		if(!t) return;
+		t->cnt = get_cnt(t->l) + get_cnt(t->r) + 1;
 	}
 	void split(pNode t, int i, pNode &l, pNode &r) {
 		if(!t) l = r = nullptr;
 		else {
 			t = new Node(*t);
-			if(i <= get_sub(t->l))
+			if(i <= get_cnt(t->l))
 				split(t->l, i, l, t->l), r = t;
 			else
-				split(t->r, i - get_sub(t->l) - 1, t->r, r), l = t;
+				split(t->r, i - get_cnt(t->l) - 1, t->r, r), l = t;
 		}
 		update(t);
 	}
@@ -50,10 +50,10 @@ struct Treap {
 			split(t, i, it->l, it->r), t = it;
 		else {
 			t = new Node(*t);
-			if(i <= get_sub(t->l))
+			if(i <= get_cnt(t->l))
 				insert(t->l, i, it);
 			else
-				insert(t->r, i - get_sub(t->l) - 1, it);
+				insert(t->r, i - get_cnt(t->l) - 1, it);
 		}
 		update(t);
 	}
@@ -61,19 +61,19 @@ struct Treap {
 		insert(root, i, new Node(val));
 	}
 	void erase(pNode &t, int i) {
-		if(get_sub(t->l) == i)
+		if(get_cnt(t->l) == i)
 			merge(t, t->l, t->r);
 		else {
 			t = new Node(*t);
-			if(i <= get_sub(t->l))
+			if(i <= get_cnt(t->l))
 				erase(t->l, i);
 			else
-				erase(t->r, i - get_sub(t->l) - 1);
+				erase(t->r, i - get_cnt(t->l) - 1);
 		}
 		update(t);
 	}
 	void erase(int i) {
-		assert(i < get_sub(root));
+		assert(i < get_cnt(root));
 		erase(root, i);
 	}
 };
