@@ -2,27 +2,10 @@
  * Opis: Funkcje pomocnicze do algorytmów macierzowych.
  */
 #if 1
-#ifdef CHANGABLE_MOD
-int mod = 998'244'353;
-#else
-constexpr int mod = 998'244'353;
-#endif
+#include "../simple-modulo/main.cpp"
 // BEGIN HASH
 bool equal(int a, int b) { return a == b; }
-int mul(int a, int b) { return int(a * ll(b) % mod); }
-int add(int a, int b) {
-	a += b; return a >= mod ? a - mod : a;
-}
-int powi(int a, int b) {
-	for(int ret = 1;; b /= 2) {
-		if(b == 0) return ret;
-		if(b & 1) ret = mul(ret, a);
-		a = mul(a, a);
-	}
-}
-int inv(int x) { return powi(x, mod - 2); }
 int divide(int a, int b) { return mul(a, inv(b)); }
-int sub(int a, int b) { return add(a, mod - b); }
 using T = int; // END HASH
 #else
 // BEGIN HASH

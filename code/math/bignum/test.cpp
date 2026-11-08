@@ -40,7 +40,7 @@ T gcd(T a, T b) {
 	return gcd(b, a % b);
 }
 
-T abs(T x) { return x < 0 ? -x : x; }
+//T abs(T x) { return x < 0 ? -x : x; }
 
 void test() {
 	V<Num> vnum{1, 2, 4, 11};

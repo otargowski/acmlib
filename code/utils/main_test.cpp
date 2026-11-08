@@ -5,6 +5,7 @@
 #pragma once
 
 #include <bits/stdc++.h>
+#include <cassert>
 #define FOR(i,p,k) for(int i=(p); i<=(k); ++i)
 #define REP(i,k) FOR(i,0,(k)-1)
 #define RFOR(i,p,n) for(int i=(p); i>=(n); --i)
@@ -25,7 +26,6 @@ typedef V <ll> vll;
 typedef C int ci;
 typedef C ll cll;
 typedef pair <int, int> pii;
-typedef pair <ll, ll> pll;
 void chmin(auto &a, auto b){a=min(a,b);}
 void chmax(auto &a, auto b){a=max(a,b);}
 ci inf=2.1e9;

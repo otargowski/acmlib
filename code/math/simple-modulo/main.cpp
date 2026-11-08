@@ -10,27 +10,18 @@ int mod = 998'244'353;
 constexpr int mod = 998'244'353;
 #endif
 int add(int a, int b) {
-	a += b;
-	return a >= mod ? a - mod : a;
+	a += b; return a >= mod ? a - mod : a;
 }
-int sub(int a, int b) {
-	return add(a, mod - b);
-}
-int mul(int a, int b) {
-	return int(a * ll(b) % mod);
-}
+int sub(int a, int b) { return add(a, mod - b); }
+int mul(int a, int b) { return int(a * ll(b) % mod); }
 int powi(int a, int b) {
 	for(int ret = 1;; b /= 2) {
-		if(b == 0)
-			return ret;
-		if(b & 1)
-			ret = mul(ret, a);
+		if(b == 0) return ret;
+		if(b & 1) ret = mul(ret, a);
 		a = mul(a, a);
 	}
 }
-int inv(int x) {
-	return powi(x, mod - 2);
-} // END HASH
+int inv(int x) { return powi(x, mod - 2); } // END HASH
 struct BinomCoeff {
 	vi fac, rev;
 	BinomCoeff(int n) {

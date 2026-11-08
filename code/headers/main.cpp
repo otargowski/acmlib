@@ -5,6 +5,7 @@
 #pragma GCC optimize("O3")
 #endif
 #include <bits/stdc++.h>
+#include <cassert>
 #define FOR(i,p,k) for(int i=(p); i<=(k); ++i)
 #define RFOR(i,p,k) for(int i=(p); i>=(k); --i)
 #define REP(i,k) FOR(i,0,(k)-1)
@@ -20,12 +21,18 @@
 using namespace std;
 typedef long long ll;
 typedef V <int> vi;
+typedef V <ll> vll;
 typedef C int ci;
 typedef C ll cll;
 typedef pair <int, int> pii;
 int I(){
     int z;
     scanf("%d", &z);
+    return z;
+}
+ll LL(){
+    ll z;
+    scanf("%lld", &z);
     return z;
 }
 void ans(){
