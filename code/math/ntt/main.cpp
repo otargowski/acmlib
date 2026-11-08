@@ -3,7 +3,6 @@
  */
 #include "../simple-modulo/main.cpp"
 // BEGIN HASH
-using vi = vi;
 constexpr int root = 3;
 void ntt(vi& a, int n, bool inverse = false) {
   assert((n & (n - 1)) == 0);
