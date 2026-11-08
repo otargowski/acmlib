@@ -1,8 +1,8 @@
 /*
  * Opis: O(n\log n),
  * zawiera posortowane suffixy, zawiera pusty suffix,
- * $lcp[i]$ to $lcp$ suffixu $sa[i - 1]$ i $sa[i]$,
- * Dla \texttt{s = aabaaab}, \texttt{sa=\{7,3,4,0,5,1,6,2\},lcp=\{0,0,2,3,1,2,0,1\}}
+ * $lcp[i]$ to $lcp$ suffixu $sa[i]$ i $sa[i + 1]$,
+ * Dla \texttt{s = aabaaab}, \texttt{sa=\{7,3,4,0,5,1,6,2\},lcp=\{0,2,3,1,2,0,1\}}
  */
 pair<vi, vi> suffix_array(vi s, int alpha = 26) {
 	++alpha;
